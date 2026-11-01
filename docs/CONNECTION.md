@@ -1180,6 +1180,6 @@ atau renderer tandingan. **PHP tetap otoritas data, transaksi, dan permission.**
 Evaluasi lifecycle/cleanup, keamanan, dukungan browser, aksesibilitas, dan bukti
 tes dengan merujuk MDN Web APIs serta Chrome Modern Web Guidance.
 
-Pedoman wajib: [Datastar-first & Native Web Platform](DATASTAR-NATIVE-WEB-GUIDANCE.md).
+Pedoman wajib: [arsitektur Morph](ARCHITECTURE.md) dan [PLEASE](PLEASE.md); keduanya mengatur batas Datastar/native-web serta otoritas server-side.
 Catatan ini menetapkan kebijakan kerja; bukan klaim bahwa semua API telah
 diimplementasikan atau bahwa catatan historis di dokumen ini telah diuji ulang.

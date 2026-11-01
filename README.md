@@ -38,6 +38,6 @@ The verified local PostgreSQL identity is recorded in [`docs/LOCAL-DEVELOPMENT.m
 - PostgreSQL 18.3 identity and `morph03_admin` superuser flags: verified by the developer with `psql`.
 - PDO connection from `C:\php\php.exe` PHP 8.4.10 to `morph_03` at port `5433`: verified by the developer.
 - TypeScript `typecheck` and ES-module build: verified in the agent sandbox with Node.js `v22.22.3` and the locked toolchain. The generated `public/assets/build/` output is ignored by Git.
-- Laragon web-SAPI PHP, Twig rendering, responsive browser behavior, and HTTP integration: pending local verification.
+- The root Morph shell was rendered in the browser at `http://127.0.0.1:8080/` through PHP's built-in CLI server (developer screenshot). This verifies the root preview only; Apache/vhost configuration, Laragon web-SAPI, health/readiness routes, and DB-backed HTTP behavior remain pending.
 - PHP/Composer commands are not available in the agent's Linux sandbox; code/runtime tests must be executed in the Windows PHP environment before claiming runtime parity.
-- No application schema DDL, role grant, or migration has been applied by this UI change.
+- No application schema DDL, role grant, or migration has been applied by this project work.

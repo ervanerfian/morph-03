@@ -1,9 +1,9 @@
 # Rancangan penyimpanan Database dan Relation Morph
 
-**Status: rancangan untuk review, bukan DDL atau implementasi.** Tanggal:
-2026-10-31. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
-[arah import/export](DATABASE-SYNC-IMPORT-EXPORT-ROADMAP.md), dan
-[arah permission](MORPH-ROLE-AND-PERMISSION-DIRECTION.md).
+**Status: rancangan untuk review; bukan DDL, implementasi, atau persetujuan migrasi.**
+Diperbarui: 2026-11-01. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
+[desain Field Binding dan Relation Edge](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md),
+[arsitektur aplikasi](ARCHITECTURE.md), dan [skema target](TARGET-POSTGRESQL-SCHEMA.md).
 
 Pengguna menyatakan data yang ada masih development, bukan produksi, dan tidak
 keberatan jika **pembersihan data development diperlukan** agar target lebih
@@ -39,7 +39,9 @@ Itu tidak otomatis memberi hak melihat/mengomentari Record atau File: kebijakan
 creator dan scope resource tetap berlaku, termasuk tanpa bypass otomatis Owner.
 Cara Page/extension mengacu Database dan kombinasi policy masih perlu diputuskan.
 
-## 2. Kondisi aktual yang perlu dihormati
+## 2. Catatan legacy yang perlu diverifikasi
+
+**Penting:** butir di bawah mendeskripsikan graph/implementasi lama yang ada di catatan proyek sebelumnya, bukan runtime aktif branch `morph-03`. Pada branch ini per 2026-11-01, data engine dan record store belum tersedia. Jangan gunakan sebagai bukti kondisi database lokal atau sebagai instruksi migrasi; sebelum reuse, verifikasi source/schema secara read-only setelah scope dan target disetujui.
 
 - Graph canonical v1 punya `databases[]` yang secara produk merupakan **Table**;
   `modelGroups` adalah referensi presentasi, bukan bukti kepemilikan Database.
@@ -73,10 +75,10 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
 | Table dan Field | Identitas stabil; binding menyatakan Field pada Table. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
-| Record | ID stabil, Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan dan divalidasi sesuai schema revision |
-| Relation definition | Field/binding bertipe relation dengan target Table dan aturan cardinality, disimpan di canonical revision |
-| Relation edge | Hubungan konkret source Record + source binding → target Record, beserta scope dan lifecycle yang terverifikasi |
-| Lookup definition | Field turunan dengan path Relation + target binding; capability, tipe hasil, dependency dan disclosure tervalidasi |
+| Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
+| Relation definition | Konfigurasi Field Relation: target Data Source dan satu Display Field; keputusan cardinality masih terbuka |
+| Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
+| Lookup definition | Field turunan dengan path Relation + identitas target Field kanonis; capability, tipe hasil, dependency dan disclosure tervalidasi |
 
 ### Bentuk fisik yang direkomendasikan untuk diteliti
 
@@ -97,20 +99,26 @@ perlu proof, bukan perubahan nama v1 secara langsung.
    revision)` + pin versi registry/dependensi, dan draft/head CAS. Alternatif
    workspace graph head dengan per-Database projections dapat dipakai sebagai
    transisi, tetapi hanya satu writer/sumber kebenaran yang sah pada setiap fase.
-4. **Records**: `(workspace, table_id, record_id)` dengan creator, revision yang
-   dapat didecode, token version dan values JSONB untuk scalar. FK/unique harus
-   membuktikan scope workspace dan Table; indeks mengikuti akses/pagination nyata.
-   Tidak membuat satu physical SQL table per Table pengguna secara otomatis.
-5. **Edges**: struktur typed/indexable dengan `(workspace_id, source_table_id,
-   source_record_id, source_binding_id, target_table_id, target_record_id)`;
-   urutan diperlukan jika multi-target didukung. Composite FK dan unique/index
-   yang sesuai memverifikasi kedua endpoint berada di workspace dan Table yang
-   benar; schema service juga memvalidasi binding source dan target yang sah
-   pada revision, cardinality dan lifecycle. Indeks arah keluar **dan masuk**
-   diperlukan untuk read dan pemeriksaan dampak delete. Hindari menaruh nilai
-   relation yang sama sebagai dua sumber writable dalam JSONB dan edge table:
-   untuk desain ini **edge menjadi sumber kebenaran Relation**, JSON response
-   adalah proyeksi. Audit, history dan versi pada edge perlu dirinci.
+4. **Records**: `(workspace, data_source_id, record_id)` dengan creator,
+   revision yang dapat didecode, token version dan values JSONB untuk scalar.
+   Nilai memakai identitas Field kanonis, bukan ID binding presentation
+   Table View; `field_definition_id` kandidat, sedangkan identitas Data
+   Source-Field harus diselesaikan. FK/unique membuktikan scope workspace dan
+   Data Source. Tidak membuat satu physical SQL table per Data Source pengguna.
+5. **Edges**: struktur typed/indexable dengan `(workspace_id,
+   source_data_source_id, source_record_id, source_field_id,
+   target_data_source_id, target_record_id)`; `source_field_id` adalah identitas
+   Field kanonis, bukan binding view-specific. `target_record_id` hanya ada pada
+   edge per Record. Config Relation terpisah membatasi target Data Source dan
+   satu `display_field_id`; jika kardinalitas dipilih, ia menjadi aturan config,
+   bukan atribut edge. Urutan hanya diperlukan bila multi-target disetujui.
+   Composite FK dan unique/index yang sesuai memverifikasi kedua endpoint berada
+   di workspace/Data Source yang benar; schema service juga memvalidasi Field
+   dan revision. Indeks arah keluar **dan masuk** diperlukan untuk read dan
+   pemeriksaan dampak delete. Jangan menyimpan nilai Relation yang sama sebagai
+   dua sumber writable di JSONB dan edge table: **edge menjadi sumber kebenaran**,
+   JSON response adalah proyeksi. Audit, history, dan versioning edge perlu
+   dirinci.
 
 Registry field-type perlu kontrak identitas/versi, config schema, default,
 normalize/validate, codec, renderer, query/index capability, compatibility,

@@ -7,15 +7,31 @@ Checkbox, URL, Email, Phone, Formula, Relation, Rollup, Created time,
 Created by, Last edited time, Last edited by, Button, Place, ID, serta AI
 Autofill: Summarize (Basic) dan Translate (Basic).
 
-## Kondisi awal
+## Kondisi awal branch morph-03
 
-Engine saat ini menyediakan text, textarea, integer, boolean, select dan
-email. Integer bukan pengganti lengkap Number desimal; boolean dapat menjadi
-dasar Checkbox tetapi pilihan tampilan/semantiknya belum ditetapkan. Select
-belum berarti Status atau Multi-select. Created/edited metadata dan ID belum
-tersedia sebagai field model pengguna. Implementasi yang sudah ada masih
-memiliki batas Owner, record sendiri, dan pengujian live yang tercatat di
-WORKBOOK.
+Per 2026-11-01 branch ini adalah foundation aplikasi PHP/UI; Generic Data Engine,
+registry tipe, compiler, record store, atau runtime field type belum
+diimplementasikan. Catatan tentang `text`, `textarea`, `integer`, `boolean`,
+`select`, `email`, batas Owner, dan pengujian WORKBOOK berasal dari implementasi
+legacy yang didokumentasikan sebelumnya dan bukan bukti fitur pada branch ini.
+Verifikasi source/runtime baru diperlukan sebelum mengklaim tipe sudah tersedia.
+
+## Prinsip registry yang dapat diperluas
+
+Daftar di atas adalah backlog kebutuhan yang diketahui, **bukan enum atau menu
+tertutup**. Field menunjuk stable type ID dan versi kontrak. Modul tepercaya
+mendaftarkan descriptor yang menjelaskan schema config, validasi/normalisasi,
+codec, renderer, query/filter/sort/index capabilities, authorization dan
+projection/disclosure, dependencies, serta compatibility/migration. Compiler,
+UI picker, API dan command menemukan tipe dari registry yang sama; alur CRUD
+umum tidak boleh memiliki mapping tertutup per preset.
+
+Pengguna mengisi konfigurasi deklaratif dari tipe yang terdaftar; mereka tidak
+mengirim PHP, SQL, JavaScript, nama class, atau kode executable untuk membuat
+tipe runtime. Tipe/version yang tidak dikenal gagal tertutup pada operasi yang
+tidak aman dan definisi/nilai tetap dipertahankan agar tidak hilang. Menambah
+tipe berarti menambah kontrak dan implementasi tepercaya melalui modul, bukan
+mengubah setiap template atau menambahkan branch khusus di setiap fitur.
 
 ## Urutan pengembangan bertahap
 

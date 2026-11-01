@@ -1,9 +1,9 @@
 # Rancangan Teknis: Binding Kolom dan Edge Relasi Morph
 
-**Status: target architecture untuk fresh database, bukan evolution dari skema lama.**
-Tanggal: 2026-10-31. Melengkapi [TARGET-POSTGRESQL-SCHEMA.md](TARGET-POSTGRESQL-SCHEMA.md).
+**Status: rancangan target untuk review; bukan persetujuan skema, DDL, atau migrasi.**
+Diperbarui 2026-11-01. Melengkapi [TARGET-POSTGRESQL-SCHEMA.md](TARGET-POSTGRESQL-SCHEMA.md).
 
-Data masih development, bukan produksi. Pendekatan yang diambil adalah **Fresh Database Architecture**: struktur database eksperimental lama tidak dianggap batasan desain. Kita bebas merancang ulang PostgreSQL schema berdasarkan Data Source, Table View, Record Identity, Field Definition, Relation Edge, dan Display Projection.
+Arah desain adalah **Fresh Database Architecture**: struktur eksperimental lama tidak membatasi model target. Ini bukan izin untuk membuat, menghapus, atau mengubah skema database. Model Data Source, Table View, Record Identity, Field Definition, Relation Edge, dan Display Projection harus dikonsolidasikan serta direview sebelum DDL.
 
 Struktur lama tetap diaudit sebagai referensi agar tidak kehilangan fitur yang relevan (Workspace, User, Membership, Extension, Session), tetapi tidak wajib mempertahankan struktur tabel lamanya. Tidak ada backward compatibility yang dipaksakan karena belum ada data riil yang perlu dipertahankan.
 
@@ -15,7 +15,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 - Sama Template dapat direplikasi menjadi beberapa Database instance (misal PM × 2: Proyek RT/RW dan Proyek Konten Sosmed).
 - Setiap Database instance memiliki **Table**; setiap Table memiliki **Kolom/Field**.
 - Kolom dapat didefinisikan sekali dan dipakai berulang di banyak Table melalui **Pengaturan Kolom** (checklist aktif di tabel mana).
-- Jika kolom adalah **linked/relation**, nilai yang tampil berasal dari **node Record sumber yang sama** (single source of truth).
+- Jika kolom adalah **linked/relation**, nilai yang tampil diproyeksikan dari **Record tujuan kanonis yang sama** (single source of truth).
 - Mengubah nilai di satu tempat akan terlihat di semua tempat yang menampilkan Record sumber yang sama, asalkan kolom terkait aktif dan terhubung.
 - Kolom biasa (bukan relation) memiliki nilai per Record; tidak ada otomatis-sinkron antar Record hanya karena nama kolom sama.
 
@@ -29,7 +29,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 | Field definition | Definisi kolom yang bisa digunakan ulang (nama, tipe, konfigurasi, pilihan). |
 | Field binding | "Pengaturan Kolom": memasang field definition ke Table View tertentu, dengan posisi, visibilitas, dan label override. |
 | Record | Baris data milik Data Source. Memiliki `record_id` immutabel dan `record_key` (bisnis identifier yang boleh berubah). |
-| Relation edge | Link konkret dari Record sumber ke Record tujuan melalui field binding bertipe relation. Logical edge, bukan FK fisik tabel terpisah. |
+| Relation edge | Link konkret per source Record dan identitas Field Relation kanonis ke target Record immutable; tidak terikat ke binding presentation Table View. Logical edge, bukan FK fisik tabel terpisah. |
 | Lookup derivation | Membaca field pada Record tujuan melalui relation edge; read-only pada awalnya. |
 
 ### Prinsip arsitektur tambahan
@@ -38,7 +38,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 
 2. **Gunakan immutable Record ID.** Linked Record harus menyimpan identitas permanen record tujuan (internal `record_id`), bukan hanya nilai teks atau business identifier seperti `HR-001`. Business identifier boleh berubah tanpa memutus relasi.
 
-3. **Pisahkan Relation Binding dan Display Field.** Relation Binding menentukan record mana yang terhubung. Display Field menentukan satu field dari record tujuan yang direpresentasikan pada tabel asal. Pemilihan Display Field menggunakan radio button karena hanya satu field yang dipilih dalam konfigurasi dasar. Multi-field Projection dapat dikembangkan sebagai fitur terpisah.
+3. **Pisahkan konfigurasi Relation, edge nilai, dan Display Field.** Konfigurasi Relation menentukan target Data Source serta tepat satu Display Field dari Data Source tujuan. Setiap edge per Record menyimpan identitas target yang sebenarnya. Binding Table View hanya menentukan apakah/di mana Field ditampilkan; binding bukan nilai relasi. Radio memilih satu Display Field, tidak memilih Record tujuan maupun kardinalitas. Multi-field Projection dapat dikembangkan sebagai fitur terpisah.
 
 4. **Jangan mengikat relasi pada nama atau instance Table View.** Relasi harus mengarah pada identitas Data Source dan Record. Dengan demikian, perubahan nama preset atau pembuatan duplikasi view tidak memutus relasi.
 
@@ -112,17 +112,17 @@ morph_field_definitions
 - id: UUID / stabil
 - workspace_id: text
 - label: text (misal "Nama", "PIC", "Usia", "Harga")
-- type: text (text, integer, boolean, select, relation, lookup, ...)
-- config_json: jsonb (pilihan select, target table untuk relation, dll.)
+- type_id + type_version: identitas tipe dalam registry yang dapat diperluas
+- config_json: jsonb (konfigurasi deklaratif yang divalidasi kontrak tipe)
 - is_system: boolean
 - created_by, created_at, updated_at
 ```
 
-Definisi ini **tidak menyimpan nilai Record**. Ini hanya struktur dan pengaturan kolom yang dapat dipakai ulang.
+Definisi ini **tidak menyimpan nilai Record**. Ini menyimpan semantik dan konfigurasi kolom yang dapat dipakai ulang. Daftar tipe bukan enum tertutup: tipe hanya dijalankan bila modul tepercaya mendaftarkan kontrak/kapabilitasnya. JSON user tidak boleh membawa kode executable, nama class, SQL, atau JavaScript.
 
 ### 3.6 Field binding — inti dari "Pengaturan Kolom"
 
-Ini adalah fitur "magic" yang Anda sebut. Satu field definition dapat dipasang ke banyak Table.
+Ini adalah fitur "magic" yang Anda sebut. Satu field definition dapat dipasang ke banyak Table/View. Binding ini mengatur placement dan presentasi (aktif, urutan, label), bukan identitas nilai kanonis; mengganti atau menambah view tidak boleh membuat salinan nilai Record.
 
 ```text
 morph_field_bindings
@@ -138,6 +138,10 @@ morph_field_bindings
 - created_by, created_at, updated_at
 unique (workspace_id, table_id, field_definition_id)
 ```
+
+**Scope binding masih perlu dikonsolidasikan:** contoh ini mengaitkan binding ke `morph_tables`, sedangkan `TARGET-POSTGRESQL-SCHEMA.md` mengaitkannya ke `morph_table_views`. Tidak satu pun merupakan DDL yang disetujui. Kontrak harus menetapkan identitas Field kanonis pada Data Source dan memisahkannya dari konfigurasi kolom per view; jangan memakai FK binding view sebagai identitas nilai Record.
+
+Atribut lama `is_required` dan `is_readonly_ui` juga masih perlu dipilah: `required` adalah validasi pada scope yang jelas, sedangkan flag UI read-only tidak pernah menggantikan authorization server-side. Jangan menganggap keduanya otomatis milik binding presentation.
 
 Contoh:
 
@@ -159,7 +163,7 @@ morph_records
 - creator_id: text
 - schema_revision: bigint (revisi definisi saat record dibuat/diupdate)
 - request_id: text (idempotensi)
-- values_json: jsonb (nilai scalar per field binding, tidak menyimpan edge relation)
+- values_json: jsonb (nilai scalar berdasarkan identitas Field kanonis, bukan ID binding Table View; edge Relation disimpan terpisah)
 - version_token: text (optimistic concurrency)
 - lifecycle: active | trash | deleted
 - created_at, updated_at
@@ -170,6 +174,8 @@ Perbedaan penting:
 - `record_key`: misal `HR-001`, identifier yang dapat dibaca dan diedit user. Relasi **tidak** menyimpan `record_key` sebagai identitas utama.
 
 Nilai relation **tidak** disimpan dalam `values_json` sebagai dua sumber kebenaran. Relation disimpan di tabel edge terpisah.
+
+**Identitas nilai belum menjadi keputusan DDL:** karena `morph_field_bindings` adalah placement/presentasi Table View, `values_json` dan edge tidak boleh memakai ID binding view-specific sebagai identitas nilai kanonis. `field_definition_id` adalah kandidat identitas stabil saat ini; bila semantik Field perlu dibedakan per Data Source, gunakan identitas Field kanonis berscope Data Source yang eksplisit. Pilihan fisik dan constraint-nya harus diselesaikan sebelum DDL.
 
 ### 3.8 Checklist vs Radio — perbedaan penting dalam UI "Pengaturan Kolom"
 
@@ -202,17 +208,13 @@ Pilih satu field sebagai label:
 [●] Nama ← dipilih satu
 ```
 
-Alasan radio (hanya satu):
-
-- Relasi memerlukan **satu node target yang jelas** sebagai representasi nilai.
-- Jika boleh banyak, tidak akan jelas field mana yang ditampilkan saat record ditampilkan di tabel lain.
-- Konsisten dengan konsep kunci unik: satu kolom linked merujuk ke satu field tujuan pada satu record sumber.
+Radio memilih **Field yang diproyeksikan** dari tiap target Record, bukan Record tujuan dan bukan kardinalitas relasi. Record tujuan dipilih per nilai Record sumber dan disimpan dalam edge. Pilihan satu Display Field tidak berarti bahwa satu source Record hanya boleh memiliki satu target Record; kardinalitas masih keputusan terpisah.
 
 ### 3.9 Linked Record vs Display Field — pemisahan identitas record dari representasi tampilan
 
 Untuk tipe **linked/relation**, sistem harus memisahkan dua konsep yang sering dicampur:
 
-**1. Linked Record — identitas record sumber yang direlasikan**
+**1. Linked Record — identitas Record tujuan yang direlasikan**
 
 Sistem menyimpan identitas record tujuan yang sesungguhnya (misal `HR-001` melalui `record_id` immutabel), bukan hanya nilainya yang ditampilkan. Relasi selalu mengarah ke record yang sama.
 
@@ -252,22 +254,24 @@ PIC → HR - Employee → Nama
 - Jangan menyimpan hanya nilai `Nama` sebagai relasi. Tanpa identitas record, perubahan nama akan memutus relasi atau membuat data tidak konsisten.
 - Jika `record_key` berubah (misal `HR-001` menjadi `HR-002`), relasi tetap utuh karena menyimpan `record_id` immutabel.
 
-Untuk mendukung ini, relation config menyimpan referensi ke satu field label target dan identitas record:
+Konfigurasi Relation hanya menyimpan aturan skema yang berlaku lintas nilai Record. Ia tidak menyimpan target Record tertentu:
 
 ```text
-morph_relation_config
-- field_binding_id: FK → morph_field_bindings.id
+morph_relation_config (model konseptual; bentuk penyimpanan belum dipilih)
+- field_definition_id: FK/kunci ke identitas Field kanonis (bukan binding Table View)
 - target_data_source_id: FK → morph_data_sources.id
-- target_record_id: UUID  ← identitas record tujuan (immutable), misal HR-001
-- display_field_id: FK → morph_field_definitions.id  ← satu saja, radio
+- display_field_id: FK → identitas Field kanonis dalam Data Source tujuan (tepat satu; radio)
+- cardinality_policy: keputusan terpisah, masih terbuka
 - created_at, updated_at
 ```
 
-**Catatan:** Jika nantinya dibutuhkan beberapa nilai sekaligus (misal Nama dan Departemen), itu sebaiknya menjadi fitur terpisah bernama *Multi-field Projection*, bukan mengubah radio button menjadi checkbox secara diam-diam.
+`target_record_id` **tidak boleh berada di config Relation**: target Record berbeda untuk setiap nilai Record sumber dan hanya disimpan dalam Relation edge. Mengubah `display_field_id` hanya mengganti proyeksi; mengedit nilai target memperbarui tampilan proyeksi saat dibaca.
 
-### 3.10 Relation edge — link record ke record (logical edge, bukan FK fisik)
+**Catatan:** Jika nantinya dibutuhkan beberapa nilai sekaligus (misal Nama dan Departemen), itu sebaiknya menjadi fitur terpisah bernama *Multi-field Projection*, bukan mengubah radio button menjadi checkbox secara diam-diam. Checklist penempatan Field tetap mengatur di Table/View mana Field ditampilkan.
 
-Ini menjamin konsistensi nilai saat kolom linked ditampilkan di banyak tempat. Relasi direpresentasikan sebagai logical relation edge, bukan foreign key PostgreSQL konvensional ke tabel fisik yang berbeda-beda.
+### 3.10 Relation edge — nilai link per Record (logical edge, bukan FK fisik)
+
+Setiap edge mewakili nilai konkret dari Field Relation pada satu source Record ke satu target Record. Edge bukan konfigurasi tipe dan bukan konfigurasi tampilan. Bentuk relasional berikut adalah ilustrasi; constraint PostgreSQL final belum disetujui.
 
 ```text
 morph_relation_edges
@@ -275,23 +279,25 @@ morph_relation_edges
 - workspace_id: text
 - source_data_source_id: FK → morph_data_sources.id
 - source_record_id: UUID  ← record_id immutabel sumber
-- source_field_id: FK → morph_field_bindings.id
-- target_data_source_id: FK → morph_data_sources.id
+- source_field_id: identitas Field Relation kanonis (kandidat: field_definition_id; bukan ID binding view)
+- target_data_source_id: FK → morph_data_sources.id (harus cocok dengan config Relation)
 - target_record_id: UUID  ← record_id immutabel tujuan
-- cardinality: single | multi
+- target_ordinal: posisi opsional bila kardinalitas multi disetujui
 - created_at, updated_at
 ```
+
+Kardinalitas bukan properti setiap edge: bila opsi single/multi kelak diputuskan, ia berada pada konfigurasi Field dan divalidasi terhadap kumpulan edge per `(source_record_id, source_field_id)` secara atomik. Default dan dukungan kardinalitas masih terbuka.
 
 Contoh dari infografik:
 
 ```text
-Source: Data Source Proyek, Record P001, Field Binding "PIC" → relation ke Data Source Karyawan
+Source: Data Source Proyek, Record P001, Field Relation "PIC" → Data Source Karyawan
 Target: Data Source Karyawan, Record HR-001 (Nama: John)
 
 Edge: P001.PIC → HR-001 (record_id immutabel)
 ```
 
-Jika `HR-001` diubah nama menjadi `John Doe`, semua tabel yang punya edge ke `HR-001` melalui field binding "Nama" akan menampilkan `John Doe`.
+Jika `HR-001` diubah namanya menjadi `John Doe`, setiap view yang mengizinkan dan menampilkan Relation itu memproyeksikan nilai terbaru dari target; tidak ada nama salinan yang tersimpan pada edge.
 
 ### 3.11 Lookup definition (opsional, lanjutan)
 
@@ -300,7 +306,7 @@ morph_lookup_definitions
 - id: UUID / stabil
 - workspace_id: text
 - source_data_source_id: FK → morph_data_sources.id
-- source_field_id: FK → morph_field_bindings.id
+- source_field_id: identitas Field kanonis sumber (candidate `field_definition_id`; bukan binding Table View)
 - path: text (misal "PIC → Departemen")
 - target_data_source_id: FK → morph_data_sources.id
 - target_field_id: FK → morph_field_definitions.id
@@ -460,11 +466,12 @@ Perubahan nama/pengaturan field definition harus dilakukan hati-hati jika bindin
 
 ## 10. Pertanyaan produk tersisa
 
-1. Apakah satu Record boleh muncul secara fisik di banyak Table, atau hanya ditampilkan melalui edge/lookup dari satu canonical table?
-2. Default cardinality relation: single-target atau multi-target?
-3. Apa yang terjadi pada edge jika target Record di-Trash atau dihapus permanen?
-4. Berapa lama masa penyimpanan Trash Database/Record?
-5. Siapa yang boleh restore/delete permanen Database instance?
+1. Apakah satu Record boleh muncul secara fisik di banyak Table, atau hanya ditampilkan melalui edge/lookup dari satu canonical Data Source?
+2. Cardinality Relation: apakah satu nilai source dapat menunjuk satu atau banyak target, dan apa default-nya? Ini terpisah dari radio Display Field.
+3. Apa identitas Field kanonis untuk nilai saat Field dipasang di beberapa tempat: `field_definition_id` atau identitas Field berscope Data Source? Apa scope checklist binding (Data Source/Table vs Table View), dan bagaimana ia dipisah dari kolom/presentasi per view? Binding view-specific tidak boleh menduplikasi/memecah nilai.
+4. Apa yang terjadi pada edge jika target Record di-Trash atau dihapus permanen?
+5. Berapa lama masa penyimpanan Trash Database/Record?
+6. Siapa yang boleh restore/delete permanen Database instance?
 
 ## 11. Acceptance gates (belum diimplementasi)
 
@@ -478,11 +485,10 @@ Perubahan nama/pengaturan field definition harus dilakukan hati-hati jika bindin
 
 ## 12. Langkah berikutnya yang disarankan
 
-1. **Audit database terlebih dahulu.** Inventarisasi seluruh tabel, kolom, index, constraint dan data yang sudah ada di PostgreSQL Laragon (`morph_db`). Jangan melakukan DROP, TRUNCATE, reset database, atau migrasi destruktif.
-2. Petakan skema aktual ke model konseptual yang baru (Data Source, Table View, Record, Relation Edge).
-3. Identifikasi data yang berpotensi terdampak dan dokumentasikan strategi kompatibilitas serta rollback.
-4. Buat migration versioned di fixture/database terisolasi sebelum menyentuh database aktual.
-5. Implementasi slice kecil: field binding → record → relation edge → UI Pengaturan Kolom.
-6. Setelah itu baru lanjut Trash, restore, dan export/import.
+1. Konsolidasikan identitas Field/Record, nilai Field, Relation config, edge, kardinalitas, dan lifecycle; selesaikan pertanyaan §10 sebelum merancang DDL.
+2. **Audit database hanya setelah identitas target dan cakupan read-only disetujui.** Konfigurasi Windows yang tercatat di `LOCAL-DEVELOPMENT.md` adalah PostgreSQL 18 pada `127.0.0.1:5433`, database `morph_03`; jangan menebak database/port, jangan menyentuh `morph-01`, dan jangan menjalankan audit/DDL dari sandbox ini terhadap database lokal developer.
+3. Setelah ada persetujuan audit, inventarisasikan tabel, kolom, index, constraint, dan data; petakan ke model Data Source, Table View, Record, Field, dan Relation Edge tanpa DROP/TRUNCATE/reset.
+4. Dokumentasikan impact, strategi kompatibilitas, recovery, dan rollback; rehearse pada database/fixture terisolasi.
+5. Implementasikan slice kecil hanya setelah kontrak dan runtime-role policy direview; uji integritas edge, akses target, concurrency dan rollback di PostgreSQL nyata.
 
-Belum ada SQL, migrasi, atau pembersihan yang dijalankan.
+Belum ada SQL, migrasi, audit database, atau pembersihan yang dijalankan dalam pekerjaan ini.

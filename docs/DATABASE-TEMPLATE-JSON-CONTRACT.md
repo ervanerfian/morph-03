@@ -1,12 +1,7 @@
 # Rancangan: Template → Database → Table → Field → Record
 
-**Status: arah produk dan rancangan usulan, belum diimplementasikan.** Keputusan
-produk berasal dari diskusi 31 Oktober 2026. Contoh JSON adalah ilustrasi, bukan
-format input yang dapat dipakai pada API saat ini. Dokumen ini melengkapi, bukan
-menggantikan, [visi produk](../PRODUCT-VISION.md),
-[roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan
-[arah isolasi extension](EXTENSION-ACCESS-ISOLATION.md). Tidak mengubah DB,
-permissions, route atau perilaku runtime yang sudah berjalan.
+**Status: rancangan produk dan kontrak usulan; belum diimplementasikan dan bukan persetujuan DDL.**
+Diperbarui 2026-11-01. Contoh JSON adalah ilustrasi, bukan API atau fixture valid. Dokumen ini melengkapi [architecture](ARCHITECTURE.md), [module boundaries](MODULE-BOUNDARIES.md), [roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan [desain Relation](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md). Tidak mengubah DB, permissions, route atau perilaku runtime yang sudah berjalan.
 
 ## 1. Istilah dan batas
 
@@ -53,9 +48,9 @@ yang sama dari beberapa Database, cara izin dan dampak perubahan bersama perlu
 kontrak terpisah. Hingga selesai, jangan menawarkan sharing baru yang tidak aman;
 keanggotaan atau tampilan tidak boleh menjadi bukti hak akses.
 
-## 2. Kondisi nyata saat ini dan pemetaan istilah
+## 2. Catatan legacy dan keadaan branch morph-03
 
-Kode yang ada adalah **sumber implementasi**, bukan model final yang sudah jadi:
+**Penting:** butir berikut merekam model/implementasi lama yang disebut dalam dokumen sebelumnya, bukan kode yang tersedia pada branch `morph-03`. Pada branch ini saat diperiksa 2026-11-01, aplikasi adalah foundation UI/PHP; Generic Data Engine, template compiler, record store, migrasi, dan Relation runtime belum ada. Jangan menyebut butir legacy sebagai fitur yang sedang aktif atau menganggapnya izin migrasi. Audit kode dan database aktual baru boleh dilakukan pada gate terpisah.
 
 - Katalog `data/templates/applications.json` berisi dua template; builder
   `ApplicationTemplateBuilder` membuat `modelGroups`, `databases`, shared field,
@@ -110,9 +105,11 @@ Targetnya satu sistem canonical, bukan engine CRUD baru:
    otoritas. Perubahan melalui draft → validasi → compatibility/migration →
    publish CAS; record mutation kembali mengecek membership/policy, scope,
    published revision dan validasi server dalam transaksi.
-5. Record tetap terpisah dari definisi, tersimpan di PostgreSQL dan mengacu Table,
-   ID binding serta revision yang membuat nilainya bisa didecode. JSONB saja
-   tidak membuktikan integritas relation, query bertipe, indexing atau permission.
+5. Record tetap terpisah dari definisi dan tersimpan di PostgreSQL. Nilai scalar
+   serta Relation edge mengacu pada identitas Field kanonis, bukan binding
+   placement Table View; revision diperlukan agar nilai lama dapat didecode.
+   JSONB saja tidak membuktikan integritas Relation, query bertipe, indexing atau
+   permission. Key fisik final masih terbuka, lihat §3.1.
 
 Belum ada keputusan untuk melakukan migrasi head workspace menjadi head Database
 atau DDL tertentu. Sebelum itu, boleh memproyeksikan satu Database dari graph
@@ -153,6 +150,52 @@ Contoh sengaja menghilangkan config wajib, dependency pins dan metadata revision
 ini bukan fixture valid compiler v1, bukan contoh payload API, dan tidak memutuskan
 apakah Table kosong diperbolehkan. ID contoh tidak boleh dipakai untuk instance
 nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
+
+### 3.1 Kontrak Relation yang dikonfirmasi pengguna
+
+Untuk V1, target Relation dan nilai yang ditampilkan adalah dua hal berbeda:
+
+- Konfigurasi Field Relation menentukan target Data Source dan **tepat satu**
+  `displayFieldId` dari target. UI menggunakan radio untuk memilih Display
+  Field; radio ini bukan pilihan Record tujuan dan bukan pengaturan cardinality.
+- Nilai pada setiap Record sumber adalah Relation edge yang menyimpan immutable
+  `targetRecordId` (record identity/UUID), bukan label yang sedang ditampilkan
+  dan bukan `record_key` yang dapat berubah. Target Record dipilih per nilai
+  Record sumber; karena itu `targetRecordId` tidak berada di config Field.
+- Saat Display Field diganti, edge tetap menunjuk Record yang sama dan hanya
+  proyeksinya yang berubah. Saat nilai Field target diedit, pembacaan Relation
+  menampilkan nilai terbaru sesuai izin target; nama/label tidak disalin ke edge.
+- Checklist penempatan Field di Table/View tetap terpisah dari radio Display
+  Field. Multi-field Projection (misalnya Nama + Departemen) adalah kemampuan
+  berbeda di masa depan, bukan checkbox tambahan pada kontrol V1.
+- Single-target versus multi-target tetap keputusan terpisah yang belum dibuat.
+  Jika diputuskan, kardinalitas berlaku pada konfigurasi Field dan kumpulan edge,
+  bukan disimpan berulang pada tiap edge.
+
+Ilustrasi berikut **bukan format API/DDL**; ia hanya memisahkan schema config
+Relation dari nilai edge per Record:
+
+```json
+{
+  "relationFieldConfig": {
+    "targetDataSourceId": "employee_data_source",
+    "displayFieldId": "employee_name_field"
+  },
+  "relationEdge": {
+    "sourceRecordId": "project_record_uuid",
+    "sourceFieldId": "project_owner_field",
+    "targetDataSourceId": "employee_data_source",
+    "targetRecordId": "employee_record_uuid"
+  }
+}
+```
+
+`sourceFieldId`/`fieldDefinitionId` harus mengidentifikasi nilai Field kanonis,
+bukan binding presentation yang berbeda untuk setiap Table View. Bentuk ID
+persisten final masih harus diselaraskan dengan `values_json`, field sharing, dan
+Data Source sebelum DDL; `field_definition_id` adalah kandidat, bukan keputusan
+skema. Relation target/display config juga harus memiliki revision dan
+capability pins yang sesuai; exact storage boundary remains under review.
 
 ## 4. Template composable dan pengalaman user
 
@@ -211,6 +254,25 @@ nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
   renderer menggunakan komponen terdaftar dan token tema, bukan HTML dari user.
   Fail closed pada schema rusak, capability tidak ada, izin gagal atau revision
   stale; tampilkan error yang menjaga draft jika memungkinkan.
+
+### Kontrak registry Field yang terbuka
+
+Daftar tipe pada `FIELD-TYPE-ROADMAP.md` adalah katalog kebutuhan saat ini,
+bukan enum tertutup. Setiap tipe memiliki stable type ID dan versi kontrak,
+config schema, validasi/normalisasi, codec baca/tulis, renderer, capability query
+/filter/sort/index, authorization/disclosure rules, dependency, dan aturan
+compatibility/migration. Modul tepercaya mendaftarkan tipe beserta kapabilitasnya;
+compiler dan UI menemukan tipe melalui registry, bukan mapping hardcoded per
+preset atau `switch` yang harus diubah pada setiap CRUD flow. Pengguna dapat
+mengkonfigurasi tipe yang terdaftar, tetapi JSON pengguna tetap data deklaratif,
+bukan kode executable atau plugin runtime.
+
+Tipe atau versi yang tidak dikenal harus fail closed untuk read/write yang tidak
+aman, dengan definisi/nilai asli tetap dipertahankan agar tidak hilang. Menambah
+kapabilitas baru boleh menambah modul handler tepercaya; tidak boleh memerlukan
+perombakan semua template/CRUD. Tidak ada tipe roadmap yang dianggap
+terimplementasi sampai registry handler, migrasi/compatibility, izin, dan tesnya
+benar-benar tersedia.
 
 ## 6. Transisi tanpa menghilangkan data
 
@@ -280,6 +342,11 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   bagaimana perubahan dan permission lintas referensi bekerja?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
+- Identitas nilai Field yang tetap kanonis lintas Table View: `field_definition_id`
+  atau identitas Field berscope Data Source; bindings view-specific tidak boleh
+  membuat salinan nilai. Konsolidasikan bersama `values_json` dan Relation edge.
+- Cardinality Relation (single vs. multi target) dan kebijakan lifecycle edge;
+  jangan mencampurnya dengan satu Display Field V1.
 - Resolusi instance legacy yang overlapping/ambigu, termasuk urutan Page dan
   model standalone, setelah inventaris nyata; jangan mengasumsikan kepemilikan.
 - Scope dan hak untuk membuat/mengedit Database, Table, template dan view;
