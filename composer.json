@@ -1,0 +1,22 @@
+{
+  "name": "morph-space/morph-03",
+  "description": "Morph Space modular monolith application",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "php": ">=8.2 <9.0",
+    "ext-pdo": "*",
+    "ext-pdo_pgsql": "*",
+    "twig/twig": "^3.0",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "MorphSpace\\": "app/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

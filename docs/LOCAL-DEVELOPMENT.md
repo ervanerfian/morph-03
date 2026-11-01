@@ -1,0 +1,43 @@
+# Morph Space — Local Development Environment
+
+**Status:** PostgreSQL identity and Windows CLI PDO connection verified by the developer; Laragon web-SAPI integration remains pending.
+**Recorded:** 2026-11-01
+**Project:** `morph-03` (`C:\laragon\www\morph-03`)
+
+## Selected PostgreSQL instance
+
+The developer selected the existing Windows-native PostgreSQL 18 service, not the PostgreSQL 16 container used by `morph-01`.
+
+| Property | Verified value |
+| --- | --- |
+| Service | `postgresql-x64-18` |
+| Host | `127.0.0.1` |
+| Port | `5433` |
+| Server version | PostgreSQL `18.3` |
+| Database | `morph_03` |
+| Verified login role | `morph03_admin` |
+| Database owner | `morph03_admin` |
+| `LOGIN` | Yes |
+| `SUPERUSER` | Yes |
+| `CREATEDB` | Yes |
+| `CREATEROLE` | Yes |
+| `REPLICATION` | Yes |
+| `BYPASSRLS` | Yes |
+
+The identity and role flags were returned by a successful PostgreSQL query run by the developer against `127.0.0.1:5433/morph_03`. This proves the `psql` connection identity; it does **not** yet prove a PHP/PDO connection or application-level integration.
+
+## Application connection status
+
+The developer reports that `pdo_pgsql` and `pgsql` are loaded. The CLI binary discovered on Windows is `C:\php\php.exe`, PHP `8.4.10`; it has not yet been confirmed as Laragon's selected web PHP runtime. A successful PDO connection was verified with this CLI binary to `127.0.0.1:5433/morph_03` as `morph03_admin`; it returned PostgreSQL `18.3`, port `5433`, and exit code `0`. HeidiSQL also connected successfully to the same endpoint. This is CLI/PDO integration evidence, not proof of Laragon's Apache/Nginx web SAPI PHP configuration. The preceding stdin and `php -r` attempts failed before connecting and made no database changes. Verify the actual Laragon web PHP runtime before claiming browser-to-PHP-to-PostgreSQL integration.
+
+The commands shared so far created or updated `morph03_admin` and created `morph_03`. They did not create `morph03_app`. The presence or absence of any pre-existing `morph03_app` role has not been queried.
+
+Per the repository's connection standard, database administration uses the project admin role; PHP runtime configuration must use a separate project application role with scoped database privileges, not a cluster superuser. Create/verify that role and its exact grants before configuring application runtime. Never store local credentials in Git or this document.
+
+## Isolation and safety
+
+- `morph-03` uses the Windows PostgreSQL 18 service at port `5433`.
+- `morph-01` and its Docker PostgreSQL 16 instance at port `5434` are out of scope and must remain untouched.
+- Do not use a physical PostgreSQL database per Morph logical Database/template; logical data instances live inside the project database.
+- Do not execute schema DDL against the local Windows instance from the agent sandbox. Review and verify any schema changes according to `docs/CONNECTION.md` and the database design documents first.
+- No password, `.env`, or credential material belongs in tracked files.

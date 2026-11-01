@@ -1,0 +1,14 @@
+# Local secrets and environment-specific values (at any repository depth)
+.env
+.env.*
+!.env.example
+
+# Installed dependencies
+vendor/
+node_modules/
+/public/assets/build/
+/storage/cache/*
+!/storage/cache/.gitkeep
+/storage/logs/*
+!/storage/logs/.gitkeep
+/.phpunit.cache/
