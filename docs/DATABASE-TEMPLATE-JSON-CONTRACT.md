@@ -190,12 +190,15 @@ Relation dari nilai edge per Record:
 }
 ```
 
-`sourceFieldId`/`fieldDefinitionId` harus mengidentifikasi nilai Field kanonis,
-bukan binding presentation yang berbeda untuk setiap Table View. Bentuk ID
-persisten final masih harus diselaraskan dengan `values_json`, field sharing, dan
-Data Source sebelum DDL; `field_definition_id` adalah kandidat, bukan keputusan
-skema. Relation target/display config juga harus memiliki revision dan
-capability pins yang sesuai; exact storage boundary remains under review.
+`sourceFieldId` harus mengidentifikasi nilai Field kanonis, bukan binding
+presentation yang berbeda untuk setiap Table View. Rekomendasi konseptual V1
+adalah memakai `field_definition_id` sebagai key nilai pada sebuah Record:
+Field Definition yang sama berarti semantik/config yang sama, tetapi Record
+berbeda tetap menyimpan nilai berbeda. Jika semantik harus berbeda per Data
+Source, diperlukan identitas/config Field berscope Data Source yang eksplisit,
+bukan key view binding. Bentuk persistensi dan constraint final tetap perlu
+review sebelum DDL. Relation target/display config juga harus memiliki revision
+dan capability pins yang sesuai; exact storage boundary remains under review.
 
 ## 4. Template composable dan pengalaman user
 
@@ -342,9 +345,10 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   bagaimana perubahan dan permission lintas referensi bekerja?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
-- Identitas nilai Field yang tetap kanonis lintas Table View: `field_definition_id`
-  atau identitas Field berscope Data Source; bindings view-specific tidak boleh
-  membuat salinan nilai. Konsolidasikan bersama `values_json` dan Relation edge.
+- Review rekomendasi `field_definition_id` sebagai identitas nilai kanonis;
+  tentukan apakah ada kebutuhan konfigurasi Field berscope Data Source yang
+  memerlukan identitas tambahan. Bindings view-specific tidak boleh membuat
+  salinan nilai. Konsolidasikan bersama `values_json` dan Relation edge.
 - Cardinality Relation (single vs. multi target) dan kebijakan lifecycle edge;
   jangan mencampurnya dengan satu Display Field V1.
 - Resolusi instance legacy yang overlapping/ambigu, termasuk urutan Page dan

@@ -175,7 +175,9 @@ Perbedaan penting:
 
 Nilai relation **tidak** disimpan dalam `values_json` sebagai dua sumber kebenaran. Relation disimpan di tabel edge terpisah.
 
-**Identitas nilai belum menjadi keputusan DDL:** karena `morph_field_bindings` adalah placement/presentasi Table View, `values_json` dan edge tidak boleh memakai ID binding view-specific sebagai identitas nilai kanonis. `field_definition_id` adalah kandidat identitas stabil saat ini; bila semantik Field perlu dibedakan per Data Source, gunakan identitas Field kanonis berscope Data Source yang eksplisit. Pilihan fisik dan constraint-nya harus diselesaikan sebelum DDL.
+**Rekomendasi identitas nilai V1 (untuk review; bukan persetujuan DDL):** gunakan `field_definition_id` sebagai identitas properti kanonis. Nilai Record dikunci oleh `(record_id, field_definition_id)`, sehingga dua Table View untuk Record yang sama membaca nilai yang sama, sementara Record berbeda tetap memiliki nilai masing-masing. Relation edge memakai identitas sumber yang sama ditambah immutable `target_record_id`; binding Table View tidak menjadi key nilai.
+
+Rekomendasi ini mengasumsikan satu Field Definition membawa semantik/config yang sama di semua tempat ia dipasang. Jika satu Data Source perlu konfigurasi semantik berbeda, buat identitas/config Field berscope Data Source secara eksplisit—jangan menjadikannya nilai berbeda hanya karena Table View binding berbeda. Scope fisik binding masih belum diputuskan (`morph_tables` vs `morph_table_views`), dan seluruh key/constraint tetap perlu review sebelum DDL.
 
 ### 3.8 Checklist vs Radio — perbedaan penting dalam UI "Pengaturan Kolom"
 

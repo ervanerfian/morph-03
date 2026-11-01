@@ -102,8 +102,9 @@ perlu proof, bukan perubahan nama v1 secara langsung.
 4. **Records**: `(workspace, data_source_id, record_id)` dengan creator,
    revision yang dapat didecode, token version dan values JSONB untuk scalar.
    Nilai memakai identitas Field kanonis, bukan ID binding presentation
-   Table View; `field_definition_id` kandidat, sedangkan identitas Data
-   Source-Field harus diselesaikan. FK/unique membuktikan scope workspace dan
+   Table View; rekomendasi konseptual V1 adalah `field_definition_id`, dengan
+   konfigurasi per-Data-Source yang memerlukan identitas terpisah bila dibutuhkan.
+   FK/unique membuktikan scope workspace dan
    Data Source. Tidak membuat satu physical SQL table per Data Source pengguna.
 5. **Edges**: struktur typed/indexable dengan `(workspace_id,
    source_data_source_id, source_record_id, source_field_id,

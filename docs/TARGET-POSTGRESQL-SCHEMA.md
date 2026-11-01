@@ -190,7 +190,7 @@ Tidak ada elemen visual yang terikat pada nama preset, tabel fisik, atau kode de
                                                          └──────────────────────────┘  └──────────────────────────┘
 ```
 
-`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis (kandidat `field_definition_id`), bukan ID `morph_field_bindings` yang mengatur placement/presentasi Table View. Key final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config hanya menentukan target Data Source dan satu `display_field_id`. Kardinalitas adalah keputusan terpisah dan belum dipilih.
+`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis; rekomendasi konseptual V1 adalah `field_definition_id`, bukan ID `morph_field_bindings` yang mengatur placement/presentasi Table View. Key/constraint final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config hanya menentukan target Data Source dan satu `display_field_id`. Kardinalitas adalah keputusan terpisah dan belum dipilih.
 
 ---
 
@@ -808,7 +808,7 @@ Integritas logical relation edge:
 | `morph_relation_config.display_field_id` | Satu Field target yang diproyeksikan untuk Relation (radio) |
 | `morph_lookup_definitions` | Nilai derived dari record tujuan (read-only) |
 
-Nilai scalar dan Relation edge harus memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation yang berbeda untuk setiap view. `field_definition_id` adalah kandidat, tetapi identitas nilai final perlu review bersama Data Source/Field sharing sebelum skema disetujui.
+Nilai scalar dan Relation edge harus memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation yang berbeda untuk setiap view. Rekomendasi konseptual V1 adalah `field_definition_id`; review final harus memastikan bahwa semua reuse Field memang berbagi semantik/config, dan kebutuhan per-Data-Source mendapat identitas eksplisit sebelum skema disetujui.
 
 Contoh tampilan:
 - "PM - Project" → Data Source Proyek → kolom: Nama, PIC (relation ke Karyawan), Status
