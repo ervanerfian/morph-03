@@ -1,0 +1,431 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Expense Categories' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Finance", "title": "Expense Categories"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Finance", "title": "Expense Categories"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<!-- Search -->
+<div class="flex flex-wrap gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input w-auto ps-10" data-table-search="" placeholder="Search categories..." type="search"/>
+</div>
+<!-- Add New Category -->
+<div class="flex gap-1">
+<a aria-controls="categoryModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#categoryModal" href="#categoryModal"> <i class="iconify tabler--plus"></i> Add Category </a>
+</div>
+<!-- Delete Selected -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 lg:flex-nowrap">
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<div class="items-center gap-2.5 md:flex">
+<span class="font-semibold me-2.5">Filter By:</span>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--circle-check input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+</div>
+</div>
+<!-- Records Per Page -->
+<div class="relative">
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table-custom table-select table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" type="checkbox"/>
+</th>
+<th data-table-sort="">ID</th>
+<th data-table-sort="">Category Name</th>
+<th data-table-sort="">Total Expenses</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th data-table-sort="">Last Updated</th>
+<th class="text-end w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- row-1 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-001</a>
+</td>
+<td>Office Supplies</td>
+<td>$2,845.60</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            10 Oct, 2025
+                                            <small class="text-default-400 text-2xs">04:10 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-2 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-002</a>
+</td>
+<td>Travel</td>
+<td>$5,920.00</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            08 Oct, 2025
+                                            <small class="text-default-400 text-2xs">11:00 AM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-3 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-003</a>
+</td>
+<td>Meals</td>
+<td>$1,280.75</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            05 Oct, 2025
+                                            <small class="text-default-400 text-2xs">07:45 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-4 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-004</a>
+</td>
+<td>Entertainment</td>
+<td>$2,140.20</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Inactive</span>
+</td>
+<td>
+                                            03 Oct, 2025
+                                            <small class="text-default-400 text-2xs">09:25 AM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-5 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-005</a>
+</td>
+<td>Equipment</td>
+<td>$4,580.00</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            01 Oct, 2025
+                                            <small class="text-default-400 text-2xs">03:15 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-6 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-006</a>
+</td>
+<td>Maintenance</td>
+<td>$3,210.40</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            28 Sep, 2025
+                                            <small class="text-default-400 text-2xs">02:00 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-7 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-007</a>
+</td>
+<td>Training &amp; Events</td>
+<td>$6,845.00</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            25 Sep, 2025
+                                            <small class="text-default-400 text-2xs">10:35 AM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-8 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-008</a>
+</td>
+<td>Subscriptions</td>
+<td>$980.75</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Inactive</span>
+</td>
+<td>
+                                            21 Sep, 2025
+                                            <small class="text-default-400 text-2xs">09:50 AM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-9 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-009</a>
+</td>
+<td>Marketing</td>
+<td>$9,475.90</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+                                            18 Sep, 2025
+                                            <small class="text-default-400 text-2xs">01:40 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- row-10 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#CAT-010</a>
+</td>
+<td>Insurance</td>
+<td>$2,540.00</td>
+<td>
+<span class="badge badge-label bg-danger/15 text-danger">Inactive</span>
+</td>
+<td>
+                                            15 Sep, 2025
+                                            <small class="text-default-400 text-2xs">05:15 PM</small>
+</td>
+<td>
+<div class="flex justify-end gap-1">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="Expense Categories"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="categoryModalLabel" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="categoryModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-lg">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5 rounded-t-sm bg-default-100">
+<h3 class="font-semibold" id="categoryModalLabel">Add Expense Category</h3>
+<button aria-label="Close" data-hs-overlay="#categoryModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<div class="grid grid-cols-1 gap-4">
+<!-- Category Name -->
+<div>
+<label class="form-label" for="categoryName">
+                                            Category Name
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="categoryName" placeholder="Enter category name" required="" type="text"/>
+</div>
+<!-- Description -->
+<div>
+<label class="form-label" for="categoryDescription">Description</label>
+<textarea class="form-textarea" id="categoryDescription" placeholder="Optional notes about this category" rows="3"></textarea>
+</div>
+<!-- Status -->
+<div>
+<label class="form-label" for="categoryStatus">Status</label>
+<select class="form-input" id="categoryStatus">
+<option selected="" value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+</div>
+</div>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#categoryModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                    Save Category
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

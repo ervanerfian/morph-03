@@ -1,0 +1,530 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Shop Settings' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Shop Settings"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Shop Settings"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-body">
+<div data-hs-stepper="">
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-base">
+<!-- Vertical Nav -->
+<div data-hs-stepper='{"mode": "non-linear"}'>
+<ul class="relative flex flex-col gap-1.5">
+<li class="group" data-hs-stepper-nav-item='{"index": 1}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-General" aria-selected="true" class="active block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-General" id="shopStepGeneral" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--building-store text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">General Info</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Shop basics</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 2}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Store" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Store" id="shopStepStore" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--building text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Store Details</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Business info</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 3}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Branding" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Branding" id="shopStepBranding" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--palette text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Branding</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Logo &amp; colors</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 4}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Currency" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Currency" id="shopStepCurrency" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--pig-money text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Currency &amp; Tax</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Regional setup</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 5}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Shipping" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Shipping" id="shopStepShipping" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--truck text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Shipping</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Delivery setup</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 6}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Payment" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Payment" id="shopStepPayment" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--credit-card text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Payments</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Gateways &amp; modes</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 7}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Notifications" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Notifications" id="shopStepNotifications" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--bell text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Notifications</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Emails &amp; alerts</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 8}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Invoices" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Invoices" id="shopStepInvoices" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--file-text text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Invoices &amp; Receipts</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Billing templates</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 9}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Legal" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Legal" id="shopStepLegal" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--world text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">SEO &amp; Legal</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Policies &amp; SEO</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 10}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Integrations" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Integrations" id="shopStepIntegrations" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--plug text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Integrations</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">3rd-party apps</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 11}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Backup" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Backup" id="shopStepBackup" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--database text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Backup &amp; Restore</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">Data recovery</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+<li class="group" data-hs-stepper-nav-item='{"index": 12}'>
+<span class="group inline-flex w-full">
+<span class="hs-stepper-active:bg-light/50 hs-stepper-success:border-s-3 hs-stepper-success:border-success hs-stepper-success:bg-success/10 hs-stepper-success:text-success w-full rounded-md">
+<button aria-controls="shopStep-Advanced" aria-selected="false" class="hs-tab-active:bg-default-50 block w-full rounded px-4 py-2 disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#shopStep-Advanced" id="shopStepAdvanced" role="tab" type="button">
+<span class="flex items-center">
+<div class="avatar-md">
+<span class="btn btn-icon size-9 bg-light rounded hs-stepper-success:bg-success/10">
+<i class="iconify tabler--settings text-2xl"></i>
+</span>
+</div>
+<span class="ms-2.5">
+<span class="block text-start font-semibold mb-0.5">Advanced</span>
+<span class="text-default-400 hs-stepper-success:text-success block text-start text-xs font-semibold">System controls</span>
+</span>
+</span>
+</button>
+</span>
+</span>
+</li>
+</ul>
+</div>
+<!-- Tab Content -->
+<div class="md:col-span-2 lg:col-span-3">
+<div class="md:p-7.5 p-4.5 border border-default-300 border-dashed">
+<!-- STEP 1: GENERAL INFO -->
+<div data-hs-stepper-content-item='{"index": 1}'>
+<div class="col-span-1 mb-5 grid lg:grid-cols-2 gap-base">
+<div>
+<label class="form-label">Shop Name</label>
+<input class="form-input" placeholder="e.g., Vona Store" required="" type="text"/>
+</div>
+<div>
+<label class="form-label">Support Email</label>
+<input class="form-input" placeholder="support@vona.com" required="" type="email"/>
+</div>
+<div>
+<label class="form-label">Phone</label>
+<input class="form-input" placeholder="+1 234 567 8901" type="tel"/>
+</div>
+<div>
+<label class="form-label">Business Hours</label>
+<input class="form-input" placeholder="Mon-Fri, 9 AM - 6 PM" type="text"/>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (General Info) -->
+<!-- STEP 2: STORE DETAILS -->
+<div data-hs-stepper-content-item='{"index": 2}' style="display: none">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base mb-base">
+<div>
+<label class="form-label">Business Name</label>
+<input class="form-input" placeholder="e.g., Acme Retail LLC" type="text"/>
+</div>
+<div>
+<label class="form-label">Registration Number</label>
+<input class="form-input" placeholder="e.g., 123456789" type="text"/>
+</div>
+<div class="col-span-1 lg:col-span-2">
+<label class="form-label">Business Address</label>
+<textarea class="form-textarea" placeholder="123 Main Street, City, Country" rows="2"></textarea>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (Store Details) -->
+<!-- STEP 3: BRANDING -->
+<div data-hs-stepper-content-item='{"index": 3}' style="display: none">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base mb-base">
+<div>
+<label class="form-label">Logo Upload</label>
+<input class="form-input" name="file-input" type="file"/>
+</div>
+<div>
+<label class="form-label">Favicon</label>
+<input class="form-input" name="file-input" type="file"/>
+</div>
+<div>
+<label class="form-label">Primary Color</label>
+<input class="form-input" type="color" value="#4f46e5"/>
+</div>
+<div>
+<label class="form-label">Accent Color</label>
+<input class="form-input" type="color" value="#22c55e"/>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (Branding) -->
+<!-- STEP 4: CURRENCY & TAX -->
+<div data-hs-stepper-content-item='{"index": 4}' style="display: none">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base mb-base">
+<div class="col-span-1">
+<label class="form-label">Default Currency</label>
+<select class="form-select">
+<option>USD</option>
+<option>EUR</option>
+<option>GBP</option>
+<option>INR</option>
+</select>
+</div>
+<div class="col-span-1">
+<label class="form-label">Tax Rate (%)</label>
+<input class="form-input" placeholder="e.g., 7.5" type="number"/>
+</div>
+<div class="col-span-1 lg:col-span-2">
+<div class="flex items-center gap-1.5">
+<input checked="" class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable Auto Tax Calculation</label>
+</div>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (Currency & Tax) -->
+<!-- STEP 5: SHIPPING -->
+<div data-hs-stepper-content-item='{"index": 5}' style="display: none">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base mb-base">
+<div class="col-span-1">
+<label class="form-label">Default Origin</label>
+<input class="form-input" placeholder="California, USA" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="form-label">Free Shipping Threshold</label>
+<input class="form-input" placeholder="e.g., 100" type="number"/>
+</div>
+<div class="col-span-1 lg:col-span-2">
+<label class="form-label">Available Methods</label>
+<select class="form-input h-auto!" multiple="">
+<option>Standard Delivery</option>
+<option>Express</option>
+<option>Pickup</option>
+</select>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (Shipping) -->
+<!-- STEP 6: PAYMENTS -->
+<div data-hs-stepper-content-item='{"index": 6}' style="display: none">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base mb-base">
+<div>
+<div class="flex items-center gap-1.5">
+<input checked="" class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable Stripe</label>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable PayPal</label>
+</div>
+</div>
+<div>
+<label class="form-label">Stripe Key</label>
+<input class="form-input" placeholder="pk_live_..." type="text"/>
+</div>
+<div>
+<label class="form-label">PayPal Client ID</label>
+<input class="form-input" placeholder="e.g., Abcd1234" type="text"/>
+</div>
+</div>
+</div>
+<!-- /.tab-pane (Payments) -->
+<!-- STEP 7: NOTIFICATIONS -->
+<div data-hs-stepper-content-item='{"index": 7}' style="display: none">
+<div class="mb-5 flex items-center gap-1.5">
+<input checked="" class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable Order Emails</label>
+</div>
+<div class="mb-5 flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable Low Stock Alerts</label>
+</div>
+<div class="mb-5 flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable SMS Notifications</label>
+</div>
+</div>
+<!-- /.tab-pane (Notifications) -->
+<!-- STEP 8: INVOICES & RECEIPTS -->
+<div data-hs-stepper-content-item='{"index": 8}' style="display: none">
+<div class="mb-5">
+<label class="form-label">Invoice Prefix</label>
+<input class="form-input" placeholder="INV-" type="text"/>
+</div>
+<div class="mb-5 flex items-center gap-1.5">
+<input checked="" class="form-switch" type="checkbox"/>
+<label class="form-check-label">Include Tax Breakdown</label>
+</div>
+<div class="mb-5 flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable PDF Download</label>
+</div>
+</div>
+<!-- /.tab-pane (Invoices) -->
+<!-- STEP 9: SEO & LEGAL -->
+<div data-hs-stepper-content-item='{"index": 9}' style="display: none">
+<div class="mb-5">
+<label class="form-label">Meta Title</label>
+<input class="form-input" placeholder="Your Shop Title" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Meta Description</label>
+<textarea class="form-textarea" placeholder="Brief description for SEO" rows="2"></textarea>
+</div>
+<div class="mb-5">
+<label class="form-label">Privacy Policy URL</label>
+<input class="form-input" placeholder="https://example.com/privacy" type="url"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Terms &amp; Conditions URL</label>
+<input class="form-input" placeholder="https://example.com/terms" type="url"/>
+</div>
+</div>
+<!-- /.tab-pane (SEO & Legal) -->
+<!-- STEP 10: INTEGRATIONS -->
+<div data-hs-stepper-content-item='{"index": 10}' style="display: none">
+<div class="mb-5">
+<label class="form-label">Google Analytics ID</label>
+<input class="form-input" placeholder="UA-XXXXX-Y" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Facebook Pixel ID</label>
+<input class="form-input" placeholder="1234567890" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Mailchimp API Key</label>
+<input class="form-input" placeholder="key-xxxxx" type="text"/>
+</div>
+</div>
+<!-- /.tab-pane (Integrations) -->
+<!-- STEP 11: BACKUP & RESTORE -->
+<div data-hs-stepper-content-item='{"index": 11}' style="display: none">
+<div class="mb-3">
+<button class="btn border-primary text-primary w-full">Create Manual Backup</button>
+</div>
+<div class="mb-3">
+<label class="form-label">Restore from File</label>
+<input class="form-input" name="file-input" type="file"/>
+</div>
+<div class="mb-3 flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Enable Auto Backups (Weekly)</label>
+</div>
+</div>
+<!-- /.tab-pane (Backup & Restore) -->
+<!-- STEP 12: ADVANCED -->
+<div data-hs-stepper-content-item='{"index": 12}' style="display: none">
+<div class="mb-5 flex items-center gap-1.5">
+<input class="form-switch" for="enable-maintenance-mode" type="checkbox"/>
+<label class="form-check-label" id="enable-maintenance-mode">Enable Maintenance Mode</label>
+</div>
+<div class="mb-5 flex items-center gap-1.5">
+<input class="form-switch" type="checkbox"/>
+<label class="form-check-label">Debug Mode</label>
+</div>
+<div>
+<label class="form-label">Custom Script (Footer)</label>
+<textarea class="form-textarea" placeholder="Paste custom JavaScript here" rows="3"></textarea>
+</div>
+</div>
+<!-- /.tab-pane (Advanced) -->
+<!-- Button Group -->
+<div class="mt-10 flex flex-wrap items-center justify-between">
+<button class="btn bg-secondary text-white hover:bg-secondary-hover" data-hs-stepper-back-btn="" type="button">
+<i class="iconify tabler--arrow-left"></i>
+                                                    Back
+                                                </button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" data-hs-stepper-next-btn="" type="button">
+                                                    Next
+                                                    <i class="iconify tabler--arrow-right"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+</div>
+<!-- End Page content -->
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,444 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Product Views' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Product Views"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Product Views"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<div class="flex items-center gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search report..." type="search"/>
+</div>
+</div>
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- Sales Performance Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--trending-up input-icon"></i>
+<select class="form-select" data-table-range-filter="performance">
+<option value="All">Sales Performance</option>
+<option value="1000+">Top Selling</option>
+<option value="1-1000">Low Selling</option>
+<option value="0">No Sales</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option value="8">8</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]" data-table-select-all="">
+<input class="form-checkbox form-checkbox-light size-4.5" id="select-all-products" type="checkbox" value="option"/>
+</th>
+<th data-table-sort="">Product</th>
+<th data-table-sort="">SKU</th>
+<th data-table-sort="">Price</th>
+<th data-table-sort="rating">Rating</th>
+<th data-table-sort="">Views</th>
+<th data-column="performance" data-table-sort="">Orders</th>
+<th data-table-sort="">Conversation</th>
+<th class="text-start">Report</th>
+</tr>
+</thead>
+<tbody>
+<!-- Product Row -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base w-full">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/2.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Smart Fitness Watch</a>
+</h5>
+</div>
+</td>
+<td>FW-54201</td>
+<td>$129.99</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(54)</a>
+</span>
+</div>
+</td>
+<td>45.2k</td>
+<td>820</td>
+<td>7.3%</td>
+<td>
+<div data-chart="apex" data-chart-type="bar"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/3.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Portable Bluetooth Speaker</a>
+</h5>
+</div>
+</td>
+<td>BS-20894</td>
+<td>$79.50</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(31)</a>
+</span>
+</div>
+</td>
+<td>28.9k</td>
+<td>410</td>
+<td>5.8%</td>
+<td>
+<div data-chart="apex" data-chart-type="line"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/4.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Gaming Mouse</a>
+</h5>
+</div>
+</td>
+<td>GM-77215</td>
+<td>$49.99</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(67)</a>
+</span>
+</div>
+</td>
+<td>22.4k</td>
+<td>340</td>
+<td>6.4%</td>
+<td>
+<div data-chart="apex" data-chart-type="bar"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/5.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Noise Cancelling Headphones</a>
+</h5>
+</div>
+</td>
+<td>NC-88321</td>
+<td>$199.00</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(128)</a>
+</span>
+</div>
+</td>
+<td>60.1k</td>
+<td>1500</td>
+<td>9.8%</td>
+<td>
+<div data-chart="apex" data-chart-type="line"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/6.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">4K Action Camera</a>
+</h5>
+</div>
+</td>
+<td>AC-90763</td>
+<td>$249.99</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(94)</a>
+</span>
+</div>
+</td>
+<td>18.9k</td>
+<td>610</td>
+<td>6.0%</td>
+<td>
+<div data-chart="apex" data-chart-type="bar"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/7.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Wireless Charger Pad</a>
+</h5>
+</div>
+</td>
+<td>WC-23815</td>
+<td>$39.95</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(41)</a>
+</span>
+</div>
+</td>
+<td>12.3k</td>
+<td>220</td>
+<td>4.1%</td>
+<td>
+<div data-chart="apex" data-chart-type="line"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/8.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Mechanical Keyboard</a>
+</h5>
+</div>
+</td>
+<td>MK-48519</td>
+<td>$89.00</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(77)</a>
+</span>
+</div>
+</td>
+<td>30.5k</td>
+<td>540</td>
+<td>7.2%</td>
+<td>
+<div data-chart="apex" data-chart-type="bar"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/9.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Drone with Camera</a>
+</h5>
+</div>
+</td>
+<td>DR-61208</td>
+<td>$399.00</td>
+<td>
+<div class="flex items-center gap-1">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(189)</a>
+</span>
+</div>
+</td>
+<td>75.9k</td>
+<td>1900</td>
+<td>10.2%</td>
+<td>
+<div data-chart="apex" data-chart-type="line"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/10.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Smart Home Hub</a>
+</h5>
+</div>
+</td>
+<td>SH-30051</td>
+<td>$149.99</td>
+<td>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(58)</a>
+</span>
+</td>
+<td>21.7k</td>
+<td>470</td>
+<td>5.5%</td>
+<td>
+<div data-chart="apex" data-chart-type="bar"></div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<div>
+<img alt="Product" class="size-9 rounded" src="/images/products/1.png"/>
+</div>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="#!">Mini Projector</a>
+</h5>
+</div>
+</td>
+<td>MP-12081</td>
+<td>$219.00</td>
+<td>
+<span>
+<a class="hover:text-primary font-semibold ms-1" data-sort="rating" href="#">(35)</a>
+</span>
+</td>
+<td>15.9k</td>
+<td>310</td>
+<td>4.7%</td>
+<td>
+<div data-chart="apex" data-chart-type="line"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="products"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Charts js -->
+
+<!-- Custom table -->
+
+<!-- Ecommerce Products view Js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/custom-table.js"></script>
+    <script src="/js/pages/ecommerce-product-views.js"></script>
+{% endblock %}

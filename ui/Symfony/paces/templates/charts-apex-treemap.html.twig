@@ -1,0 +1,94 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Treemap Apexchart' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Charts", "title": "Treemap Apexchart"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Charts", "title": "Treemap Apexchart"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Basic Treemap</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="basic-treemap"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Treemap Multiple Series</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="multiple-treemap"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Distributed Treemap</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="distributed-treemap"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Color Range Treemap</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="color-range-treemap"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Chart js -->
+
+<!-- Apex Chart Polar Area Demo js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/chart-apex-treemap.js"></script>
+{% endblock %}

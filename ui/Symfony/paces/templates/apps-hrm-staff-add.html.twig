@@ -1,0 +1,317 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Add Staff' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Add Staff"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Add Staff"}) }}
+
+                <div class="container-fluid">
+<!-- Add New Staff Form -->
+<div class="card">
+<div class="card-header border-solid">
+<h4 class="card-title">Fill Details</h4>
+<!-- Nav Tabs -->
+<nav aria-label="Tabs" aria-orientation="horizontal" class="nav-tabs gap-0" id="staffTabs" role="tablist">
+<button aria-controls="personal" aria-selected="true" class="nav-link hs-tab-active:border-primary border-b border-transparent active" data-hs-tab="#personal" id="personal-tab" role="tab" type="button">Personal Info</button>
+<button aria-controls="job" aria-selected="false" class="nav-link hs-tab-active:border-primary border-b border-transparent" data-hs-tab="#job" id="job-tab" role="tab" type="button">Job Details</button>
+<button aria-controls="bank" aria-selected="false" class="nav-link hs-tab-active:border-primary border-b border-transparent" data-hs-tab="#bank" id="bank-tab" role="tab" type="button">Bank &amp; Salary</button>
+<button aria-controls="emergency" aria-selected="false" class="nav-link hs-tab-active:border-primary border-b border-transparent" data-hs-tab="#emergency" id="emergency-tab" role="tab" type="button">Emergency Contact</button>
+<button aria-controls="access" aria-selected="false" class="nav-link hs-tab-active:border-primary border-b border-transparent" data-hs-tab="#access" id="access-tab" role="tab" type="button">System Access</button>
+</nav>
+</div>
+<div class="card-body">
+<form id="addStaffForm">
+<div id="staffTabsContent">
+<!-- Personal Info -->
+<div aria-labelledby="personal-tab" class="active" id="personal" role="tabpanel">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-base gap-y-5">
+<div>
+<label class="form-label" for="firstName">First Name</label>
+<input class="form-input" id="firstName" required="" type="text"/>
+</div>
+<div>
+<label class="form-label" for="lastName">Last Name</label>
+<input class="form-input" id="lastName" required="" type="text"/>
+</div>
+<div>
+<label class="form-label" for="email">Email</label>
+<input class="form-input" id="email" required="" type="email"/>
+</div>
+<div>
+<label class="form-label" for="phone">Phone</label>
+<input class="form-input" id="phone" type="text"/>
+</div>
+<div>
+<label class="form-label" for="gender">Gender</label>
+<select class="form-input" id="gender">
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="dob">Date of Birth</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="dob" readonly="readonly" type="text"/>
+</div>
+<div>
+<label class="form-label" for="maritalStatus">Marital Status</label>
+<select class="form-input" id="maritalStatus">
+<option>Single</option>
+<option>Married</option>
+<option>Divorced</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="nationality">Nationality</label>
+<input class="form-input" id="nationality" type="text"/>
+</div>
+<div>
+<label class="form-label" for="bloodGroup">Blood Group</label>
+<select class="form-input" id="bloodGroup">
+<option>O+</option>
+<option>O-</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+</select>
+</div>
+<div class="md:col-span-3">
+<label class="form-label" for="address">Address</label>
+<textarea class="form-textarea" id="address" rows="2"></textarea>
+</div>
+<div>
+<label class="form-label" for="city">City</label>
+<input class="form-input" id="city" type="text"/>
+</div>
+<div>
+<label class="form-label" for="state">State</label>
+<input class="form-input" id="state" type="text"/>
+</div>
+<div>
+<label class="form-label" for="country">Country</label>
+<input class="form-input" id="country" type="text"/>
+</div>
+<div>
+<label class="form-label" for="postalCode">Postal Code</label>
+<input class="form-input" id="postalCode" type="text"/>
+</div>
+<div>
+<label class="form-label" for="idType">ID Type</label>
+<select class="form-input" id="idType">
+<option>Passport</option>
+<option>National ID</option>
+<option>Driving License</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="idNumber">ID Number</label>
+<input class="form-input" id="idNumber" type="text"/>
+</div>
+</div>
+</div>
+<!-- Job Details -->
+<div aria-labelledby="job-tab" class="hidden" id="job" role="tabpanel">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-base gap-y-5">
+<div>
+<label class="form-label" for="employeeId">Employee ID</label>
+<input class="form-input" id="employeeId" placeholder="EMP-XXXX" type="text" value="EMP-8941"/>
+</div>
+<div>
+<label class="form-label" for="department">Department</label>
+<select class="form-input" id="department">
+<option>IT</option>
+<option>HR</option>
+<option>Finance</option>
+<option>Design</option>
+<option>Sales</option>
+<option>Operations</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="designation">Designation</label>
+<input class="form-input" id="designation" placeholder="e.g., Software Engineer" type="text"/>
+</div>
+<div>
+<label class="form-label" for="team">Team</label>
+<input class="form-input" id="team" type="text"/>
+</div>
+<div>
+<label class="form-label" for="joiningDate">Joining Date</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="joiningDate" readonly="readonly" type="text"/>
+</div>
+<div>
+<label class="form-label" for="shift">Shift</label>
+<select class="form-input" id="shift">
+<option>Morning</option>
+<option>Mid Shift</option>
+<option>Night Shift</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="employmentType">Employment Type</label>
+<select class="form-input" id="employmentType">
+<option>Full-Time</option>
+<option>Part-Time</option>
+<option>Contract</option>
+<option>Intern</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="workMode">Work Mode</label>
+<select class="form-input" id="workMode">
+<option>Onsite</option>
+<option>Hybrid</option>
+<option>Remote</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="manager">Manager / Reporting To</label>
+<input class="form-input" id="manager" type="text"/>
+</div>
+</div>
+</div>
+<!-- Bank & Salary -->
+<div aria-labelledby="bank-tab" class="hidden" id="bank" role="tabpanel">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-base gap-y-5">
+<div>
+<label class="form-label" for="bankName">Bank Name</label>
+<input class="form-input" id="bankName" type="text"/>
+</div>
+<div>
+<label class="form-label" for="accountNumber">Account Number</label>
+<input class="form-input" id="accountNumber" type="text"/>
+</div>
+<div>
+<label class="form-label" for="ifscCode">IFSC / SWIFT Code</label>
+<input class="form-input" id="ifscCode" type="text"/>
+</div>
+<div>
+<label class="form-label" for="branch">Branch</label>
+<input class="form-input" id="branch" type="text"/>
+</div>
+<div>
+<label class="form-label" for="taxId">PAN / Tax ID</label>
+<input class="form-input" id="taxId" type="text"/>
+</div>
+<div>
+<label class="form-label" for="salary">Salary (Monthly)</label>
+<input class="form-input" id="salary" placeholder="USD $" type="number"/>
+</div>
+<div>
+<label class="form-label" for="paymentMode">Payment Mode</label>
+<select class="form-input" id="paymentMode">
+<option>Bank Transfer</option>
+<option>Cheque</option>
+<option>Cash</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="pfNumber">PF Number</label>
+<input class="form-input" id="pfNumber" type="text"/>
+</div>
+<div>
+<label class="form-label" for="esiNumber">ESI Number</label>
+<input class="form-input" id="esiNumber" type="text"/>
+</div>
+</div>
+</div>
+<!-- Emergency Contact -->
+<div aria-labelledby="emergency-tab" class="hidden" id="emergency" role="tabpanel">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-base gap-y-5">
+<div>
+<label class="form-label" for="emergencyName">Name</label>
+<input class="form-input" id="emergencyName" type="text"/>
+</div>
+<div>
+<label class="form-label" for="emergencyRelation">Relation</label>
+<input class="form-input" id="emergencyRelation" placeholder="e.g., Mother" type="text"/>
+</div>
+<div>
+<label class="form-label" for="emergencyPhone">Phone Number</label>
+<input class="form-input" id="emergencyPhone" type="text"/>
+</div>
+<div class="md:col-span-3">
+<label class="form-label" for="emergencyAddress">Address</label>
+<textarea class="form-textarea" id="emergencyAddress" rows="2"></textarea>
+</div>
+</div>
+</div>
+<!-- System Access -->
+<div aria-labelledby="access-tab" class="hidden" id="access" role="tabpanel">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-base gap-y-5">
+<div>
+<label class="form-label" for="username">Username</label>
+<input class="form-input" id="username" type="text"/>
+</div>
+<div>
+<label class="form-label" for="password">Password</label>
+<input class="form-input" id="password" type="password"/>
+</div>
+<div>
+<label class="form-label" for="role">Role</label>
+<select class="form-input" id="role">
+<option>Admin</option>
+<option>Manager</option>
+<option>Staff</option>
+<option>HR</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="ac-status">Status</label>
+<select class="form-input" id="ac-status">
+<option>Active</option>
+<option>Inactive</option>
+<option>Suspended</option>
+</select>
+</div>
+<div class="md:col-span-3">
+<div class="items-cneter flex gap-2">
+<input class="form-checkbox" id="sendCredentials" type="checkbox"/>
+<label class="font-normal" for="sendCredentials">Send login credentials to staff via email</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Buttons -->
+<div class="mt-7.5 flex justify-end gap-3">
+<button class="btn bg-light hover:text-primary" type="reset">Reset</button>
+<button class="btn bg-success text-white hover:bg-success-hover" type="submit">Save Staff</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

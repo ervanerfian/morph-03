@@ -1,0 +1,905 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Payroll' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Payroll"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Payroll"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="10">
+<div class="card-header">
+<div class="flex flex-wrap gap-2.5">
+<!-- Search -->
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search payroll records..." type="search"/>
+</div>
+<!-- Add New Payroll -->
+<button aria-controls="addPayrollModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#addPayrollModal" type="button">
+<i class="iconify tabler--plus"></i>
+                                    New Payroll
+                                </button>
+<!-- Delete Selected -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- Department Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--layout input-icon"></i>
+<select class="form-select" data-table-filter="department">
+<option value="">Department</option>
+<option value="Human Resources">Human Resources</option>
+<option value="Finance">Finance</option>
+<option value="IT">IT</option>
+<option value="Operations">Operations</option>
+<option value="Marketing">Marketing</option>
+<option value="Design">Design</option>
+<option value="Sales">Sales</option>
+<option value="Customer Support">Customer Support</option>
+<option value="Research &amp; Development">Research &amp; Development</option>
+</select>
+</div>
+<!-- Pay Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--arrows-shuffle input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Paid">Paid</option>
+<option value="Processing">Processing</option>
+<option value="On Hold">On Hold</option>
+<option value="Pending Review">Pending Review</option>
+</select>
+</div>
+<!-- Pay Period Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--calendar input-icon"></i>
+<select class="form-select" data-table-filter="period">
+<option value="">Pay Period</option>
+<option value="Oct 2025">October 2025</option>
+<option value="Sep 2025">September 2025</option>
+<option value="Aug 2025">August 2025</option>
+<option value="Jul 2025">July 2025</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-custom table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="">Employee ID</th>
+<th data-table-sort="">Employee Name</th>
+<th data-column="department" data-table-sort="">Department</th>
+<th data-table-sort="">Designation</th>
+<th data-table-sort="">Pay Period</th>
+<th data-table-sort="">Base Salary</th>
+<th data-table-sort="">Allowances</th>
+<th data-table-sort="">Actual Salary</th>
+<th data-table-sort="">Deductions</th>
+<th data-table-sort="">Net Pay</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- PAY-001 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>PAY-001</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-3.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Samantha Green</a>
+</h5>
+<p class="text-default-400 text-xs">samantha.green@company.com</p>
+</div>
+</div>
+</td>
+<td>Human Resources</td>
+<td>HR Manager</td>
+<td>Oct 2025</td>
+<td>$6,200</td>
+<td>$500</td>
+<td><strong>$6,700</strong></td>
+<td>$6,700</td>
+<td><strong>$6,550</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-002 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-002</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-6.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">David Lee</a>
+</h5>
+<p class="text-default-400 text-xs">david.lee@company.com</p>
+</div>
+</div>
+</td>
+<td>IT</td>
+<td>Software Engineer</td>
+<td>Oct 2025</td>
+<td>$5,000</td>
+<td>$400</td>
+<td><strong>$5,400</strong></td>
+<td>$100</td>
+<td><strong>$5,300</strong></td>
+<td>
+<span class="badge bg-warning/15 text-warning">Processing</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-003 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-003</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-8.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Maria Smith</a>
+</h5>
+<p class="text-default-400 text-xs">maria.smith@company.com</p>
+</div>
+</div>
+</td>
+<td>Finance</td>
+<td>Accountant</td>
+<td>Oct 2025</td>
+<td>$4,800</td>
+<td>$250</td>
+<td><strong>$5,050</strong></td>
+<td>$100</td>
+<td><strong>$4,950</strong></td>
+<td>
+<span class="badge bg-danger/15 text-danger">On Hold</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-004 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-004</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-4.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Michael Adams</a>
+</h5>
+<p class="text-default-400 text-xs">michael.adams@company.com</p>
+</div>
+</div>
+</td>
+<td>Marketing</td>
+<td>Marketing Executive</td>
+<td>Oct 2025</td>
+<td>$4,200</td>
+<td>$300</td>
+<td><strong>$4,500</strong></td>
+<td>$120</td>
+<td><strong>$4,380</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-005 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-005</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-1.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Olivia Brown</a>
+</h5>
+<p class="text-default-400 text-xs">olivia.brown@company.com</p>
+</div>
+</div>
+</td>
+<td>Design</td>
+<td>UI/UX Designer</td>
+<td>Oct 2025</td>
+<td>$4,600</td>
+<td>$400</td>
+<td><strong>$5,000</strong></td>
+<td>$80</td>
+<td><strong>$4,920</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-006 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-006</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-2.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Daniel Carter</a>
+</h5>
+<p class="text-default-400 text-xs">daniel.carter@company.com</p>
+</div>
+</div>
+</td>
+<td>Operations</td>
+<td>Operations Lead</td>
+<td>Oct 2025</td>
+<td>$5,500</td>
+<td>$600</td>
+<td><strong>$6,100</strong></td>
+<td>$200</td>
+<td><strong>$5,900</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-007 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-007</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-5.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Emily Davis</a>
+</h5>
+<p class="text-default-400 text-xs">emily.davis@company.com</p>
+</div>
+</div>
+</td>
+<td>Admin</td>
+<td>Office Administrator</td>
+<td>Oct 2025</td>
+<td>$3,800</td>
+<td>$250</td>
+<td><strong>$4,050</strong></td>
+<td>$50</td>
+<td><strong>$4,000</strong></td>
+<td>
+<span class="badge bg-warning/15 text-warning">Processing</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-008 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-008</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary">James Walker</a>
+</h5>
+<p class="text-default-400 text-xs">james.walker@company.com</p>
+</div>
+</div>
+</td>
+<td>Sales</td>
+<td>Sales Manager</td>
+<td>Oct 2025</td>
+<td>$6,000</td>
+<td>$800</td>
+<td><strong>$6,800</strong></td>
+<td>$200</td>
+<td><strong>$6,600</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-009 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-009</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary">Sophia Martinez</a>
+</h5>
+<p class="text-default-400 text-xs">sophia.martinez@company.com</p>
+</div>
+</div>
+</td>
+<td>Customer Support</td>
+<td>Support Specialist</td>
+<td>Oct 2025</td>
+<td>$3,900</td>
+<td>$150</td>
+<td><strong>$4,050</strong></td>
+<td>$70</td>
+<td><strong>$3,980</strong></td>
+<td>
+<span class="badge bg-warning/15 text-warning">Processing</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0010 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-010</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-10.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary">Henry Clark</a>
+</h5>
+<p class="text-default-400 text-xs">henry.clark@company.com</p>
+</div>
+</div>
+</td>
+<td>Logistics</td>
+<td>Warehouse Supervisor</td>
+<td>Oct 2025</td>
+<td>$4,400</td>
+<td>$200</td>
+<td><strong>$4,600</strong></td>
+<td>$80</td>
+<td><strong>$4,520</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0011 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-011</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Isabella Johnson</a>
+</h5>
+<p class="text-default-400 text-xs">isabella.johnson@company.com</p>
+</div>
+</div>
+</td>
+<td>Legal</td>
+<td>Legal Advisor</td>
+<td>Oct 2025</td>
+<td>$5,800</td>
+<td>$350</td>
+<td><strong>$6,150</strong></td>
+<td>$180</td>
+<td><strong>$5,970</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0012 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-012</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-2.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Liam Turner</a>
+</h5>
+<p class="text-default-400 text-xs">liam.turner@company.com</p>
+</div>
+</div>
+</td>
+<td>Engineering</td>
+<td>QA Engineer</td>
+<td>Oct 2025</td>
+<td>$4,700</td>
+<td>$200</td>
+<td><strong>$4,900</strong></td>
+<td>$90</td>
+<td><strong>$4,810</strong></td>
+<td>
+<span class="badge bg-warning/15 text-warning">Processing</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0013 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-013</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Charlotte Evans</a>
+</h5>
+<p class="text-default-400 text-xs">charlotte.evans@company.com</p>
+</div>
+</div>
+</td>
+<td>Public Relations</td>
+<td>PR Manager</td>
+<td>Oct 2025</td>
+<td>$5,200</td>
+<td>$300</td>
+<td><strong>$5,500</strong></td>
+<td>$120</td>
+<td><strong>$5,380</strong></td>
+<td>
+<span class="badge bg-danger/15 text-danger">On Hold</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0014 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-014</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-4.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Benjamin Scott</a>
+</h5>
+<p class="text-default-400 text-xs">benjamin.scott@company.com</p>
+</div>
+</div>
+</td>
+<td>Procurement</td>
+<td>Purchase Officer</td>
+<td>Oct 2025</td>
+<td>$4,300</td>
+<td>$250</td>
+<td><strong>$4,550</strong></td>
+<td>$70</td>
+<td><strong>$4,480</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- PAY-0015 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>PAY-015</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-10.jpg"/>
+<div>
+<h5 class="text-sm font-semibold">
+<a class="hover:text-primary" href="#!">Grace Mitchell</a>
+</h5>
+<p class="text-default-400 text-xs">grace.mitchell@company.com</p>
+</div>
+</div>
+</td>
+<td>Research &amp; Development</td>
+<td>Data Scientist</td>
+<td>Oct 2025</td>
+<td>$6,700</td>
+<td>$600</td>
+<td><strong>$7,300</strong></td>
+<td>$250</td>
+<td><strong>$7,050</strong></td>
+<td>
+<span class="badge bg-success/15 text-success">Paid</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="records"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addPayrollModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addPayrollModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="flex items-center gap-2 text-sm" id="addPayrollModalLabel">
+<i class="iconify tabler--plus text-sm"></i>
+                                Add Payroll Record
+                            </h3>
+<button aria-label="Close" data-hs-overlay="#addPayrollModal" type="button">
+<i class="iconify tabler--x text-xl"></i>
+</button>
+</div>
+<form id="addPayrollForm">
+<div class="card-body overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Employee Name -->
+<div>
+<label class="form-label" for="employeeName">
+                                            Employee Name
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="employeeName" required="">
+<option value="">Select Employee</option>
+<option value="1">Samantha Green</option>
+<option value="2">David Lee</option>
+<option value="3">Maria Smith</option>
+<option value="4">Michael Adams</option>
+<option value="5">Olivia Brown</option>
+<option value="6">Daniel Carter</option>
+<option value="7">Emily Davis</option>
+<option value="8">James Walker</option>
+<option value="9">Sophia Martinez</option>
+<option value="10">Henry Clark</option>
+</select>
+</div>
+<!-- Department -->
+<div>
+<label class="form-label" for="department">
+                                            Department
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="department" required="">
+<option value="">Select Department</option>
+<option>Human Resources</option>
+<option>Finance</option>
+<option>IT</option>
+<option>Operations</option>
+<option>Marketing</option>
+<option>Design</option>
+<option>Sales</option>
+<option>Customer Support</option>
+<option>Research &amp; Development</option>
+</select>
+</div>
+<!-- Role / Position -->
+<div>
+<label class="form-label" for="role">
+                                            Role / Position
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="role" placeholder="Enter position title" required="" type="text"/>
+</div>
+<!-- Pay Period -->
+<div>
+<label class="form-label" for="payPeriod">
+                                            Pay Period
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="payPeriod" required="">
+<option value="">Select Period</option>
+<option>October 2025</option>
+<option>September 2025</option>
+<option>August 2025</option>
+<option>July 2025</option>
+</select>
+</div>
+<!-- Base Salary -->
+<div>
+<label class="form-label" for="baseSalary">
+                                            Base Salary ($)
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="baseSalary" min="0" placeholder="e.g., 5000" required="" type="number"/>
+</div>
+<!-- Allowances -->
+<div>
+<label class="form-label" for="allowances">Allowances ($)</label>
+<input class="form-input" id="allowances" min="0" placeholder="e.g., 300" type="number"/>
+</div>
+<!-- Total Earnings (auto-calculated) -->
+<div>
+<label class="form-label" for="totalEarnings">Total Earnings ($)</label>
+<input class="form-input" id="totalEarnings" placeholder="Auto-calculated" readonly="" type="number"/>
+</div>
+<!-- Deductions -->
+<div>
+<label class="form-label" for="deductions">Deductions ($)</label>
+<input class="form-input" id="deductions" min="0" placeholder="e.g., 100" type="number"/>
+</div>
+<!-- Net Pay (auto-calculated) -->
+<div>
+<label class="form-label" for="netPay">Net Pay ($)</label>
+<input class="form-input" id="netPay" placeholder="Auto-calculated" readonly="" type="number"/>
+</div>
+<!-- Pay Status -->
+<div>
+<label class="form-label" for="pay-status">
+                                            Pay Status
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="pay-status" required="">
+<option value="">Select Status</option>
+<option value="Paid">Paid</option>
+<option value="Processing">Processing</option>
+<option value="On Hold">On Hold</option>
+<option value="Pending Review">Pending Review</option>
+</select>
+</div>
+<!-- Remarks -->
+<div class="md:col-span-2">
+<label class="form-label" for="remarks1">Remarks</label>
+<textarea class="form-textarea" id="remarks1" placeholder="Optional remarks or notes" rows="4"></textarea>
+</div>
+</div>
+</div>
+</form>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addPayrollModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--check"></i>
+                                Save Payroll
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

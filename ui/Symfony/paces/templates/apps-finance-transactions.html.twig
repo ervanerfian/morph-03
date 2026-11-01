@@ -1,0 +1,841 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Transactions' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Finance", "title": "Transactions"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Finance", "title": "Transactions"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-base mb-base">
+<!-- Total Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-primary/15 text-primary flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--currency-dollar text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-2.5 text-xl font-normal">$<span data-target="56240">0</span></h3>
+<p class="text-default-400">
+<span>Total Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Received Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-success/15 text-success flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--wallet text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-2.5 text-xl font-normal">$<span data-target="48920">0</span></h3>
+<p class="text-default-400">
+<span>Received Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pending Payments Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-warning/15 text-warning flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--hourglass text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-2.5 text-xl font-normal">$<span data-target="6530">0</span></h3>
+<p class="text-default-400">
+<span>Pending Payments</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Refunded Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-danger/15 text-danger flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--credit-card-refund text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-2.5 text-xl font-normal">$<span data-target="1790">0</span></h3>
+<p class="text-default-400">
+<span>Refunded Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end row -->
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<!-- Search -->
+<div class="flex flex-wrap gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input w-auto ps-10" data-table-search="" placeholder="Search transactions..." type="search"/>
+</div>
+<!-- Add New Transaction -->
+<div class="flex gap-1">
+<a aria-controls="transactionModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#transactionModal" href="#transactionModal">
+<i class="iconify tabler--plus"></i>
+                                        Add Transaction
+                                    </a>
+</div>
+<!-- Delete Selected -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 lg:flex-nowrap">
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<div class="items-center gap-2.5 md:flex">
+<span class="font-semibold me-2.5">Filter By:</span>
+<!-- Type Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--transaction-dollar input-icon"></i>
+<select class="form-select" data-table-filter="transaction-type">
+<option value="">Type</option>
+<option value="Credit">Credit</option>
+<option value="Debit">Debit</option>
+<option value="Refund">Refund</option>
+<option value="Adjustment">Adjustment</option>
+</select>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--circle-check input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Completed">Completed</option>
+<option value="Pending">Pending</option>
+<option value="Failed">Failed</option>
+<option value="Refunded">Refunded</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div class="relative">
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table-custom table-select table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" type="checkbox"/>
+</th>
+<th data-table-sort="">ID</th>
+<th>Description</th>
+<th data-column="transaction-type" data-table-sort="">Type</th>
+<th>Payment Method</th>
+<th data-table-sort="">Amount</th>
+<th data-table-sort="">Balance</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th data-table-sort="">Date</th>
+<th data-table-sort="">Processed By</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- CREDIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2001</a>
+</td>
+<td>Product Sale - Online Store</td>
+<td data-column="transaction-type">
+<span class="badge bg-success/15 text-success">Credit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" height="26" src="/images/cards/mastercard.svg"/>
+<span>**** 5623</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$450.00</td>
+<td class="font-semibold">$5,240.00</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            10 Oct, 2025
+                                            <small class="text-default-400 text-2xs">01:20 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Emily Clark" class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<span>Emma Johnson</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- DEBIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2002</a>
+</td>
+<td>Office Supplies Purchase</td>
+<td data-column="transaction-type">
+<span class="badge bg-danger/15 text-danger">Debit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" height="26" src="/images/cards/visa.svg"/>
+<span>**** 9381</span>
+</div>
+</td>
+<td class="text-danger px-2.25 py-3 font-semibold">−$120.00</td>
+<td class="font-semibold">$5,120.00</td>
+<td>
+<span class="badge badge-label badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            09 Oct, 2025
+                                            <small class="text-default-400 text-2xs">04:10 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="David Wilson" class="size-6 rounded-full" src="/images/users/user-6.jpg"/>
+<span>David Wilson</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- REFUND TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2003</a>
+</td>
+<td>Refund – Order #7845 (Return)</td>
+<td data-column="transaction-type">
+<span class="badge bg-info/15 text-info">Refund</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="PayPal" class="me-3 h-6" height="24" src="/images/cards/paypal.svg"/>
+<span>PayPal</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$89.99</td>
+<td class="font-semibold">$5,209.99</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            08 Oct, 2025
+                                            <small class="text-default-400 text-2xs">02:45 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Sophia Lee" class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<span>Sophia Lee</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- ADJUSTMENT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2004</a>
+</td>
+<td>Balance Adjustment (Manual)</td>
+<td data-column="transaction-type">
+<span class="badge bg-secondary/15 text-secondary">Adjustment</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Amex" class="me-3 h-6" src="/images/cards/american-express.svg"/>
+<span>**** 3478</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$150.00</td>
+<td class="font-semibold">$5,359.99</td>
+<td>
+<span class="badge badge-label badge-label bg-info/15 text-info">Adjusted</span>
+</td>
+<td>
+                                            07 Oct, 2025
+                                            <small class="text-default-400 text-2xs">11:10 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Daniel Ray" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<span>Daniel Ray</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- FAILED TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2005</a>
+</td>
+<td>Subscription Renewal Attempt</td>
+<td data-column="transaction-type">
+<span class="badge bg-danger/15 text-danger">Debit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" src="/images/cards/mastercard.svg"/>
+<span>**** 4412</span>
+</div>
+</td>
+<td class="text-danger px-2.25 py-3 font-semibold">−$49.99</td>
+<td class="font-semibold">$5,310.00</td>
+<td>
+<span class="badge badge-label badge-label bg-danger/15 text-danger">Failed</span>
+</td>
+<td>
+                                            06 Oct, 2025
+                                            <small class="text-default-400 text-2xs">08:35 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Liam Brown" class="size-6 rounded-full" src="/images/users/user-9.jpg"/>
+<span>Liam Brown</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- CREDIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2006</a>
+</td>
+<td>Client Payment – Project Alpha</td>
+<td data-column="transaction-type">
+<span class="badge bg-success/15 text-success">Credit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" src="/images/cards/visa.svg"/>
+<span>**** 8890</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$2,000.00</td>
+<td class="font-semibold">$7,310.00</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            05 Oct, 2025
+                                            <small class="text-default-400 text-2xs">05:00 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="John Miller" class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<span>John Miller</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- DEBIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2007</a>
+</td>
+<td>Software Subscription Payment</td>
+<td data-column="transaction-type">
+<span class="badge bg-danger/15 text-danger">Debit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" src="/images/cards/visa.svg"/>
+<span>**** 2311</span>
+</div>
+</td>
+<td class="text-danger px-2.25 py-3 font-semibold">−$120.00</td>
+<td class="font-semibold">$7,190.00</td>
+<td>
+<span class="badge badge-label badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            04 Oct, 2025
+                                            <small class="text-default-400 text-2xs">09:15 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Olivia Green" class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<span>Olivia Green</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- CREDIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2008</a>
+</td>
+<td>Freelance Payment – UI Design Project</td>
+<td data-column="transaction-type">
+<span class="badge bg-success/15 text-success">Credit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" src="/images/cards/mastercard.svg"/>
+<span>**** 7654</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$1,500.00</td>
+<td class="font-semibold">$8,690.00</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            03 Oct, 2025
+                                            <small class="text-default-400 text-2xs">04:25 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Mason Carter" class="size-6 rounded-full" src="/images/users/user-8.jpg"/>
+<span>Mason Carter</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- DEBIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2009</a>
+</td>
+<td>Monthly Internet Bill</td>
+<td data-column="transaction-type">
+<span class="badge bg-danger/15 text-danger">Debit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" src="/images/cards/visa.svg"/>
+<span>**** 5582</span>
+</div>
+</td>
+<td class="text-danger px-2.25 py-3 font-semibold">−$80.00</td>
+<td class="font-semibold">$8,610.00</td>
+<td>
+<span class="badge badge-label badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            02 Oct, 2025
+                                            <small class="text-default-400 text-2xs">01:10 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Emily Clark" class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<span>Emily Clark</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- REFUND TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2010</a>
+</td>
+<td>Refund – Cancelled Workshop Ticket</td>
+<td data-column="transaction-type">
+<span class="badge bg-info/15 text-info">Refund</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="PayPal" class="me-3 h-6.5" src="/images/cards/paypal.svg"/>
+<span>PayPal</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$120.00</td>
+<td class="font-semibold">$8,730.00</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            01 Oct, 2025
+                                            <small class="text-default-400 text-2xs">03:35 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Liam Brown" class="size-6 rounded-full" src="/images/users/user-9.jpg"/>
+<span>Liam Brown</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- ADJUSTMENT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2011</a>
+</td>
+<td>Bank Service Fee Reversal</td>
+<td data-column="transaction-type">
+<span class="badge bg-secondary/15 text-secondary">Adjustment</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="Amex" class="me-3 h-6.5" src="/images/cards/american-express.svg"/>
+<span>**** 9012</span>
+</div>
+</td>
+<td class="text-success px-2.25 py-3 font-semibold">+$30.00</td>
+<td class="font-semibold">$8,760.00</td>
+<td>
+<span class="badge badge-label badge-label bg-info/15 text-info">Adjusted</span>
+</td>
+<td>
+                                            30 Sep, 2025
+                                            <small class="text-default-400 text-2xs">10:25 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Sophia Lee" class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<span>Sophia Lee</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- DEBIT TRANSACTION -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#TRX-2012</a>
+</td>
+<td>Travel Expense – Client Meeting</td>
+<td data-column="transaction-type">
+<span class="badge bg-danger/15 text-danger">Debit</span>
+</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" src="/images/cards/mastercard.svg"/>
+<span>**** 5534</span>
+</div>
+</td>
+<td class="text-danger px-2.25 py-3 font-semibold">−$260.00</td>
+<td class="font-semibold">$8,500.00</td>
+<td>
+<span class="badge badge-label badge bg-success/15 text-success">Completed</span>
+</td>
+<td>
+                                            29 Sep, 2025
+                                            <small class="text-default-400 text-2xs">06:40 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Olivia Green" class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<span>Olivia Green</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="Transactions"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="transactionModalLabel" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="transactionModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="flex items-center gap-1 font-semibold" id="transactionModalLabel">
+<i class="iconify tabler--plus text-secondary text-xs"></i>
+                                Add New Transaction
+                            </h3>
+<button aria-label="Close" data-hs-overlay="#transactionModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Transaction Type -->
+<div class="col-span-1">
+<label class="form-label font-medium">Transaction Type</label>
+<select class="form-input" name="transactionType" required="">
+<option value="">Select Type</option>
+<option value="Credit">Credit</option>
+<option value="Debit">Debit</option>
+<option value="Refund">Refund</option>
+<option value="Adjustment">Adjustment</option>
+</select>
+</div>
+<!-- Payment Method -->
+<div class="col-span-1">
+<label class="form-label font-medium">Payment Method</label>
+<select class="form-input" name="paymentMethod" required="">
+<option value="">Select Method</option>
+<option value="Visa">Visa</option>
+<option value="MasterCard">MasterCard</option>
+<option value="PayPal">PayPal</option>
+<option value="Amex">American Express</option>
+<option value="Bank Transfer">Bank Transfer</option>
+</select>
+</div>
+<!-- Description -->
+<div class="col-span-1 lg:col-span-2">
+<label class="form-label font-medium">Description</label>
+<input class="form-input" name="description" placeholder="Enter transaction description" required="" type="text"/>
+</div>
+<!-- Amount -->
+<div class="col-span-1">
+<label class="form-label font-medium">Amount ($)</label>
+<input class="form-input" min="0" name="amount" placeholder="0.00" required="" step="0.01" type="number"/>
+</div>
+<!-- Status -->
+<div class="col-span-1">
+<label class="form-label font-medium">Status</label>
+<select class="form-input" name="status" required="">
+<option value="">Select Status</option>
+<option value="Completed">Completed</option>
+<option value="Pending">Pending</option>
+<option value="Failed">Failed</option>
+<option value="Refunded">Refunded</option>
+</select>
+</div>
+<!-- Date -->
+<div class="col-span-1">
+<label class="form-label font-medium">Date</label>
+<input class="form-input" data-date-format="d M, Y" data-enable-time="" data-provider="flatpickr" name="date" required="" type="text"/>
+</div>
+<!-- Processed By -->
+<div class="col-span-1">
+<label class="form-label font-medium">Processed By</label>
+<input class="form-input" name="processedBy" placeholder="Enter staff name" required="" type="text"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2 p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#transactionModal" type="button">
+<i class="iconify tabler--x"></i>
+                                Cancel
+                            </button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Save Transaction
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

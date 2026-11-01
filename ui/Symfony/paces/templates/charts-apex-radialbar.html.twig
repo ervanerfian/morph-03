@@ -1,0 +1,130 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'RadialBar Apexchart' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Charts", "title": "RadialBar Apexchart"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Charts", "title": "RadialBar Apexchart"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Basic RadialBar Chart</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="basic-radialbar"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Multiple RadialBars</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="multiple-radialbar"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Circle Chart - Custom Angle</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="circle-angle-radial"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Circle Chart with Image</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="image-radial"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Stroked Circular Guage</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="stroked-guage-radial"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Gradient Circular Chart</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="gradient-chart"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Semi Circle Gauge</h4>
+</div>
+<div class="card-body">
+<div dir="ltr">
+<div class="apex-charts" id="semi-circle-gauge"></div>
+</div>
+</div>
+<!-- end card body-->
+</div>
+<!-- end card -->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Chart js -->
+
+<!-- Apex Chart Polar Area Demo js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/chart-apex-radialbar.js"></script>
+{% endblock %}

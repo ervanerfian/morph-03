@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Flags' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "icons", "title": "Flags"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+                {{ include('partials/page-title.html.twig', {"subtitle": "icons", "title": "Flags"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-header">
+<div>
+<h4 class="card-title mb-1.5">Flags Listing (SVG)</h4>
+<p class="text-default-400">We offer a set of scalable SVG flags, perfect for language selectors and international content.</p>
+</div>
+<!-- Search -->
+<div class="relative flex items-center">
+<div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+<i class="iconify tabler--search text-default-400 text-lg"></i>
+</div>
+<input class="form-input w-57.5 ps-10" id="countrySearch" placeholder="Search country..." type="search"/>
+</div>
+</div>
+<div class="card-body">
+<div class="table-responsive">
+<table class="table-bordered table w-full text-center align-middle" id="flagTable">
+<thead>
+<tr class="text-xs font-bold">
+<th>Flag</th>
+<th>Country Name</th>
+<th>Path</th>
+<th>Flag</th>
+<th>Country Name</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Page only -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/flags-listing.js"></script>
+{% endblock %}

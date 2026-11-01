@@ -1,0 +1,808 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Income' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Finance", "title": "Income"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Finance", "title": "Income"}) }}
+
+                <div class="container-fluid">
+<div class="mb-base grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-base">
+<!-- Total Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-primary/15 text-primary flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--currency-dollar text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-3 text-2xl font-normal">$<span data-target="45280">0</span></h3>
+<p class="text-default-400">
+<span>Total Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Received Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-success/15 text-success flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--wallet text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-3 text-2xl font-normal">$<span data-target="38560">0</span></h3>
+<p class="text-default-400">
+<span>Received Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pending Payments Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-warning/15 text-warning flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--hourglass text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-3 text-2xl font-normal">$<span data-target="4860">0</span></h3>
+<p class="text-default-400">
+<span>Pending Payments</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Refunded Income Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center justify-between">
+<div class="bg-danger/15 text-danger flex size-15 items-center justify-center rounded-full">
+<i class="iconify tabler--credit-card-refund text-2xl"></i>
+</div>
+<div class="text-end">
+<h3 class="mb-3 text-2xl font-normal">$<span data-target="1120">0</span></h3>
+<p class="text-default-400">
+<span>Refunded Income</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end row -->
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<!-- Search -->
+<div class="flex flex-wrap gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input w-auto ps-10" data-table-search="" placeholder="Search income..." type="search"/>
+</div>
+<!-- Add New Income -->
+<div class="flex gap-1">
+<a aria-controls="incomeModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#incomeModal" href="#incomeModal"> <i class="iconify tabler--plus"></i> Add Income </a>
+</div>
+<!-- Delete Selected -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 lg:flex-nowrap">
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<div class="items-center gap-2.5 md:flex">
+<span class="font-semibold me-2.5">Filter By:</span>
+<!-- Source Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--briefcase input-icon"></i>
+<select class="form-select" data-table-filter="income-source">
+<option value="">Source</option>
+<option value="Sales">Sales</option>
+<option value="Services">Services</option>
+<option value="Consulting">Consulting</option>
+<option value="Investments">Investments</option>
+<option value="Affiliate">Affiliate</option>
+<option value="Other">Other</option>
+</select>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--circle-check input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Received">Received</option>
+<option value="Pending">Pending</option>
+<option value="Failed">Failed</option>
+<option value="Refunded">Refunded</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div class="relative">
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table-custom table-select table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" type="checkbox"/>
+</th>
+<th data-table-sort="">ID</th>
+<th>Income Title</th>
+<th data-column="income-source" data-table-sort="">Source</th>
+<th>Payment Type</th>
+<th data-table-sort="">Amount</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th data-table-sort="">Date</th>
+<th data-table-sort="">Received By</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1001</a>
+</td>
+<td>Website Development Payment</td>
+<td data-column="income-source">Services</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" height="26" src="/images/cards/visa.svg"/>
+<span>**** 3294</span>
+</div>
+</td>
+<td>$1,250.00</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            03 Oct, 2025
+                                            <small class="text-default-400 text-2xs">11:00 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Emily Clark" class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<span>Emily Clark</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1002</a>
+</td>
+<td>Consulting Fees (Q3)</td>
+<td data-column="income-source">Consulting</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" height="26" src="/images/cards/mastercard.svg"/>
+<span>**** 8712</span>
+</div>
+</td>
+<td>$780.00</td>
+<td>
+<span class="badge bagde-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            01 Oct, 2025
+                                            <small class="text-default-400 text-2xs">04:20 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Daniel Ray" class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<span>Daniel Ray</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1003</a>
+</td>
+<td>E-commerce Sales Revenue</td>
+<td data-column="income-source">Sales</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" height="26" src="/images/cards/mastercard.svg"/>
+<span>**** 4511</span>
+</div>
+</td>
+<td>$2,430.00</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            04 Oct, 2025
+                                            <small class="text-default-400 text-2xs">02:35 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Emma Johnson" class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<span>Emma Johnson</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1004</a>
+</td>
+<td>Affiliate Payout - September</td>
+<td data-column="income-source">Affiliate</td>
+<td>
+<div class="flex items-center">
+<img alt="PayPal" class="me-3 h-6.5" height="26" src="/images/cards/paypal.svg"/>
+<span>PayPal</span>
+</div>
+</td>
+<td>$645.25</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            02 Oct, 2025
+                                            <small class="text-default-400 text-2xs">09:30 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="David Wilson" class="size-6 rounded-full" src="/images/users/user-6.jpg"/>
+<span>David Wilson</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1005</a>
+</td>
+<td>Software License Renewal</td>
+<td data-column="income-source">Services</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" height="26" src="/images/cards/visa.svg"/>
+<span>**** 9987</span>
+</div>
+</td>
+<td>$1,120.00</td>
+<td>
+<span class="badge bagde-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            29 Sep, 2025
+                                            <small class="text-default-400 text-2xs">01:15 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Lucas Martin" class="size-6 rounded-full" src="/images/users/user-8.jpg"/>
+<span>Lucas Martin</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1006</a>
+</td>
+<td>Investment Dividend Q3</td>
+<td data-column="income-source">Investments</td>
+<td>
+<div class="flex items-center">
+<img alt="Bank Transfer" class="me-3 h-6.5" height="26" src="/images/cards/note.svg"/>
+<span>Bank Transfer</span>
+</div>
+</td>
+<td>$3,950.50</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            27 Sep, 2025
+                                            <small class="text-default-400 text-2xs">10:00 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Olivia Brown" class="size-6 rounded-full" src="/images/users/user-9.jpg"/>
+<span>Olivia Brown</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1007</a>
+</td>
+<td>Advertising Revenue (Google Ads)</td>
+<td data-column="income-source">Affiliate</td>
+<td>
+<div class="flex items-center">
+<img alt="PayPal" class="me-3 h-6.5" height="26" src="/images/cards/paypal.svg"/>
+<span>PayPal</span>
+</div>
+</td>
+<td>$870.75</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            25 Sep, 2025
+                                            <small class="text-default-400 text-2xs">08:10 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Ethan Brooks" class="size-6 rounded-full" src="/images/users/user-10.jpg"/>
+<span>Ethan Brooks</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1008</a>
+</td>
+<td>Monthly Retainer - Client A</td>
+<td data-column="income-source">Consulting</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" height="26" src="/images/cards/mastercard.svg"/>
+<span>**** 4732</span>
+</div>
+</td>
+<td>$2,200.00</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            22 Sep, 2025
+                                            <small class="text-default-400 text-2xs">12:30 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Liam Davis" class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<span>Liam Davis</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1009</a>
+</td>
+<td>Service Renewal - Hosting Plan</td>
+<td data-column="income-source">Services</td>
+<td>
+<div class="flex items-center">
+<img alt="Visa" class="me-3 h-6.5" height="26" src="/images/cards/visa.svg"/>
+<span>**** 2318</span>
+</div>
+</td>
+<td>$399.00</td>
+<td>
+<span class="badge bagde-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            20 Sep, 2025
+                                            <small class="text-default-400 text-2xs">04:05 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Sophia Turner" class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<span>Sophia Turner</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1010</a>
+</td>
+<td>Refund - Cancelled Subscription</td>
+<td data-column="income-source">Other</td>
+<td>
+<div class="flex items-center">
+<img alt="Amex" class="me-3 h-6.5" height="26" src="/images/cards/american-express.svg"/>
+<span>**** 9812</span>
+</div>
+</td>
+<td>$-125.00</td>
+<td>
+<span class="badge bagde-label bg-danger/15 text-danger">Refunded</span>
+</td>
+<td>
+                                            18 Sep, 2025
+                                            <small class="text-default-400 text-2xs">05:45 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Noah Walker" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<span>Noah Walker</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1011</a>
+</td>
+<td>Project Completion Payment - Client B</td>
+<td data-column="income-source">Services</td>
+<td>
+<div class="flex items-center">
+<img alt="Bank Transfer" class="me-3 h-6.5" height="26" src="/images/cards/note.svg"/>
+<span>Bank Transfer</span>
+</div>
+</td>
+<td>$3,580.00</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            15 Sep, 2025
+                                            <small class="text-default-400 text-2xs">03:20 PM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Grace Miller" class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<span>Grace Miller</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="hover:text-primary font-semibold" href="#!">#INC-1012</a>
+</td>
+<td>Royalty Income - October</td>
+<td data-column="income-source">Other</td>
+<td>
+<div class="flex items-center">
+<img alt="MasterCard" class="me-3 h-6.5" height="26" src="/images/cards/mastercard.svg"/>
+<span>**** 5454</span>
+</div>
+</td>
+<td>$940.00</td>
+<td>
+<span class="badge bagde-label bg-success/15 text-success">Received</span>
+</td>
+<td>
+                                            12 Sep, 2025
+                                            <small class="text-default-400 text-2xs">11:55 AM</small>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Chloe Adams" class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<span>Chloe Adams</span>
+</div>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn border-default-300 hover:border-default-400 btn-icon btn-sm text-default-800 size-7.75 rounded border" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="Income Records"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="incomeModalLabel" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="incomeModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="font-semibold" id="incomeModalLabel">Add New Income</h3>
+<button aria-label="Close" data-hs-overlay="#incomeModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Income Title -->
+<div class="col-span-1">
+<label class="form-label" for="incomeTitle">
+                                        Income Title
+                                        <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="incomeTitle" placeholder="Enter income title" required="" type="text"/>
+</div>
+<!-- Amount -->
+<div class="col-span-1">
+<label class="form-label" for="incomeAmount">
+                                        Amount ($)
+                                        <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="incomeAmount" placeholder="Enter amount" required="" step="0.01" type="number"/>
+</div>
+<!-- Source -->
+<div class="col-span-1">
+<label class="form-label" for="incomeSource">
+                                        Income Source
+                                        <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="incomeSource" required="">
+<option value="">Select source</option>
+<option value="Sales">Sales</option>
+<option value="Services">Services</option>
+<option value="Consulting">Consulting</option>
+<option value="Investments">Investments</option>
+<option value="Affiliate">Affiliate</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<!-- Payment Type -->
+<div class="col-span-1">
+<label class="form-label" for="incomePayment">Payment Type</label>
+<select class="form-input" id="incomePayment">
+<option value="">Select payment type</option>
+<option value="Credit Card">Credit Card</option>
+<option value="Debit Card">Debit Card</option>
+<option value="Cash">Cash</option>
+<option value="Bank Transfer">Bank Transfer</option>
+<option value="PayPal">PayPal</option>
+</select>
+</div>
+<!-- Client Name -->
+<div class="col-span-1">
+<label class="form-label" for="incomeClient">Client Name</label>
+<input class="form-input" id="incomeClient" placeholder="Enter client or company name" type="text"/>
+</div>
+<!-- Status -->
+<div class="col-span-1">
+<label class="form-label" for="incomeStatus">Status</label>
+<select class="form-input" id="incomeStatus">
+<option selected="" value="Received">Received</option>
+<option value="Pending">Pending</option>
+<option value="Failed">Failed</option>
+<option value="Refunded">Refunded</option>
+</select>
+</div>
+<!-- Date -->
+<div class="col-span-1">
+<label class="form-label" for="incomeDate">Date &amp; Time</label>
+<input class="form-input" data-date-format="d M, Y" data-enable-time="" data-provider="flatpickr" id="incomeDate" type="text"/>
+</div>
+<!-- Received By -->
+<div class="col-span-1">
+<label class="form-label" for="incomeReceivedBy">Received By</label>
+<div class="flex items-center gap-3">
+<img alt="user" class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<input class="form-input" id="incomeReceivedBy" placeholder="Enter receiver name" type="text"/>
+</div>
+</div>
+<!-- Notes -->
+<div class="col-span-1 lg:col-span-2">
+<label class="form-label" for="incomeNotes">Notes</label>
+<textarea class="form-textarea" id="incomeNotes" placeholder="Optional remarks or description" rows="3"></textarea>
+</div>
+</div>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#incomeModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Save Income
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

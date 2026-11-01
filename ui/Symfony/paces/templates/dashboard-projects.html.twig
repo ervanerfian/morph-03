@@ -1,0 +1,983 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Projects Dashboard' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Dashboard", "title": "Projects"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+                {{ include('partials/page-title.html.twig', {"subtitle": "Dashboard", "title": "Projects"}) }}
+
+                <div class="container-fluid">
+<div class="grid xl:grid-cols-4 grid-cols-1 gap-base mb-base">
+<div class="xl:col-span-3">
+<div class="card mb-base">
+<div class="card-body p-0">
+<div class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 items-center justify-center md:divide-x divide-y md:divide-y-0 divide-dashed divide-light">
+<div>
+<div class="p-5 text-center">
+<h5 class="text-default-400 text-xs uppercase mb-2" title="Number of Orders">Total Projects</h5>
+<div class="flex items-center justify-center gap-2.5 my-5">
+<div class="size-8 bg-secondary/15 text-secondary flex items-center justify-center rounded-full">
+<i class="iconify tabler--briefcase text-xl"></i>
+</div>
+<h3 class="text-xl font-bold"><span data-target="6,847">0</span></h3>
+</div>
+<p class="text-default-400">
+<span class="text-danger">
+<i class="iconify tabler--chevron-down"></i>
+                                                        9.19%
+                                                    </span>
+<span class="text-sm text-default-400 ms-2.5">Since last month</span>
+</p>
+</div>
+</div>
+<!-- end col -->
+<div>
+<div class="p-5 text-center">
+<h5 class="text-default-400 text-xs uppercase mb-2" title="Number of Orders">Total Tasks</h5>
+<div class="flex items-center justify-center gap-2.5 my-5">
+<div class="size-8 bg-primary/15 text-primary flex items-center justify-center rounded-full">
+<i class="iconify tabler--invoice text-xl"></i>
+</div>
+<h3 class="text-xl font-bold"><span data-target="9.60">0</span>k</h3>
+</div>
+<p class="text-default-400">
+<span class="text-success">
+<i class="iconify tabler--chevron-up"></i>
+                                                        26.87%
+                                                    </span>
+<span class="text-sm text-default-400 ms-2.5">Since last month</span>
+</p>
+</div>
+</div>
+<!-- end col -->
+<div>
+<div class="p-5 text-center">
+<h5 class="text-default-400 text-xs uppercase mb-2" title="Number of Orders">Avg. Project Earnings</h5>
+<div class="flex items-center justify-center gap-2.5 my-5">
+<div class="size-8 bg-warning/15 text-warning flex items-center justify-center rounded-full">
+<i class="iconify tabler--wallet text-xl"></i>
+</div>
+<h3 class="text-xl font-bold">$<span data-target="98.24">0</span>k</h3>
+</div>
+<p class="text-default-400">
+<span class="text-success">
+<i class="iconify tabler--chevron-up"></i>
+                                                        3.51%
+                                                    </span>
+<span class="text-sm text-default-400 ms-2.5">Since last month</span>
+</p>
+</div>
+</div>
+<!-- end col -->
+<div>
+<div class="p-5 text-center">
+<h5 class="text-default-400 text-xs uppercase mb-2" title="Number of Orders">Productivity</h5>
+<div class="flex items-center justify-center gap-2.5 my-5">
+<div class="size-8 bg-success/15 text-success flex items-center justify-center rounded-full">
+<i class="iconify tabler--trending-up text-xl"></i>
+</div>
+<h3 class="text-xl font-bold"><span data-target="87.84">0</span>%</h3>
+</div>
+<p class="text-default-400">
+<span class="text-danger">
+<i class="iconify tabler--chevron-down"></i>
+                                                        1.05%
+                                                    </span>
+<span class="text-sm text-default-400 ms-2.5">Since last month</span>
+</p>
+</div>
+</div>
+<!-- end col -->
+<div>
+<div class="p-5 text-center">
+<h5 class="text-default-400 text-xs uppercase mb-2" title="Number of Orders">Today's Hours</h5>
+<div class="flex items-center justify-center gap-2.5 my-5">
+<div class="size-8 bg-info/15 text-info flex items-center justify-center rounded-full">
+<i class="iconify tabler--clock text-xl"></i>
+</div>
+<h3 class="text-xl font-bold"><span id="tracker-time">05:30:57</span></h3>
+</div>
+<button class="btn btn-sm bg-info hover:bg-info-hover text-white font-semibold w-full time-tracker-btn" type="button">Start Tracker</button>
+</div>
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
+</div>
+<!-- end card body -->
+</div>
+<!-- end card -->
+<div class="grid xl:grid-cols-3 grid-cols-1 gap-base">
+<div>
+<div class="card h-full">
+<div class="card-header justify-between">
+<h4 class="card-title">Project Status Breakdown</h4>
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<a class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300" href="#">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</a>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--eye me-1"></i> View All Status Details</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--download me-1"></i>Filter by Status </a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--calendar me-1"></i>Change Date Range</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--download me-1"></i>Export Breakdown</a>
+</li>
+<li>
+<hr class="dropdown-divider"/>
+</li>
+<li>
+<a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--refresh me-1"></i> Reset Status View </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="card-body pt-0">
+<div class="apex-charts" height="206" id="project-status-chart" width="418"></div>
+<div class="grid md:grid-cols-2 grid-cols-1 md:gap-base">
+<div>
+<div class="flex justify-between p-1.5">
+<div>
+<i class="iconify tabler--circle-filled text-xs align-middle me-1 text-secondary"></i>
+<span class="align-middle font-semibold">Completed</span>
+</div>
+<span class="font-semibold text-default-400 text-end"><i class="iconify tabler--chevron-down text-danger"></i> 965</span>
+</div>
+<div class="flex justify-between p-1.5">
+<div>
+<i class="iconify tabler--circle-filled text-xs align-middle me-1 text-warning"></i>
+<span class="align-middle font-semibold">In Progress</span>
+</div>
+<span class="font-semibold text-default-400 text-end"><i class="iconify tabler--chevron-up text-success"></i> 75</span>
+</div>
+</div>
+<div>
+<div class="flex justify-between p-1.5">
+<div>
+<i class="iconify tabler--circle-filled text-xs align-middle me-1 text-secondary"></i>
+<span class="align-middle font-semibold"> Yet to Start</span>
+</div>
+<span class="font-semibold text-default-400 text-end"><i class="iconify tabler--chevron-up text-success"></i> 102</span>
+</div>
+<div class="flex justify-between p-1.5">
+<div>
+<i class="iconify tabler--circle-filled text-xs align-middle me-1 text-danger"></i>
+<span class="align-middle font-semibold">Cancelled</span>
+</div>
+<span class="font-semibold text-default-400 text-end"><i class="iconify tabler--chevron-down text-danger"></i> 96</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="xl:col-span-2">
+<div class="card h-full">
+<div class="card-header">
+<h4 class="card-title">Projects Performance Overview</h4>
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<a class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300" href="#">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</a>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--chart-histogram me-1"></i> View Detailed Report</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--filter-2 me-1"></i>Filter by Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--calendar me-1"></i>Select Date Range</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> <i class="iconify tabler--download me-1"></i>Export as CSV</a>
+</li>
+<li>
+<hr class="dropdown-divider"/>
+</li>
+<li>
+<a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--refresh me-1"></i> Reset Analytics </a>
+</li>
+</ul>
+</div>
+</div>
+<div class="card-body">
+<div class="grid md:grid-cols-4 grid-cols-2 text-center gap-2.5">
+<div>
+<div class="border border-dashed border-light rounded p-2.5 bg-light/20">
+<h4 class="mb-2 text-lg"><span data-target="7,845">0</span></h4>
+<p class="text-default-400 text-sm">Number of Projects</p>
+</div>
+</div>
+<div>
+<div class="border border-dashed border-light rounded p-2.5 bg-light/20">
+<h4 class="mb-2 text-lg"><span data-target="289">0</span></h4>
+<p class="text-default-400 text-sm">Active Projects</p>
+</div>
+</div>
+<div>
+<div class="border border-dashed border-light rounded p-2.5 bg-light/20">
+<h4 class="mb-2 text-lg">$<span data-target="982.5">0</span>k</h4>
+<p class="text-default-400 text-sm">Revenue</p>
+</div>
+</div>
+<div>
+<div class="border border-dashed border-light rounded p-2.5 bg-light/20">
+<h4 class="mb-2 text-lg">~<span data-target="12,559">0</span>h</h4>
+<p class="text-default-400 text-sm">Working Hours</p>
+</div>
+</div>
+</div>
+<div>
+<div class="apex-charts" id="dash-projects-overviews"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end row-->
+</div>
+<!-- end col-->
+<div>
+<div class="card h-full">
+<div class="card-body">
+<input class="form-input card-calendar-widget w-full" data-date-format="d M, Y" data-default-date="today" data-inline-date="true" data-provider="flatpickr" type="text"/>
+<h4 class="card-title text-sm my-5">
+                                        Today's Schedule:
+                                        <a class="float-end text-sm text-primary hover:text-primary-hover" href="#!">View All</a>
+</h4>
+<ul class="mt-1.5 mb-0">
+<li class="mb-5">
+<div class="flex gap-2.5 items-center">
+<div class="flex items-center gap-2.5">
+<div class="size-8 flex justify-center items-center">
+<i class="iconify tabler--briefcase size-5.5 text-primary"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25 text-xs"><i class="iconify tabler--calendar align-middle"></i> 08:00 AM - 09:30 AM</p>
+<h5 class="text-sm">Project Kickoff Meeting</h5>
+</div>
+</div>
+<div class="ms-auto">
+<button class="btn btn-sm btn-icon size-8 border-default-300 hover:border-default-400 text-default-950" type="button">
+<i class="iconify tabler--x text-sm"></i>
+</button>
+</div>
+</div>
+</li>
+<li class="mb-5">
+<div class="flex gap-2.5 items-center">
+<div class="flex items-center gap-3">
+<div class="size-8 flex justify-center items-center">
+<i class="iconify tabler--brand-figma size-5.5 text-info"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25 text-xs"><i class="iconify tabler--calendar align-middle"></i> 10:00 AM - 11:15 AM</p>
+<h5 class="text-sm">UI/UX Review Session</h5>
+</div>
+</div>
+<div class="ms-auto">
+<button class="btn btn-sm btn-icon size-8 border-default-300 hover:border-default-400 text-default-950" type="button">
+<i class="iconify tabler--x text-sm"></i>
+</button>
+</div>
+</div>
+</li>
+<li>
+<div class="flex gap-2.5 items-center">
+<div class="flex items-center gap-3">
+<div class="size-8 flex justify-center items-center">
+<i class="iconify tabler--users size-5.5 text-secondary"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25 text-xs"><i class="iconify tabler--calendar align-middle"></i> 04:00 PM - 05:30 PM</p>
+<h5 class="text-sm font-medium">Team Collaboration Session</h5>
+</div>
+</div>
+<div class="ms-auto">
+<button class="btn btn-sm btn-icon size-8 border-default-300 hover:border-default-400 text-default-950" type="button">
+<i class="iconify tabler--x text-sm"></i>
+</button>
+</div>
+</div>
+</li>
+</ul>
+<div class="text-center mt-4">
+<a class="btn btn-sm bg-primary hover:bg-primary-hover text-white" href="#"> <i class="iconify tabler--plus"></i> Add New </a>
+</div>
+</div>
+</div>
+</div>
+<!-- end col-->
+</div>
+<div class="grid xl:grid-cols-2 grid-cols-1 gap-base">
+<div>
+<div class="card" data-table="" data-table-rows-per-page="5">
+<div class="card-header">
+<h4 class="card-title">Ongoing Projects</h4>
+<div class="flex items-center gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search project..." type="search"/>
+</div>
+<!-- Rows Per Page -->
+<div>
+<select class="form-input form-select" data-table-set-rows-per-page="">
+<option value="5">5 rows</option>
+<option selected="" value="10">10 rows</option>
+<option value="15">15 rows</option>
+<option value="20">20 rows</option>
+<option value="50">50 rows</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-light/25 p-2.5 text-center border-b border-dashed border-light">
+<p class="text-sm"><b>31</b> Active projects out of <span class="font-medium">958</span></p>
+</div>
+<div class="table-responsive overflow-x-auto">
+<table class="table table-hover whitespace-nowrap w-full">
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Google</span>
+<h5 class="text-sm"><a href="javascript:void(0);">New Dashboard</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span> <br/>
+<h5 class="text-sm font-normal">17 Aug, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$8,950</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-2.jpg"/>
+<div>
+<span class="text-default-400 text-xs">UI/UX Team</span>
+<h5 class="text-sm font-normal">Sean Kemper</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-info"></i> Early Stage</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Microsoft</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Azure Migration</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span><br/>
+<h5 class="text-sm font-normal">05 Sep, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$12,500</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-3.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Cloud Team</span>
+<h5 class="text-sm font-normal">Emily Carter</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-warning"></i> In Progress</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Amazon</span>
+<h5 class="text-sm"><a href="#">E-Commerce Redesign</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span><br/>
+<h5 class="text-sm font-normal">29 Oct, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$18,200</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-8 rounded-full" src="/images/users/user-4.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Frontend Team</span>
+<h5 class="text-sm font-normal">Jacob Wilson</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-success"></i> On Track</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Spotify</span>
+<h5 class="text-sm"><a href="#">Music Analytics Tool</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span><br/>
+<h5 class="text-sm font-normal">11 Nov, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$9,750</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-5.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Analytics Team</span>
+<h5 class="text-sm font-normal">Laura Chen</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-danger"></i> Delayed</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Tesla</span>
+<h5 class="text-sm"><a href="#">EV Monitoring System</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span><br/>
+<h5 class="text-sm font-normal">06 Dec, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$21,300</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-6.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Tech Team</span>
+<h5 class="text-sm font-normal">Daniel Foster</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-success"></i> On Schedule</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Meta</span>
+<h5 class="text-sm"><a href="#">Social Feed Optimization</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Deadline</span><br/>
+<h5 class="text-sm font-normal">21 Jan, 26</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Budget</span>
+<h5 class="text-sm font-normal">$14,680</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<span class="text-default-400 text-xs">AI Team</span>
+<h5 class="text-sm font-normal">Chloe Martin</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><i class="iconify tabler--circle text-xs text-info"></i> Planning</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="projects"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+<!-- end col-->
+<div>
+<div class="card" data-table="" data-table-rows-per-page="5">
+<div class="card-header">
+<h4 class="card-title">Tasks</h4>
+<div class="flex items-center gap-2.5">
+<!-- Search -->
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search project..." type="search"/>
+</div>
+<!-- Rows Per Page -->
+<div>
+<select class="form-input form-select" data-table-set-rows-per-page="">
+<option value="5">5 rows</option>
+<option selected="" value="10">10 rows</option>
+<option value="15">15 rows</option>
+<option value="20">20 rows</option>
+<option value="50">50 rows</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-light/25 p-2.5 text-center border-b border-dashed border-light">
+<p class="text-sm"><b>107</b> Tasks completed out of <span class="font-medium">195</span></p>
+</div>
+<div class="table-responsive overflow-x-auto">
+<table class="table table-hover whitespace-nowrap w-full">
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due in 2 days</span>
+<h5 class="text-sm">
+<a href="javascript:void(0);">Fix Homepage Layout Issues</a>
+</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">14 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-5.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Mia Turner</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal">
+<span class="badge bg-info/15 text-info">In Progress</span>
+</h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">1h 45min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due in 1 day</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Update User Profile API</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">15 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-6.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Oliver Knight</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><span class="badge bg-success/15 text-success">Completed</span></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">4h 10min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due in 5 days</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Create Dashboard Widgets</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">19 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Sofia Reed</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><span class="badge bg-warning/15 text-warning">Pending</span></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">0h 00min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due in 7 days</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Fix Login Authentication Bug</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">21 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-8.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Henry Adams</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><span class="badge bg-danger/15 text-danger">Blocked</span></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">1h 05min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due today</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Write Release Notes for v2.1</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">14 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Chloe Martin</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><span class="badge bg-primary/15 text-primary">Reviewing</span></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">45min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<span class="text-default-400 text-xs">Due in 4 days</span>
+<h5 class="text-sm"><a href="javascript:void(0);">Design New Notification Icons</a></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Due Date</span><br/>
+<h5 class="text-sm font-normal">18 Sep, 26</h5>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-8 rounded-full" src="/images/users/user-10.jpg"/>
+<div>
+<span class="text-default-400 text-xs">Assigned To</span>
+<h5 class="text-sm font-normal">Victoria Mills</h5>
+</div>
+</div>
+</td>
+<td>
+<span class="text-default-400 text-xs">Status</span>
+<h5 class="text-sm font-normal"><span class="badge bg-success text-success">Completed</span></h5>
+</td>
+<td>
+<span class="text-default-400 text-xs">Total time spent</span>
+<h5 class="text-sm font-normal">2h 30min</h5>
+</td>
+<td style="width: 30px">
+<div class="hs-dropdown [--placement:bottom-right] ms-auto">
+<button class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<ul class="hs-dropdown-menu">
+<li>
+<a class="dropdown-item" href="#"> View Project</a>
+</li>
+<li>
+<a class="dropdown-item" href="#"> Edit Project </a>
+</li>
+<li>
+<a class="dropdown-item" href="#">Archive Project</a>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="tasks"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+<!-- end col-->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Chart js -->
+
+<!-- Custom table -->
+
+<!-- Dashboard js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/custom-table.js"></script>
+    <script src="/js/pages/dashboard-projects.js"></script>
+{% endblock %}

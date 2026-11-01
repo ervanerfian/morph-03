@@ -1,0 +1,329 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Validation' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Forms", "title": "Validation"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Forms", "title": "Validation"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Custom styles Validation</h4>
+</div>
+<div class="card-body">
+<form class="grid md:grid-cols-12 grid-cols-1 gap-base" id="tailwindValidationForm" novalidate="">
+<!-- First Name -->
+<div class="md:col-span-4">
+<label class="form-label">First Name</label>
+<div class="relative">
+<input class="input-field form-input" id="firstName" required="" type="text" value="John"/>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="valid-msg mt-1 hidden text-sm text-success">Looks great!</p>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please provide your first name.</p>
+</div>
+<!-- Last Name -->
+<div class="md:col-span-4">
+<label class="form-label">Last Name</label>
+<div class="relative">
+<input class="input-field form-input" id="lastName" required="" type="text" value="Doe"/>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="valid-msg mt-1 hidden text-sm text-success">Looks great!</p>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please provide your last name.</p>
+</div>
+<!-- Username -->
+<div class="md:col-span-4">
+<label class="form-label">Username</label>
+<div class="relative input-group">
+<span class="input-group-text">@</span>
+<input class="input-field form-input" id="username" placeholder="johndoe123" required="" type="text"/>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please choose a valid username.</p>
+</div>
+<!-- City -->
+<div class="md:col-span-6">
+<label class="form-label">City</label>
+<div class="relative">
+<input class="input-field form-input" id="city" placeholder="San Francisco" required="" type="text"/>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please provide a valid city name.</p>
+</div>
+<!-- State -->
+<div class="md:col-span-3">
+<label class="form-label">State</label>
+<div class="relative">
+<select class="input-field form-input" id="state" required="">
+<option value="">Choose...</option>
+<option>California</option>
+<option>Texas</option>
+<option>New York</option>
+<option>Florida</option>
+</select>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-9 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-9 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please select your state.</p>
+</div>
+<!-- Zip -->
+<div class="md:col-span-3">
+<label class="form-label">Zip Code</label>
+<div class="relative">
+<input class="input-field form-input" id="zip" placeholder="94107" required="" type="text"/>
+<i class="iconify tabler--check valid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-success"></i>
+<i class="iconify tabler--alert-circle invalid-icon absolute top-1/2 right-3 hidden -translate-y-1/2 text-danger"></i>
+</div>
+<p class="invalid-msg mt-1 hidden text-sm text-danger">Please enter a valid zip code.</p>
+</div>
+<!-- Terms -->
+<div class="md:col-span-12">
+<div class="flex flex-wrap items-center">
+<input class="form-checkbox" id="terms" required="" type="checkbox"/>
+<label class="ms-2 text-sm text-default-700" for="terms">I agree to the terms and conditions</label>
+<p class="invalid-msg mt-2 hidden w-full text-sm text-danger">You must agree before submitting.</p>
+</div>
+</div>
+<!-- Submit -->
+<div class="md:col-span-12">
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="submit">Submit Form</button>
+</div>
+</form>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Server-side</h4>
+</div>
+<div class="card-body">
+<form class="grid grid-cols-1 md:grid-cols-12 gap-base" id="serverForm" novalidate="">
+<!-- First name -->
+<div class="md:col-span-4">
+<label class="form-label" for="firstName">First name</label>
+<div class="relative">
+<input class="form-input border-success!" id="firstName" required="" type="text" value="Mark"/>
+<div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
+<i class="iconify tabler--check text-success text-base"></i>
+</div>
+</div>
+<p class="text-success mt-1 text-2xs">Looks good!</p>
+</div>
+<!-- Last name -->
+<div class="md:col-span-4">
+<label class="form-label" for="lastName">Last name</label>
+<div class="relative">
+<input class="form-input border-success!" id="lastName" required="" type="text" value="Otto"/>
+<div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
+<i class="iconify tabler--check text-success text-base"></i>
+</div>
+</div>
+<p class="text-success mt-1 text-2xs">Looks good!</p>
+</div>
+<!-- Username -->
+<div class="md:col-span-4">
+<label class="form-label" for="username">Username</label>
+<div class="relative flex rounded-md">
+<span class="border-default-300 bg-default-100 text-default-600 inline-flex items-center rounded-s-md border px-3 text-sm">@</span>
+<input class="form-input border-danger! rounded-s-none!" id="username" name="username" placeholder="johndoe123" required="" type="text"/>
+<div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
+<span class="text-danger text-base" data-icon="info"></span>
+</div>
+</div>
+<p class="text-danger mt-1 text-2xs">Please choose a username.</p>
+</div>
+<!-- City -->
+<div class="md:col-span-6">
+<label class="form-label" for="city">City</label>
+<div class="relative">
+<input class="form-input border-danger!" id="city" placeholder="Enter city" required="" type="text"/>
+<div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
+<span class="text-danger text-base" data-icon="info"></span>
+</div>
+</div>
+<p class="text-danger mt-1 text-2xs">Please provide a valid city.</p>
+</div>
+<!-- State -->
+<div class="md:col-span-3">
+<label class="form-label" for="state">State</label>
+<div class="relative">
+<select class="form-input border-danger!" id="state" required="">
+<option value="">Choose...</option>
+<option>California</option>
+<option>Texas</option>
+<option>Florida</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 end-6 flex items-center pe-3">
+<span class="text-danger text-base" data-icon="info"></span>
+</div>
+</div>
+<p class="text-danger mt-1 text-2xs">Please select a valid state.</p>
+</div>
+<!-- Zip -->
+<div class="md:col-span-3">
+<label class="form-label" for="zip">Zip</label>
+<div class="relative">
+<input class="form-input border-danger!" id="zip" placeholder="Zip code" required="" type="text"/>
+<div class="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-3">
+<span class="text-danger text-base" data-icon="info"></span>
+</div>
+</div>
+<p class="text-danger mt-1 text-2xs">Please provide a valid zip.</p>
+</div>
+<!-- Checkbox -->
+<div class="md:col-span-12">
+<label class="flex items-center space-x-2">
+<input class="form-checkbox checked:bg-danger!" id="terms" required="" type="checkbox"/>
+<span class="text-danger">Agree to terms and conditions</span>
+</label>
+<p class="text-danger mt-1 text-2xs">You must agree before submitting.</p>
+</div>
+<!-- Submit Button -->
+<div class="md:col-span-12">
+<button class="btn bg-primary hover:bg-primary-hover text-white" type="submit">Submit form</button>
+</div>
+</form>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Supported Elements</h4>
+</div>
+<div class="card-body">
+<form class="space-y-6" novalidate="">
+<!-- Textarea -->
+<div>
+<label class="form-label" for="validationTextarea">Textarea</label>
+<textarea class="form-textarea border-danger!" id="validationTextarea" placeholder="Required example textarea" required=""></textarea>
+<p class="text-danger mt-1 text-2xs">Please enter a message in the textarea.</p>
+</div>
+<!-- Checkbox -->
+<div class="flex items-start gap-2">
+<input class="form-checkbox checked:bg-danger! border-danger! mt-0.5" id="validationFormCheck1" required="" type="checkbox"/>
+<div>
+<label class="text-danger" for="validationFormCheck1">Check this checkbox</label>
+<p class="text-danger mt-1 text-2xs">Example invalid feedback text</p>
+</div>
+</div>
+<!-- Radios -->
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<input class="form-radio checked:bg-danger! border-danger!" id="validationFormCheck2" name="radio-stacked" required="" type="radio"/>
+<label class="text-danger" for="validationFormCheck2">Toggle this radio</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="form-radio checked:bg-danger! border-danger!" id="validationFormCheck3" name="radio-stacked" required="" type="radio"/>
+<label class="text-danger" for="validationFormCheck3">Or toggle this other radio</label>
+<p class="text-danger mt-1 text-2xs">More example invalid feedback text</p>
+</div>
+</div>
+<!-- Select -->
+<div>
+<select class="form-input border-success!" required="">
+<option value="">Open this select menu</option>
+<option value="1">One</option>
+<option value="2">Two</option>
+<option value="3">Three</option>
+</select>
+</div>
+<!-- File Input -->
+<div>
+<input class="form-input block w-full text-sm" required="" type="file"/>
+<p class="text-danger mt-1 text-2xs">Example invalid form file feedback</p>
+</div>
+<!-- Submit -->
+<div>
+<button class="btn bg-primary hover:bg-primary-hover cursor-not-allowed text-white" disabled="" type="submit">Submit form</button>
+</div>
+</form>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Browser Defaults</h4>
+</div>
+<div class="card-body">
+<form action="">
+<div class="grid md:grid-cols-3 grid-cols-1 gap-base mb-base">
+<div>
+<label class="form-label" for="validationDefault01">First name</label>
+<input class="form-input" id="validationDefault01" required="" type="text" value="Mark"/>
+</div>
+<div>
+<label class="form-label" for="validationDefault02">Last name</label>
+<input class="form-input" id="validationDefault02" required="" type="text" value="Otto"/>
+</div>
+<div>
+<label class="form-label" for="validationDefaultUsername">Username</label>
+<div class="input-group">
+<span class="input-group-text" id="inputGroupPrepend2">@</span>
+<input aria-describedby="inputGroupPrepend2" class="form-input" id="validationDefaultUsername" required="" type="text"/>
+</div>
+</div>
+</div>
+<div class="grid md:grid-cols-4 grid-cols-1 gap-base mb-base">
+<div class="md:col-span-2 col-span-1">
+<label class="form-label" for="validationDefault03">City</label>
+<input class="form-input" id="validationDefault03" required="" type="text"/>
+</div>
+<div>
+<label class="form-label" for="validationDefault04">State</label>
+<select class="form-input" id="validationDefault04" required="">
+<option disabled="" selected="" value="">Choose...</option>
+<option>...</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="validationDefault05">Zip</label>
+<input class="form-input" id="validationDefault05" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="flex items-center space-x-2">
+<input class="form-checkbox" id="invalidCheck2" required="" type="checkbox"/>
+<span class="text-default-700">Agree to terms and conditions</span>
+</label>
+</div>
+<div class="mt-5">
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="submit">Submit form</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/form-validation.js"></script>
+{% endblock %}

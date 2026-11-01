@@ -1,0 +1,553 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Customers' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Customers"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Customers"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<div class="flex gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" placeholder="Search customer..." type="search"/>
+</div>
+<button class="hidden btn bg-danger text-white hover:bg-danger-hover" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex gap-2.5 items-center flex-wrap md:flex-nowrap">
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="8">8</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn border border-default-300 text-default-800 hover:bg-default-100" type="button">
+<i class="iconify tabler--download text-sm"></i>
+                                            Export
+                                            <i class="iconify tabler--chevron-down align-middle ms-1"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="#"> Export as PDF </a>
+<a class="dropdown-item" href="#"> Export as CSV </a>
+<a class="dropdown-item" href="#"> Export as Excel </a>
+</div>
+</div>
+</div>
+</div>
+<a aria-controls="addCustomerModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white text-nowrap hover:bg-primary-hover" data-hs-overlay="#addCustomerModal" href="#!"> <i class="iconify tabler--plus"></i> Add Customer </a>
+</div>
+</div>
+<div class="overflow-x-auto whitespace-normal">
+<table class="table table-hover">
+<thead class="thead-sm bg-light/25">
+<tr class="uppercase text-2xs">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="select-all-products" type="checkbox" value="option"/>
+</th>
+<th data-table-sort="customer">Clients Name</th>
+<th data-table-sort="">Email</th>
+<th data-table-sort="">Phone</th>
+<th data-table-sort="">Country</th>
+<th data-table-sort="">Joined</th>
+<th data-table-sort="">Orders</th>
+<th data-table-sort="">Total Spends</th>
+<th class="text-center">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-7" class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Carlos Méndez</a>
+</h5>
+</div>
+</td>
+<td>carlos@techlaunch.mx</td>
+<td>+1 (415) 992-3412</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/us.svg"/>
+</div>
+<p>United States</p>
+</div>
+</td>
+<td>2 Feb, 2024<small class="text-default-400 ms-1">08:34 AM</small></td>
+<td>58</td>
+<td>$198.25</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-2" class="size-8 rounded-full" src="/images/users/user-2.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Sophie Laurent</a>
+</h5>
+</div>
+</td>
+<td>sophie.laurent@eurotech.fr</td>
+<td>+33 6 12 34 56 78</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/fr.svg"/>
+</div>
+<p>France</p>
+</div>
+</td>
+<td>15 Mar, 2024<small class="text-default-400 ms-1">10:22 AM</small></td>
+<td>42</td>
+<td>$245.80</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-3" class="size-8 rounded-full" src="/images/users/user-3.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Akira Tanaka</a>
+</h5>
+</div>
+</td>
+<td>akira.tanaka@techjapan.co.jp</td>
+<td>+81 90-1234-5678</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/jp.svg"/>
+</div>
+<p>Japan</p>
+</div>
+</td>
+<td>28 Jan, 2024<small class="text-default-400 ms-1">03:15 PM</small></td>
+<td>75</td>
+<td>$320.50</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-4" class="size-8 rounded-full" src="/images/users/user-4.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Emma Watson</a>
+</h5>
+</div>
+</td>
+<td>emma.watson@britinnovate.uk</td>
+<td>+44 7700 900123</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/gb.svg"/>
+</div>
+<p>United Kingdom</p>
+</div>
+</td>
+<td>10 Apr, 2024<small class="text-default-400 ms-1"> 09:47 AM</small></td>
+<td>29</td>
+<td>$175.30</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-5" class="size-8 rounded-full" src="/images/users/user-5.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Lucas Schmidt</a>
+</h5>
+</div>
+</td>
+<td>lucas.schmidt@techdeutsch.de</td>
+<td>+49 151 23456789</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/de.svg"/>
+</div>
+<p>Germany</p>
+</div>
+</td>
+<td>20 Feb, 2024<small class="text-default-400 ms-1"> 02:10 PM</small></td>
+<td>63</td>
+<td>$280.75</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-6" class="size-8 rounded-full" src="/images/users/user-6.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Isabella Rossi</a>
+</h5>
+</div>
+</td>
+<td>isabella.rossi@italiatech.it</td>
+<td>+39 333 4567890</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/it.svg"/>
+</div>
+<p>Italy</p>
+</div>
+</td>
+<td>5 Mar, 2024 <small class="text-default-400 ms-1"> 11:25 AM</small></td>
+<td>51</td>
+<td>$210.40</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-8" class="size-8 rounded-full" src="/images/users/user-8.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Mateo Vargas</a>
+</h5>
+</div>
+</td>
+<td>mateo.vargas@latamtech.ar</td>
+<td>+54 9 11 2345 6789</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/ar.svg"/>
+</div>
+<p>Argentina</p>
+</div>
+</td>
+<td>18 Apr, 2024 <small class="text-default-400 ms-1">04:50 PM</small></td>
+<td>37</td>
+<td>$190.20</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-9" class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Priya Sharma</a>
+</h5>
+</div>
+</td>
+<td>priya.sharma@indotech.in</td>
+<td>+91 98765 43210</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/in.svg"/>
+</div>
+<p>India</p>
+</div>
+</td>
+<td>10 Jan, 2024 <small class="text-default-400 ms-1">06:30 AM</small></td>
+<td>82</td>
+<td>$350.90</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-10" class="size-8 rounded-full" src="/images/users/user-10.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Liam O’Connor</a>
+</h5>
+</div>
+</td>
+<td>liam.oconnor@ausinnovate.au</td>
+<td>+61 400 123 456</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/au.svg"/>
+</div>
+<p>Australia</p>
+</div>
+</td>
+<td>25 Mar, 2024 <small class="text-default-400 ms-1">01:15 PM</small></td>
+<td>45</td>
+<td>$230.65</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<img alt="avatar-1" class="size-8 rounded-full" src="/images/users/user-1.jpg"/>
+<h5>
+<a class="hover:text-primary" data-sort="customer" href="#!">Olga Petrova</a>
+</h5>
+</div>
+</td>
+<td>olga.petrova@rus-tech.ru</td>
+<td>+7 912 345 67 89</td>
+<td>
+<div class="flex gap-2.5 items-center">
+<div>
+<img alt="" class="size-4 rounded-full" src="/images/flags/ru.svg"/>
+</div>
+<p>Russia</p>
+</div>
+</td>
+<td>8 Feb, 2024 <small class="text-default-400 ms-1">07:40 AM</small></td>
+<td>68</td>
+<td>$295.15</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="customers"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addCustomerModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden size-full fixed top-0 start-0 z-80 overflow-x-hidden overflow-y-auto pointer-events-none" id="addCustomerModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 scale-95 opacity-0 ease-in-out transition-all duration-200 lg:max-w-3xl md:max-w-2xl md:w-full m-3 md:mx-auto min-h-[calc(100%-56px)] flex items-center">
+<div class="w-full flex flex-col card pointer-events-auto">
+<div class="flex justify-between items-center card-body border-b border-default-300">
+<h3 class="font-bold flex items-center" id="addCustomerModalLabel">Add New Customer</h3>
+<button aria-label="Close" data-hs-overlay="#addCustomerModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<div class="grid lg:grid-cols-2 grid-cols-1 gap-base">
+<!-- Full Name -->
+<div>
+<label class="form-label" for="customerName">Full Name</label>
+<input class="form-input" id="customerName" placeholder="e.g. Carlos Méndez" required="" type="text"/>
+</div>
+<!-- Email -->
+<div>
+<label class="form-label" for="customerEmail">Email</label>
+<input class="form-input" id="customerEmail" placeholder="e.g. carlos@domain.com" required="" type="email"/>
+</div>
+<!-- Phone -->
+<div>
+<label class="form-label" for="customerPhone">Phone</label>
+<input class="form-input" id="customerPhone" placeholder="+1 (415) 992-3412" required="" type="tel"/>
+</div>
+<!-- Country -->
+<div>
+<label class="form-label" for="customerCountry">Country</label>
+<select class="form-input" id="customerCountry" required="">
+<option value="">Select Country</option>
+<option value="United States">🇺🇸 United States</option>
+<option value="Canada">🇨🇦 Canada</option>
+<option value="United Kingdom">🇬🇧 United Kingdom</option>
+<option value="India">🇮🇳 India</option>
+<!-- Add more countries as needed -->
+</select>
+</div>
+<!-- Avatar Upload -->
+<div>
+<label class="form-label" for="customerAvatar">Avatar</label>
+<input class="block w-full border border-default-300 rounded disabled:opacity-50 disabled:pointer-events-none file:bg-default-100 file:border-0 file:me-4 file:py-2 file:px-3" id="customerAvatar" name="file-input" type="file"/>
+</div>
+<!-- Joined Date -->
+<div>
+<label class="form-label" for="joinedDate">Join Date</label>
+<input class="form-input" data-date-format="d M, Y" data-provider="flatpickr" id="joinedDate" required="" type="date"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-center gap-2 p-5 border-t border-default-300">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addCustomerModal" type="button">Close</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">Add Customer</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

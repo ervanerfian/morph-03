@@ -1,0 +1,723 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Leaves' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Leaves"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Leaves"}) }}
+
+                <div class="container-fluid">
+<div class="mb-3 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-5">
+<!-- Total Leave Requests -->
+<div class="card">
+<div class="card-body">
+<div class="flex gap-base items-start">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--calendar text-default-800 text-xl"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex items-center justify-between">
+<h5 class="text-default-800 text-lg">128</h5>
+<span>
+                                                +4.8%
+                                                <i class="iconify tabler--arrow-up text-success"></i>
+</span>
+</div>
+<p class="text-default-400">Total leave requests</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Approved Leaves -->
+<div class="card">
+<div class="card-body">
+<div class="flex gap-base items-start">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--checks text-default-800 text-xl"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex items-center justify-between">
+<h5 class="text-default-800 text-lg">92</h5>
+<span>
+                                                +2.3%
+                                                <i class="iconify tabler--arrow-up text-success"></i>
+</span>
+</div>
+<p class="text-default-400">Approved leaves</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pending Leaves -->
+<div class="card">
+<div class="card-body">
+<div class="flex gap-base items-start">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--hourglass text-default-800 text-xl"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex items-center justify-between">
+<h5 class="text-default-800 text-lg">21</h5>
+<span>
+                                                +1.2%
+                                                <i class="iconify tabler--arrow-up text-success"></i>
+</span>
+</div>
+<p class="text-default-400">Pending approvals</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Rejected Leaves -->
+<div class="card">
+<div class="card-body">
+<div class="flex gap-base items-start">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--x text-default-800 text-xl"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex items-center justify-between">
+<h5 class="text-default-800 text-lg">15</h5>
+<span>
+                                                -0.5%
+                                                <i class="iconify tabler--arrow-down text-danger"></i>
+</span>
+</div>
+<p class="text-default-400">Rejected leaves</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Avg. Leave Duration -->
+<div class="card">
+<div class="card-body">
+<div class="flex gap-base items-start">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--clock text-default-800 text-xl"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex items-center justify-between">
+<h5 class="text-default-800 text-lg">
+                                                2.3
+                                                <small class="text-2xs">days/leave</small>
+</h5>
+<span>+0.7%</span>
+</div>
+<p class="text-default-400">Average leave duration</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card" data-table="" data-table-rows-per-page="10">
+<div class="card-header">
+<div class="flex flex-wrap gap-2.5">
+<!-- Search -->
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search leave records..." type="search"/>
+</div>
+<!-- Add New Leave -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+<!-- Delete Selected -->
+<button aria-controls="addLeaveModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#addLeaveModal" type="button">
+<i class="iconify tabler--plus"></i>
+                                    Add Leave
+                                </button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- Leave Type Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--file-text input-icon"></i>
+<select class="form-select" data-table-filter="leave_type">
+<option value="">Leave Type</option>
+<option value="Sick Leave">Sick Leave</option>
+<option value="Casual Leave">Casual Leave</option>
+<option value="Paid Leave">Paid Leave</option>
+<option value="Maternity Leave">Maternity Leave</option>
+<option value="Unpaid Leave">Unpaid Leave</option>
+</select>
+</div>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--box input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Pending">Pending</option>
+<option value="Approved">Approved</option>
+<option value="Rejected">Rejected</option>
+</select>
+</div>
+<!-- Department Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--users input-icon"></i>
+<select class="form-select" data-table-filter="department">
+<option value="">Department</option>
+<option value="HR">HR</option>
+<option value="Finance">Finance</option>
+<option value="IT">IT</option>
+<option value="Design">Design</option>
+<option value="Operations">Operations</option>
+<option value="Marketing">Marketing</option>
+<option value="Support">Support</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="">Employee ID</th>
+<th data-table-sort="">Employee</th>
+<th data-column="department" data-table-sort="">Department</th>
+<th data-table-sort="">Date From</th>
+<th data-table-sort="">Date To</th>
+<th data-column="leave_type" data-table-sort="">Leave Type</th>
+<th>Reason</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th data-table-sort="">Applied On</th>
+<th data-table-sort="">Approved By</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Record 1 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1024</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Alex Johnson
+                                            </div>
+</td>
+<td>Design</td>
+<td>24 Oct 2025</td>
+<td>25 Oct 2025</td>
+<td>Sick Leave</td>
+<td>Flu and recovery</td>
+<td>
+<span class="badge bg-warning/15 text-warning">Pending</span>
+</td>
+<td>22 Oct 2025</td>
+<td>--</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm bg-success size-8 rounded-full text-white" href="#">
+<i class="iconify tabler--check text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm bg-danger size-8 rounded-full text-white" href="#">
+<i class="iconify tabler--x text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 2 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1078</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Maria Smith
+                                            </div>
+</td>
+<td>HR</td>
+<td>10 Oct 2025</td>
+<td>12 Oct 2025</td>
+<td>Casual Leave</td>
+<td>Family event</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>08 Oct 2025</td>
+<td>John Adams</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 3 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1091</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                David Lee
+                                            </div>
+</td>
+<td>IT</td>
+<td>18 Sep 2025</td>
+<td>19 Sep 2025</td>
+<td>Paid Leave</td>
+<td>Short vacation</td>
+<td>
+<span class="badge bg-danger/15 text-danger">Rejected</span>
+</td>
+<td>15 Sep 2025</td>
+<td>Maria Smith</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 4 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1115</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Emma Davis
+                                            </div>
+</td>
+<td>Finance</td>
+<td>02 Oct 2025</td>
+<td>03 Oct 2025</td>
+<td>Casual Leave</td>
+<td>Personal errand</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>29 Sep 2025</td>
+<td>John Adams</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 5 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1156</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Noah Wilson
+                                            </div>
+</td>
+<td>Marketing</td>
+<td>07 Oct 2025</td>
+<td>09 Oct 2025</td>
+<td>Sick Leave</td>
+<td>Fever</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>05 Oct 2025</td>
+<td>Maria Smith</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 6 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1182</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Olivia Brown
+                                            </div>
+</td>
+<td>Operations</td>
+<td>20 Sep 2025</td>
+<td>22 Sep 2025</td>
+<td>Maternity Leave</td>
+<td>Pre-delivery care</td>
+<td>
+<span class="badge bg-warning/15 text-warning">Pending</span>
+</td>
+<td>18 Sep 2025</td>
+<td>--</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm bg-success size-8 rounded-full text-white" href="#">
+<i class="iconify tabler--check text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm bg-danger size-8 rounded-full text-white" href="#">
+<i class="iconify tabler--x text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 7 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1199</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Daniel Clark
+                                            </div>
+</td>
+<td>Support</td>
+<td>05 Sep 2025</td>
+<td>06 Sep 2025</td>
+<td>Casual Leave</td>
+<td>Family function</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>03 Sep 2025</td>
+<td>John Adams</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 8 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1210</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Sarah Miller
+                                            </div>
+</td>
+<td>Admin</td>
+<td>25 Aug 2025</td>
+<td>26 Aug 2025</td>
+<td>Casual Leave</td>
+<td>Out of town</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>22 Aug 2025</td>
+<td>Maria Smith</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 9 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1225</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Lucas Green
+                                            </div>
+</td>
+<td>Sales</td>
+<td>15 Aug 2025</td>
+<td>16 Aug 2025</td>
+<td>Paid Leave</td>
+<td>Wedding attendance</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>12 Aug 2025</td>
+<td>John Adams</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 10 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>EMP-1242</td>
+<td>
+<div class="flex items-center gap-3">
+<div class="bg-light flex size-8 items-center justify-center rounded-full">
+<i class="iconify tabler--user text-default-400 text-base"></i>
+</div>
+                                                Henry Walker
+                                            </div>
+</td>
+<td>Logistics</td>
+<td>10 Jul 2025</td>
+<td>12 Jul 2025</td>
+<td>Casual Leave</td>
+<td>Travel with family</td>
+<td>
+<span class="badge bg-success/15 text-success">Approved</span>
+</td>
+<td>08 Jul 2025</td>
+<td>Maria Smith</td>
+<td>
+<div class="flex justify-end gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="records"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addLeaveModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addLeaveModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="text-sm" id="addLeaveModalLabel">Add Leave Record</h3>
+<button aria-label="Close" data-hs-overlay="#addLeaveModal" type="button">
+<i class="iconify tabler--x text-xl"></i>
+</button>
+</div>
+<div class="card-body overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Employee ID -->
+<div>
+<label class="form-label" for="employeeId">Employee ID</label>
+<input class="form-input" id="employeeId" placeholder="e.g., EMP-1056" required="" type="text"/>
+</div>
+<!-- Employee Name -->
+<div>
+<label class="form-label" for="employeeName">Employee Name</label>
+<input class="form-input" id="employeeName" placeholder="Enter name" required="" type="text"/>
+</div>
+<!-- Department -->
+<div>
+<label class="form-label" for="department">Department</label>
+<select class="form-input" id="department" required="">
+<option value="">Select Department</option>
+<option>HR</option>
+<option>Finance</option>
+<option>IT</option>
+<option>Design</option>
+<option>Marketing</option>
+<option>Support</option>
+<option>Operations</option>
+</select>
+</div>
+<!-- Date From -->
+<div>
+<label class="form-label" for="dateFrom">Date From</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="dateFrom" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Date To -->
+<div>
+<label class="form-label" for="dateTo">Date To</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="dateTo" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Leave Type -->
+<div>
+<label class="form-label" for="leaveType">Leave Type</label>
+<select class="form-input" id="leaveType" required="">
+<option value="">Select Leave Type</option>
+<option>Sick Leave</option>
+<option>Casual Leave</option>
+<option>Paid Leave</option>
+<option>Maternity Leave</option>
+<option>Unpaid Leave</option>
+</select>
+</div>
+<!-- Reason -->
+<div class="md:col-span-3">
+<label class="form-label" for="reason">Reason</label>
+<textarea class="form-textarea" id="reason" placeholder="Enter reason" required="" rows="3"></textarea>
+</div>
+<!-- Status -->
+<div>
+<label class="form-label" for="leave-status">Status</label>
+<select class="form-input" id="leave-status" required="">
+<option value="">Select Status</option>
+<option>Pending</option>
+<option>Approved</option>
+<option>Rejected</option>
+</select>
+</div>
+<!-- Approved By -->
+<div>
+<label class="form-label" for="approvedBy">Approved By</label>
+<input class="form-input" id="approvedBy" placeholder="Approver name" type="text"/>
+</div>
+<!-- Applied On -->
+<div>
+<label class="form-label" for="appliedOn">Applied On</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="appliedOn" readonly="readonly" type="text"/>
+</div>
+<!-- Remarks -->
+<div class="md:col-span-3">
+<label class="form-label" for="remarks">Remarks</label>
+<textarea class="form-textarea" id="remarks" placeholder="Optional remarks..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addLeaveModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Save Record
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

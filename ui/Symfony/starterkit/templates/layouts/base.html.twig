@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html {{ html_attribute ?? '' }} lang="en">
+<head>
+
+    {{ include('./partials/title-meta.html.twig') }}
+
+    {% block styles %}{% endblock %}
+
+    {{ include('./partials/head-css.html.twig') }}
+
+</head>
+<body>
+
+{% block content %}{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

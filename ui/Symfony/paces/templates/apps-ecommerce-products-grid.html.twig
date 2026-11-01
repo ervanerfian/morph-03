@@ -1,0 +1,790 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Products Grid' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Products Grid"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Products Grid"}) }}
+
+                    <div class="container-fluid">
+<div class="card mb-2.5">
+<div class="card-body">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-start lg:hidden">
+<button aria-controls="productFillterOffcanvas" aria-expanded="false" aria-haspopup="dialog" aria-label="Toggle navigation" class="btn btn-icon border-default-300 border bg-white" data-hs-overlay="#productFillterOffcanvas">
+<i class="iconify tabler--menu-4 text-default-600 text-2xl"></i>
+</button>
+</div>
+<h3 class="text-lg">
+<span data-target="1025">0</span>
+                                            Products
+                                        </h3>
+</div>
+<!-- Layout Toggle Buttons -->
+<div class="flex items-center gap-2.5 md:ms-auto">
+<nav aria-label="Tabs" aria-orientation="horizontal" class="flex items-center gap-x-1.25" role="tablist">
+<a class="btn btn-icon bg-primary text-white hover:bg-primary-hover" href="/apps-ecommerce-products-grid">
+<i class="iconify tabler--apps text-lg"></i>
+</a>
+<a class="btn btn-icon bg-primary/15 text-primary hover:bg-primary hover:text-white" href="/apps-ecommerce-products">
+<i class="iconify tabler--list-check text-lg"></i>
+</a>
+</nav>
+<a class="btn bg-danger text-white hover:bg-danger-hover" href="/apps-ecommerce-product-add">
+<i class="iconify tabler--plus"></i>
+                                            Add Product
+                                        </a>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-2.5 lg:grid-cols-4">
+<div>
+<div aria-label="Sidebar" class="hs-overlay hs-overlay-open:translate-x-0 fixed start-0 top-0 bottom-0 z-90 h-full w-80 -translate-x-full transform rounded-lg transition-all duration-300 [--auto-close:lg] lg:static lg:end-auto lg:bottom-0 lg:block! lg:w-full lg:translate-x-0" id="productFillterOffcanvas" role="dialog" tabindex="-1">
+<div class="card">
+<div class="card-body p-0">
+<div class="border-default-300 border-b border-dashed p-5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" placeholder="Search product name..." type="search"/>
+</div>
+</div>
+<div class="border-default-300 border-b border-dashed p-5">
+<div class="mb-4.5 flex items-center justify-between">
+<h5>Category:</h5>
+<a class="font-semibold text-primary" href="javascript: void(0);">View All</a>
+</div>
+<!-- Category List -->
+<div class="space-y-2.5 mt-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-electronics" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-electronics">Electronics</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">8</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-computers" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-computers">Computers</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">5</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-home-office" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-home-office">Home &amp; Office</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">6</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-accessories" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-accessories">Accessories</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-gaming" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-gaming">Gaming</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">9</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-mobile" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-mobile">Mobile Phones</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">12</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="cat-appliances" type="checkbox"/>
+<label class="text-default-400 font-normal" for="cat-appliances">Appliances</label>
+</div>
+</div>
+</div>
+</div>
+<div class="border-default-300 border-b border-dashed p-5">
+<div class="mb-4.5 flex items-center justify-between">
+<h5>Brands:</h5>
+<a class="font-semibold text-primary" href="javascript: void(0);">View All</a>
+</div>
+<!-- Brands List -->
+<div class="space-y-2.5 mt-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="brand-apple" type="checkbox"/>
+<label class="text-default-400 font-normal" for="brand-apple">Apple</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">14</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="brand-samsung" type="checkbox"/>
+<label class="text-default-400 font-normal" for="brand-samsung">Samsung</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">20</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="brand-sony" type="checkbox"/>
+<label class="text-default-400 font-normal" for="brand-sony">Sony</label>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="brand-dell" type="checkbox"/>
+<label class="text-default-400 font-normal" for="brand-dell">Dell</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">7</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="brand-hp" type="checkbox"/>
+<label class="text-default-400 font-normal" for="brand-hp">HP</label>
+</div>
+</div>
+</div>
+</div>
+<div class="border-default-300 border-b border-dashed p-5">
+<h5 class="mb-4.5">Price:</h5>
+<div data-slider-size="sm" id="price-filter"></div>
+<div class="mt-5 w-full flex items-center gap-2">
+<div class="border border-default-300 rounded w-full text-center p-2" id="price-filter-low"></div>
+<span class="text-default-400 font-semibold">to</span>
+<div class="border border-default-300 rounded w-full text-center p-2" id="price-filter-high"></div>
+</div>
+</div>
+<div class="border-default-300 p-5">
+<div class="mb-4.5 flex items-center justify-between">
+<h5>Ratings:</h5>
+</div>
+<div class="space-y-2.5 mt-1.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="5star" type="checkbox"/>
+<label class="flex items-center" for="5star">
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<span class="text-default-400 ms-1.25 font-normal">5 Stars &amp; Up</span>
+</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">120</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="4star" type="checkbox"/>
+<label class="flex items-center" for="4star">
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<span class="text-default-400 ms-1.25 font-normal">4 Stars &amp; Up</span>
+</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">210</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="3star" type="checkbox"/>
+<label class="flex items-center" for="3star">
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<span class="text-default-400 ms-1.25 font-normal">3 Stars &amp; Up</span>
+</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">325</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="2star" type="checkbox"/>
+<label class="flex items-center" for="2star">
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<span class="text-default-400 ms-1.25 font-normal">2 Stars &amp; Up</span>
+</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">145</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<input class="form-checkbox" id="1star" type="checkbox"/>
+<label class="flex items-center" for="1star">
+<i class="iconify tabler--star-filled text-warning text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<i class="iconify tabler--star-filled text-default-400 text-sm"></i>
+<span class="text-default-400 ms-1.25 font-normal">1 Stars &amp; Up</span>
+</label>
+</div>
+<div>
+<span class="badge bg-light text-dark font-semibold">58</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-3">
+<div class="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-4">
+<div class="card relative h-full!">
+<!-- Badge -->
+<div class="badge badge-label font-semibold rounded text-sm bg-success text-white absolute start-0 top-0 m-5">15% OFF</div>
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/1.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Modern Minimalist Fabric Sofa Single Seater</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(45)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-success flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$899.00</span>
+                                                    $764.15
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Badge -->
+<div class="card-body pb-0 h-full">
+<!-- Card Body -->
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/2.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Funky Streetwear Sneakers - Neon Splash</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(32)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$59.99</span>
+                                                    $44.99
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Badge -->
+<div class="badge badge-label font-semibold rounded text-sm bg-danger text-white absolute start-0 top-0 m-5">15% OFF</div>
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/3.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Noise Canceling Wireless Earbuds - Black Edition</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(58)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$49.99</span>
+                                                    $42.49
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/4.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Minimalist Solid Wood Dining Chair</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(46)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$120.00</span>
+                                                    $96.00
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/5.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Modern Black Minimalist Wall Clock</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(62)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$49.99</span>
+                                                    $39.99
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Badge -->
+<div class="badge badge-label font-semibold rounded text-sm bg-danger text-white absolute start-0 top-0 m-5">20% OFF</div>
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/6.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Elegant Brown Wooden Chair</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(48)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$120.00</span>
+                                                    $96.00
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/7.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Apple iMac 24" Retina 4.5K Display</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(65)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$1,299.00</span>
+                                                    $1,039.20
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Badge -->
+<div class="badge badge-label font-semibold rounded text-sm bg-danger text-white absolute start-0 top-0 m-5">20% OFF</div>
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/8.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Coolest Ergonomic Lounge Chair</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(52)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$320.00</span>
+                                                    $256.00
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/9.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Apple iPad 10.9" Wi-Fi 64GB - Silver</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(142)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$449.00</span>
+                                                    $359.20
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/10.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Minimalist Denim Jacket – Indigo Blue</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(54)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$89.00</span>
+                                                    $64.00
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/1.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Next-Gen Smartwatch S9 – Graphite Black</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(128)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$249.00</span>
+                                                    $199.00
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="card relative h-full!">
+<!-- Card Body -->
+<div class="card-body pb-0 h-full">
+<div class="p-5">
+<img alt="product" class="img-fluid" src="/images/products/2.png"/>
+</div>
+<!-- Title -->
+<h6 class="card-title mb-2.5 text-sm">
+<a class="hover:text-primary transition-all" href="/apps-ecommerce-product-details">Noise-Cancel Pro Headphones – Arctic White</a>
+</h6>
+<div class="flex items-center gap-1.25 mb-2">
+<span class="text-warning">
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star-filled"></i>
+<i class="iconify tabler--star"></i>
+</span>
+<span>
+<a class="hover:text-primary transition-all font-semibold" href="/apps-ecommerce-reviews">(87)</a>
+</span>
+</div>
+</div>
+<!-- Card footer -->
+<div class="card-footer border-0!">
+<div class="flex w-full justify-between">
+<h4 class="text-danger flex items-center gap-3 text-sm">
+<span class="text-default-400 line-through">$199.99</span>
+                                                    $159.99
+                                                </h4>
+<div>
+<a class="btn btn-icon size-7.75 bg-primary text-white hover:bg-primary-hover" href="#!">
+<i class="iconify tabler--basket"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="my-5 flex flex-wrap items-center justify-center gap-2 md:justify-between">
+<span class="text-default-400 font-italic">
+                                        Last modification:
+                                        <i class="iconify tabler--clock"></i>
+                                        4:55 pm - 22.04.2025
+                                    </span>
+<nav aria-label="Pagination" class="flex items-center gap-1.5">
+<button aria-label="Previous" class="btn btn-icon border-default-300 hover:bg-default-100 hover:text-primary transition-all gap-x-1.5 border bg-card transition-all duration-300" type="button">
+<i class="iconify tabler--chevron-left"></i>
+</button>
+<button class="btn btn-icon bg-primary text-white hover:bg-primary-hover" type="button">1</button>
+<button class="btn btn-icon border-default-300 hover:bg-default-100 hover:text-primary transition-all border bg-card transition-all duration-300" type="button">2</button>
+<button class="btn btn-icon border-default-300 hover:bg-default-100 hover:text-primary transition-all border bg-card transition-all duration-300" type="button">3</button>
+<button aria-label="Next" class="btn btn-icon border-default-300 hover:bg-default-100 hover:text-primary transition-all gap-x-1.5 border bg-card transition-all duration-300" type="button">
+<i class="iconify tabler--chevron-right"></i>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- noUiSlider js -->
+
+<!-- Eommerce Products Page Js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/nouislider/nouislider.min.js"></script>
+    <script src="/js/pages/ecommerce-products.js"></script>
+{% endblock %}

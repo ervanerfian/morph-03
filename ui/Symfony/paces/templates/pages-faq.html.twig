@@ -1,0 +1,250 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'FAQS' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Pages", "title": "FAQS"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Pages", "title": "FAQS"}) }}
+
+                <div class="container-fluid">
+<div class="mx-auto 2xl:w-5/6">
+<div class="mb-18">
+<div class="text-center">
+<div class="mb-5">
+<i class="iconify tabler--help-hexagon text-primary size-7"></i>
+</div>
+<h3 class="mb-2.5 text-xl font-semibold">Need Help with Something?</h3>
+<p class="text-default-400 mx-auto mb-7.5 w-130">We're here to assist you with any technical questions, account issues, or feedback. Reach out to our support team — we’ll get back to you as soon as possible!</p>
+<div class="flex items-center justify-center gap-3">
+<a class="btn bg-success text-white hover:bg-success-hover" href="/mailto:support@example.com">
+<i class="iconify tabler--mail text-base"></i>
+                                        Contact Support
+                                    </a>
+<a class="btn bg-primary text-white hover:bg-primary-hover" href="https://twitter.com/intent/tweet?text=Hello+Support" target="_blank">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0h24v24H0z" fill="none" stroke="none"></path>
+<path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+</svg>
+                                        Tweet to Us
+                                    </a>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-base">
+<div class="card">
+<div class="card-header block">
+<h4 class="card-title mb-1.25">General</h4>
+<p class="text-default-400">Here are some common questions about our templates.</p>
+</div>
+<div class="card-body">
+<div class="hs-accordion-group flex flex-col gap-2">
+<div class="hs-accordion" id="BorderedheadingOne">
+<button aria-controls="BorderedcollapseOne" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                What is included in your template purchase?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="BorderedheadingOne" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="BorderedcollapseOne" role="region">
+<div class="px-5 py-4">Our templates come with clean source code, comprehensive documentation, SCSS files, and starter project setups for various frameworks (e.g., React, Angular, Laravel).</div>
+</div>
+</div>
+<div class="hs-accordion" id="BorderedheadingTwo">
+<button aria-controls="BorderedcollapseTwo" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Do you offer support after purchase?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="BorderedheadingTwo" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="BorderedcollapseTwo" role="region">
+<div class="px-5 py-4">Yes! We provide 6 months of free support for bug fixes, usage questions, and minor updates. You can also extend support if needed.</div>
+</div>
+</div>
+<div class="hs-accordion" id="BorderedheadingThree">
+<button aria-controls="BorderedcollapseThree" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Can I use the template for multiple projects?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="BorderedheadingThree" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="BorderedcollapseThree" role="region">
+<div class="px-5 py-4">The standard license allows use in a single end product. For multiple projects, a separate license is required for each use case.</div>
+</div>
+</div>
+<div class="hs-accordion" id="BorderedheadingFour">
+<button aria-controls="BorderedcollapseFour" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Are the templates compatible with the latest frameworks?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="BorderedheadingFour" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="BorderedcollapseFour" role="region">
+<div class="px-5 py-4">Yes, we regularly update our templates to ensure compatibility with the latest versions of frameworks like TailwindCSS, React, Angular, Laravel, and others.</div>
+</div>
+</div>
+<div class="hs-accordion" id="BorderedheadingFive">
+<button aria-controls="BorderedcollapseFive" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Do you provide Figma or design files?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="BorderedheadingFive" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="BorderedcollapseFive" role="region">
+<div class="px-5 py-4">Yes, we include Figma or design source files with selected templates. Please check the product details or contact us if unsure.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header block">
+<h4 class="card-title mb-1.25">Payments</h4>
+<p class="text-default-400">Here are some common questions related to billing and payment.</p>
+</div>
+<div class="card-body">
+<div class="hs-accordion-group flex flex-col gap-2">
+<div class="hs-accordion" id="paymentHeadingOne">
+<button aria-controls="paymentCollapseOne" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                What payment methods do you accept?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="paymentHeadingOne" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="paymentCollapseOne" role="region">
+<div class="px-5 py-4">We accept all major credit/debit cards, PayPal, and Stripe payments. Some marketplaces may support additional methods.</div>
+</div>
+</div>
+<div class="hs-accordion" id="paymentHeadingTwo">
+<button aria-controls="paymentCollapseTwo" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Will I receive an invoice after purchase?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="paymentHeadingTwo" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="paymentCollapseTwo" role="region">
+<div class="px-5 py-4">Yes, you will receive an official invoice or receipt via email immediately after your purchase is completed.</div>
+</div>
+</div>
+<div class="hs-accordion" id="paymentHeadingThree">
+<button aria-controls="paymentCollapseThree" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Is there a refund policy?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="paymentHeadingThree" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="paymentCollapseThree" role="region">
+<div class="px-5 py-4">Yes, we follow the refund policy of the marketplace where the item was purchased. Please refer to their refund terms or contact us directly if unsure.</div>
+</div>
+</div>
+<div class="hs-accordion" id="paymentHeadingFour">
+<button aria-controls="paymentCollapseFour" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Can I upgrade my license later?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="paymentHeadingFour" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="paymentCollapseFour" role="region">
+<div class="px-5 py-4">absolutely! You can upgrade your license at any time by contacting support or purchasing the extended license separately.</div>
+</div>
+</div>
+<div class="hs-accordion" id="paymentHeadingFive">
+<button aria-controls="paymentCollapseFive" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Why was my payment declined?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="paymentHeadingFive" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="paymentCollapseFive" role="region">
+<div class="px-5 py-4">Payment failures may occur due to incorrect card info, insufficient funds, or bank restrictions. Please try another method or contact your provider.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header block">
+<h4 class="card-title mb-1.25">Refunds</h4>
+<p class="text-default-400">Find answers related to our refund policy and conditions.</p>
+</div>
+<div class="card-body">
+<div class="hs-accordion-group flex flex-col gap-2">
+<div class="hs-accordion" id="refundHeadingOne">
+<button aria-controls="refundCollapseOne" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                What is your refund policy?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="refundHeadingOne" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="refundCollapseOne" role="region">
+<div class="px-5 py-4">We offer refunds within 14 days of purchase if the template is faulty or not as described. Please review the full policy or reach out for clarification.</div>
+</div>
+</div>
+<div class="hs-accordion" id="refundHeadingTwo">
+<button aria-controls="refundCollapseTwo" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                How do I request a refund?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="refundHeadingTwo" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="refundCollapseTwo" role="region">
+<div class="px-5 py-4">You can request a refund by contacting our support team with your order ID and a brief reason for the request.</div>
+</div>
+</div>
+<div class="hs-accordion" id="refundHeadingThree">
+<button aria-controls="refundCollapseThree" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Are there any non-refundable purchases?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="refundHeadingThree" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="refundCollapseThree" role="region">
+<div class="px-5 py-4">Custom services, extended licenses, and downloadable assets with confirmed usage typically aren’t refundable.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-header block">
+<h4 class="card-title mb-1.25">Customization</h4>
+<p class="text-default-400">Questions about custom development and template modifications.</p>
+</div>
+<div class="card-body">
+<div class="hs-accordion-group flex flex-col gap-2">
+<div class="hs-accordion" id="customHeadingOne">
+<button aria-controls="customCollapseOne" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Do you offer customization services?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="customHeadingOne" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="customCollapseOne" role="region">
+<div class="px-5 py-4">Yes, we offer paid customization services based on your requirements. Contact us for a quote.</div>
+</div>
+</div>
+<div class="hs-accordion" id="customHeadingTwo">
+<button aria-controls="customCollapseTwo" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Can I modify the template myself?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="customHeadingTwo" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="customCollapseTwo" role="region">
+<div class="px-5 py-4">absolutely! All templates come with full source code and documentation to help you make your own changes.</div>
+</div>
+</div>
+<div class="hs-accordion" id="customHeadingThree">
+<button aria-controls="customCollapseThree" aria-expanded="true" class="hs-accordion-toggle bg-default-100 font-secondary flex w-full items-center justify-between rounded px-5 py-4 text-start text-sm font-semibold disabled:pointer-events-none disabled:opacity-50">
+                                                Will customizing the template affect support?
+                                                <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div aria-labelledby="customHeadingThree" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" id="customCollapseThree" role="region">
+<div class="px-5 py-4">Support is still available, but major custom changes may not be covered under standard support terms.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

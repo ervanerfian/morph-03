@@ -1,0 +1,77 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Coming Soon' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Start Page Content here -->
+<div class="min-h-screen">
+<div class="flex h-full w-full">
+<div class="min-w-full md:min-w-160">
+<div class="card relative flex min-h-screen flex-col justify-between rounded-none p-12.5">
+<div class="absolute end-0 top-0">
+<img alt="auth-card-bg" class="w-45" src="/images/auth-card-bg.svg"/>
+</div>
+<a class="auth-logo flex justify-center" href="/">
+<img alt="logo" class="flex dark:hidden" src="/images/logo-black.png"/>
+<img alt="dark logo" class="hidden dark:flex" src="/images/logo.png"/>
+</a>
+<div>
+<h3 class="my-2.5 text-center text-xl font-bold">Something Exciting is Coming</h3>
+<p class="text-default-400 text-center">We’re working hard to bring you something amazing. Stay
+                            tuned!</p>
+<div class="my-7.5">
+<div class="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+<div class="bg-default-50 bg-opacity-10 text-primary rounded px-3 py-6 text-center">
+<h2 class="mb-2 text-4xl font-bold" id="days">00</h2>
+<p class="font-semibold text-default-800 text-xs">Days</p>
+</div>
+<div class="bg-default-50 bg-opacity-10 text-primary rounded px-3 py-6 text-center">
+<h2 class="mb-2 text-4xl font-bold" id="hours">00</h2>
+<p class="font-semibold text-default-800 text-xs">Hours</p>
+</div>
+<div class="bg-default-50 bg-opacity-10 text-primary rounded px-3 py-6 text-center">
+<h2 class="mb-2 text-4xl font-bold" id="minutes">00</h2>
+<p class="font-semibold text-default-800 text-xs">Minutes</p>
+</div>
+<div class="bg-default-50 bg-opacity-10 text-primary rounded px-3 py-6 text-center">
+<h2 class="mb-2 text-4xl font-bold" id="seconds">00</h2>
+<p class="font-semibold text-default-800 text-xs">Seconds</p>
+</div>
+</div>
+</div>
+<div class="bg-[linear-gradient(90deg,#6658dd_0%,#f1556c_100%)] bg-clip-text text-center text-lg! font-bold text-transparent" data-text="Stay tunned!">Stay tunned!</div>
+<div class="relative mx-auto mt-5 flex w-auto items-center overflow-hidden rounded-md lg:w-sm">
+<input class="border-default-300 text-default-500 w-full rounded-md border py-3 ps-10 pe-28 text-sm font-semibold" placeholder="Enter email..." type="text"/>
+<i class="iconify tabler--mail text-default-400 absolute start-3 text-lg"></i>
+<button class="bg-secondary absolute end-0 rounded-md rounded-s-none px-6 py-3.25 text-sm font-medium text-white transition" type="button">Notify
+                                me!</button>
+</div>
+</div>
+<p class="text-default-400 mt-7.5 text-center">
+                        ©
+                        <span data-current-year=""></span>
+                        Paces - by
+                        <span class="font-bold">Coderthemes</span>
+</p>
+</div>
+</div>
+<div class="hidden w-full md:block">
+<div class="relative h-full overflow-hidden bg-[url(/../images/auth.jpg)] bg-cover bg-center bg-no-repeat">
+<div class="from-default-800 via-default-800/80 to-default-800/50 absolute inset-0 flex items-end justify-center bg-linear-to-t p-10">
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/coming-soon.js"></script>
+{% endblock %}
