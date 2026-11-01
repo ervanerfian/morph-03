@@ -39,14 +39,15 @@ The repository connection guidance calls for a scoped, non-superuser application
 
 Relation semantics confirmed by the developer: the radio chooses exactly one target Display Field; the actual immutable target `record_id` belongs to each edge, not Relation config. Table/View placement checkboxes are separate; Multi-field Projection is future scope. Single-versus-multiple target cardinality remains open. A related schema identity question is now explicit: values/edges must not be keyed by a Table View's presentation binding; `field_definition_id` is a candidate, but the canonical field identity needs review before DDL.
 
-`DATASTAR-NATIVE-WEB-GUIDANCE.md` is now the source of truth for Datastar-first and native-browser interaction policy. It says native ESM/no-build, while the current foundation uses `tsc` to emit browser ESM (without a bundler). This wording needs clarification before changing the existing TypeScript pipeline: it may mean no bundler/runtime build, or it may prohibit the current compile step. No tooling change was made. The guide's external references also have not been independently reviewed from the sandbox.
+`DATASTAR-NATIVE-WEB-GUIDANCE.md` is the source of truth for Datastar-first and native-browser interaction policy. The developer's Modern PHP Super Apps Stack explicitly includes Node/npm for TypeScript compilation and testing; current `tsc` output is native browser ESM with no bundler. Working interpretation: “native ESM/no-build” means no bundled SPA/client runtime, while the TypeScript-to-ESM compile step remains allowed. No tooling change was made. The same stack mentions PostgreSQL/MySQL/SQLite, but this project is still explicitly targeted at PostgreSQL 18; do not add other drivers until the user confirms whether those are future alternatives or required support. The guide's external references have not been independently reviewed from the sandbox.
 
 ## Next steps
 
 1. Review the reconciled data-model docs and decide the canonical Field/value identity (Field Definition vs. Data Source-scoped Field), plus relation cardinality and edge lifecycle. No DDL until these boundaries are settled.
-2. Resolve the runtime-role policy before database-backed application work; do not silently use a superuser or grant `morph03_app`.
-3. Verify Apache is rooted at `public/` and separately test Laragon web-SAPI, `/healthz`, and expected `/readyz` behavior. The PHP CLI built-in preview is not that verification.
-4. Implement Identity & Workspace contracts and reviewed persistence, then build the data engine around the versioned extensible Field registry.
+2. Confirm whether MySQL/SQLite are future alternatives or required Morph drivers; PostgreSQL 18 remains the only explicitly approved target and current local environment.
+3. Resolve the runtime-role policy before database-backed application work; do not silently use a superuser or grant `morph03_app`.
+4. Verify Apache is rooted at `public/` and separately test Laragon web-SAPI, `/healthz`, and expected `/readyz` behavior. The PHP CLI built-in preview is not that verification.
+5. Implement Identity & Workspace contracts and reviewed persistence, then build the data engine around the versioned extensible Field registry.
 
 ## How to follow progress
 
