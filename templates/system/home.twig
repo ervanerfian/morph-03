@@ -1,16 +1,118 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="referrer" content="same-origin">
-    <title>{{ appName }}</title>
-</head>
-<body>
-    <main>
-        <h1>{{ appName }}</h1>
-        <p>The application foundation is running.</p>
-        <p>Identity, workspace context and database modules will be added through their own contracts.</p>
-    </main>
-</body>
-</html>
+{% extends "layouts/app.twig" %}
+
+{% block title %}{{ appName }} · Foundation{% endblock %}
+
+{% block main %}
+    <div class="page-header">
+        <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <span>Platform</span>
+                <span class="breadcrumb-separator" aria-hidden="true">/</span>
+                <span aria-current="page">Overview</span>
+            </nav>
+            <p class="eyebrow">APPLICATION FOUNDATION <span>01</span></p>
+            <h1>Welcome to {{ appName }}</h1>
+            <p class="page-intro">A modular workspace for teams, connected data, and the apps built around them.</p>
+        </div>
+        <div class="page-header-mark" aria-hidden="true">
+            <span class="mark-orbit mark-orbit-one"></span>
+            <span class="mark-orbit mark-orbit-two"></span>
+            <span class="mark-core"></span>
+        </div>
+    </div>
+
+    <section class="hero-card" aria-labelledby="hero-title">
+        <div class="hero-copy">
+            <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>BUILT TO GROW WITH YOUR WORK</p>
+            <h2 id="hero-title">One foundation.<br><span>Many connected apps.</span></h2>
+            <p>Morph Space brings workspaces, shared data, and focused applications together—without making the browser the source of truth.</p>
+            <a class="hero-link" href="#foundation-roadmap">
+                Explore the foundation
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-illustration" aria-hidden="true">
+            <div class="illustration-glow"></div>
+            <div class="illustration-window">
+                <div class="window-bar"><span></span><span></span><span></span><i></i></div>
+                <div class="window-content">
+                    <div class="illustration-sidebar"><b></b><b></b><b></b><b></b></div>
+                    <div class="illustration-main">
+                        <div class="illustration-title"></div>
+                        <div class="illustration-cards"><i></i><i></i><i></i></div>
+                        <div class="illustration-table"><i></i><i></i><i></i></div>
+                    </div>
+                </div>
+            </div>
+            <span class="floating-chip chip-workspace"><span></span>Workspace</span>
+            <span class="floating-chip chip-data"><span></span>Connected data</span>
+        </div>
+    </section>
+
+    <section class="roadmap-section" id="foundation-roadmap" aria-labelledby="roadmap-title">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">WHAT WE ARE BUILDING</p>
+                <h2 id="roadmap-title">The foundation, in order</h2>
+            </div>
+            <p class="section-caption">This screen is a UI preview. Product capabilities will appear as their server-side modules are implemented.</p>
+        </div>
+
+        <div class="roadmap-grid">
+            <article class="roadmap-card roadmap-card-current">
+                <div class="roadmap-card-top">
+                    <span class="roadmap-icon icon-server" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="4" width="16" height="6" rx="2" stroke="currentColor" stroke-width="1.6"></rect>
+                            <rect x="4" y="14" width="16" height="6" rx="2" stroke="currentColor" stroke-width="1.6"></rect>
+                            <circle cx="8" cy="7" r=".8" fill="currentColor"></circle>
+                            <circle cx="8" cy="17" r=".8" fill="currentColor"></circle>
+                            <path d="M12 7h4m-4 10h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                        </svg>
+                    </span>
+                    <span class="roadmap-status status-in-progress"><i></i>In progress</span>
+                </div>
+                <h3>Native application core</h3>
+                <p>PHP routing, module registration, Twig rendering, and PostgreSQL connection infrastructure.</p>
+                <span class="roadmap-footnote">Laragon web-SAPI verification remains pending.</span>
+            </article>
+
+            <article class="roadmap-card">
+                <div class="roadmap-card-top">
+                    <span class="roadmap-icon icon-workspace" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M4 8.5 12 4l8 4.5v8L12 21l-8-4.5v-8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                            <path d="M4.5 8.7 12 13l7.5-4.3M12 13v7.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                    <span class="roadmap-status status-next">Next</span>
+                </div>
+                <h3>Identity &amp; workspaces</h3>
+                <p>Verified sign-in, membership, active workspace context, and server-side access policies.</p>
+                <span class="roadmap-footnote">No user or workspace is loaded in this preview.</span>
+            </article>
+
+            <article class="roadmap-card">
+                <div class="roadmap-card-top">
+                    <span class="roadmap-icon icon-database" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <ellipse cx="12" cy="5" rx="8" ry="3" stroke="currentColor" stroke-width="1.6"></ellipse>
+                            <path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7" stroke="currentColor" stroke-width="1.6"></path>
+                        </svg>
+                    </span>
+                    <span class="roadmap-status status-planned">Planned</span>
+                </div>
+                <h3>Logical Database Builder</h3>
+                <p>Workspace-scoped data sources, views, field definitions, records, and linked data.</p>
+                <span class="roadmap-footnote">A logical Database is not a physical PostgreSQL database.</span>
+            </article>
+        </div>
+    </section>
+
+    <aside class="preview-notice" aria-label="Preview status">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <p><strong>Foundation preview:</strong> authentication, workspace context, and product data are not implemented yet. Nothing on this page represents live workspace data.</p>
+    </aside>
+{% endblock %}

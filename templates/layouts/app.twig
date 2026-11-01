@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="same-origin">
+    <meta name="color-scheme" content="light">
+    <title>{% block title %}{{ appName }}{% endblock %}</title>
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <script type="module" src="/assets/build/app.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="topbar">
+        <a class="brand" href="/" aria-label="{{ appName }} home">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 32 32" fill="none">
+                    <rect x="3" y="3" width="12" height="12" rx="4" fill="currentColor"></rect>
+                    <rect x="17" y="3" width="12" height="7" rx="3.5" fill="currentColor" opacity=".72"></rect>
+                    <rect x="17" y="12" width="12" height="17" rx="4" fill="currentColor" opacity=".88"></rect>
+                    <rect x="3" y="17" width="12" height="12" rx="4" fill="currentColor" opacity=".58"></rect>
+                </svg>
+            </span>
+            <span class="brand-copy">
+                <span class="brand-name">{{ appName }}</span>
+                <span class="brand-caption">WORKSPACE PLATFORM</span>
+            </span>
+        </a>
+
+        <div class="topbar-actions">
+            <span class="environment-badge"><span class="environment-dot" aria-hidden="true"></span>FOUNDATION PREVIEW</span>
+            <button
+                class="sidebar-toggle"
+                type="button"
+                data-sidebar-toggle
+                aria-controls="app-sidebar"
+                aria-expanded="false"
+                aria-label="Open navigation"
+            >
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="app-shell">
+        <aside class="app-sidebar" id="app-sidebar" data-app-sidebar data-open="false" aria-label="Primary navigation">
+            <div class="sidebar-context">
+                <span class="context-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                        <path d="m4.5 7.8 7.5 4.3 7.5-4.3M12 12.2V21" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+                <span class="context-copy">
+                    <span class="context-label">WORKSPACE CONTEXT</span>
+                    <span class="context-value">Not selected</span>
+                </span>
+                <button class="sidebar-close" type="button" data-sidebar-close aria-label="Close navigation">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Platform navigation">
+                <p class="nav-heading">PLATFORM</p>
+                <a class="nav-item is-active" href="/" aria-current="page">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"></rect>
+                        <rect x="13.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"></rect>
+                        <rect x="3.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"></rect>
+                        <rect x="13.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"></rect>
+                    </svg>
+                    <span>Overview</span>
+                </a>
+
+                <p class="nav-heading nav-heading-spaced">WORKSPACE</p>
+                <div class="nav-item is-planned">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <ellipse cx="12" cy="5" rx="8" ry="3" stroke="currentColor" stroke-width="1.6"></ellipse>
+                        <path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7" stroke="currentColor" stroke-width="1.6"></path>
+                    </svg>
+                    <span>Databases</span>
+                    <span class="nav-status">Planned</span>
+                </div>
+                <div class="nav-item is-planned">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"></circle>
+                        <path d="M3.5 19c.3-3 2.5-4.7 5.5-4.7s5.2 1.7 5.5 4.7M16 5.2a3 3 0 0 1 0 5.8M17 14.6c2.1.6 3.3 2 3.5 4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                    </svg>
+                    <span>Members</span>
+                    <span class="nav-status">Planned</span>
+                </div>
+
+                <p class="nav-heading nav-heading-spaced">COMING LATER</p>
+                <div class="nav-item is-planned">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <rect x="3.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect>
+                        <rect x="13.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect>
+                        <rect x="3.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"></rect>
+                        <path d="M17 14v6m-3-3h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+                    </svg>
+                    <span>Composable apps</span>
+                    <span class="nav-status">Later</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-note">
+                <span class="note-icon" aria-hidden="true">i</span>
+                <div>
+                    <strong>Early foundation</strong>
+                    <p>No account or workspace data is loaded in this preview.</p>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-backdrop" data-sidebar-backdrop aria-hidden="true" hidden></div>
+
+        <main class="main-content" id="main-content">
+            {% block main %}{% endblock %}
+            <footer class="app-footer">
+                <span>{{ appName }}</span>
+                <span>Modular by design</span>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
