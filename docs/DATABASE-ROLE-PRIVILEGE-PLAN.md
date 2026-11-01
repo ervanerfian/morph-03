@@ -1,6 +1,6 @@
 # Morph-03 Runtime Database Role & Privilege Plan
 
-**Status:** proposed access boundary for review; no SQL, role creation, grants, or DDL have been executed.
+**Status:** proposed access boundary for review; the developer ran catalog-only verification queries in a read-only transaction. No role creation, grants, DDL, or schema changes have been executed.
 **Updated:** 2026-11-02
 **Scope:** Morph-03 only — Windows-native PostgreSQL 18 at `127.0.0.1:5433`, database `morph_03`. This plan does not apply to the separate Morph-01 PostgreSQL 16 container.
 
@@ -8,7 +8,7 @@
 
 - PHP runtime uses `morph03_app`, a scoped non-superuser role.
 - `morph03_admin` is reserved for administration/provisioning. It is a cluster superuser and bypasses RLS; never put it in the PHP runtime environment.
-- The existence, membership, attributes, and current privileges of `morph03_app` have not been queried. The plan below is not a claim that the role exists or is correctly configured.
+- A developer-run read-only catalog check on 2026-11-02 found that `morph03_app` does not exist in `morph_03`'s PostgreSQL 18 cluster. Consequently, its attributes and effective privileges were `NULL`, and the membership and table-grant queries returned no rows. This is an observation, not authorization to create the role.
 
 ## Minimum privileges for the current foundation
 
@@ -87,4 +87,4 @@ If `morph03_app` does not exist, the first query reports `role_exists = false` a
 
 ## Verification boundary
 
-No query above has been run by the agent. No local database connection, credential, role, grant, schema, or `.env` has been changed. PHP's current PDO identity remains configured from the developer's untracked local environment and has not been re-verified as `morph03_app`.
+The developer ran the catalog queries above in `psql` against `127.0.0.1:5433/morph_03` as `morph03_admin` inside a `READ ONLY` transaction, then issued `ROLLBACK`. The reported result: `morph03_app` was absent; its effective privilege columns were `NULL`, with no membership or table-grant rows. `morph03_admin` had `LOGIN`, `SUPERUSER`, `CREATEDB`, `CREATEROLE`, `REPLICATION`, and `BYPASSRLS`, plus effective `CONNECT` and public-schema `USAGE`/`CREATE`. The agent did not connect to the local database. No role, grant, schema, DDL, credential, or `.env` was changed. The active PHP/PDO identity remains unverified; do not use the superuser for PHP, and do not create roles or grants without explicit authorization.

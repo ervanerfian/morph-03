@@ -652,10 +652,10 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 | Item | Nilai yang Diperlukan | Catatan |
 |---|---|---|
 | `DRIVER` | `postgres` | Di `.env` |
-| `DATABASE_URL` | Simpan hanya di `.env` lokal yang tidak dilacak; gunakan `morph03_app` menuju `127.0.0.1:5433/morph_03` | Role dan privileges belum diverifikasi; jangan gunakan `morph03_admin` untuk PHP |
+| `DATABASE_URL` | Simpan hanya di `.env` lokal yang tidak dilacak; gunakan `morph03_app` menuju `127.0.0.1:5433/morph_03` | Read-only audit menemukan `morph03_app` belum ada; jangan gunakan `morph03_admin` untuk PHP |
 | PHP extension `pdo_pgsql` | Loaded | Cek via `php -m | grep pdo_pgsql` |
 | PHP extension `pdo` | Loaded | Cek via `php -m | grep pdo` |
-| Koneksi PostgreSQL | Harus diverifikasi dengan `morph03_app` | CLI/PDO yang sudah diverifikasi memakai `morph03_admin`; role runtime dan Laragon web-SAPI masih pending (lihat `LOCAL-DEVELOPMENT.md`) |
+| Koneksi PostgreSQL | Harus diverifikasi dengan `morph03_app` | CLI/PDO yang sudah diverifikasi memakai `morph03_admin`; read-only audit menemukan `morph03_app` belum ada dan Laragon web-SAPI masih pending (lihat `LOCAL-DEVELOPMENT.md`) |
 | Web server restart | Dilakukan | Setelah mengubah `.env`, restart Apache/Nginx |
 
 ### 3.12.4 Aturan Untuk Pengembangan Selanjutnya

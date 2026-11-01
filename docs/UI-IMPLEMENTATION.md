@@ -45,4 +45,4 @@ The UI never grants access. Authentication, workspace membership, resource polic
 
 ## Verification boundary
 
-The TypeScript typecheck/build can be run with Node/npm. PHP/Composer and the Laragon web-SAPI are not available in the agent sandbox, so the Twig/PHP page still requires verification through the developer's local PHP runtime. The developer selected scoped non-superuser `morph03_app` for PHP runtime and `morph03_admin` for administration/provisioning; role existence and privileges remain unverified. This UI work does not configure credentials, create roles, change grants, or run schema DDL.
+The TypeScript typecheck/build can be run with Node/npm. PHP/Composer and the Laragon web-SAPI are not available in the agent sandbox, so the Twig/PHP page still requires verification through the developer's local PHP runtime. The developer selected scoped non-superuser `morph03_app` for PHP runtime and `morph03_admin` for administration/provisioning; a read-only catalog check found `morph03_app` absent, so the intended runtime role is not yet available. This UI work does not configure credentials, create roles, change grants, or run schema DDL.
