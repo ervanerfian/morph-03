@@ -30,7 +30,7 @@ The PHP Native application foundation is in the open PR. A Morph-authored Twig a
 - Generated `public/assets/build/` files are ignored by Git; build them after checkout/pull.
 - PostgreSQL 18.3 identity and CLI PDO connectivity were verified by the developer on Windows, as recorded in `LOCAL-DEVELOPMENT.md`; no DDL or grants were applied by this work.
 - Developer confirmed the Morph shell rendered in a browser at `http://127.0.0.1:8080/` via PHP's built-in CLI server after Composer/npm setup (screenshot). This verifies that preview route only. An earlier Apache URL served the repository root as a directory listing (including `.env`); there is no evidence that vhost was corrected. Keep the document root at `public/`. Apache/vhost configuration, Laragon web-SAPI behavior, health/readiness routes, DB-backed requests, and product interactions remain unverified.
-- `composer.lock` is now tracked in commit `4475a17` (8 production packages, no dev packages). Composer validation has not been confirmed here; run `composer validate --strict` in Windows because PHP/Composer are unavailable in the agent sandbox.
+- `composer.lock` is tracked in commit `4475a17` (8 production packages, no dev packages). The developer ran `composer validate --strict` in Windows; output reported `./composer.json is valid` with no lock-file warning. PHP/Composer remain unavailable in the agent sandbox.
 - PHP/Composer are unavailable in the agent sandbox, so native runtime parity must be checked in the Windows environment.
 
 ## Decisions and blockers
