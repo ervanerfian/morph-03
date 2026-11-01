@@ -22,7 +22,7 @@ The PHP Native application foundation is in the open PR. A Morph-authored Twig a
 | Identity & Workspace | Not implemented | Needs reviewed contracts, server-side session/auth and membership policies. |
 | Logical Database Builder | Design only | No data engine/runtime or approved schema. V1 field values/edges use canonical `field_definition_id`; Relation is single-target per source Record/Field, with one Display Field and immutable target `record_id`. Table View placement remains separate. Binding scope and edge lifecycle remain open; no migration is authorized. |
 | Field-type contracts | Roadmap/design only | Target catalog is explicitly non-exhaustive; future type handlers use a trusted, versioned, extensible registry. No runtime type registry is implemented. |
-| PostgreSQL schema / role grants | Not changed | No DDL or grants have been run. The developer selected scoped non-superuser `morph03_app` for PHP runtime and `morph03_admin` for administration/provisioning; `morph03_app` existence and privileges have not been queried or verified. |
+| PostgreSQL schema / role grants | Not changed | No DDL or grants have been run. `morph03_app` is selected for scoped PHP runtime; `morph03_admin` is for administration/provisioning. A read-only privilege-check plan is documented, but `morph03_app` existence and privileges remain unverified. |
 
 ## Verification evidence
 
@@ -44,7 +44,7 @@ Relation semantics confirmed by the developer: each config chooses exactly one t
 ## Next steps
 
 1. Review the remaining data-model boundaries: Field binding scope, shared Table/Field revision behavior, edge lifecycle, and physical constraints consistent with the selected `field_definition_id`/single-target contract. No DDL until the design and impact are reviewed.
-2. Read-only verify whether `morph03_app` exists and inspect its current database/schema privileges; design the least-privilege grant matrix before any role creation, grant, or PHP `DATABASE_URL` change. Keep `morph03_admin` out of PHP runtime configuration.
+2. Review [DATABASE-ROLE-PRIVILEGE-PLAN.md](DATABASE-ROLE-PRIVILEGE-PLAN.md) and run its read-only checks in the authorized local `morph_03` admin session; record only role flags/privileges, never credentials. Do not create roles, grant privileges, or change PHP configuration until the results and exact object scope are reviewed. Keep `morph03_admin` out of PHP runtime configuration.
 3. Verify Apache is rooted at `public/` and separately test Laragon web-SAPI, `/healthz`, and expected `/readyz` behavior. The PHP CLI built-in preview is not that verification.
 4. Implement Identity & Workspace contracts and reviewed persistence, then build the data engine around the versioned extensible Field registry.
 

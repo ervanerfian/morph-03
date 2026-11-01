@@ -32,7 +32,7 @@ The developer reports that `pdo_pgsql` and `pgsql` are loaded. The CLI binary di
 
 The commands shared so far created or updated `morph03_admin` and created `morph_03`. They did not create `morph03_app`. The presence or absence of any pre-existing `morph03_app` role has not been queried.
 
-**Role decision (2026-11-02):** the developer selected `morph03_app` as PHP's scoped, non-superuser runtime role; `morph03_admin` is reserved for administration/provisioning. This is a policy decision, not evidence that `morph03_app` exists or has the required privileges. Before any PHP `DATABASE_URL` is configured, verify the role and its current database/schema privileges read-only and review an exact least-privilege plan. No role creation, grant, DDL, or credential change has been performed. Never store local credentials in Git or this document.
+**Role decision (2026-11-02):** the developer selected `morph03_app` as PHP's scoped, non-superuser runtime role; `morph03_admin` is reserved for administration/provisioning. This is a policy decision, not evidence that `morph03_app` exists or has the required privileges. Before any PHP `DATABASE_URL` is configured, verify the role and its current database/schema privileges read-only using [DATABASE-ROLE-PRIVILEGE-PLAN.md](DATABASE-ROLE-PRIVILEGE-PLAN.md). No role creation, grant, DDL, or credential change has been performed. Never store local credentials in Git or this document.
 
 ## Isolation and safety
 
