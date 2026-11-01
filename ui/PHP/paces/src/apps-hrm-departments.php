@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Departments"; include('partials/title-meta.php'); ?> 
+    
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "HRM"; $title = "Departments"; include('./partials/topbar.php'); ?> 
+        
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+                
+                <?php $subtitle = "HRM"; $title = "Departments"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div data-table data-table-rows-per-page="8" class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap gap-2.5">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input data-table-search type="text" type="search" placeholder="Search department..." class="form-input" />
+                                </div>
+                                <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="addDepartmentModal" data-hs-overlay="#addDepartmentModal">
+                                    <i class="iconify tabler--plus"></i>
+                                    New Department
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                <!-- Status Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                    <select data-table-filter="dep-status" class="form-select">
+                                        <option value="">Department Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Restructuring">Restructuring</option>
+                                    </select>
+                                </div>
+
+                                <!-- Records Per Page -->
+                                <div>
+                                    <select data-table-set-rows-per-page class="form-select">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table table-hover">
+                                <thead class="thead-sm">
+                                    <tr class="bg-light/25 text-2xs uppercase">
+                                        <th class="w-[1%]">
+                                            <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="checkAll" />
+                                        </th>
+                                        <th data-table-sort>Department Name</th>
+                                        <th data-table-sort>Department Code</th>
+                                        <th>Head of Department (HOD)</th>
+                                        <th data-table-sort>Total Staff</th>
+                                        <th data-table-sort>Established</th>
+                                        <th data-table-sort data-column="dep-status">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>Human Resources</td>
+                                        <td>HR-001</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-3.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Samantha Green</span>
+                                            </div>
+                                        </td>
+                                        <td>12</td>
+                                        <td>Jan 15, 2021</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Finance</td>
+                                        <td>FIN-002</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-6.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Ethan Johnson</span>
+                                            </div>
+                                        </td>
+                                        <td>9</td>
+                                        <td>Mar 05, 2020</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Engineering</td>
+                                        <td>ENG-003</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-4.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>David Miller</span>
+                                            </div>
+                                        </td>
+                                        <td>24</td>
+                                        <td>Aug 12, 2019</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Design</td>
+                                        <td>DSN-004</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-7.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Olivia Brown</span>
+                                            </div>
+                                        </td>
+                                        <td>7</td>
+                                        <td>Jun 25, 2022</td>
+                                        <td>
+                                            <span class="badge badge-label bg-danger/15 text-danger">Inactive</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Marketing</td>
+                                        <td>MKT-005</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-5.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Isabella Lee</span>
+                                            </div>
+                                        </td>
+                                        <td>10</td>
+                                        <td>May 11, 2023</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">On Hold</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Operations</td>
+                                        <td>OPS-006</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-8.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Michael Scott</span>
+                                            </div>
+                                        </td>
+                                        <td>15</td>
+                                        <td>Feb 17, 2020</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Sales</td>
+                                        <td>SAL-007</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-9.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Emma Wilson</span>
+                                            </div>
+                                        </td>
+                                        <td>18</td>
+                                        <td>Oct 08, 2021</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Customer Support</td>
+                                        <td>SUP-008</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-10.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Daniel Harris</span>
+                                            </div>
+                                        </td>
+                                        <td>20</td>
+                                        <td>Jul 02, 2022</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>Research & Development</td>
+                                        <td>RND-009</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-1.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Lucas White</span>
+                                            </div>
+                                        </td>
+                                        <td>11</td>
+                                        <td>Sep 13, 2021</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">On Hold</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>IT & Infrastructure</td>
+                                        <td>IT-010</td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-2.jpg" class="size-6 rounded-full" alt="" />
+                                                <span>Andrew Parker</span>
+                                            </div>
+                                        </td>
+                                        <td>14</td>
+                                        <td>Nov 27, 2018</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <div data-table-pagination-info="staffs"></div>
+                            <div data-table-pagination></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+
+            <div id="addDepartmentModal" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="addDepartmentModalLabel">
+                <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                    <div class="card pointer-events-auto flex w-full flex-col">
+                        <div class="card-header p-5">
+                            <h3 id="addDepartmentModalLabel" class="text-sm font-semibold">Add New Department</h3>
+                            <button type="button" aria-label="Close" data-hs-overlay="#addDepartmentModal">
+                                <i class="iconify tabler--x text-xl"></i>
+                            </button>
+                        </div>
+
+                        <div class="card-body overflow-y-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Department Name -->
+                                <div>
+                                    <label for="departmentName" class="form-label">
+                                        Department Name
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" id="departmentName" name="department_name" class="form-input" placeholder="Enter department name" required />
+                                </div>
+
+                                <!-- Department Code -->
+                                <div>
+                                    <label for="departmentCode" class="form-label">Department Code</label>
+                                    <input type="text" id="departmentCode" name="department_code" class="form-input" placeholder="e.g. HR-001" />
+                                </div>
+
+                                <!-- Head of Department -->
+                                <div>
+                                    <label for="hodSelect" class="form-label">Head of Department (HOD)</label>
+                                    <select id="hodSelect" name="hod" class="form-input">
+                                        <option value="">Select HOD</option>
+                                        <option value="Samantha Green">Samantha Green</option>
+                                        <option value="Ethan Johnson">Ethan Johnson</option>
+                                        <option value="David Miller">David Miller</option>
+                                        <option value="Olivia Brown">Olivia Brown</option>
+                                        <option value="Isabella Lee">Isabella Lee</option>
+                                        <option value="Michael Scott">Michael Scott</option>
+                                    </select>
+                                </div>
+
+                                <!-- Department Type -->
+                                <div>
+                                    <label for="departmentType" class="form-label">Department Type</label>
+                                    <select id="departmentType" name="department_type" class="form-input">
+                                        <option value="">Select Type</option>
+                                        <option value="Core">Core</option>
+                                        <option value="Support">Support</option>
+                                        <option value="Technical">Technical</option>
+                                        <option value="Creative">Creative</option>
+                                        <option value="Administrative">Administrative</option>
+                                    </select>
+                                </div>
+
+                                <!-- Total Staff -->
+                                <div>
+                                    <label for="totalStaff" class="form-label">Total Staff</label>
+                                    <input type="number" id="totalStaff" name="total_staff" class="form-input" placeholder="e.g. 15" min="1" />
+                                </div>
+
+                                <!-- Established Date -->
+                                <div>
+                                    <label for="establishedDate" class="form-label">Established Date</label>
+                                    <input type="date" class="form-input" data-provider="flatpickr" data-date-format="d M, Y" id="establishedDate" name="established_date" />
+                                </div>
+
+                                <!-- Status -->
+                                <div>
+                                    <label for="statusSelect" class="form-label">Status</label>
+                                    <select id="statusSelect" name="status" class="form-input">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Restructuring">Restructuring</option>
+                                    </select>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="md:col-span-2">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea id="description" name="description" class="form-textarea" rows="3" placeholder="Brief overview of the department..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                            <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#addDepartmentModal">Cancel</button>
+
+                            <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">
+                                <i class="iconify tabler--device-floppy"></i>
+                                Save Department
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

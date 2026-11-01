@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Video Player"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Plugins"; $title = "Video Player"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Plugins"; $title = "Video Player"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid xl:grid-cols-2 gap-base">
+                        <!-- Basic MP4 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Basic MP4 Video Player</h4>
+                            </div>
+                            <div class="card-body">
+                                <video id="player1" class="plyr w-100" playsinline controls poster="https://media.w3.org/2010/05/sintel/poster.png" style="--plyr-color-main: #1ac266">
+                                    <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- Autoplay muted loop -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Autoplay (muted), Loop Video Player</h4>
+                            </div>
+                            <div class="card-body">
+                                <video id="player3" class="plyr w-100" playsinline controls muted autoplay loop poster="https://media.w3.org/2010/05/sintel/poster.png" style="--plyr-color-main: #1c84c6">
+                                    <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <!-- YouTube embed via Plyr -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">YouTube Video Player</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- Use provider + embed id (no iframe needed) -->
+                                <div id="yt1" class="plyr w-100" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY" style="--plyr-color-main: #f8ac59"></div>
+                            </div>
+                        </div>
+
+                        <!-- Vimeo embed via Plyr -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Vimeo Video Player</h4>
+                            </div>
+                            <div class="card-body">
+                                <div id="vimeo1" class="plyr w-100" data-plyr-provider="vimeo" data-plyr-embed-id="76979871" style="--plyr-color-main: #ed5565"></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Audio Player</h4>
+                            </div>
+                            <div class="card-body">
+                                <audio class="w-100" id="player-audio" controls style="--plyr-color-main: #7b70ef">
+                                    <source src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3" type="audio/mp3" />
+                                    <source src="https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.ogg" type="audio/ogg" />
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Plyr Plugin Js-->
+    <script src="assets/plugins/plyr/plyr.min.js"></script>
+
+    <!-- Plyr Plugin Js -->
+    <script src="assets/js/pages/plugins-plyr.js"></script>
+
+</body>
+
+</html>

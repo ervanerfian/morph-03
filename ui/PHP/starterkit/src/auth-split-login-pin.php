@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Login Pin"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <!-- Start Page Content here -->
+    <div class="min-h-screen">
+        <div class="flex h-full w-full">
+            <div class="min-w-full md:min-w-106 md:max-w-118">
+                <div class="card relative flex min-h-screen flex-col justify-between rounded-none p-12.5">
+                    <div class="absolute end-0 top-0">
+                        <img src="assets/images/auth-card-bg.svg" class="w-45" alt="auth-card-bg" />
+                    </div>
+                    <!-- Auth Brand Logo -->
+                    <div class="mb-7.5 flex flex-col items-center justify-center text-center">
+                        <a href="index.php" class="auth-logo">
+                            <img src="assets/images/logo-black.png" alt="logo" class="flex dark:hidden" />
+                            <img src="assets/images/logo.png" alt="dark logo" class="hidden dark:flex" />
+                        </a>
+                    </div>
+
+                    <div>
+                        <p class="text-default-400 mx-auto w-full text-center lg:w-75">This screen is locked. Enter your
+                            PIN to continue.</p>
+                        <form action="index.php" class="mt-6">
+                            <div class="mb-9 text-center">
+                                <div class="border-default-300 mx-auto mb-3 size-20 rounded-full border-4">
+                                    <img src="assets/images/users/user-1.jpg" class="size-18 rounded-full"
+                                        alt="thumbnail" />
+                                </div>
+                                <h5 class="text-base">David Dev</h5>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="userEmail" class="form-label">
+                                    Enter your 6-digit code
+                                    <span class="text-danger">*</span>
+                                </label>
+
+                                <div class="two-factor flex w-81 gap-2">
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                    <input type="text" class="form-input text-center" required="" inputmode="numeric"
+                                        maxlength="1" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit"
+                                    class="btn bg-primary w-full py-3 font-semibold text-white hover:bg-primary-hover">Confirm</button>
+                            </div>
+                        </form>
+
+                        <p class="text-default-400 mt-7.5 text-center">
+                            Not you? Return to
+                            <a href="auth-split-sign-in.php"
+                                class="text-primary font-semibold underline underline-offset-4">Sign in</a>
+                        </p>
+                    </div>
+
+                    <!-- Auth Footer -->
+                    <p class="text-default-400 mt-7.5 text-center">
+                        &copy;
+                        <span data-current-year></span>
+                        Paces - by
+                        <span>Coderthemes</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="hidden w-full md:block">
+                <div
+                    class="relative h-full overflow-hidden bg-[url('../images/auth.jpg')] bg-cover bg-center bg-no-repeat">
+                    <div
+                        class="from-zinc-800 via-zinc-800/80 to-zinc-800/50 absolute inset-0 flex items-end justify-center bg-linear-to-t p-9">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Page content -->
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <!-- Two Factor Validator Js -->
+    <script type="module" src="assets/js/pages/auth-two-factor.js"></script>
+</body>
+
+</html>

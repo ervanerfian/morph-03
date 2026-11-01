@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Line Charts"})
+
+    @@include('./partials/head-css.html')
+</head>
+
+<body>
+    <div class="wrapper">
+
+        @@include('./partials/topbar.html', {"subtitle": "Charts", "title":"Line Charts"})
+
+        @@include('./partials/sidenav.html')
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                @@include("./partials/page-title.html", {"subtitle": "Charts", "title":"Line Charts"})
+
+                <div class="container-fluid">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Basic Line</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="basic-line-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Interpolation</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="interpolation-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Multi-Axes</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="multi-axes-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Point Styling</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="point-styling-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Line Segment</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="line-segment-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+            </main>
+
+            @@include('./partials/footer.html')
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    @@include('./partials/customizer.html')
+
+    @@include('./partials/footer-scripts.html')
+
+    <!-- ChartJs Plugin Js -->
+    <script src="assets/plugins/chartjs/chart.umd.js"></script>
+
+    <!-- Area chart Demo js -->
+    <script src="assets/js/pages/chartjs-line.js"></script>
+</body>
+
+</html>

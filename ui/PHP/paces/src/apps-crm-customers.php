@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Customers"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "CRM"; $title = "Customers"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "CRM"; $title = "Customers"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div data-table data-table-rows-per-page="8" class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap gap-2.5">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input data-table-search type="text" type="search" placeholder="Search clients..." class="form-input" />
+                                </div>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="createEstimationModal" data-hs-overlay="#createEstimationModal"><i class="iconify tabler--plus"></i> New Customer</button>
+
+                                <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                <!-- Country Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--world input-icon"></i>
+                                    <select data-table-filter="country" class="form-select">
+                                        <option value="All">Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="FR">France</option>
+                                        <option value="IN">India</option>
+                                        <option value="EG">Egypt</option>
+                                        <option value="CA">Canada</option>
+                                    </select>
+                                </div>
+
+                                <!-- Status Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                    <select data-table-filter="status" class="form-select">
+                                        <option value="">Account Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Verification Pending">Verification Pending</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Blocked">Blocked</option>
+                                    </select>
+                                </div>
+
+                                <!-- Records Per Page -->
+                                <div>
+                                    <select data-table-set-rows-per-page class="form-select">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table table-hover">
+                                <thead class="thead-sm">
+                                    <tr class="thead-sm bg-light/25 text-2xs uppercase">
+                                        <th class="w-[1%]">
+                                            <input data-table-select-all="" class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="checkAll" value="option" />
+                                        </th>
+                                        <th data-table-sort>Customer Name</th>
+                                        <th data-table-sort>Phone</th>
+                                        <th data-table-sort data-column="country">Country</th>
+                                        <th data-table-sort>Joined</th>
+                                        <th data-table-sort>Type</th>
+                                        <th data-table-sort>Company</th>
+                                        <th data-table-sort data-column="status">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-2.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Michael Thompson</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">michael&#64;breezetech.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+44 7911 123456</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/gb.svg" class="me-1.5 size-3 rounded-full" />
+                                                UK
+                                            </div>
+                                        </td>
+                                        <td>Jan 15, 2024</td>
+                                        <td>Lead</td>
+                                        <td>BreezeTech Ltd.</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Verification Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-3.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Sara Mitchell</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">sara&#64;novasoft.io</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+1 (646) 555-7788</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/us.svg" class="me-1.5 size-3 rounded-full" />
+                                                US
+                                            </div>
+                                        </td>
+                                        <td>Feb 1, 2024</td>
+                                        <td>Prospect</td>
+                                        <td>NovaSoft</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-4.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Ravi Deshmukh</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">ravi&#64;infraview.in</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+91 98765 43210</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/in.svg" class="me-1.5 size-3 rounded-full" />
+                                                IN
+                                            </div>
+                                        </td>
+                                        <td>Mar 10, 2024</td>
+                                        <td>Client</td>
+                                        <td>InfraView Pvt. Ltd.</td>
+                                        <td>
+                                            <span class="badge badge-label bg-secondary/15 text-secondary">Inactive</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-5.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Laura Kim</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">laura.kim&#64;pixelhive.co</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+82 10-1234-5678</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/kr.svg" class="me-1.5 size-3 rounded-full" />
+                                                KR
+                                            </div>
+                                        </td>
+                                        <td>Dec 20, 2023</td>
+                                        <td>Client</td>
+                                        <td>PixelHive Co.</td>
+                                        <td>
+                                            <span class="badge badge-label bg-danger/15 text-danger">Blocked</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-6.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Jean Dupont</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">jean&#64;parispro.fr</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+33 6 12 34 56 78</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/fr.svg" class="me-1.5 size-3 rounded-full" />
+                                                FR
+                                            </div>
+                                        </td>
+                                        <td>Apr 5, 2024</td>
+                                        <td>Prospect</td>
+                                        <td>ParisPro SARL</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Verification Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-7.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Amanda Rivera</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">amanda&#64;brightlabs.io</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+1 (213) 555-0192</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/us.svg" class="me-1.5 size-3 rounded-full" />
+                                                US
+                                            </div>
+                                        </td>
+                                        <td>Mar 25, 2024</td>
+                                        <td>Client</td>
+                                        <td>BrightLabs Inc.</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-8.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Carlos Mendes</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">carlos&#64;globalreach.br</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+55 11 91234-5678</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/br.svg" class="me-1.5 size-3 rounded-full" />
+                                                BR
+                                            </div>
+                                        </td>
+                                        <td>Feb 18, 2024</td>
+                                        <td>Prospect</td>
+                                        <td>GlobalReach Ltd.</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Verification Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-9.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Lena Hoffmann</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">lena&#64;webnord.de</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+49 176 12345678</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/de.svg" class="me-1.5 size-3 rounded-full" />
+                                                DE
+                                            </div>
+                                        </td>
+                                        <td>Apr 3, 2024</td>
+                                        <td>Lead</td>
+                                        <td>WebNord GmbH</td>
+                                        <td>
+                                            <span class="badge badge-label bg-secondary/15 text-secondary">Inactive</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-10.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Akira Sato</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">akira&#64;nippontech.jp</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+81 90-1234-5678</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/jp.svg" class="me-1.5 size-3 rounded-full" />
+                                                JP
+                                            </div>
+                                        </td>
+                                        <td>Feb 12, 2024</td>
+                                        <td>Client</td>
+                                        <td>NipponTech</td>
+                                        <td>
+                                            <span class="badge badge-label bg-danger/15 text-danger">Blocked</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-5.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">Sophie Dubois</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">sophie&#64;créatis.fr</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+33 7 89 01 23 45</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/fr.svg" class="me-1.5 size-3 rounded-full" />
+                                                FR
+                                            </div>
+                                        </td>
+                                        <td>Feb 9, 2024</td>
+                                        <td>Client</td>
+                                        <td>Créatis SARL</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <img src="assets/images/users/user-2.jpg" alt="Product" class="size-8 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary">John Smith</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">john&#64;futuredevs.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+1 (416) 555-3210</td>
+                                        <td>
+                                            <div class="badge p-1.5 text-sm bg-light">
+                                                <img src="assets/images/flags/ca.svg" class="me-1.5 size-3 rounded-full" />
+                                                CA
+                                            </div>
+                                        </td>
+                                        <td>Feb 5, 2024</td>
+                                        <td>Lead</td>
+                                        <td>FutureDevs</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Verification Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <div data-table-pagination-info="clients"></div>
+                            <div data-table-pagination></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+
+            <div id="createEstimationModal" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="createEstimationModalLabel">
+                <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                    <div class="card pointer-events-auto flex w-full flex-col">
+                        <div class="card-header p-5">
+                            <h3 id="createEstimationModalLabel" class="text-sm">Add New Customer</h3>
+                            <button type="button" aria-label="Close" data-hs-overlay="#createEstimationModal">
+                                <i class="iconify tabler--x text-xl"></i>
+                            </button>
+                        </div>
+
+                        <div class="overflow-y-auto card-body">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="customerName" class="form-label">Customer Name</label>
+                                    <input type="text" class="form-input" id="customerName" placeholder="Enter full name" />
+                                </div>
+
+                                <div>
+                                    <label for="email" class="form-label">Client</label>
+                                    <input type="email" class="form-input" id="email" placeholder="Enter email" />
+                                </div>
+
+                                <div>
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-input" id="phone" placeholder="e.g. +1 234 567 8900" />
+                                </div>
+
+                                <div>
+                                    <label for="company" class="form-label">Company</label>
+                                    <input type="text" class="form-input" id="company" placeholder="Company name" />
+                                </div>
+
+                                <div>
+                                    <label for="country" class="form-label">Country</label>
+                                    <select class="form-input" id="country">
+                                        <option value="">Select country</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="IN">India</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="EG">Egypt</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="customerType" class="form-label">Customer Type</label>
+                                    <select class="form-input" id="customerType">
+                                        <option value="">Select type</option>
+                                        <option value="Lead">Lead</option>
+                                        <option value="Prospect">Prospect</option>
+                                        <option value="Client">Client</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="Accostatus" class="form-label">Account Status</label>
+                                    <select class="form-input" id="Accostatus">
+                                        <option value="">Select status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Verification Pending">Verification Pending</option>
+                                        <option value="Inactive">Inactive</option>
+                                        <option value="Blocked">Blocked</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="joinedDate" class="form-label">Joined Date</label>
+                                    <input type="date" data-provider="flatpickr" data-date-format="d M, Y" class="form-input" id="joinedDate" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                            <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#createEstimationModal">Cancel</button>
+
+                            <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">Add Customer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Other Charts"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <?php $subtitle = "Charts"; $title = "Other Charts"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Charts"; $title = "Other Charts"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Bubble</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="bubble-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Combo Bar & Line</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="combo-bar-line-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Stacked Bar & Line</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="stacked-bar-line-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Doughnut</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="doughnut-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Multi Series Pie</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="multi-pie-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Pie</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="pie-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Polar Area</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="polar-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Radar</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="radar-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Scatter</h5>
+                            </div>
+                            <div class="card-body">
+                                <div dir="ltr">
+                                    <div class="mt-3" style="height: 300px">
+                                        <canvas id="scatter-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body-->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- ChartJs Plugin Js -->
+    <script src="assets/plugins/chartjs/chart.umd.js"></script>
+
+    <!-- Area chart Demo js -->
+    <script src="assets/js/pages/chartjs-other.js"></script>
+</body>
+
+</html>

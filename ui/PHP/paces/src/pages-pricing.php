@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Pricing"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Pages"; $title = "Pricing"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Pages"; $title = "Pricing"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-base lg:grid-cols-4">
+                        <div class="card h-full rounded-md">
+                            <div class="card-body p-7.5 text-center">
+                                <h3 class="mb-1.25 text-xl font-bold">Starter Plan</h3>
+                                <p class="text-default-400">Best for freelancers and personal use</p>
+                                <div class="my-7.5">
+                                    <h1 class="text-[40px] font-bold">$9</h1>
+                                    <small class="text-default-400 text-sm">Billed monthly</small>
+                                    <br />
+                                    <small class="text-default-400">1 project included</small>
+                                </div>
+                                <ul class="space-y-2.5">
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        1 active project
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Access to all components
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Email support
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--x text-danger text-sm"></i>
+                                        No team collaboration
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--x text-danger text-sm"></i>
+                                        No SaaS rights
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="px-15 pt-3.75 pb-7.5">
+                                <a href="#!" class="btn border-primary text-primary hover:bg-primary w-full rounded-full py-3 font-semibold hover:text-white">Choose Starter</a>
+                            </div>
+                        </div>
+
+                        <div class="card !bg-primary h-full rounded-md">
+                            <div class="card-body p-7.5 text-center">
+                                <h3 class="mb-1.25 text-xl font-bold text-white">Professional</h3>
+                                <p class="text-white/50">Ideal for small teams and startups</p>
+                                <div class="my-7.5">
+                                    <h1 class="text-[40px] font-bold text-white">$29</h1>
+                                    <small class="text-sm text-white/50">Billed monthly</small>
+                                    <br />
+                                    <small class="text-white/50">Up to 5 projects</small>
+                                </div>
+                                <ul class="space-y-2.5">
+                                    <li class="flex items-center gap-3 text-white">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        5 active projects
+                                    </li>
+                                    <li class="flex items-center gap-3 text-white">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Component + plugin access
+                                    </li>
+                                    <li class="flex items-center gap-3 text-white">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Team collaboration
+                                    </li>
+                                    <li class="flex items-center gap-3 text-white">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Priority email support
+                                    </li>
+                                    <li class="flex items-center gap-3 text-white">
+                                        <i class="iconify tabler--x text-danger text-sm"></i>
+                                        No resale rights
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="px-15 pt-3.75 pb-7.5">
+                                <a href="#!" class="btn hover:text-primary w-full rounded-full bg-white py-3 font-semibold text-black">Choose Professional</a>
+                            </div>
+                        </div>
+
+                        <div class="card h-full rounded-md">
+                            <div class="card-body p-7.5 text-center">
+                                <h3 class="mb-1.25 text-xl font-bold">Business</h3>
+                                <p class="text-default-400">For agencies and large teams</p>
+                                <div class="my-7.5">
+                                    <h1 class="text-[40px] font-bold">$79</h1>
+                                    <small class="text-default-400 text-sm">Billed monthly</small>
+                                    <br />
+                                    <small class="text-default-400">Unlimited projects</small>
+                                </div>
+                                <ul class="space-y-2.5">
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Unlimited projects
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        SaaS & client projects allowed
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        All premium components
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Priority support
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Team management tools
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="px-15 pt-3.75 pb-7.5">
+                                <a href="#!" class="btn bg-dark text-white w-full rounded-full py-3 font-semibold">Choose Business</a>
+                            </div>
+                        </div>
+
+                        <div class="card h-full rounded-md">
+                            <div class="card-body p-7.5 text-center">
+                                <h3 class="mb-1.25 text-xl font-bold">Enterprise</h3>
+                                <p class="text-default-400">Custom plan for enterprises & high-scale use</p>
+                                <div class="my-7.5">
+                                    <h1 class="text-[40px] font-bold">Contact Us</h1>
+                                    <small class="text-default-400 text-sm">Custom monthly billing</small>
+                                    <br />
+                                    <small class="text-default-400">Based on usage & team size</small>
+                                </div>
+                                <ul class="space-y-2.5">
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Unlimited users & usage
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        White-label license
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Custom integrations
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        SLA + NDA agreements
+                                    </li>
+                                    <li class="flex items-center gap-2.5">
+                                        <i class="iconify tabler--check text-success text-sm"></i>
+                                        Dedicated manager & support
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="px-15 pt-3.75 pb-7.5">
+                                <a href="#!" class="btn border-default-800 hover:bg-default-800 text-default-800 hover:text-default-50 w-full rounded-full py-3 font-semibold">Contact Sales</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>

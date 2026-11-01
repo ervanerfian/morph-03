@@ -1,0 +1,1674 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Social"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Widgets"; $title = "Social"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Widgets"; $title = "Social"; include('./partials/page-title.php'); ?>
+
+                <div class="container">
+                    <div class="grid xl:grid-cols-2 grid-cols-1 gap-base">
+                        <div class="flex flex-col gap-base">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="mb-2.5">What's on your mind?</h5>
+
+                                    <!-- Post Form -->
+                                    <form action="#">
+                                        <textarea rows="3" class="form-textarea" placeholder="Share your thoughts..."></textarea>
+
+                                        <div class="flex pt-2.5 justify-between items-center">
+                                            <div class="flex gap-1.25">
+                                                <a href="#" class="btn btn-sm btn-icon size-8 bg-light hover:text-primary">
+                                                    <i class="iconify tabler--user text-base"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-sm btn-icon size-8 bg-light hover:text-primary">
+                                                    <i class="iconify tabler--map-pin text-base"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-sm btn-icon size-8 bg-light hover:text-primary">
+                                                    <i class="iconify tabler--camera text-base"></i>
+                                                </a>
+
+                                                <a href="#" class="btn btn-sm btn-icon size-8 bg-light hover:text-primary">
+                                                    <i class="iconify tabler--mood-smile text-base"></i>
+                                                </a>
+                                            </div>
+                                            <button type="submit" class="btn bg-dark text-white btn-sm">Post</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h1 class="mb-2.5 text-[28px]">🏆</h1>
+                                    <h4 class="mb-1.25 text-lg font-semibold">Congratulations, David Dev! 🎉</h4>
+
+                                    <!-- Achievement Message -->
+                                    <p class="text-default-400 italic mb-5">
+                                        Congratulations! You’ve reached
+                                        <strong>5,000 subscribers</strong>
+                                        ! Your community is growing fast!
+                                    </p>
+
+                                    <!-- Stats (optional) -->
+                                    <div class="flex justify-center mb-5">
+                                        <div class="me-7.5 text-center">
+                                            <h6 class="text-xs">Posts</h6>
+                                            <span class="font-bold">250</span>
+                                        </div>
+
+                                        <div class="me-7.5 text-center">
+                                            <h6 class="text-xs">Likes</h6>
+                                            <span class="font-bold">15,200</span>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <h6 class="text-xs">Subscribers</h6>
+                                            <span class="font-bold">5,000</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Call to Action -->
+                                    <div class="flex flex-wrap gap-2.5 justify-center">
+                                        <button class="btn btn-sm text-success border border-success hover:bg-success hover:text-white">
+                                            <i class="iconify tabler--share"></i>
+                                            Share Achievement
+                                        </button>
+
+                                        <a href="#!" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">
+                                            <i class="iconify tabler--user"></i>
+                                            View Profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-10.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Sophia Martinez</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>about 5 minutes ago</small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-4">Story inspired by the beauty of changing seasons — a nature-themed animation coming soon!</p>
+
+                                    <div class="grid grid-cols-2 gap-1.25">
+                                        <img src="assets/images/gallery/10.jpg" alt="Tall Image" class="w-full h-full rounded object-cover aspect-3/4" />
+
+                                        <div class="flex flex-col gap-1.25">
+                                            <img src="assets/images/gallery/2.jpg" alt="Top Right" class="w-full rounded object-cover aspect-4/3" />
+                                            <img src="assets/images/gallery/3.jpg" alt="Bottom Right" class="w-full rounded object-cover aspect-4/3" />
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2.5">
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--corner-up-left text-sm"></i>
+                                            Reply
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <div class="relative">
+                                                <span id="like-count-one"></span>
+                                                <button type="button" data-hs-toggle-password='{"target": "#like-count-one" }'>
+                                                    <div class="hs-password-active:hidden flex items-center gap-1">
+                                                        <i class="iconify tabler--heart-filled text-danger"></i>
+                                                        Liked!
+                                                    </div>
+
+                                                    <div class="hs-password-active:flex hidden items-center gap-1">
+                                                        <i class="iconify tabler--heart text-default-400"></i>
+                                                        Like
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--share text-sm"></i>
+                                            Share
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-4.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Liam Anderson</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>30 minutes ago</small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-base text-center mt-5 mb-7.5 italic">
+                                        <i class="iconify tabler--quote text-xl"></i>
+                                        Spent the weekend exploring the local trails! Captured some amazing nature shots and can’t wait to post them soon. 🌿📸
+                                    </div>
+
+                                    <div class="bg-light/20 -mx-5 p-5 border-y border-dashed border-default-300">
+                                        <div class="flex items-start">
+                                            <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-5.jpg" alt="Generic placeholder image" />
+                                            <div class="w-full">
+                                                <h5 class="mb-1.25">
+                                                    <a href="#!" class="hover:text-primary">Ethan Reynolds</a>
+                                                    <small class="text-default-400 font-normal float-end">20 minutes ago</small>
+                                                </h5>
+                                                Loved your recent project! Really curious to see how you implemented the animations.
+                                                <br />
+                                                <a href="javascript:void(0);" class="text-default-400 inline-block mt-2">
+                                                    <i class="iconify tabler--corner-up-left"></i>
+                                                    Reply
+                                                </a>
+
+                                                <div class="flex items-start mt-5">
+                                                    <img src="assets/images/users/user-6.jpg" class="size-8 rounded-full me-2.5" alt="Generic placeholder image" />
+                                                    <div class="w-full">
+                                                        <h5 class="mb-1.25">
+                                                            <a href="#!" class="hover:text-primary">Mia Thompson</a>
+                                                            <small class="text-default-400 font-normal float-end">12 minutes ago</small>
+                                                        </h5>
+                                                        I created something similar in Angular last month — would love to swap tips!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-start mt-5">
+                                            <img src="assets/images/users/user-3.jpg" class="rounded-full size-8 me-2.5" alt="Generic placeholder image" height="31" />
+                                            <div class="w-full">
+                                                <input type="text" id="simpleinput" class="form-input form-input-sm" placeholder="Add a comment..." />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2.5">
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--corner-up-left text-sm"></i>
+                                            Reply
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <div class="relative">
+                                                <span id="like-count-two"></span>
+                                                <button type="button" data-hs-toggle-password='{"target": "#like-count-two" }'>
+                                                    <div class="hs-password-active:flex hidden items-center gap-1">
+                                                        <i class="iconify tabler--heart-filled text-danger"></i>
+                                                        Liked!
+                                                    </div>
+
+                                                    <div class="hs-password-active:hidden flex items-center gap-1">
+                                                        <i class="iconify tabler--heart text-default-400"></i>
+                                                        Like(45)
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--share text-sm"></i>
+                                            Share
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="flex items-center mb-base">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-2.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Anika Roy</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Posted 2 hours ago</small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Event Details -->
+                                    <h5 class="mb-2.5">
+                                        🌿 Save the Date:
+                                        <strong>Nature Photography Workshop 2025</strong>
+                                    </h5>
+
+                                    <p class="text-default-400 mb-2.5">Join fellow creatives and outdoor enthusiasts for an inspiring weekend of nature photography tips, live field sessions, and community networking.</p>
+
+                                    <ul class="list-none mb-base">
+                                        <li class="pb-2.5">
+                                            <strong>Date:</strong>
+                                            Saturday, 14th September 2025
+                                        </li>
+
+                                        <li class="pb-2.5">
+                                            <strong>Time:</strong>
+                                            10:00 AM – 4:00 PM
+                                        </li>
+
+                                        <li>
+                                            <strong>Location:</strong>
+                                            Green Valley National Park (Meeting point to be shared)
+                                        </li>
+                                    </ul>
+
+                                    <!-- Call to Action -->
+                                    <div class="flex gap-2.5">
+                                        <button class="btn btn-sm border border-primary text-primary hover:bg-primary hover:text-white">
+                                            <i class="iconify tabler--bell me-1.25"></i>
+                                            Interested
+                                        </button>
+
+                                        <button class="btn btn-sm bg-primary text-white hover:bg-primary-hover">
+                                            <i class="iconify tabler--user-plus me-1.25"></i>
+                                            Join Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-1.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">David Dev</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Posted 2 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-4">Sharing a couple of timelapses from my recent Iceland trip. Let me know which one you like most!</p>
+
+                                    <div class="grid md:grid-cols-2 gap-2.5">
+                                        <div>
+                                            <div class="relative aspect-video rounded overflow-hidden">
+                                                <iframe src="https://player.vimeo.com/video/1084537" class="absolute inset-0 w-full h-full" allowfullscreen> </iframe>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="relative aspect-video rounded overflow-hidden">
+                                                <iframe src="https://player.vimeo.com/video/76979871" class="absolute inset-0 w-full h-full" allowfullscreen> </iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2.5">
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--corner-up-left text-sm"></i>
+                                            Reply
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <div class="relative">
+                                                <span id="like-count-three"></span>
+                                                <button type="button" data-hs-toggle-password='{"target": "#like-count-three" }'>
+                                                    <div class="hs-password-active:hidden flex items-center gap-1">
+                                                        <i class="iconify tabler--heart-filled text-danger"></i>
+                                                        Liked!
+                                                    </div>
+
+                                                    <div class="hs-password-active:flex hidden items-center gap-1">
+                                                        <i class="iconify tabler--heart text-default-400"></i>
+                                                        Like
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--share text-sm"></i>
+                                            Share
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-6.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">David Kim</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Posted 10 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Poll Content -->
+                                    <h5 class="mb-5">🔥 Quick Poll: What’s your go-to front-end framework in 2025?</h5>
+                                    <p class="text-default-400 mb-4">We’re gathering developer preferences for our next project. Cast your vote below! 💻</p>
+
+                                    <!-- Poll Form -->
+                                    <form>
+                                        <div class="flex items-center gap-1.25 mb-1.25">
+                                            <input class="form-radio rounded-full!" type="radio" name="framework_poll" id="optionReact" />
+                                            <label class="form-check-label" for="optionReact">React (Meta)</label>
+                                        </div>
+
+                                        <div class="flex items-center gap-1.25 mb-1.25">
+                                            <input class="form-radio rounded-full!" type="radio" name="framework_poll" id="optionVue" />
+                                            <label class="form-check-label" for="optionVue">Vue.js (Evan You)</label>
+                                        </div>
+
+                                        <div class="flex items-center gap-1.25 mb-1.25">
+                                            <input class="form-radio rounded-full!" type="radio" name="framework_poll" id="optionAngular" />
+                                            <label class="form-check-label" for="optionAngular">Angular (Google)</label>
+                                        </div>
+
+                                        <div class="flex items-center gap-1.25 mb-base">
+                                            <input class="form-radio rounded-full!" type="radio" name="framework_poll" id="optionSvelte" />
+                                            <label class="form-check-label" for="optionSvelte">Svelte (Emerging Favorite)</label>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Submit Vote</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-6.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Sarah Mitchell</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Posted 4 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body pt-0">
+                                    <div class="border border-default-300 rounded-md p-5 bg-light/10">
+                                        <h5 class="font-bold mb-1.25">🌟 Hiring: Front-End Developer</h5>
+                                        <p class="text-default-400 mb-5">Our team is growing! Looking for a talented developer experienced with modern JS frameworks.</p>
+
+                                        <ul class="list-none mb-base">
+                                            <li><strong>Role:</strong> Front-End Developer</li>
+                                            <li><strong>Skills:</strong> React, Vue, ESBuild, Tailwind</li>
+                                            <li><strong>Location:</strong> Remote (Worldwide)</li>
+                                        </ul>
+
+                                        <button class="btn bg-primary text-white w-full rounded-full hover:bg-primary-hover">Apply Now</button>
+                                    </div>
+                                </div>
+
+                                <div class="px-5 pb-3.75">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-four"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-four" }'>
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Save
+                                                </div>
+
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Save!
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="flex items-center">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-3.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Daniel Carter</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>6 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Shared Link -->
+                                <div class="card-body pb-1.25">
+                                    <p class="text-default-400 mb-2.5">Found this helpful tool for UI designers — bookmarking it for future projects!</p>
+
+                                    <a href="#!" class="block border border-light rounded-2xl text-reset overflow-hidden shadow-sm">
+                                        <div class="flex">
+                                            <img src="assets/images/gallery/7.jpg" class="img-fluid" style="width: 140px; object-fit: cover" />
+                                            <div class="card-body">
+                                                <h6 class="font-bold text-xs mb-1.25">UI Component Library Explorer</h6>
+                                                <p class="text-xs text-default-400">Browse, compare and preview hundreds of UI components for modern frameworks.</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="card-body pb-3.75">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--corner-up-left text-sm"></i>
+                                        Reply
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-five"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-five" }'>
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Liked!
+                                                </div>
+
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Like
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="flex items-center">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-10.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Evelyn Brooks</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Just now </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Weather Card -->
+                                <div class="card-body pt-2.5">
+                                    <div class="bg-primary/10 text-primary rounded-md p-7.5 text-center">
+                                        <h1 class="text-[40px]">🌤️</h1>
+                                        <h3 class="text-xl mb-2.5 font-bold">23°C</h3>
+                                        <p class="italic">Clear skies in <strong>Vancouver</strong></p>
+                                    </div>
+                                    <p class="mt-5 mb-4 text-default-400 text-center">Perfect weather for a walk by the water today 🌊✨</p>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="card-body justify-center flex pb-3.75 pt-0">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-six"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-six" }'>
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Liked!
+                                                </div>
+
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Like
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--corner-up-left text-sm"></i>
+                                        Comment
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-8.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Emma Wilson</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>3 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Song Info -->
+                                <div class="card-body py-0">
+                                    <h5 class="mb-1.25 mt-5 font-bold">🎧 Song of the Day</h5>
+
+                                    <p class="text-default-400 mb-2.5">Found this calming track for focus sessions — highly recommend giving it a listen.</p>
+
+                                    <!-- Audio Player -->
+                                    <div class="bg-light/50 rounded-2xl p-5 shadow">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/gallery/5.jpg" class="rounded me-5" style="height: 60px; width: 60px; object-fit: cover" />
+
+                                            <div class="flex-1">
+                                                <div class="font-semibold">Dreamscape Horizon</div>
+                                                <small class="text-default-400">By SynthWaves</small>
+
+                                                <!-- Free Online Audio -->
+                                                <audio controls class="w-full mt-2.5" style="height: 32px">
+                                                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+                                                    Your browser does not support the audio element.
+                                                </audio>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body py-3.75">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--corner-up-left text-sm"></i>
+                                        Reply
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-seaven"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-seaven" }'>
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Liked!
+                                                </div>
+
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Like
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-base">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="flex items-center mb-base">
+                                        <div class="flex-1">
+                                            <h5 class="font-semibold">Create a Post</h5>
+                                            <span class="text-default-400 text-xs">Share updates with your network</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- New Post Form -->
+                                    <div class="relative">
+                                        <textarea rows="3" class="form-textarea" placeholder="Write something meaningful..."></textarea>
+                                    </div>
+
+                                    <!-- New Icon Bar -->
+                                    <div class="flex flex-wrap gap-2.5 justify-between items-center mt-5">
+                                        <!-- New Icon Bar -->
+                                        <div class="flex gap-2.25">
+                                            <button type="button" class="btn btn-sm bg-light hover:text-primary text-sm">
+                                                <i class="iconify tabler--user text-base"></i>
+                                                <span class="md:block hidden">Tag</span>
+                                            </button>
+
+                                            <button type="button" class="btn btn-sm bg-light hover:text-primary text-sm">
+                                                <i class="iconify tabler--map-pin text-base"></i>
+                                                <span class="md:block hidden">Location</span>
+                                            </button>
+
+                                            <button type="button" class="btn btn-sm bg-light hover:text-primary text-sm">
+                                                <i class="iconify tabler--camera text-base"></i>
+                                                <span class="md:block hidden">Photo</span>
+                                            </button>
+
+                                            <button type="button" class="btn btn-sm bg-light hover:text-primary text-sm">
+                                                <i class="iconify tabler--mood-smile text-base"></i>
+                                                <span class="md:block hidden">Feeling</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- New Post Button -->
+                                        <button type="submit" class="btn bg-primary btn-sm px-5 text-white hover:bg-primary-hover">Publish</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <!-- Ribbon Header -->
+                                <div class="bg-primary/10 text-primary py-5 md:px-7.5 px-2.5 relative rounded-t-sm">
+                                    <h4 class="md:text-lg text-base font-bold">Achievement Unlocked</h4>
+                                    <span class="absolute top-1/2 -translate-y-1/2 end-0 bg-warning text-white font-semibold px-2.5 py-1.25 rounded-s-sm"> 🏅 Level Up </span>
+                                </div>
+
+                                <!-- Main Content -->
+                                <div class="card-body text-center py-7.5">
+                                    <div class="mb-5">
+                                        <h1 class="text-[40px]">💡</h1>
+                                    </div>
+
+                                    <h4 class="text-lg mb-1.25 font-semibold">Impressive Progress, David Dev!</h4>
+                                    <p class="text-default-400 mb-7.5">You’ve just reached <strong>Milestone Tier 3</strong> for your outstanding activity. Keep up the great momentum!</p>
+
+                                    <!-- Stat Badges -->
+                                    <div class="flex flex-wrap justify-center gap-2.5 mb-7.5">
+                                        <div class="px-5 py-2.5 rounded border border-dashed border-default-300">
+                                            <h6 class="text-default-400 text-2xs">Achievements</h6>
+                                            <div class="font-bold text-sm">28</div>
+                                        </div>
+
+                                        <div class="px-5 py-2.5 rounded border border-dashed border-default-300">
+                                            <h6 class="text-default-400 text-2xs">Followers</h6>
+                                            <div class="font-bold text-sm">7,840</div>
+                                        </div>
+
+                                        <div class="px-5 py-2.5 rounded border border-dashed border-default-300">
+                                            <h6 class="text-default-400 text-2xs">Score</h6>
+                                            <div class="font-bold text-sm">1,920</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="flex justify-center gap-2.5">
+                                        <button class="btn btn-sm border border-primary text-primary hover:bg-primary hover:text-white">
+                                            <i class="iconify tabler--share"></i>
+                                            Share
+                                        </button>
+
+                                        <a href="#!" class="btn bg-success btn-sm text-white hover:bg-success-hover">
+                                            <i class="iconify tabler--user"></i>
+                                            Profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-10.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Sophia Martinez</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>about 5 minutes ago</small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-4">Story inspired by the beauty of changing seasons — a nature-themed animation coming soon!</p>
+
+                                    <div class="grid md:grid-cols-2 grid-cols-1 gap-2.5">
+                                        <div class="md:col-span-2">
+                                            <img src="assets/images/gallery/5.jpg" class="w-full h-65 object-cover rounded-md" alt="" />
+                                        </div>
+
+                                        <div>
+                                            <img src="assets/images/gallery/7.jpg" class="w-full h-37.5 object-cover rounded-md" alt="" />
+                                        </div>
+
+                                        <div>
+                                            <img src="assets/images/gallery/8.jpg" class="w-full h-37.5 object-cover rounded-md" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-2.5">
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--corner-up-left text-sm"></i>
+                                            Reply
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <div class="relative">
+                                                <span id="like-count-eight"></span>
+                                                <button type="button" data-hs-toggle-password='{"target": "#like-count-eight" }'>
+                                                    <div class="hs-password-active:hidden flex items-center gap-1">
+                                                        <i class="iconify tabler--heart-filled text-danger"></i>
+                                                        Liked!
+                                                    </div>
+
+                                                    <div class="hs-password-active:flex hidden items-center gap-1">
+                                                        <i class="iconify tabler--heart text-default-400"></i>
+                                                        Like
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--share text-sm"></i>
+                                            Share
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-9 rounded-full" src="assets/images/users/user-4.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Liam Anderson</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>about 30 minutes ago</small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quote Style Post Content -->
+                                    <div class="border-s-3 border-primary ps-5 mt-5 mb-7.5">
+                                        <p class="text-default-400 italic text-base">
+                                            <i class="iconify tabler--quote me-2.5 text-xl opacity-75"></i>
+                                            Discovering peaceful nature trails today — captured some beautiful shots I can't wait to share. 🌲✨
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-light/20 p-5 border-t border-default-300">
+                                    <div class="flex items-start">
+                                        <img class="me-5 size-8 rounded-full" src="assets/images/users/user-5.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Ethan Reynolds</a>
+                                                <small class="text-default-400 font-normal float-end">20 minutes ago</small>
+                                            </h5>
+                                            <p class="mb-1.25 text-default-400">This sounds amazing! Excited to see the photos — the last set you shared was incredible.</p>
+                                            <br />
+                                            <a href="javascript:void(0);" class="text-default-400 inline-block">
+                                                <i class="iconify tabler--corner-up-left"></i>
+                                                Reply
+                                            </a>
+
+                                            <div class="flex items-start mt-5 ps-7.5 border-s border-default-300">
+                                                <img src="assets/images/users/user-6.jpg" class="size-8 rounded-full me-5" alt="Generic placeholder image" />
+                                                <div class="w-full">
+                                                    <h5>
+                                                        <a href="#!" class="hover:text-primary font-semibold">Mia Thompson</a>
+                                                        <small class="text-default-400 font-normal float-end">12 minutes ago</small>
+                                                    </h5>
+                                                    <p class="mb-1.25 text-default-400">I hiked there last month! Those trails are perfect for photography — can't wait to see your shots!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start mt-5">
+                                        <img src="assets/images/users/user-3.jpg" class="rounded-full size-8 me-2.5" alt="Generic placeholder image" height="31" />
+                                        <div class="w-full">
+                                            <input type="text" id="simpleinput" class="form-input form-input-sm rounded-full!" placeholder="Write a comment..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-2.5">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--corner-up-left text-sm"></i>
+                                        Reply
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-two"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-two" }'>
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Liked!
+                                                </div>
+
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Like
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <!-- Event Banner -->
+                                <div class="relative">
+                                    <img src="assets/images/gallery/2.jpg" class="w-full h-45 object-cover rounded-t-sm" alt="Event Banner" />
+
+                                    <span class="badge bg-primary text-white absolute top-0 start-0 m-5 px-5 py-2.5 rounded-full"> 📸 Photography Event </span>
+
+                                    <!-- Dropdown -->
+                                    <div class="hs-dropdown absolute top-0 end-0 m-5 inline-flex [--placement:bottom-right]">
+                                        <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                            <i class="iconify tabler--dots-vertical text-base text-white"></i>
+                                        </button>
+
+                                        <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                            <div class="space-y-0.5">
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--edit"></i>
+                                                    Edit
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--trash"></i>
+                                                    Delete
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--pin"></i>
+                                                    Pin
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--flag"></i>
+                                                    Report
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <!-- Author Info -->
+                                    <div class="flex items-center mb-5">
+                                        <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full me-2.5" alt="User" />
+                                        <div>
+                                            <h5><a href="#!" class="hover:text-primary font-semibold">Anika Roy</a></h5>
+                                            <small class="text-default-400 text-2xs">2 hours ago</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Event Title -->
+                                    <h4 class="text-lg mb-2.5">Nature Photography Workshop 2025</h4>
+                                    <p class="text-default-400 mb-4">A weekend event designed for photographers and outdoor lovers to learn, collaborate, and capture stunning nature moments together.</p>
+
+                                    <!-- Info Boxes -->
+                                    <div class="grid md:grid-cols-3 grid-cols-1 gap-2.5 mb-5">
+                                        <div>
+                                            <div class="bg-light/20 border border-light border-dashed rounded p-5 h-full">
+                                                <small class="text-default-400 uppercase font-bold">Date</small>
+                                                <div class="font-semibold mt-1.25">14 September 2025</div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <div class="bg-light/20 border border-light border-dashed rounded p-5 h-full">
+                                                <small class="text-default-400 uppercase font-bold">Time</small>
+                                                <div class="font-semibold mt-1.25">10:00 AM – 4:00 PM</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="bg-light/20 border border-light border-dashed rounded p-5 h-full">
+                                                <small class="text-default-400 uppercase font-bold">Location</small>
+                                                <div class="font-semibold mt-1.25">Green Valley National Park</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- CTA Buttons -->
+                                    <div class="flex justify-center gap-2.5 mt-2.5">
+                                        <button class="btn btn-sm border border-primary text-primary hover:bg-primary hover:text-white">
+                                            <i class="iconify tabler--bell"></i>
+                                            Remind Me
+                                        </button>
+
+                                        <button class="btn btn-sm bg-primary text-white hover:bg-primary-hover">
+                                            <i class="iconify tabler--user-plus"></i>
+                                            Register
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-2.5">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-1.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">David Dev</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>Posted 2 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="mb-4">Sharing a couple of timelapses from my recent Iceland trip. Let me know which one you like most!</p>
+
+                                    <div class="relative aspect-video rounded overflow-hidden">
+                                        <iframe src="https://player.vimeo.com/video/1084537" class="absolute inset-0 w-full h-full" allowfullscreen> </iframe>
+                                    </div>
+
+                                    <div class="mt-2.5">
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--corner-up-left text-sm"></i>
+                                            Reply
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <div class="relative">
+                                                <span id="like-count-nine"></span>
+                                                <button type="button" data-hs-toggle-password='{"target": "#like-count-nine" }'>
+                                                    <div class="hs-password-active:hidden flex items-center gap-1">
+                                                        <i class="iconify tabler--heart-filled text-danger"></i>
+                                                        Liked!
+                                                    </div>
+
+                                                    <div class="hs-password-active:flex hidden items-center gap-1">
+                                                        <i class="iconify tabler--heart text-default-400"></i>
+                                                        Like
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </a>
+
+                                        <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                            <i class="iconify tabler--share text-sm"></i>
+                                            Share
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="flex items-center mb-2.5">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-6.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">David Kim</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>10 hours ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--edit"></i>
+                                                            Edit Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--trash"></i>
+                                                            Delete Post
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--pin"></i>
+                                                            Pin to Top
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report Post
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Poll Title -->
+                                    <div class="mt-5">
+                                        <span class="badge py-2.5 px-5 bg-primary/10 text-primary rounded-full mb-2.5">📊 Community Poll</span>
+                                        <h5 class="mb-1.25 font-bold">Choose your favorite front-end framework in 2025</h5>
+                                        <p class="text-default-400 mb-2.5">Your vote helps us decide what to adopt for our next UI toolkit update.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Poll Section -->
+                                <div class="card-body pt-0">
+                                    <div class="bg-light/20 p-5 ps-7.5 rounded border border-default-300">
+                                        <!-- Poll Options -->
+                                        <form>
+                                            <div class="flex gap-2.5 mb-2.5 p-2.5 bg-card rounded shadow">
+                                                <input class="form-radio bg-white! checked:bg-primary! rounded-full! -ms-6" type="radio" name="poll" id="pollReact" />
+                                                <label class="form-check-label font-semibold" for="pollReact"> React (Meta) </label>
+                                            </div>
+
+                                            <div class="flex gap-2.5 mb-2.5 p-2.5 bg-card rounded shadow">
+                                                <input class="form-radio bg-white! checked:bg-primary! rounded-full! -ms-6" type="radio" name="poll" id="pollVue" />
+                                                <label class="form-check-label font-semibold" for="pollVue"> Vue.js (Evan You) </label>
+                                            </div>
+
+                                            <div class="flex gap-2.5 mb-2.5 p-2.5 bg-card rounded shadow">
+                                                <input class="form-radio bg-white! checked:bg-primary! rounded-full! -ms-6" type="radio" name="poll" id="pollAngular" />
+                                                <label class="form-check-label font-semibold" for="pollAngular"> Angular (Google) </label>
+                                            </div>
+
+                                            <div class="flex gap-2.5 mb-5 p-2.5 bg-card rounded shadow">
+                                                <input class="form-radio bg-white! checked:bg-primary! rounded-full! -ms-6" type="radio" name="poll" id="pollSvelte" />
+                                                <label class="form-check-label font-semibold" for="pollSvelte"> Svelte (Emerging Favorite) </label>
+                                            </div>
+
+                                            <!-- Submit Button -->
+                                            <button type="submit" class="btn bg-primary text-white w-full rounded-full hover:bg-primary-hover">Submit Vote</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body pb-0">
+                                    <div class="flex items-center">
+                                        <img class="me-2.5 size-8 rounded-full" src="assets/images/users/user-7.jpg" alt="Generic placeholder image" />
+                                        <div class="w-full">
+                                            <h5>
+                                                <a href="#!" class="hover:text-primary font-semibold">Ava Thompson</a>
+                                            </h5>
+                                            <p class="text-default-400">
+                                                <small>1 hour ago </small>
+                                            </p>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                                <button type="button" class="hs-dropdown-toggl" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                    <i class="iconify tabler--dots-vertical text-base text-default-400"></i>
+                                                </button>
+
+                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                    <div class="space-y-0.5">
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--share"></i>
+                                                            Share
+                                                        </a>
+
+                                                        <a href="#" class="dropdown-item">
+                                                            <i class="iconify tabler--flag"></i>
+                                                            Report
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Story Image -->
+                                <div class="card-body pb-0">
+                                    <div class="rounded-2xl overflow-hidden shadow-sm">
+                                        <img src="assets/images/gallery/8.jpg" class="w-full h-65 object-cover" alt="" />
+                                    </div>
+                                </div>
+
+                                <!-- Caption -->
+                                <div class="px-5 py-2.5">
+                                    <p class="mb-2.5 text-default-400">Dropping my favorite shot from yesterday's sunset hike. 🌅 Nature always surprises me.</p>
+                                </div>
+
+                                <div class="p-2.5">
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--corner-up-left text-sm"></i>
+                                        Reply
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <div class="relative">
+                                            <span id="like-count-ten"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-ten" }'>
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                    Liked!
+                                                </div>
+
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                    Like
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+
+                                    <a href="javascript: void(0);" class="btn btn-sm text-default-400 text-sm">
+                                        <i class="iconify tabler--share text-sm"></i>
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <!-- Background Quote Block -->
+                                <div class="relative">
+                                    <img src="assets/images/gallery/12.jpg" class="w-full h-50 object-cover brightness-50 rounded-t-sm" alt="" />
+
+                                    <div class="absolute top-0 start-0 size-full flex flex-col justify-center items-center text-center text-white px-7.5">
+                                        <i class="iconify tabler--quote text-3xl opacity-75 mb-2.5"></i>
+                                        <h4 class="mb-1.25 text-lg">“Creativity is intelligence having fun.”</h4>
+                                        <p class="text-2xs opacity-75">A reminder to keep exploring, learning, and building.</p>
+                                    </div>
+
+                                    <!-- Dropdown -->
+                                    <div class="hs-dropdown absolute top-0 end-0 m-5 inline-flex [--placement:bottom-right]">
+                                        <button type="button" class="hs-dropdown-toggl" aria-haspopup="me" aria-expanded="false" aria-label="Dropdown">
+                                            <i class="iconify tabler--dots-vertical text-base text-white"></i>
+                                        </button>
+
+                                        <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                            <div class="space-y-0.5">
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--flag"></i>
+                                                    Report
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body flex items-center">
+                                    <img src="assets/images/users/user-4.jpg" class="size-9 rounded-full me-2.5" />
+
+                                    <div class="flex-1">
+                                        <h5><a href="#!" class="hover:text-primary font-semibold">Noah Carter</a></h5>
+                                        <small class="text-default-400">Shared an inspiration</small>
+                                    </div>
+
+                                    <a href="javascript: void(0);" class="text-default-400 text-lg">
+                                        <div class="relative">
+                                            <span id="like-count-eleven"></span>
+                                            <button type="button" data-hs-toggle-password='{"target": "#like-count-eleven" }'>
+                                                <div class="hs-password-active:flex hidden items-center gap-1">
+                                                    <i class="iconify tabler--heart-filled text-danger"></i>
+                                                </div>
+
+                                                <div class="hs-password-active:hidden flex items-center gap-1">
+                                                    <i class="iconify tabler--heart text-default-400"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+</body>
+
+</html>

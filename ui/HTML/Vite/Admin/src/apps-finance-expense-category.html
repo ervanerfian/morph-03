@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="Expense Categories" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="Finance" title="Expense Categories"}} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="Finance" title="Expense Categories" }}
+
+                    <div class="container-fluid">
+                        <div data-table data-table-rows-per-page="8" class="card">
+                            <div class="card-header">
+                                <!-- Search -->
+                                <div class="flex flex-wrap gap-2.5">
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input data-table-search type="search" class="form-input w-auto ps-10" placeholder="Search categories..." />
+                                    </div>
+
+                                    <!-- Add New Category -->
+                                    <div class="flex gap-1">
+                                        <a href="#categoryModal" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="categoryModal" data-hs-overlay="#categoryModal">
+                                            <i class="iconify tabler--plus"></i> Add Category
+                                        </a>
+                                    </div>
+
+                                    <!-- Delete Selected -->
+                                    <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-2.5 lg:flex-nowrap">
+                                    <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                        <div class="items-center gap-2.5 md:flex">
+                                            <span class="font-semibold me-2.5">Filter By:</span>
+
+                                            <!-- Status Filter -->
+                                            <div class="input-icon-group">
+                                                <i class="iconify tabler--circle-check input-icon"></i>
+                                                <select data-table-filter="status" class="form-select">
+                                                    <option value="">Status</option>
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Records Per Page -->
+                                        <div class="relative">
+                                            <select data-table-set-rows-per-page class="form-select">
+                                                <option value="5">5</option>
+                                                <option value="10" selected>10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table class="table-custom table-select table table-hover">
+                                    <thead class="thead-sm">
+                                        <tr class="bg-light/25 text-2xs uppercase">
+                                            <th class="w-[1%]">
+                                                <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </th>
+                                            <th data-table-sort>ID</th>
+                                            <th data-table-sort>Category Name</th>
+                                            <th data-table-sort>Total Expenses</th>
+                                            <th data-table-sort data-column="status">Status</th>
+                                            <th data-table-sort>Last Updated</th>
+                                            <th class="text-end w-[1%]">Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <!-- row-1 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-001</a>
+                                            </td>
+                                            <td>Office Supplies</td>
+                                            <td>$2,845.60</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                10 Oct, 2025
+                                                <small class="text-default-400 text-2xs">04:10 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-2 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-002</a>
+                                            </td>
+                                            <td>Travel</td>
+                                            <td>$5,920.00</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                08 Oct, 2025
+                                                <small class="text-default-400 text-2xs">11:00 AM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-3 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-003</a>
+                                            </td>
+                                            <td>Meals</td>
+                                            <td>$1,280.75</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                05 Oct, 2025
+                                                <small class="text-default-400 text-2xs">07:45 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-4 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-004</a>
+                                            </td>
+                                            <td>Entertainment</td>
+                                            <td>$2,140.20</td>
+                                            <td>
+                                                <span class="badge badge-label bg-warning/15 text-warning">Inactive</span>
+                                            </td>
+                                            <td>
+                                                03 Oct, 2025
+                                                <small class="text-default-400 text-2xs">09:25 AM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-5 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-005</a>
+                                            </td>
+                                            <td>Equipment</td>
+                                            <td>$4,580.00</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                01 Oct, 2025
+                                                <small class="text-default-400 text-2xs">03:15 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-6 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-006</a>
+                                            </td>
+                                            <td>Maintenance</td>
+                                            <td>$3,210.40</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                28 Sep, 2025
+                                                <small class="text-default-400 text-2xs">02:00 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-7 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-007</a>
+                                            </td>
+                                            <td>Training & Events</td>
+                                            <td>$6,845.00</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                25 Sep, 2025
+                                                <small class="text-default-400 text-2xs">10:35 AM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-8 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-008</a>
+                                            </td>
+                                            <td>Subscriptions</td>
+                                            <td>$980.75</td>
+                                            <td>
+                                                <span class="badge badge-label bg-warning/15 text-warning">Inactive</span>
+                                            </td>
+                                            <td>
+                                                21 Sep, 2025
+                                                <small class="text-default-400 text-2xs">09:50 AM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-9 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-009</a>
+                                            </td>
+                                            <td>Marketing</td>
+                                            <td>$9,475.90</td>
+                                            <td>
+                                                <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                            </td>
+                                            <td>
+                                                18 Sep, 2025
+                                                <small class="text-default-400 text-2xs">01:40 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- row-10 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <a href="#!" class="hover:text-primary font-semibold">#CAT-010</a>
+                                            </td>
+                                            <td>Insurance</td>
+                                            <td>$2,540.00</td>
+                                            <td>
+                                                <span class="badge badge-label bg-danger/15 text-danger">Inactive</span>
+                                            </td>
+                                            <td>
+                                                15 Sep, 2025
+                                                <small class="text-default-400 text-2xs">05:15 PM</small>
+                                            </td>
+                                            <td>
+                                                <div class="flex justify-end gap-1">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-footer">
+                                <div data-table-pagination-info="Expense Categories"></div>
+                                <div data-table-pagination></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+
+                <div id="categoryModal" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="categoryModalLabel">
+                    <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-lg">
+                        <div class="card pointer-events-auto flex w-full flex-col">
+                            <div class="card-header p-5 rounded-t-sm bg-default-100">
+                                <h3 id="categoryModalLabel" class="font-semibold">Add Expense Category</h3>
+                                <button type="button" aria-label="Close" data-hs-overlay="#categoryModal">
+                                    <i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 gap-4">
+                                    <!-- Category Name -->
+                                    <div>
+                                        <label for="categoryName" class="form-label">
+                                            Category Name
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" id="categoryName" class="form-input" placeholder="Enter category name" required />
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div>
+                                        <label for="categoryDescription" class="form-label">Description</label>
+                                        <textarea id="categoryDescription" class="form-textarea" rows="3" placeholder="Optional notes about this category"></textarea>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div>
+                                        <label for="categoryStatus" class="form-label">Status</label>
+                                        <select id="categoryStatus" class="form-input">
+                                            <option value="Active" selected>Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-default-300 flex items-center justify-end gap-2 border-t p-5">
+                                <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#categoryModal">Cancel</button>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">
+                                    <i class="iconify tabler--device-floppy"></i>
+                                    Save Category
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Custom table -->
+        <script type="module" src="assets/js/pages/custom-table.js"></script>
+    </body>
+</html>

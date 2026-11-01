@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Staffs"})
+
+    @@include('./partials/head-css.html')
+</head>
+
+<body>
+    <div class="wrapper">
+        @@include('./partials/topbar.html', {"subtitle": "HRM", "title":"Staffs"})
+
+        @@include('./partials/sidenav.html')
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                @@include("./partials/page-title.html", {"subtitle": "HRM", "title":"Staffs"})
+
+                <div class="container-fluid">
+                    <div data-table data-table-rows-per-page="10" class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap gap-2.5">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input data-table-search type="text" type="search" placeholder="Search staff..." class="form-input" />
+                                </div>
+                                <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="addStaffModal" data-hs-overlay="#addStaffModal">
+                                    <i class="iconify tabler--plus"></i>
+                                    New Staff
+                                </button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                <!-- Department Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--layout input-icon"></i>
+                                    <select data-table-filter="department" class="form-select">
+                                        <option value="All">Department</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="IT Department">IT Department</option>
+                                        <option value="Operations">Operations</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Analytics">Analytics</option>
+                                        <option value="Product">Product</option>
+                                        <option value="Quality Assurance">Quality Assurance</option>
+                                    </select>
+                                </div>
+
+                                <!-- Status Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                    <select data-table-filter="status" class="form-select">
+                                        <option value="">Employment Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="On Leave">On Leave</option>
+                                        <option value="Probation">Probation</option>
+                                        <option value="Suspended">Suspended</option>
+                                        <option value="Review Pending">Review Pending</option>
+                                    </select>
+                                </div>
+
+                                <!-- Records Per Page -->
+                                <div>
+                                    <select data-table-set-rows-per-page class="form-select">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table table-hover">
+                                <thead class="thead-sm">
+                                    <tr class="bg-light/25 text-2xs uppercase">
+                                        <th class="w-[1%]">
+                                            <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="checkAll" />
+                                        </th>
+                                        <th data-table-sort>Staff ID</th>
+                                        <th data-table-sort>Staff Name</th>
+                                        <th data-table-sort data-column="country">Phone</th>
+                                        <th data-table-sort>Country</th>
+                                        <th data-table-sort>Joined</th>
+                                        <th data-table-sort>Role</th>
+                                        <th data-table-sort data-column="department">Department</th>
+                                        <th data-table-sort data-column="status">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- STF-001 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-001</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-3.jpg" class="size-8 rounded-full" alt="Samantha Green" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Samantha Green</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">samantha.green&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+1 202 555 0147</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/us.svg" class="size-3.5 rounded-full" />
+                                                US
+                                            </div>
+                                        </td>
+                                        <td>Feb 10, 2024</td>
+                                        <td>HR Manager</td>
+                                        <td>Human Resources</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-002 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-002</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-5.jpg" class="size-8 rounded-full" alt="Liam Johnson" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Liam Johnson</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">liam.johnson&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+44 7700 900123</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/gb.svg" class="size-3.5 rounded-full" alt="UK" />
+                                                UK
+                                            </div>
+                                        </td>
+                                        <td>Jan 25, 2024</td>
+                                        <td>Software Engineer</td>
+                                        <td>IT Department</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">On Leave</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-003 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-003</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-7.jpg" class="size-8 rounded-full" alt="Noah Martinez" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Noah Martinez</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">noah.martinez&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+61 401 222 890</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/au.svg" class="size-3.5 rounded-full" alt="AU" />
+                                                AU
+                                            </div>
+                                        </td>
+                                        <td>Mar 05, 2024</td>
+                                        <td>Project Coordinator</td>
+                                        <td>Operations</td>
+                                        <td>
+                                            <span class="badge badge-label bg-danger/15 text-danger">Suspended</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-004 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-004</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-8.jpg" class="size-8 rounded-full" alt="Emily Davis" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Emily Davis</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">emily.davis&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+1 303 555 0172</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/ca.svg" class="size-3.5 rounded-full" alt="CA" />
+                                                CA
+                                            </div>
+                                        </td>
+                                        <td>Apr 18, 2024</td>
+                                        <td>Marketing Lead</td>
+                                        <td>Marketing</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-005 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-005</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-9.jpg" class="size-8 rounded-full" alt="Lucas Brown" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Lucas Brown</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">lucas.brown&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+49 1512 345678</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/de.svg" class="size-3.5 rounded-full" alt="GE" />
+                                                GE
+                                            </div>
+                                        </td>
+                                        <td>May 12, 2024</td>
+                                        <td>Financial Analyst</td>
+                                        <td>Finance</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-006 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-006</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-10.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Olivia Wilson</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">olivia.wilson&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+33 6 12 34 56 78</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/fr.svg" class="size-3.5 rounded-full" />
+                                                FR
+                                            </div>
+                                        </td>
+                                        <td>Jun 02, 2024</td>
+                                        <td>UX Designer</td>
+                                        <td>Design</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Probation</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-007 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-007</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-1.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Isabella Moore</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">isabella.moore&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+34 612 345 678</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/es.svg" class="size-3.5 rounded-full" />
+                                                SP
+                                            </div>
+                                        </td>
+                                        <td>Jul 21, 2024</td>
+                                        <td>Data Analyst</td>
+                                        <td>Analytics</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-008 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-008</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-2.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Ethan Clark</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">ethan.clark&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+39 347 123 4567</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/it.svg" class="size-3.5 rounded-full" />
+                                                IT
+                                            </div>
+                                        </td>
+                                        <td>Aug 08, 2024</td>
+                                        <td>QA Tester</td>
+                                        <td>Quality Assurance</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Review Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-009 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-009</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-4.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Charlotte Turner</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">charlotte.turner&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+41 79 123 4567</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/ch.svg" class="size-3.5 rounded-full" />
+                                                SW
+                                            </div>
+                                        </td>
+                                        <td>Sep 15, 2024</td>
+                                        <td>Legal Advisor</td>
+                                        <td>Legal</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-010 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-010</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-9.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Amelia Walker</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">amelia.walker&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+65 8123 4567</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/sg.svg" class="size-3.5 rounded-full" />
+                                                SI
+                                            </div>
+                                        </td>
+                                        <td>Oct 04, 2024</td>
+                                        <td>Sales Executive</td>
+                                        <td>Sales</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Probation</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-011 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-011</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-7.jpg" class="size-8 rounded-full" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Benjamin Scott</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">benjamin.scott&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+31 6 12 34 56 78</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/nl.svg" class="size-3.5 rounded-full" />
+                                                NE
+                                            </div>
+                                        </td>
+                                        <td>Nov 11, 2024</td>
+                                        <td>Network Administrator</td>
+                                        <td>IT Department</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.5">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-012 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-012</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-6.jpg" class="size-8 rounded-full" alt="Henry Lewis" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Henry Lewis</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">henry.lewis&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+353 86 123 4567</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/ie.svg" class="size-3.5 rounded-full" alt="IE" />
+                                                IR
+                                            </div>
+                                        </td>
+                                        <td>Dec 02, 2024</td>
+                                        <td>Content Strategist</td>
+                                        <td>Marketing</td>
+                                        <td>
+                                            <span class="badge badge-label bg-warning/15 text-warning">Review Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- STF-013 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <a href="apps-hrm-staff-profile.html" class="font-semibold">STF-013</a>
+                                        </td>
+                                        <td>
+                                            <div class="flex items-center gap-3">
+                                                <img src="assets/images/users/user-1.jpg" class="size-8 rounded-full" alt="Grace Adams" />
+                                                <div>
+                                                    <h5>
+                                                        <a href="apps-hrm-staff-profile.html" class="hover:text-primary">Grace Adams</a>
+                                                    </h5>
+                                                    <p class="text-default-400 text-xs">grace.adams&#64;company.com</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>+351 912 345 678</td>
+                                        <td>
+                                            <div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+                                                <img src="assets/images/flags/pt.svg" class="size-3.5 rounded-full" alt="PT" />
+                                                PO
+                                            </div>
+                                        </td>
+                                        <td>Dec 18, 2024</td>
+                                        <td>Product Manager</td>
+                                        <td>Product</td>
+                                        <td>
+                                            <span class="badge badge-label bg-success/15 text-success">Active</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <div data-table-pagination-info="staffs"></div>
+                            <div data-table-pagination></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            @@include('./partials/footer.html')
+
+            <div id="addStaffModal" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="addStaffModalLabel">
+                <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                    <div class="card pointer-events-auto flex w-full flex-col">
+                        <div class="card-header p-5">
+                            <h5 id="addStaffModalLabel" class="flex font-semibold text-default-800 items-center gap-2 text-sm">
+                                <i class="iconify tabler--user-plus size-3.5"></i>
+                                Add New Staff
+                            </h5>
+
+                            <button type="button" aria-label="Close" data-hs-overlay="#addStaffModal">
+                                <i class="iconify tabler--x text-xl"></i>
+                            </button>
+                        </div>
+
+                        <div class="card-body overflow-y-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="staffName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-input" id="staffName" placeholder="Enter full name" />
+                                </div>
+
+                                <div>
+                                    <label for="staffEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-input" id="staffEmail" placeholder="name&#64;example.com" />
+                                </div>
+
+                                <div>
+                                    <label for="staffPhone" class="form-label">Phone</label>
+                                    <input type="number" class="form-input" id="staffPhone" placeholder="+1 202 555 0123" />
+                                </div>
+
+                                <div>
+                                    <label for="staffCountry" class="form-label">Country</label>
+                                    <select class="form-input" id="staffCountry">
+                                        <option value="">Select country</option>
+                                        <option value="USA">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="Canada">India</option>
+                                        <option value="Germany">Canada</option>
+                                        <option value="France">Germany</option>
+                                        <option value="Australia">France</option>
+                                        <option value="India">Japan</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="staffRole" class="form-label">Role</label>
+                                    <input type="text" class="form-input" id="staffRole" placeholder="e.g. Software Engineer" />
+                                </div>
+
+                                <div>
+                                    <label for="staffDepartment" class="form-label">Department</label>
+                                    <select id="staffDepartment" class="form-input">
+                                        <option value="">Select department</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="IT Department">IT Department</option>
+                                        <option value="Operations">Operations</option>
+                                        <option value="Marketing">Marketing</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Analytics">Analytics</option>
+                                        <option value="Product">Product</option>
+                                        <option value="Quality Assurance">Quality Assurance</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="staffStatus" class="form-label">Status</label>
+                                    <select id="staffStatus" class="form-input">
+                                        <option value="Active">Active</option>
+                                        <option value="On Leave">On Leave</option>
+                                        <option value="Probation">Probation</option>
+                                        <option value="Suspended">Suspended</option>
+                                        <option value="Review Pending">Review Pending</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="staffJoinDate" class="form-label">Join Date</label>
+                                    <input type="text" class="form-input flatpickr-input" data-provider="flatpickr" data-date-format="d M, Y" id="staffJoinDate" readonly="readonly" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                            <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#addStaffModal">Cancel</button>
+
+                            <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">
+                                <i class="iconify tabler--check"></i>
+                                Save Staff
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    @@include('./partials/customizer.html')
+
+    @@include('./partials/footer-scripts.html')
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Proposals"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "CRM"; $title = "Proposals"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "CRM"; $title = "Proposals"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="mb-2.5 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-5">
+                        <!-- Total Proposals Widget -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex justify-between">
+                                    <h5 class="text-lg">38</h5>
+                                    <span class="flex items-center gap-1">
+                                        +12.4%
+                                        <i class="iconify tabler--arrow-up text-success"></i>
+                                    </span>
+                                </div>
+                                <p class="text-default-400">Total proposals submitted</p>
+                            </div>
+                        </div>
+
+                        <!-- Approved Proposals Widget -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex justify-between">
+                                    <h5 class="text-lg">19</h5>
+                                    <span class="flex items-center gap-1">
+                                        +9.8%
+                                        <i class="iconify tabler--arrow-up text-success"></i>
+                                    </span>
+                                </div>
+                                <p class="text-default-400">Approved proposals</p>
+                            </div>
+                        </div>
+
+                        <!-- Declined Proposals Widget -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex justify-between">
+                                    <h5 class="text-lg">7</h5>
+                                    <span class="flex items-center gap-1">
+                                        -4.2%
+                                        <i class="iconify tabler--arrow-down text-danger"></i>
+                                    </span>
+                                </div>
+                                <p class="text-default-400">Declined proposals</p>
+                            </div>
+                        </div>
+
+                        <!-- Highest Proposal Value Widget -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex justify-between">
+                                    <h5 class="text-lg">$112,000</h5>
+                                    <span class="flex items-center gap-1">
+                                        Top value
+                                        <i class="iconify tabler--currency-dollar text-primary"></i>
+                                    </span>
+                                </div>
+                                <p class="text-default-400">Highest proposal value</p>
+                            </div>
+                        </div>
+
+                        <!-- Avg. Proposal Review Time Widget -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex justify-between">
+                                    <h5 class="text-lg">
+                                        3.2
+                                        <small class="text-2xs">days</small>
+                                    </h5>
+                                    <span class="flex items-center gap-1">
+                                        +0.8%
+                                        <i class="iconify tabler--clock text-warning"></i>
+                                    </span>
+                                </div>
+                                <p class="text-default-400">Avg. review time</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-table data-table-rows-per-page="8" class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap gap-2.5">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input data-table-search type="search" type="search" placeholder="Search proposal..." class="form-input" />
+                                </div>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="createProposalModal" data-hs-overlay="#createProposalModal">
+                                    <i class="iconify tabler--plus"></i>
+                                    New Proposal
+                                </button>
+
+                                <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                <!-- Status Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                    <select data-table-filter="status" class="form-select">
+                                        <option value="">Status</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Declined">Declined</option>
+                                        <option value="Sent">Sent</option>
+                                        <option value="In Review">In Review</option>
+                                    </select>
+                                </div>
+
+                                <!-- Value Range Filter -->
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--currency-dollar input-icon"></i>
+                                    <select data-table-range-filter="value" class="form-select">
+                                        <option value="">Value Range</option>
+                                        <option value="0-5000">$0 - $5,000</option>
+                                        <option value="5001-10000">$5,001 - $10,000</option>
+                                        <option value="10001-20000">$10,001 - $20,000</option>
+                                        <option value="20001-50000">$20,001 - $50,000</option>
+                                        <option value="50000+">$50,000+</option>
+                                    </select>
+                                </div>
+
+                                <!-- Records Per Page -->
+                                <div>
+                                    <select data-table-set-rows-per-page class="form-select">
+                                        <option value="5">5</option>
+                                        <option value="10" selected>10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table table-hover">
+                                <thead class="thead-sm">
+                                    <tr class="bg-light/25 text-2xs uppercase">
+                                        <th class="w-[1%]">
+                                            <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="select-all-products" />
+                                        </th>
+                                        <th data-table-sort>Proposal ID</th>
+                                        <th>Subject</th>
+                                        <th>Send To</th>
+                                        <th data-table-sort data-column="value">Value</th>
+                                        <th data-table-sort>Created</th>
+                                        <th data-table-sort>Open Till</th>
+                                        <th data-table-sort data-column="status">Status</th>
+                                        <th class="text-center w-[1%]">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Row 1 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008101</td>
+                                        <td>SEO Optimization Campaign</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/google.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Google Inc</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$18,900</td>
+                                        <td>
+                                            12 Jul, 2025
+                                            <small class="text-default-400 ms-1">10:00 AM</small>
+                                        </td>
+                                        <td>
+                                            30 Jul, 2025
+                                            <small class="text-default-400 ms-1">11:59 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-warning/15 text-warning">Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 2 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008102</td>
+                                        <td>New Mobile App Development</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/apple.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Apple Inc.</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$35,000</td>
+                                        <td>
+                                            18 Jul, 2025
+                                            <small class="text-default-400 ms-1">3:15 PM</small>
+                                        </td>
+                                        <td>
+                                            15 Aug, 2025
+                                            <small class="text-default-400 ms-1">12:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-success/15 text-success">Approved</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 3 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008103</td>
+                                        <td>Marketing Retargeting Plan</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/meta.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Meta Platforms</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$22,750</td>
+                                        <td>
+                                            22 Jul, 2025
+                                            <small class="text-default-400 ms-1">9:30 AM</small>
+                                        </td>
+                                        <td>
+                                            10 Aug, 2025
+                                            <small class="text-default-400 ms-1">5:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-danger/15 text-danger">Declined</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 4 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008104</td>
+                                        <td>UI/UX Redesign for SaaS App</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/figma.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Figma Inc.</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$9,800</td>
+                                        <td>
+                                            24 Jul, 2025
+                                            <small class="text-default-400 ms-1">11:20 AM</small>
+                                        </td>
+                                        <td>
+                                            07 Aug, 2025
+                                            <small class="text-default-400 ms-1">6:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">In Review</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 5 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008105</td>
+                                        <td>Cloud Infrastructure Setup</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/airbnb.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">AirBNB</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$45,000</td>
+                                        <td>
+                                            26 Jul, 2025
+                                            <small class="text-default-400 ms-1">9:10 AM</small>
+                                        </td>
+                                        <td>
+                                            09 Aug, 2025
+                                            <small class="text-default-400 ms-1">5:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-success/15 text-success">Approved</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 6 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008106</td>
+                                        <td>Digital Marketing Strategy</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/asana.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Asana</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$27,600</td>
+                                        <td>
+                                            25 Jul, 2025
+                                            <small class="text-default-400 ms-1">2:30 PM</small>
+                                        </td>
+                                        <td>
+                                            08 Aug, 2025
+                                            <small class="text-default-400 ms-1">3:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-warning/15 text-warning">Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 7 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008107</td>
+                                        <td>Backend API Integration</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/microsoft.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Microsoft Enterprise</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$14,200</td>
+                                        <td>
+                                            23 Jul, 2025
+                                            <small class="text-default-400 ms-1">1:00 PM</small>
+                                        </td>
+                                        <td>
+                                            01 Aug, 2025
+                                            <small class="text-default-400 ms-1">2:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-info/15 text-info">Sent</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 8 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008108</td>
+                                        <td>Performance Audit Report</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/dropbox.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Dropbox</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$6,500</td>
+                                        <td>
+                                            20 Jul, 2025
+                                            <small class="text-default-400 ms-1">4:45 PM</small>
+                                        </td>
+                                        <td>
+                                            28 Jul, 2025
+                                            <small class="text-default-400 ms-1">11:00 AM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-danger/15 text-danger">Declined</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 9 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008109</td>
+                                        <td>Data Migration Strategy</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/dropbox.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Dropbox Inc.</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$19,400</td>
+                                        <td>
+                                            19 Jul, 2025
+                                            <small class="text-default-400 ms-1">3:20 PM</small>
+                                        </td>
+                                        <td>
+                                            03 Aug, 2025
+                                            <small class="text-default-400 ms-1">10:00 AM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-warning/15 text-warning">Pending</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 10 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008110</td>
+                                        <td>Customer Portal UI Design</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/openai.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">ChatGPT</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$31,000</td>
+                                        <td>
+                                            18 Jul, 2025
+                                            <small class="text-default-400 ms-1">12:15 PM</small>
+                                        </td>
+                                        <td>
+                                            02 Aug, 2025
+                                            <small class="text-default-400 ms-1">6:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-success/15 text-success">Approved</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 11 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008111</td>
+                                        <td>Mobile Analytics Dashboard</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/h&m.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Mixpanel</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$15,900</td>
+                                        <td>
+                                            16 Jul, 2025
+                                            <small class="text-default-400 ms-1">4:00 PM</small>
+                                        </td>
+                                        <td>
+                                            30 Jul, 2025
+                                            <small class="text-default-400 ms-1">5:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-info/15 text-info">Sent</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 12 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008112</td>
+                                        <td>AI-Powered Lead Generator</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/openai.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">OpenAI</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$52,300</td>
+                                        <td>
+                                            21 Jul, 2025
+                                            <small class="text-default-400 ms-1">1:45 PM</small>
+                                        </td>
+                                        <td>
+                                            04 Aug, 2025
+                                            <small class="text-default-400 ms-1">11:00 AM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">In Review</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Row 13 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td class="font-semibold hover:text-primary">#PS008113</td>
+                                        <td>Enterprise Security Audit</td>
+                                        <td>
+                                            <div class="flex items-center gap-2.5">
+                                                <div>
+                                                    <div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+                                                        <img src="assets/images/logos/shell.svg" alt="Product" class="size-5" />
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <a href="#!" class="hover:text-primary">Cloudflare</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>$40,750</td>
+                                        <td>
+                                            22 Jul, 2025
+                                            <small class="text-default-400 ms-1">9:15 AM</small>
+                                        </td>
+                                        <td>
+                                            06 Aug, 2025
+                                            <small class="text-default-400 ms-1">4:00 PM</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-danger/15 text-danger">Declined</span>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <div data-table-pagination-info="proposals"></div>
+                            <div data-table-pagination></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+
+            <div id="createProposalModal" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="createProposalModalLabel">
+                <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                    <div class="card pointer-events-auto flex w-full flex-col">
+                        <div class="card-header p-5">
+                            <h3 id="createProposalModalLabel" class="text-sm">Create New Proposal</h3>
+                            <button type="button" aria-label="Close" data-hs-overlay="#createProposalModal">
+                                <i class="iconify tabler--x text-xl"></i>
+                            </button>
+                        </div>
+
+                        <div class="overflow-y-auto card-body">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="proposalID" class="form-label">Proposal ID</label>
+                                    <input type="text" class="form-input" id="proposalID" placeholder="Enter proposal ID (e.g. #PS008120)" />
+                                </div>
+
+                                <div>
+                                    <label for="proposalSubject" class="form-label">Subject</label>
+                                    <input type="text" class="form-input" id="proposalSubject" placeholder="Enter proposal subject" />
+                                </div>
+
+                                <div>
+                                    <label for="clientName" class="form-label">Send To (Client)</label>
+                                    <input type="text" class="form-input" id="clientName" placeholder="Enter client name" />
+                                </div>
+
+                                <div>
+                                    <label for="proposalValue" class="form-label">Value (USD)</label>
+                                    <input type="number" class="form-input" id="proposalValue" placeholder="e.g. 15000" />
+                                </div>
+
+                                <div>
+                                    <label for="proposalStatus" class="form-label">Status</label>
+                                    <select class="form-input" id="proposalStatus">
+                                        <option value="">Select status</option>
+                                        <option value="Approved">Approved</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Declined">Declined</option>
+                                        <option value="Sent">Sent</option>
+                                        <option value="In Review">In Review</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="proposalTags" class="form-label">Tags</label>
+                                    <input type="text" class="form-input" id="proposalTags" placeholder="e.g. Marketing, Development, Design" />
+                                </div>
+
+                                <div>
+                                    <label for="createdDate" class="form-label">Created Date</label>
+                                    <input type="date" data-provider="flatpickr" data-date-format="d M, Y" class="form-input" id="createdDate" />
+                                </div>
+
+                                <div>
+                                    <label for="openTill" class="form-label">Open Till</label>
+                                    <input type="date" data-provider="flatpickr" data-date-format="d M, Y" class="form-input" id="openTill" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                            <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#createProposalModal">Cancel</button>
+
+                            <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">Save Proposal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

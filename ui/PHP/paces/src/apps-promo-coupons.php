@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Coupons"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Promo"; $title = "Coupons"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Promo"; $title = "Coupons"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="mb-1.25 grid grid-cols-1 gap-1.25 md:grid-cols-2 lg:grid-cols-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-center gap-2.5">
+                                    <div class="btn btn-icon bg-primary size-9 rounded-full text-white">
+                                        <i class="iconify tabler--ticket size-5.5"></i>
+                                    </div>
+                                    <h3 class="text-xl">1,245</h3>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    Total Coupons
+                                    <span class="badge bg-primary/15 text-primary">+4.26%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-center gap-2.5">
+                                    <div class="btn btn-icon bg-success size-9 rounded-full text-white">
+                                        <i class="iconify tabler--circle-check size-5.5"></i>
+                                    </div>
+                                    <h3 class="text-xl">830</h3>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    Active Coupons
+                                    <span class="badge bg-success/15 text-success">+2.18%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-center gap-2.5">
+                                    <div class="btn btn-icon bg-danger size-9 rounded-full text-white">
+                                        <i class="iconify tabler--clock size-5.5"></i>
+                                    </div>
+                                    <h3 class="text-xl">220</h3>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    Expired Coupons
+                                    <span class="badge bg-danger/15 text-danger">-1.64%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-center gap-2.5">
+                                    <div class="btn btn-icon bg-warning size-9 rounded-full text-white">
+                                        <i class="iconify tabler--calendar-clock size-5.5"></i>
+                                    </div>
+                                    <h3 class="text-xl">115</h3>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    Upcoming Coupons
+                                    <span class="badge bg-warning/15 text-warning">+0.93%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-center gap-2.5">
+                                    <div class="btn btn-icon bg-info size-9 rounded-full text-white">
+                                        <i class="iconify tabler--users size-5.5"></i>
+                                    </div>
+                                    <h3 class="text-xl">4,980</h3>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    Total Redemptions
+                                    <span class="badge bg-info/15 text-info">+6.12%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-table data-table-rows-per-page="8" class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap gap-2.5">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input data-table-search type="text" type="search" placeholder="Search coupon..." class="form-input" />
+                                </div>
+
+                                <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--circle-check input-icon"></i>
+                                    <select data-table-filter="coupon-status" class="form-select">
+                                        <option value="All">Coupon Status</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Expired">Expired</option>
+                                        <option value="Upcoming">Upcoming</option>
+                                        <option value="Disabled">Disabled</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--tag input-icon"></i>
+                                    <select data-table-filter="coupon-type" class="form-select">
+                                        <option value="All">Coupon Type</option>
+                                        <option value="Percentage">Percentage</option>
+                                        <option value="Fixed">Fixed Amount</option>
+                                        <option value="Free Shipping">Free Shipping</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <select data-table-set-rows-per-page class="form-select">
+                                        <option value="5">5</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn bg-danger text-white hover:bg-danger-hover" aria-haspopup="dialog" aria-expanded="false" aria-inputs="addCouponModalLabel" data-hs-overlay="#addCouponModalLabel">
+                                <i class="iconify tabler--plus"></i>
+                                Add Coupon
+                            </button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="table table-hover">
+                                <thead class="thead-sm">
+                                    <tr class="bg-light/25 text-2xs uppercase">
+                                        <th class="w-[1%]">
+                                            <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="checkAll" />
+                                        </th>
+                                        <th data-table-sort>Coupon Code</th>
+                                        <th data-table-sort data-column="coupon-type">Discount Type</th>
+                                        <th data-table-sort>Discount Value</th>
+                                        <th data-table-sort>Start Date</th>
+                                        <th data-table-sort>Expiry Date</th>
+                                        <th data-table-sort>Usage Limit</th>
+                                        <th data-table-sort>Used</th>
+                                        <th data-table-sort data-column="coupon-status">Status</th>
+                                        <th class="text-center w-[1%]">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <!-- Example Row 1 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">SAVE20</a>
+                                            </h5>
+                                            <small class="text-default-400">Applies to all products</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>20%</td>
+                                        <td>1 May, 2025</td>
+                                        <td>31 May, 2025</td>
+                                        <td>500</td>
+                                        <td>320</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 2 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">FREESHIP</a>
+                                            </h5>
+                                            <small class="text-default-400">Free shipping on orders over $100</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-info/15 text-info">Free Shipping</span>
+                                        </td>
+                                        <td>-</td>
+                                        <td>15 Apr, 2025</td>
+                                        <td>15 Jul, 2025</td>
+                                        <td>Unlimited</td>
+                                        <td>230</td>
+                                        <td>
+                                            <div class="text-warning flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Upcoming
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 3 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">WELCOME10</a>
+                                            </h5>
+                                            <small class="text-default-400">New users get 10% off</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>10%</td>
+                                        <td>1 Apr, 2025</td>
+                                        <td>31 Dec, 2025</td>
+                                        <td>1000</td>
+                                        <td>754</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 4 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">SUMMER25</a>
+                                            </h5>
+                                            <small class="text-default-400">25% off on all summer collections</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+
+                                        <td>25%</td>
+                                        <td>10 May, 2025</td>
+                                        <td>30 Jun, 2025</td>
+                                        <td>800</td>
+                                        <td>645</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 5 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">FLAT50</a>
+                                            </h5>
+                                            <small class="text-default-400">Flat $50 off on orders above $300</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-secondary/15 text-secondary">Fixed</span>
+                                        </td>
+                                        <td>$50</td>
+                                        <td>20 Mar, 2025</td>
+                                        <td>20 Jul, 2025</td>
+                                        <td>500</td>
+                                        <td>370</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 6 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">WINTER15</a>
+                                            </h5>
+                                            <small class="text-default-400">15% off on winter apparel</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>15%</td>
+                                        <td>1 Dec, 2024</td>
+                                        <td>28 Feb, 2025</td>
+                                        <td>400</td>
+                                        <td>400</td>
+                                        <td>
+                                            <div class="text-danger flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Expired
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 7 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">BULK30</a>
+                                            </h5>
+                                            <small class="text-default-400">30% off for bulk orders over 10 items</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>30%</td>
+                                        <td>5 Jun, 2025</td>
+                                        <td>5 Aug, 2025</td>
+                                        <td>200</td>
+                                        <td>55</td>
+                                        <td>
+                                            <div class="text-warning flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Upcoming
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 8 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">NEWYEAR40</a>
+                                            </h5>
+                                            <small class="text-default-400">Flat 40% off for New Year Sale</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>40%</td>
+                                        <td>25 Dec, 2024</td>
+                                        <td>5 Jan, 2025</td>
+                                        <td>1500</td>
+                                        <td>1365</td>
+                                        <td>
+                                            <div class="text-danger flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Expired
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 9 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">APP20</a>
+                                            </h5>
+                                            <small class="text-default-400">20% off for app users only</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>20%</td>
+                                        <td>10 Oct, 2025</td>
+                                        <td>31 Dec, 2025</td>
+                                        <td>Unlimited</td>
+                                        <td>120</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 10 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">VIP100</a>
+                                            </h5>
+                                            <small class="text-default-400">Exclusive $100 off for VIP members</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-secondary/15 text-secondary">Fixed</span>
+                                        </td>
+                                        <td>$100</td>
+                                        <td>1 Jan, 2025</td>
+                                        <td>31 Dec, 2025</td>
+                                        <td>300</td>
+                                        <td>85</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 11 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">FIRSTBUY15</a>
+                                            </h5>
+                                            <small class="text-default-400">15% off for first purchase</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>15%</td>
+                                        <td>1 Aug, 2025</td>
+                                        <td>31 Dec, 2025</td>
+                                        <td>Unlimited</td>
+                                        <td>310</td>
+                                        <td>
+                                            <div class="text-success flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Active
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Example Row 12 -->
+                                    <tr>
+                                        <td>
+                                            <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                        </td>
+                                        <td>
+                                            <h5 class="text-sm">
+                                                <a href="#!" class="hover:text-primary">FALL30</a>
+                                            </h5>
+                                            <small class="text-default-400">30% off on Fall Collection</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-label text-xs bg-primary/15 text-primary">Percentage</span>
+                                        </td>
+                                        <td>30%</td>
+                                        <td>1 Sep, 2025</td>
+                                        <td>30 Nov, 2025</td>
+                                        <td>700</td>
+                                        <td>180</td>
+                                        <td>
+                                            <div class="text-warning flex items-center gap-2">
+                                                <i class="iconify tabler--circle-filled text-xs"></i>
+                                                Upcoming
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="flex justify-center gap-1.25">
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--eye text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                    <i class="iconify tabler--edit text-base"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                    <i class="iconify tabler--trash text-base"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <div data-table-pagination-info="coupons"></div>
+                            <div data-table-pagination></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+
+            <div id="addCouponModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="addCouponModalLabelLabel">
+                <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                    <div class="card pointer-events-auto flex w-full flex-col">
+                        <div class="card-header p-5 rounded-t-sm bg-default-100">
+                            <h3 id="addCouponModalLabelLabel" class="flex items-center gap-2 text-sm">
+                                <i class="iconify tabler--ticket text-primary text-sm"></i>
+                                Add New Coupon
+                            </h3>
+
+                            <button type="button" aria-label="Close" data-hs-overlay="#addCouponModalLabel">
+                                <i class="iconify tabler--x text-xl"></i>
+                            </button>
+                        </div>
+
+                        <form id="addCouponForm">
+                            <div class="card-body">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Coupon Code -->
+                                    <div>
+                                        <label class="form-label">
+                                            Coupon Code
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-input" name="coupon_code" placeholder="e.g., SAVE20" required="" />
+                                    </div>
+
+                                    <!-- Coupon Type -->
+                                    <div>
+                                        <label class="form-label">
+                                            Coupon Type
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-input" name="coupon_type" required="">
+                                            <option value="">Select Type</option>
+                                            <option value="percentage">Percentage</option>
+                                            <option value="fixed">Fixed Amount</option>
+                                            <option value="free_shipping">Free Shipping</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Discount Value -->
+                                    <div>
+                                        <label class="form-label">
+                                            Discount Value
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number" class="form-input" name="discount_value" placeholder="e.g., 20 or 50" required="" />
+                                    </div>
+
+                                    <!-- Minimum Order -->
+                                    <div>
+                                        <label class="form-label">Minimum Order Value</label>
+                                        <input type="number" class="form-input" name="min_order" placeholder="e.g., 100" />
+                                    </div>
+
+                                    <!-- Start Date -->
+                                    <div>
+                                        <label class="form-label">
+                                            Start Date
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" data-provider="flatpickr" data-date-format="d M, Y" class="form-input flatpickr-input" name="start_date" placeholder="Select start date" required="" readonly="readonly" />
+                                    </div>
+
+                                    <!-- End Date -->
+                                    <div>
+                                        <label class="form-label">
+                                            End Date
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" data-provider="flatpickr" data-date-format="d M, Y" class="form-input flatpickr-input" name="end_date" placeholder="Select end date" required="" readonly="readonly" />
+                                    </div>
+
+                                    <!-- Usage Limit -->
+                                    <div>
+                                        <label class="form-label">Usage Limit</label>
+                                        <input type="number" class="form-input" name="usage_limit" placeholder="e.g., 1000" />
+                                    </div>
+
+                                    <!-- Per User Limit -->
+                                    <div>
+                                        <label class="form-label">Per User Limit</label>
+                                        <input type="number" class="form-input" name="user_limit" placeholder="e.g., 5" />
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="md:col-span-2">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-textarea" name="description" rows="2" placeholder="Brief description of the offer"></textarea>
+                                    </div>
+
+                                    <!-- Toggle Options -->
+                                    <div class="md:col-span-2">
+                                        <div class="mt-3 flex flex-wrap gap-base">
+                                            <div class="flex items-center gap-3">
+                                                <input class="form-switch" type="checkbox" id="isActive" checked="" />
+                                                <label for="isActive">Active</label>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                                <input class="form-switch" type="checkbox" id="isFeatured" />
+                                                <label for="isFeatured">Featured Coupon</label>
+                                            </div>
+                                            <div class="flex items-center gap-3">
+                                                <input class="form-switch" type="checkbox" id="isFreeShipping" />
+                                                <label for="isFreeShipping">Free Shipping</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                            <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#addCouponModalLabel">Cancel</button>
+
+                            <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">
+                                <i class="iconify tabler--plus"></i>
+                                Add Coupon
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

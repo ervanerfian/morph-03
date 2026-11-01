@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Boxicons"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "icons"; $title = "Boxicons"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "icons"; $title = "Boxicons"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header block">
+                            <h4 class="card-title mb-1.25">Overview</h4>
+                            <p class="text-default-400">Simple Open Source icons carefully crafted for designers & developers</p>
+                        </div>
+                        <!-- end card-header-->
+
+                        <div class="card-body">
+                            <h4 class="mb-2 text-sm">Usage</h4>
+                            <code>&lt;i class="iconify bx--xxx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i class="iconify bx--camera text-2xl"></i>
+                                <i class="iconify bx--heart text-2xl"></i>
+                                <i class="iconify bx--star text-2xl"></i>
+                                <i class="iconify bx--check text-2xl"></i>
+                                <i class="iconify bx--bell text-2xl"></i>
+                                <i class="iconify bx--cloud text-2xl"></i>
+                                <i class="iconify bx--user text-2xl"></i>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">Colors</h4>
+                            <code>&lt;i class="iconify bx--xxx text-xx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i class="iconify bx--home text-primary text-2xl"></i>
+                                <i class="iconify bx--cog text-secondary text-2xl"></i>
+                                <i class="iconify bx--calendar text-success text-2xl"></i>
+                                <i class="iconify bx--message text-info text-2xl"></i>
+                                <i class="iconify bx--flag text-warning text-2xl"></i>
+                                <i class="iconify bx--folder text-danger text-2xl"></i>
+                                <i class="iconify bx--globe text-light text-2xl"></i>
+                                <i class="iconify bx--key text-dark text-2xl"></i>
+                                <i class="iconify bx--layer text-purple text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">Solid Icons Style</h4>
+                            <code>&lt;i class="iconify bxs--xxx text-xx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i class="iconify bxs--star text-primary text-2xl"></i>
+                                <i class="iconify bxs--user text-secondary text-2xl"></i>
+                                <i class="iconify bxs--check-circle text-success text-2xl"></i>
+                                <i class="iconify bxs--bell text-info text-2xl"></i>
+                                <i class="iconify bxs--error-circle text-warning text-2xl"></i>
+                                <i class="iconify bxs--file text-danger text-2xl"></i>
+                                <i class="iconify bxs--tv text-light text-2xl"></i>
+                                <i class="iconify bxs--lock text-dark text-2xl"></i>
+                                <i class="iconify bxs--data text-purple text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mb-2 text-sm">Sizes</h4>
+                            <code>&lt;i class="iconify bx--xxxx text-xx"&gt;&lt;/i&gt;</code>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i class="iconify bx--phone size-9"></i>
+                                <i class="iconify bx--purchase-tag size-7.5"></i>
+                                <i class="iconify bx--laptop size-6"></i>
+                                <i class="iconify bx--devices size-4.25"></i>
+                                <i class="iconify bx--game size-3.75"></i>
+                                <i class="iconify bx--timer size-3"></i>
+                            </div>
+
+                            <div class="mt-3 flex items-center gap-3">
+                                <i class="iconify bx--timer text-sm"></i>
+                                <i class="iconify bx--timer size-3.25"></i>
+                                <i class="iconify bx--timer text-lg"></i>
+                                <i class="iconify bx--timer size-5"></i>
+                                <i class="iconify bx--timer size-6"></i>
+                                <i class="iconify bx--timer size-8"></i>
+                                <i class="iconify bx--timer size-9"></i>
+                                <i class="iconify bx--timer size-10.5"></i>
+                                <i class="iconify bx--timer size-15"></i>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+
+                        <div class="card-body border-default-300 border-t border-dashed">
+                            <h4 class="mt-0 mb-3">Icons</h4>
+
+                            <div class="items-center flex flex-wrap gap-3 text-center">
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--phone text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Phone</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxs--balloon text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Balloon</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--headphone text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Headphones</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--camera text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Camera</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--microphone text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Microphone</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--game text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Gamepad</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--printer text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Printer</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--data text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Database</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--cloud text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Cloud</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--wifi text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Wi-Fi</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--lock-alt text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Lock</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--key text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Key</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--shield text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Shield</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--envelope text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Mail</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--user text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">User</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--group text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Users</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--cart text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Cart</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--briefcase text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Briefcase</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--file text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">File</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--book text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Book</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--search text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Search</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--bell text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Notification</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--cog text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Settings</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--calendar text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Calendar</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--flag text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Flag</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--music text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Music</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--film text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Movie</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--upload text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Upload</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--download text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Download</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--facebook-circle text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Facebook</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--twitter text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Twitter</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--instagram text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Instagram</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--linkedin-square text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">LinkedIn</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--github text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">GitHub</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bxl--youtube text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">YouTube</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--map text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Location</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--send text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Send</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--chat text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Chat</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--like text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Like</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--error text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Warning</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--check-double text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Done</span>
+                                </div>
+
+                                <div class="border-default-300 flex size-20 flex-col items-center justify-center gap-3 truncate rounded border border-dashed">
+                                    <i class="iconify bx--child text-2xl"></i>
+                                    <span class="block w-full truncate text-center font-semibold">Child</span>
+                                </div>
+                            </div>
+                            <!-- end display-->
+
+                            <div class="mt-3 text-center">
+                                <a href="https://v2.boxicons.com/" target="_blank" class="btn bg-danger text-white hover:bg-danger-hover">View All Icons</a>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!-- end card-->
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>

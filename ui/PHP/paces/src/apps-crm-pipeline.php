@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Pipeline"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "CRM"; $title = "Pipeline"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "CRM"; $title = "Pipeline"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="flex flex-wrap items-center gap-base">
+                                <div class="input-icon-group">
+                                    <i class="iconify tabler--search input-icon"></i>
+                                    <input type="text" class="form-input" placeholder="Search deals..." />
+                                </div>
+
+                                <div class="flex items-center gap-2.5">
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                        <select class="form-select">
+                                            <option selected>Stage</option>
+                                            <option value="Qualification">Qualification</option>
+                                            <option value="Proposal Sent">Proposal Sent</option>
+                                            <option value="Negotiation">Negotiation</option>
+                                            <option value="Won">Won</option>
+                                            <option value="Lost">Lost</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--calendar input-icon"></i>
+                                        <select class="form-select">
+                                            <option selected>Closing Date</option>
+                                            <option value="Today">Today</option>
+                                            <option value="This Week">This Week</option>
+                                            <option value="This Month">This Month</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="btn bg-secondary text-white hover:bg-secondary-hover">
+                                    <i class="iconify tabler--plus"></i>
+                                    Add New Deal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-stretch overflow-x-auto">
+                            <div class="w-85 min-w-84 bg-warning/10 border-e border-dashed border-default-300">
+                                <!-- Header -->
+                                <div class="flex items-center px-5 py-2.5">
+                                    <h5>Lead (4)</h5>
+                                    <a href="#!" class="btn ms-auto size-7.75 rounded-full bg-primary text-white hover:bg-primary-hover">
+                                        <i class="iconify tabler--plus text-base text-white"></i>
+                                    </a>
+                                </div>
+
+                                <div class="h-160 px-2.5" data-simplebar data-simplebar-md>
+                                    <ul data-plugins="sortable" class="space-y-2.5">
+                                        <li>
+                                            <!-- Card 1 -->
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">AI Analytics Dashboard</a>
+                                                            </h5>
+                                                            <small class="text-default-400">Amazon Web Services</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-light" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-4.jpg" class="size-6 rounded-full" alt="Mark Allen" />
+                                                            <span class="text-default-400 font-medium">Mark Allen</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>30 May, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                2
+                                                            </span>
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                3
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$95,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Mobile App Redesign</a>
+                                                            </h5>
+                                                            <small class="text-default-400">ByteCraft Studios</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-2.jpg" class="size-6 rounded-full" alt="Alex Carter" />
+                                                            <span class="text-default-400 font-medium">Alex Carter</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>12 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                1
+                                                            </span>
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                5
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$72,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Website Revamp</a>
+                                                            </h5>
+                                                            <small class="text-default-400">NextGen UI</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-5.jpg" class="size-6 rounded-full" alt="Emily Rose" />
+                                                            <span class="text-default-400 font-medium">Emily Rose</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>18 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                4
+                                                            </span>
+
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                2
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$45,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Campaign Strategy</a>
+                                                            </h5>
+                                                            <small class="text-default-400">Visionary Labs</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-6.jpg" class="size-6 rounded-full" alt="Ryan King" />
+                                                            <span class="text-default-400 font-medium">Ryan King</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>5 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                0
+                                                            </span>
+
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                1
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$23,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="w-85 min-w-84 bg-info/10 border-e border-dashed border-default-300">
+                                <!-- Header -->
+                                <div class="flex items-center px-5 py-2.5">
+                                    <h5>Negotiation (2)</h5>
+                                    <a href="#!" class="btn ms-auto size-7.75 rounded-full bg-primary text-white hover:bg-primary-hover">
+                                        <i class="iconify tabler--plus text-base text-white"></i>
+                                    </a>
+                                </div>
+
+                                <div class="h-160 px-2.5" data-simplebar data-simplebar-md>
+                                    <ul data-plugins="sortable" class="space-y-2.5">
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Product Demo Scheduling</a>
+                                                            </h5>
+                                                            <small class="text-default-400">Innovexa</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-8.jpg" class="size-6 rounded-full" alt="Nina White" />
+                                                            <span class="text-default-400 font-medium">Nina White</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>15 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                3
+                                                            </span>
+
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                4
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$18,750</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">CRM Integration Task</a>
+                                                            </h5>
+                                                            <small class="text-default-400">CoreSync Ltd.</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--user-check"></i>
+                                                                        Assign
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-9.jpg" class="size-6 rounded-full" alt="Amit Rao" />
+                                                            <span class="text-default-400 font-medium">Amit Rao</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock"></i>
+                                                            <h5>22 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2.5 text-sm">
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--message text-default-400 text-base"></i>
+                                                                1
+                                                            </span>
+
+                                                            <span class="flex items-center gap-1.5">
+                                                                <i class="iconify tabler--list-check text-default-400 text-base"></i>
+                                                                2
+                                                            </span>
+                                                        </div>
+                                                        <span class="text-default-700 font-semibold">$39,900</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="w-85 min-w-84 bg-success/10 border-e border-dashed border-default-300">
+                                <!-- Header -->
+                                <div class="flex items-center px-5 py-2.5">
+                                    <h5>Won (5)</h5>
+                                    <a href="#!" class="btn ms-auto size-7.75 rounded-full bg-primary text-white hover:bg-primary-hover">
+                                        <i class="iconify tabler--plus text-base text-white"></i>
+                                    </a>
+                                </div>
+
+                                <div class="h-160 px-2.5" data-simplebar data-simplebar-md>
+                                    <ul data-plugins="sortable" class="space-y-2.5">
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Enterprise License Upgrade</a>
+                                                            </h5>
+                                                            <small class="text-default-400">Zentrix Corp</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-1.jpg" class="size-6 rounded-full" alt="Sophia Lee" />
+                                                            <span class="text-default-400 font-medium">Sophia Lee</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-success"></i>
+                                                            <h5>01 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--medal text-success text-base"></i>
+                                                            Won
+                                                        </span>
+                                                        <span class="text-default-700 font-semibold">$120,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Custom CRM Implementation</a>
+                                                            </h5>
+                                                            <small class="text-default-400">DeltaSoft</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-2.jpg" class="size-6 rounded-full" alt="Mark J." />
+                                                            <span class="text-default-400 font-medium">Mark J.</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-success"></i>
+                                                            <h5>28 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--medal text-success text-base"></i>
+                                                            Won
+                                                        </span>
+                                                        <span class="text-default-700 font-semibold">$89,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card shadow hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">API Subscription Expansion</a>
+                                                            </h5>
+                                                            <small class="text-default-400">Netwise Solutions</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-3.jpg" class="size-6 rounded-full" alt="Raj Patel" />
+                                                            <span class="text-default-400 font-medium">Raj Patel</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-success"></i>
+                                                            <h5>25 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--medal text-success text-base"></i>
+                                                            Won
+                                                        </span>
+                                                        <span class="text-default-700 font-semibold">$58,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Annual Cloud Retainer</a>
+                                                            </h5>
+                                                            <small class="text-default-400">SkyVault Inc.</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-5.jpg" class="size-6 rounded-full" alt="Tina Ray" />
+                                                            <span class="text-default-400 font-medium">Tina Ray</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-success"></i>
+                                                            <h5>21 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--medal text-success text-base"></i>
+                                                            Won
+                                                        </span>
+                                                        <span class="text-default-700 font-semibold">$135,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Marketing Automation Deal</a>
+                                                            </h5>
+                                                            <small class="text-default-400">CloudReach</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+
+                                                                    <a class="dropdown-item" href="#">
+                                                                        <i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <a class="dropdown-item text-danger" href="#">
+                                                                        <i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-6.jpg" class="size-6 rounded-full" alt="Mohit Chauhan" />
+                                                            <span class="text-default-400 font-medium">Mohit Chauhan</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-success"></i>
+                                                            <h5>18 Jun, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--medal text-success text-base"></i>
+                                                            Won
+                                                        </span>
+                                                        <span class="text-default-700 font-semibold">$62,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="w-85 min-w-84 bg-danger/10 border-e border-dashed border-default-300">
+                                <!-- Header -->
+                                <div class="flex items-center px-5 py-2.5">
+                                    <h5>Lost (2)</h5>
+                                    <a href="#!" class="btn ms-auto size-7.75 rounded-full bg-primary text-white hover:bg-primary-hover">
+                                        <i class="iconify tabler--plus text-base text-white"></i>
+                                    </a>
+                                </div>
+
+                                <div class="h-160 px-2.5" data-simplebar data-simplebar-md>
+                                    <ul data-plugins="sortable" class="space-y-2.5">
+                                        <li>
+                                            <div class="card border-danger/40 hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">E-commerce Platform Proposal</a>
+                                                            </h5>
+                                                            <small class="text-default-400">QuickCart</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-7.jpg" class="size-6 rounded-full" alt="Julia Mason" />
+                                                            <span class="text-default-400 font-medium">Julia Mason</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-danger"></i>
+                                                            <h5>14 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--x text-danger text-base"></i>
+                                                            Lost
+                                                        </span>
+                                                        <span class="text-danger font-semibold">$55,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <li>
+                                            <div class="card border-danger/40 hover:shadow-lg">
+                                                <div class="card-body">
+                                                    <div class="mb-2.5 flex items-start">
+                                                        <div>
+                                                            <h5>
+                                                                <a href="#!" class="hover:text-primary">Social Media Integration Deal</a>
+                                                            </h5>
+                                                            <small class="text-default-400">BuzzPro Media</small>
+                                                        </div>
+
+                                                        <!-- Dropdown -->
+                                                        <div class="relative ms-auto">
+                                                            <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                                                <button type="button" class="hs-dropdown-toggle btn size-7.75 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                                    <i class="iconify tabler--dots-vertical text-base"></i>
+                                                                </button>
+
+                                                                <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                                    <a class="dropdown-item text-danger" href="#">Delete</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-2.5 flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.25">
+                                                            <img src="assets/images/users/user-8.jpg" class="size-6 rounded-full" alt="Ethan Cruz" />
+                                                            <span class="text-default-400 font-medium">Ethan Cruz</span>
+                                                        </div>
+
+                                                        <div class="flex items-center gap-1.25">
+                                                            <i class="iconify tabler--calendar-clock text-danger"></i>
+                                                            <h5>10 Jul, 2025</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex items-center justify-between">
+                                                        <span class="flex items-center gap-2.5">
+                                                            <i class="iconify tabler--x text-danger text-base"></i>
+                                                            Lost
+                                                        </span>
+                                                        <span class="text-danger font-semibold">$38,400</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+    <!-- Apex Charts js -->
+    <script src="assets/plugins/sortablejs/Sortable.min.js"></script>
+
+    <!-- Dashboard App js -->
+    <script src="assets/js/pages/apps-crm-pipeline.js"></script>
+</body>
+
+</html>

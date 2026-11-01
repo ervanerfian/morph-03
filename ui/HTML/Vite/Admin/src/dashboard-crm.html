@@ -1,0 +1,1770 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="CRM Dashboard" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="Dashboard" title="CRM" }} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="Dashboard" title="CRM" }}
+
+                    <div class="container-fluid">
+                        <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-base mb-base">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="grid grid-cols-2 items-center">
+                                        <div>
+                                            <h5 class="text-default-400 text-xs uppercase mb-2" title="Leads Generated">Leads Generated</h5>
+                                            <div class="my-5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <div class="size-9 rounded-full bg-light/80 flex justify-center items-center">
+                                                        <i class="iconify tabler--users size-5.5"></i>
+                                                    </div>
+                                                    <h3 class="text-xl font-bold"><span data-target="48.2">48.20</span>k</h3>
+                                                </div>
+                                            </div>
+
+                                            <p class="flex items-center gap-1">
+                                                <span class="text-success me-2.5">5.12% <i class="iconify tabler--trending-up ms-1.25"></i></span>
+                                                <span class="text-default-400">2.3k Up</span>
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div id="leads-generated-chart" class="text-end"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="grid grid-cols-2 items-center">
+                                        <div>
+                                            <h5 class="text-default-400 text-xs uppercase mb-2" title="Qualified Leads">Qualified Leads</h5>
+                                            <div class="my-5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <div class="size-9 rounded-full bg-light/70 flex justify-center items-center">
+                                                        <i class="iconify tabler--user-check size-5.5"></i>
+                                                    </div>
+                                                    <h3 class="text-xl font-bold"><span data-target="12.8">12.80</span>k</h3>
+                                                </div>
+                                            </div>
+                                            <p class="flex items-center gap-1">
+                                                <span class="text-danger me-2.5">3.45% <i class="iconify tabler--trending-down ms-1.25"></i></span>
+                                                <span class="text-default-400"> 0.4k Down</span>
+                                            </p>
+                                        </div>
+
+                                        <div class="flex justify-end">
+                                            <div id="qualified-leads-chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="grid grid-cols-2 items-center">
+                                        <div>
+                                            <h5 class="text-default-400 text-xs uppercase mb-2" title="Deals Closed">Deals Closed</h5>
+                                            <div class="my-5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <div class="size-9 rounded-full bg-light/70 flex justify-center items-center">
+                                                        <i class="iconify tabler--briefcase size-5.5"></i>
+                                                    </div>
+                                                    <h3 class="text-xl font-bold"><span data-target="9.75">9.75</span>k</h3>
+                                                </div>
+                                            </div>
+
+                                            <p class="flex items-center gap-1">
+                                                <span class="text-success me-2.5">2.94%<i class="iconify tabler--trending-up ms-1.25"></i></span>
+                                                <span class="text-default-400">1.1k Up</span>
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div id="deals-closed-chart" class="text-end"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="grid grid-cols-2 items-center">
+                                        <div>
+                                            <h5 class="text-default-400 text-xs uppercase mb-2" title="Revenue Generated">Revenue Generated</h5>
+                                            <div class="my-5">
+                                                <div class="flex items-center gap-2.5">
+                                                    <div class="size-9 rounded-full bg-light/70 flex justify-center items-center">
+                                                        <i class="iconify tabler--currency-dollar size-5.5"></i>
+                                                    </div>
+                                                    <h3 class="text-xl font-bold">$<span data-target="5.63">5.63</span>M</h3>
+                                                </div>
+                                            </div>
+
+                                            <p class="flex items-center gap-1">
+                                                <span class="text-success me-2.5">4.21%<i class="iconify tabler--trending-up ms-1.25"></i></span>
+                                                <span class="text-default-400">$32.4k Up</span>
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div id="revenue-generated-chart" class="text-end"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid xl:grid-cols-3 grid-cols-1 gap-base mb-base">
+                            <div class="col-span-2">
+                                <div class="card h-full">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Overview <span class="text-default-400 font-normal text-sm">(Current Year)</span></h4>
+                                        <div>
+                                            <button type="button" class="btn bg-light btn-sm hover:text-primary">All</button>
+                                            <button type="button" class="btn bg-light btn-sm hover:text-primary">1M</button>
+                                            <button type="button" class="btn bg-light btn-sm hover:text-primary">6M</button>
+                                            <button type="button" class="btn bg-light/60 active btn-sm">1Y</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="grid xl:grid-cols-3 grid-cols-1 gap-base">
+                                            <div class="xl:col-span-1">
+                                                <div class="py-3 px-4 bg-warning/15 text-warning rounded flex items-center gap-2.5 mb-base" role="alert">
+                                                    <div>
+                                                        <i class="iconify tabler--database size-7"></i>
+                                                    </div>
+
+                                                    <div>
+                                                        We regret to inform you that our server is down. <strong><a href="#!" class="font-bold">Refresh</a></strong>
+                                                    </div>
+                                                </div>
+
+                                                <div class="grid grid-cols-2 gap-5">
+                                                    <div>
+                                                        <p class="text-default-400 mb-1.25">Revenue</p>
+                                                        <h4 class="mb-2.5">
+                                                            <i class="iconify tabler--cash text-success me-1.25 text-lg"></i>
+                                                            <span class="text-lg">$<span data-target="56.63">0</span>k</span>
+                                                        </h4>
+                                                        <span class="badge py-0 bg-danger/15 text-danger text-xs"><i class="iconify tabler--chevron-down"></i> 3.91%</span>
+                                                    </div>
+
+                                                    <div>
+                                                        <p class="text-default-400 mb-1.25">Orders</p>
+                                                        <h4 class="mb-2">
+                                                            <i class="iconify tabler--truck text-info me-1.25 text-lg"></i>
+                                                            <span data-target="9,842" class="text-lg">0</span>
+                                                        </h4>
+                                                        <span class="badge py-0 bg-success/15 text-success text-xs"><i class="iconify tabler--chevron-up"></i> 8.72%</span>
+                                                    </div>
+
+                                                    <div>
+                                                        <p class="text-default-400 mb-1.25">New Users</p>
+                                                        <h4 class="mb-2.5">
+                                                            <i class="iconify tabler--users-group me-1.25 text-lg"></i>
+                                                            <span data-target="95.3" class="text-lg">0</span>k
+                                                        </h4>
+                                                        <span class="badge py-0 bg-success/15 text-success text-xs"><i class="iconify tabler--chevron-up"></i> 11.2%</span>
+                                                    </div>
+
+                                                    <div>
+                                                        <p class="text-default-400 mb-1.25">New Contract</p>
+                                                        <h4 class="mb-2.5">
+                                                            <i class="iconify tabler--heart-handshake me-1.25 text-lg"></i>
+                                                            <span data-target="851" class="text-lg">0</span>
+                                                        </h4>
+                                                        <span class="badge py-0 bg-default-200 text-default-800 text-xs"> 0.00%</span>
+                                                    </div>
+
+                                                    <div>
+                                                        <button type="button" data-action="card-refresh" class="btn btn-sm bg-primary hover:bg-primary-hover text-white"><i class="iconify tabler--refresh"></i> Refresh Data</button>
+                                                    </div>
+                                                </div>
+                                                <!-- end col -->
+                                            </div>
+
+                                            <div class="xl:col-span-2">
+                                                <div dir="ltr">
+                                                    <div id="dash-revenue-chart" class="apex-charts"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card-body-->
+                                </div>
+                            </div>
+
+                            <div class="col-span-1">
+                                <div class="card h-full">
+                                    <div class="card-header justify-between">
+                                        <h4 class="card-title">Lead Source</h4>
+
+                                        <div>
+                                            <a href="#" class="btn btn-sm border-default-300 hover:border-default-400 font-medium"><i class="iconify tabler--cloud-upload"></i> Export</a>
+                                            <a href="#" class="btn btn-sm bg-default-200 hover:text-primary font-medium"><i class="iconify tabler--download"></i> Import</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div>
+                                            <div id="most-leads-chart" class="apex-charts"></div>
+                                        </div>
+
+                                        <div class="grid md:grid-cols-2 grid-cols-1 md:gap-base mt-2.5">
+                                            <div>
+                                                <div class="flex justify-between items-center p-1.25">
+                                                    <div>
+                                                        <i class="iconify tabler--speakerphone text-base align-middle me-1.25 text-primary"></i>
+                                                        <span class="align-middle font-semibold">Newsletter</span>
+                                                    </div>
+
+                                                    <span class="font-semibold text-default-400 float-end"> <i class="iconify tabler--chevron-up text-success align-middle"></i> 6.37% </span>
+                                                </div>
+
+                                                <div class="flex justify-between items-center p-1.25">
+                                                    <div>
+                                                        <i class="iconify tabler--user-hexagon text-base align-middle me-1.25 text-danger"></i>
+                                                        <span class="align-middle font-semibold">Instagram</span>
+                                                    </div>
+
+                                                    <span class="font-semibold text-default-400 float-end"> <i class="iconify tabler--chevron-up text-success align-middle"></i> 34.8% </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex justify-between items-center p-1.25">
+                                                    <div>
+                                                        <i class="iconify tabler--settings-2 text-base align-middle me-1.25 text-success"></i>
+                                                        <span class="align-middle font-semibold">WhatsApp</span>
+                                                    </div>
+
+                                                    <span class="font-semibold text-default-400 float-end"> <i class="iconify tabler--chevron-down text-danger align-middle"></i> 8.9% </span>
+                                                </div>
+
+                                                <div class="flex justify-between items-center p-1.25">
+                                                    <div>
+                                                        <i class="iconify tabler--world text-base align-middle me-1.25 text-warning"></i>
+                                                        <span class="align-middle font-semibold">Website</span>
+                                                    </div>
+
+                                                    <span class="font-semibold text-default-400 float-end"> <i class="iconify tabler--chevron-up text-success align-middle"></i>44.3% </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end card body-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <div data-table data-table-rows-per-page="5" class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Deal Status</h4>
+
+                                    <div class="flex flex-wrap items-center gap-2.5">
+                                        <span class="font-semibold">Filter By:</span>
+
+                                        <!-- Deal Status Filter -->
+                                        <div class="input-icon-group">
+                                            <i class="iconify tabler--briefcase input-icon text-default-400"></i>
+                                            <select data-table-filter="order-status" class="form-input form-select">
+                                                <option value="All">Deal Status</option>
+                                                <option value="Paused">Paused</option>
+                                                <option value="New">New</option>
+                                                <option value="Cold Lead">Cold Lead</option>
+                                                <option value="Canceled">Canceled</option>
+                                                <option value="Deal Won">Deal Won</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="input-icon-group">
+                                            <i class="iconify tabler--search input-icon text-default-400"></i>
+                                            <input data-table-search type="search" class="form-input" placeholder="Search deals..." />
+                                        </div>
+
+                                        <!-- Records Per Page -->
+                                        <div>
+                                            <select data-table-set-rows-per-page class="form-select form-input">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive overflow-x-auto">
+                                    <table class="table whitespace-nowrap table-hover w-full">
+                                        <thead class="bg-light/25 align-middle thead-sm">
+                                            <tr class="uppercase text-2xs">
+                                                <th data-table-sort>Deal ID</th>
+                                                <th data-table-sort>Deal Name</th>
+                                                <th data-table-sort>Company</th>
+                                                <th style="width: 12%">Pipeline</th>
+                                                <th data-table-sort>Closing Date</th>
+                                                <th data-table-sort>User Responsible</th>
+                                                <th data-table-sort>Deal Value</th>
+                                                <th data-table-sort data-column="order-status">Deal Status</th>
+                                                <th>•••</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a href="#!" class="font-medium text-sm">#DH874</a>
+                                                </td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-primary/15 text-primary rounded-full flex justify-center items-center">
+                                                            <span class="text-sm font-bold"> A </span>
+                                                        </div>
+                                                        <a href="#!">AdamM09</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Rex Audio</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Target Identification</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>20 Apr, 2024</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-1.jpg" alt="" class="size-6 rounded-full" />
+                                                        <a href="javascript: void(0);" class="font-medium">Alexa Newsome</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div>USD $100.1K</div>
+                                                </td>
+
+                                                <td>
+                                                    <span class="badge bg-info/15 text-info py-0.5">Paused</span>
+                                                </td>
+
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--edit align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <a href="#!" class="font-medium text-sm">#DH809</a>
+                                                </td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-success/15 text-success rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">S</span>
+                                                        </div>
+                                                        <a href="#!">Sensor Lecto</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Morville</td>
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Target Identification</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>31 Dec, 2024</td>
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-2.jpg" class="size-6 rounded-full" />
+                                                        <a href="#" class="font-medium">David Lee</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>CAD $95K</td>
+
+                                                <td>
+                                                    <span class="badge bg-default-200 text-default-700 py-0.5">New</span>
+                                                </td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH807</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-info/15 text-info rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">D</span>
+                                                        </div>
+                                                        <a href="#!">Dhvanil</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Olson's Market</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Target Identification</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>05 Jun, 2024</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-5.jpg" class="size-6 rounded-full" />
+                                                        <a href="#" class="font-medium">Peter Hein</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>AUD $65.95K</td>
+
+                                                <td>
+                                                    <span class="badge bg-warning/15 text-warning py-0.5">Cold Lead</span>
+                                                </td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH805</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-secondary/15 text-secondary rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">K</span>
+                                                        </div>
+                                                        <a href="#!">KHCoal</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Erlebacher's</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-danger px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>25 Aug, 2024</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-7.jpg" class="size-6 rounded-full" />
+                                                        <a href="#" class="font-medium">Gladys Rivas</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>IN ₹296.1K</td>
+
+                                                <td>
+                                                    <span class="badge bg-danger/15 text-danger py-0.5">Canceled</span>
+                                                </td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH800</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-warning/15 text-warning rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">H</span>
+                                                        </div>
+                                                        <a href="#!">Haniyo</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Colonial Stores</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>30 Sep, 2024</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-10.jpg" class="size-6 rounded-full" />
+                                                        <a href="#" class="font-medium">Joan Wisdom</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $25.9K</td>
+
+                                                <td>
+                                                    <span class="badge bg-success/15 text-success py-0.5">Deal Won</span>
+                                                </td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH798</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-primary/15 text-primary rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">L</span>
+                                                        </div>
+                                                        <a href="#!">Lunotech</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Northbridge Ltd</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>12 Jan, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-3.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Chris Nolan</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $78.3K</td>
+
+                                                <td><span class="badge bg-info/15 text-info py-0.5">Paused</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH792</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-success/15 text-success rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">T</span>
+                                                        </div>
+                                                        <a href="#!">TechHive</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Urban Labs</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>08 Mar, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-4.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Karen Miles</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>EUR €120.4K</td>
+
+                                                <td><span class="badge bg-default-200 text-default-700 py-0.5">New</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH788</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-warning/15 text-warning rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">P</span>
+                                                        </div>
+                                                        <a href="#!">PixelForge</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Bright Mart</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>15 Jul, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-6.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Oscar Brent</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>GBP £58.7K</td>
+
+                                                <td><span class="badge bg-warning/15 text-warning py-0.5">Cold Lead</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH780</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-danger/15 text-danger rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">R</span>
+                                                        </div>
+                                                        <a href="#!">RedCore</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Highland Co.</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-danger px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>21 Feb, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-8.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Maria Jensen</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $42.3K</td>
+
+                                                <td><span class="badge bg-danger/15 text-danger py-0.5">Canceled</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH776</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-success/15 text-success rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">B</span>
+                                                        </div>
+                                                        <a href="#!">BluEdge</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Arcton Energy</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>10 Oct, 2024</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-9.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Daniel Cook</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $310.2K</td>
+
+                                                <td><span class="badge bg-success/15 text-success py-0.5">Deal Won</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH770</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-info/15 text-info rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">C</span>
+                                                        </div>
+                                                        <a href="#!">CloudNova</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Prime Retail</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-success px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>28 May, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-5.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Emily Grace</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $54.1K</td>
+
+                                                <td><span class="badge bg-info/15 text-info py-0.5">Paused</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#!" class="font-medium text-sm">#DH765</a></td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="size-6 bg-danger/15 text-danger rounded-full flex items-center justify-center">
+                                                            <span class="text-sm font-bold">F</span>
+                                                        </div>
+                                                        <a href="#!">Finexa</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>Beacon Stores</td>
+
+                                                <td>
+                                                    <div class="flex gap-1">
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-danger px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Strategy Development
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Target Identification
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Valuation Analysis</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                    >Negotiations
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="hs-tooltip [--placement:top] inline-block">
+                                                            <button type="button" class="hs-tooltip-toggle h-3 bg-light px-4.5">
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md"
+                                                                    role="tooltip"
+                                                                >
+                                                                    Deal Closure</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                        <!-- End Progress -->
+                                                    </div>
+                                                </td>
+
+                                                <td>02 Feb, 2025</td>
+
+                                                <td>
+                                                    <div class="flex items-center gap-2">
+                                                        <img src="/images/users/user-7.jpg" class="size-6 rounded-full" />
+                                                        <a class="font-medium">Nathan Cole</a>
+                                                    </div>
+                                                </td>
+
+                                                <td>USD $19.8K</td>
+
+                                                <td><span class="badge bg-danger/15 text-danger py-0.5">Canceled</span></td>
+
+                                                <td>
+                                                    <a href="#" class="text-default-400 text-xl"><i class="iconify tabler--edit"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- end tbody -->
+                                    </table>
+                                </div>
+
+                                <div class="card-footer">
+                                    <div data-table-pagination-info="deals"></div>
+                                    <div data-table-pagination></div>
+                                </div>
+                            </div>
+                            <!-- end col-->
+                        </div>
+
+                        <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-base">
+                            <div data-table data-table-rows-per-page="5" class="card xl:col-span-1 md:col-span-2">
+                                <div class="card-header">
+                                    <h4 class="card-title">Top Performing</h4>
+
+                                    <div class="flex items-center gap-2">
+                                        <div class="input-icon-group">
+                                            <i class="iconify tabler--search input-icon text-default-400"></i>
+                                            <input data-table-search type="search" class="form-input" placeholder="Search..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive overflow-x-auto">
+                                    <table class="table whitespace-nowrap table-hover w-full">
+                                        <thead class="bg-light/25 align-middle thead-sm">
+                                            <tr class="uppercase text-2xs">
+                                                <th>User</th>
+                                                <th data-table-sort>Leads</th>
+                                                <th data-table-sort>Deals</th>
+                                                <th data-table-sort>Tasks</th>
+                                                <th>•••</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h5 class="text-sm font-normal">Jeremy Young</h5>
+                                                    <span class="text-default-400 text-xs">Senior Sales Executive</span>
+                                                </td>
+                                                <td>187</td>
+                                                <td>154</td>
+                                                <td>49</td>
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--eye align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h5 class="text-sm font-normal">Thomas Krueger</h5>
+                                                    <span class="text-default-400 text-xs">Senior Sales Executive</span>
+                                                </td>
+                                                <td>235</td>
+                                                <td>127</td>
+                                                <td>83</td>
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--eye align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <h5 class="text-sm font-normal">Pete Burdine</h5>
+                                                    <span class="text-default-400 text-xs">Senior Sales Executive</span>
+                                                </td>
+                                                <td>365</td>
+                                                <td>148</td>
+                                                <td>62</td>
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--eye align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h5 class="text-sm font-normal">Mary Nelson</h5>
+                                                    <span class="text-default-400 text-xs">Senior Sales Executive</span>
+                                                </td>
+                                                <td>753</td>
+                                                <td>159</td>
+                                                <td>258</td>
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--eye align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h5 class="text-sm font-normal">Kevin Grove</h5>
+                                                    <span class="text-default-400 text-xs">Senior Sales Executive</span>
+                                                </td>
+                                                <td>458</td>
+                                                <td>126</td>
+                                                <td>73</td>
+                                                <td>
+                                                    <a href="javascript: void(0);" class="text-default-400 text-xl">
+                                                        <i class="iconify tabler--eye align-middle"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <!-- end tbody -->
+                                    </table>
+                                </div>
+
+                                <div class="card-footer">
+                                    <div data-table-pagination-info="deals"></div>
+                                    <div data-table-pagination></div>
+                                </div>
+                            </div>
+
+                            <div class="card h-full">
+                                <div class="card-header">
+                                    <h4 class="card-title">Location By Session</h4>
+
+                                    <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                        <a href="#!" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300 hover:text-primary">
+                                            <i class="iconify tabler--dots-vertical text-base"></i>
+                                        </a>
+                                        <ul class="hs-dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--world"></i> Show Top Countries</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--map-pin"></i>View City Breakdown</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--calendar"></i>Compare Date Range </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--download"></i>Download Report</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--trash"></i> Clear Filters </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div id="session-by-countries" style="height: 203px"></div>
+
+                                    <div class="mt-5">
+                                        <div class="table-responsive overflow-x-auto">
+                                            <table class="table whitespace-nowrap table-borderless">
+                                                <thead class="bg-light/50 thead-sm">
+                                                    <tr>
+                                                        <th>Country</th>
+                                                        <th>Sessions</th>
+                                                        <th>Users</th>
+                                                        <th>Perc.</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="flex items-center gap-1">
+                                                                <img src="/images/flags/us.svg" alt="user-image" class="me-1 size-4.5 rounded-full" />
+                                                                <span class="align-middle">United States</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>196,584</td>
+                                                        <td>187,232</td>
+                                                        <td>48.63%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="flex items-center gap-1">
+                                                                <img src="/images/flags/in.svg" alt="user-image" class="me-1 size-4.5 rounded-full" />
+                                                                <span class="align-middle">India</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>145,845</td>
+                                                        <td>126,874</td>
+                                                        <td>36.08%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="flex items-center gap-1">
+                                                                <img src="/images/flags/au.svg" alt="user-image" class="me-1 size-4.5 rounded-full" />
+                                                                <span class="align-middle">Australia</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>95,845</td>
+                                                        <td>90,127</td>
+                                                        <td>23.41%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- end table-responsive-->
+                                    </div>
+                                </div>
+                                <!-- end card-body-->
+                            </div>
+
+                            <div class="card h-full">
+                                <div class="card-header">
+                                    <h4 class="card-title">Recent Activity</h4>
+                                    <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                        <a href="#!" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300 hover:text-primary">
+                                            <i class="iconify tabler--dots-vertical text-base"></i>
+                                        </a>
+                                        <ul class="hs-dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--activity"></i>View Activity Log</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--filter-2"></i>Filter Activities</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--download"></i>Export Logs</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--trash"></i> Clear Activity</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-body" data-simplebar style="max-height: 426px">
+                                    <div>
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-0 after:border-s after:border-dashed after:border-default-300 after:-translate-x-[0.5px]">
+                                                <div class="relative z-10">
+                                                    <div class="flex justify-center items-center bg-primary rounded-full size-7.5">
+                                                        <i class="iconify tabler--user-plus text-base text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow pb-7.5">
+                                                <h5 class="mb-1.25">15 New Leads Added</h5>
+
+                                                <p class="mb-1.25 text-default-400">Fresh inbound leads were captured from the website and synced automatically.</p>
+
+                                                <span class="text-primary">By Olivia Carter</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-0 after:border-s after:border-dashed after:border-default-300 after:-translate-x-[0.5px]">
+                                                <div class="relative z-10">
+                                                    <div class="flex justify-center items-center bg-success rounded-full size-7.5">
+                                                        <i class="iconify tabler--messages text-base text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow pb-7.5">
+                                                <h5 class="mb-1.25">Lead Follow-Up Emails Sent</h5>
+
+                                                <p class="mb-1.25 text-default-400">Follow-up messages were sent to all leads who have not responded within 48 hours.</p>
+
+                                                <span class="text-primary">By Daniel Moore</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-0 after:border-s after:border-dashed after:border-default-300 after:-translate-x-[0.5px]">
+                                                <div class="relative z-10">
+                                                    <div class="flex justify-center items-center bg-warning rounded-full size-7.5">
+                                                        <i class="iconify tabler--phone-call text-base text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow pb-7.5">
+                                                <h5 class="mb-1.25">Sales Calls Logged</h5>
+
+                                                <p class="mb-1.25 text-default-400">20 outbound calls were recorded for prospects in the “Negotiation” stage.</p>
+
+                                                <span class="text-primary">By Sophia Turner</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-0 after:border-s after:border-dashed after:border-default-300 after:-translate-x-[0.5px]">
+                                                <div class="relative z-10">
+                                                    <div class="flex justify-center items-center bg-info rounded-full size-7.5">
+                                                        <i class="iconify tabler--users text-base text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow pb-7.5">
+                                                <h5 class="mb-1.25">Team Member Assigned to Deals</h5>
+
+                                                <p class="mb-1.25 text-default-400">Three deals were reassigned to the senior sales team for faster conversion.</p>
+
+                                                <span class="text-primary">By Liam Anderson</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-0 after:border-s after:border-dashed after:border-default-300 after:-translate-x-[0.5px]">
+                                                <div class="relative z-10">
+                                                    <div class="flex justify-center items-center bg-danger rounded-full size-7.5">
+                                                        <i class="iconify tabler--x text-base text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow pb-7.5">
+                                                <h5 class="mb-1.25">Deals Moved to Lost Stage</h5>
+
+                                                <p class="mb-1.25 text-default-400">4 deals were marked as “Lost” due to inactivity or declined proposals.</p>
+
+                                                <span class="text-primary">By Ethan Brooks</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+
+                                        <!-- Item -->
+                                        <div class="flex gap-x-5">
+                                            <div class="relative z-10">
+                                                <div class="flex justify-center items-center bg-secondary rounded-full size-7.5">
+                                                    <i class="iconify tabler--briefcase text-base text-white"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="grow">
+                                                <h5 class="mb-1.25">Two Deals Successfully Closed</h5>
+
+                                                <p class="mb-1.25 text-default-400">Two high-value deals were marked “Won” and moved to the onboarding pipeline.</p>
+
+                                                <span class="text-primary">By Ava Mitchell</span>
+                                            </div>
+                                        </div>
+                                        <!-- End Item -->
+                                    </div>
+                                </div>
+                                <!-- end slimscroll -->
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+            </div>
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Custom table -->
+        <script type="module" src="assets/js/pages/custom-table.js"></script>
+
+        <script type="module" src="assets/js/pages/dashboard-crm.js"></script>
+    </body>
+</html>

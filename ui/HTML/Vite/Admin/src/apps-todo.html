@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="Todo List" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="Apps" title="Todo List"}} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="Apps" title="Todo List" }}
+
+                    <div class="container-fluid -mb-base">
+                        <div class="flex gap-1.25 h-[calc(100vh-200px)] overflow-hidden">
+                            <div class="card h-full">
+                                <!-- offcanvas -->
+                                <div
+                                    id="emailSidebaroffcanvas"
+                                    class="hs-overlay hs-overlay-open:translate-x-0 fixed start-0 top-0 bottom-0 z-50 h-full w-80 -translate-x-full transform bg-card rounded transition-all duration-300 [--auto-close:lg] lg:static lg:end-auto lg:bottom-0 lg:block! lg:translate-x-0"
+                                    role="dialog"
+                                    tabindex="-1"
+                                    aria-label="Sidebar"
+                                >
+                                    <div class="card-body h-auto" data-simplebar>
+                                        <a href="#" class="btn w-full bg-success text-white hover:bg-success-hover" aria-haspopup="dialog" aria-expanded="false" aria-controls="addTaskModal" data-hs-overlay="#addTaskModal">
+                                            Create New <i class="iconify tabler--plus text-base"></i>
+                                        </a>
+
+                                        <div class="my-5">
+                                            <label for="taskDate" class="mb-3">Select Date</label>
+                                            <input type="hidden" id="taskDate" data-provider="flatpickr" data-altformat="F j, Y" class="form-input flatpickr-input bg-transparent!" placeholder="Select Date" value="2025-10-28" />
+                                        </div>
+
+                                        <div class="mb-5">
+                                            <label for="taskPriority" class="mb-3">Select Priority</label>
+                                            <select class="form-input" id="taskPriority">
+                                                <option value="all" selected="">All</option>
+                                                <option value="High">High</option>
+                                                <option value="Normal">Medium</option>
+                                                <option value="Low">Low</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-5">
+                                            <label for="taskStatus" class="mb-3">Select Status</label>
+                                            <select class="form-input" id="taskStatus">
+                                                <option value="all" selected="">All</option>
+                                                <option value="New">New</option>
+                                                <option value="Pending">Pending</option>
+                                                <option value="Inprogress">Inprogress</option>
+                                                <option value="Completed">Completed</option>
+                                                <option value="Urgent">Urgent</option>
+                                                <option value="Scheduled">Scheduled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="w-full lg:min-w-0 lg:flex-1">
+                                <div class="card h-full">
+                                    <div class="card-header">
+                                        <div class="flex items-center">
+                                            <div class="block text-start lg:hidden me-3">
+                                                <button class="btn btn-icon border-default-300">
+                                                    <i class="iconify tabler--menu-4 text-default-600 text-2xl" aria-haspopup="dialog" aria-expanded="false" aria-controls="emailSidebaroffcanvas" aria-label="Toggle navigation" data-hs-overlay="#emailSidebaroffcanvas"></i>
+                                                </button>
+                                            </div>
+                                            <h4 class="card-title">Tasks</h4>
+                                        </div>
+
+                                        <div class="input-icon-group">
+                                            <i class="iconify tabler--search input-icon"></i>
+                                            <input type="text" class="form-input" placeholder="Search here..." />
+                                        </div>
+                                    </div>
+
+                                    <div class="h-[calc(100%-100px)]" data-simplebar>
+                                        <div class="nested-sortable-handle divide-default-300 divide-y table-wrapper">
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task1" />
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Complete Presentation Slides for Meeting</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button type="button" class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-2.jpg" alt="" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-secondary invisible absolute z-10 inline-block rounded-sm px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity"
+                                                                    role="tooltip"
+                                                                    >Cruise ⚒️</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button type="button" class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-3.jpg" alt="" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-secondary invisible absolute z-10 inline-block rounded-sm px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity"
+                                                                    role="tooltip"
+                                                                    >Kevin</span
+                                                                >
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button type="button" class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-4.jpg" alt="" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span
+                                                                    class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-secondary invisible absolute z-10 inline-block rounded-sm px-3 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity"
+                                                                    role="tooltip"
+                                                                    >Thomas 🏠</span
+                                                                >
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div>
+                                                        <span class="badge font-semibold border-warning text-warning border">New</span>
+                                                    </div>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Today</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">3/7</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">21</span>
+                                                        </li>
+                                                    </ul>
+                                                    <div>
+                                                        <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task2" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Finalize Product Roadmap for Launch</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <!-- Avatars -->
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Maria 💻</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">James</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Sophia 🚀</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Status Badge font-semibold -->
+                                                    <span class="badge font-semibold border-success text-success border">In Progress</span>
+
+                                                    <!-- Stats -->
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Tomorrow</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">5/10</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">14</span>
+                                                        </li>
+                                                    </ul>
+
+                                                    <!-- Priority -->
+                                                    <span class="badge font-semibold p-1.25 bg-warning/15 text-warning">Medium</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task3" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Design Marketing Assets for Campaign</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-8.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Olivia 🎨</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-9.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Daniel</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-10.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Liam 📷</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-warning text-warning border">Pending</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Next Week</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">2/8</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">8</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task4" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Prepare Financial Report for Q3 Review</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-1.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Emma 💼</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-2.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Michael</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-4.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Chloe 📊</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-success text-success border">In Progress</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Friday</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">6/12</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">18</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-warning/15 text-warning">Medium</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task5" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Organize Client Feedback Workshop</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-3.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Isabella 📝</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Lucas</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Noah 🎤</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-primary text-primary border">Scheduled</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Next Monday</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">1/5</span>
+                                                        </li>
+
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">4</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-success/15 text-success">Low</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task6" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Update Company Website Content</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <!-- Avatars -->
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Mason 🌐</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-8.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ava</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-10.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ethan 🖋</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Status -->
+                                                    <span class="badge font-semibold border-warning text-danger border">Urgent</span>
+
+                                                    <!-- Stats -->
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">Today</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">9/15</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">27</span>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Priority -->
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task7" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Conduct Security Audit for New App</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-1.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Alice 🔒</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-2.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">David</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-3.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Sophia</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-warning text-danger border">Urgent</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">15 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">4/12</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">9</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task8" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Draft Press Release for Product Launch</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-4.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ben 📰</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Chloe</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Olivia</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-success text-success border">In Progress</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">16 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">3/6</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">5</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-warning/15 text-warning">Medium</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task9" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Update CRM Database Records</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Liam 📁</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-8.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Emily</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-9.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Nathan</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-warning text-warning border">Pending</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">17 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">8/20</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">11</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task10" />
+
+                                                <a href="#" class="hover:text-primary font-medium" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal">Plan Internal Team Training Session</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-10.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Sophie 🎓</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-1.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Jack</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-2.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ava</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-primary text-primary border">Scheduled</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">18 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">2/7</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">3</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-success/15 text-success">Low</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task11" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Review Supplier Contract Renewals</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <!-- Avatars -->
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-3.jpg" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ella 📑</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-4.jpg" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Henry</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition-all duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Mia</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Status -->
+                                                    <span class="badge font-semibold border-warning text-warning border">Pending</span>
+
+                                                    <!-- Stats -->
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">19 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">5/15</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">7</span>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Priority -->
+                                                    <span class="badge font-semibold p-1.25 bg-warning/15 text-warning">Medium</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task12" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Compile Monthly Marketing Metrics</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Noah 📈</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Grace</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex [--placement:top]">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-8.jpg" class="block size-6 rounded-full transition duration-300 hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Leo</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-success text-success border">In Progress</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">20 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">6/10</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">15</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-success/15 text-success">Low</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task13" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Prepare Year-End Performance Review</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-9.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Lucas 📝</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-10.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Avery</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-1.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ella</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-primary text-primary border">Scheduled</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">21 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">1/3</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">2</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-warning/15 text-warning">Medium</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task14" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Coordinate Social Media Influencer Outreach</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-2.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Maya 📱</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-3.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Oliver</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-4.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Zoe</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-warning text-warning border">Pending</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">22 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">3/8</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">6</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-center gap-2.5 px-5 py-2.5">
+                                                <i class="iconify tabler--grip-horizontal sort-handle"></i>
+                                                <input type="checkbox" class="form-checkbox rounded-full" id="task15" />
+
+                                                <a href="#" aria-haspopup="dialog" aria-expanded="false" aria-controls="taskDetailsModal" data-hs-overlay="#taskDetailsModal" class="hover:text-primary font-medium">Test and Deploy New Checkout System</a>
+
+                                                <div class="ms-auto flex flex-wrap items-center gap-base justify-end">
+                                                    <div class="flex items-center -space-x-2">
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Harper 🧪</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Ethan</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <div class="hs-tooltip flex">
+                                                            <button class="hs-tooltip-toggle">
+                                                                <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                                <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Amelia</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <span class="badge font-semibold border-warning text-danger border">Urgent</span>
+
+                                                    <ul class="flex items-center gap-3.25 text-end">
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--calendar text-default-400 text-base"></i>
+                                                            <span class="font-semibold">23 Sep, 2025</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--list-details text-default-400 text-base"></i>
+                                                            <span class="font-medium">7/14</span>
+                                                        </li>
+                                                        <li class="flex items-center gap-1.75">
+                                                            <i class="iconify tabler--messages text-default-400 text-base"></i>
+                                                            <span class="font-medium">19</span>
+                                                        </li>
+                                                    </ul>
+                                                    <span class="badge font-semibold p-1.25 bg-danger/15 text-danger">High</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="border-default-300 flex items-center justify-center gap-2.5 border-t md:pt-base">
+                                            <strong>Loading...</strong>
+                                            <div class="text-danger inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent" role="status" aria-label="loading">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="addTaskModal" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" role="dialog" tabindex="-1" aria-labelledby="addTaskModalLabel">
+                        <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                            <div class="card pointer-events-auto flex w-full flex-col">
+                                <div class="card-header p-5">
+                                    <h3 id="addTaskModalLabel" class="text-md font-medium">Add New Task</h3>
+                                    <button type="button" aria-label="Close" data-hs-overlay="#addTaskModal">
+                                        <i class="iconify tabler--x text-xl"></i>
+                                    </button>
+                                </div>
+
+                                <div class="card-body overflow-y-auto">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-base">
+                                        <div class="col-span-1 md:col-span-2">
+                                            <label class="form-label">Task Title</label>
+                                            <input type="text" class="form-input" name="taskTitle" placeholder="Enter task title" required="" />
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <label for="DueDate" class="form-label">Due Date</label>
+                                            <input type="text" class="form-input flatpickr-input bg-transparent!" id="DueDate" data-provider="flatpickr" data-date-format="d M, Y" required="" readonly="readonly" />
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <label class="form-label">Priority</label>
+                                            <select class="form-input" name="taskPriority">
+                                                <option value="badge font-semibold-soft-success p-1">Low</option>
+                                                <option value="badge font-semibold-soft-primary p-1">Medium</option>
+                                                <option value="badge font-semibold-soft-danger p-1" selected="">High</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-1 md:col-span-2">
+                                            <label class="form-label">Status</label>
+                                            <select class="form-input" name="taskStatus">
+                                                <option value="badge font-semibold-outline-warning">New</option>
+                                                <option value="badge font-semibold-outline-success">In Progress</option>
+                                                <option value="badge font-semibold-outline-primary">Scheduled</option>
+                                                <option value="badge font-semibold-outline-danger">Urgent</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-span-1 md:col-span-2">
+                                            <label class="form-label">Assign To</label>
+                                            <input type="text" class="form-input" name="taskAvatars" placeholder="Comma-separated user IDs" />
+                                            <small class="text-default-400 text-2xs">set &#64;username</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-default-300 flex items-center justify-end gap-x-2 border-t border-dashed p-5">
+                                    <button type="button" class="btn bg-secondary text-white hover:bg-secondary-hover" data-hs-overlay="#addTaskModal">Cancel</button>
+
+                                    <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">Add Task</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        id="taskDetailsModal"
+                        class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                        role="dialog"
+                        tabindex="-1"
+                        aria-labelledby="taskDetailsModalLabel"
+                    >
+                        <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                            <div class="card pointer-events-auto flex w-full flex-col">
+                                <div class="card-header py-5">
+                                    <h3 id="taskDetailsModalLabel" class="text-md">Finalize Product Roadmap for Launch</h3>
+                                    <button type="button" aria-label="Close" data-hs-overlay="#taskDetailsModal">
+                                        <i class="iconify tabler--x text-xl"></i>
+                                    </button>
+                                </div>
+
+                                <div class="card-body pb-0 overflow-y-auto">
+                                    <div class="flex items-center mb-6">
+                                        <div class="hs-tooltip [--placement:top] inline-block me-3">
+                                            <img src="/images/users/user-8.jpg" alt="" class="rounded-full size-10" />
+
+                                            <div
+                                                class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1.5 px-2 bg-default-800 text-xs font-medium text-white rounded-md shadow-2xs"
+                                                role="tooltip"
+                                            >
+                                                <span>Assigned by:</span>
+                                                Alex Johnson
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <span class="font-semibold">Assigned by:</span>
+                                            Alex Johnson
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-3 gap-6 mb-6">
+                                        <div>
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Status</label>
+                                            <span class="badge font-semibold border border-success text-success">In Progress</span>
+                                        </div>
+
+                                        <div>
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Priority</label>
+                                            <span class="badge font-semibold p-1.25 bg-primary/10 text-primary">Medium</span>
+                                        </div>
+
+                                        <div>
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Due Date</label>
+                                            <span class="font-semibold">Tomorrow</span>
+                                        </div>
+
+                                        <div>
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Progress</label>
+                                            <span class="font-medium">5/10</span>
+                                        </div>
+
+                                        <div>
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Assigned To</label>
+                                            <div class="flex items-center -space-x-2">
+                                                <div class="hs-tooltip flex [--placement:top]">
+                                                    <button class="hs-tooltip-toggle">
+                                                        <img src="/images/users/user-5.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                        <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Maria 💻</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="hs-tooltip flex [--placement:top]">
+                                                    <button class="hs-tooltip-toggle">
+                                                        <img src="/images/users/user-6.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                        <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">James</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="hs-tooltip flex [--placement:top]">
+                                                    <button class="hs-tooltip-toggle">
+                                                        <img src="/images/users/user-7.jpg" class="block size-6 rounded-full transition hover:-translate-y-1" />
+                                                        <span class="hs-tooltip-content hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 bg-secondary invisible absolute z-10 rounded-sm px-3 py-1.5 text-xs text-white opacity-0">Sophia 🚀</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-3">
+                                            <label class="uppercase block font-semibold text-xs text-default-400 mb-1.25">Description</label>
+                                            <p>Preparing and finalizing the product roadmap for the upcoming launch with clear milestones and dependencies.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-light/20 -mx-6 p-6 border-y border-dashed border-default-300">
+                                        <div class="flex items-start">
+                                            <img class="me-3 size-8 rounded-full" src="/images/users/user-5.jpg" alt="Generic placeholder image" />
+                                            <div class="w-full">
+                                                <h5 class="mb-1.25">
+                                                    <a href="#!" class="hover:text-primary font-semibold text-2xs">Ethan Reynolds</a>
+                                                    <small class="text-default-400 font-normal float-end text-2xs">20 minutes ago</small>
+                                                </h5>
+                                                Loved your recent project! Really curious to see how you implemented the animations.
+                                                <br />
+                                                <a href="javascript:void(0);" class="text-default-400 inline-block mt-2">
+                                                    <i class="iconify tabler--corner-up-left"></i>
+                                                    Reply
+                                                </a>
+
+                                                <div class="flex items-start mt-6">
+                                                    <img src="/images/users/user-6.jpg" class="size-8 rounded-full me-3" alt="Generic placeholder image" />
+                                                    <div class="w-full">
+                                                        <h5 class="mb-1.25">
+                                                            <a href="#!" class="hover:text-primary font-semibold text-2xs">Mia Thompson</a>
+                                                            <small class="text-default-400 font-normal float-end text-2xs">12 minutes ago</small>
+                                                        </h5>
+                                                        I created something similar in Angular last month — would love to swap tips!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-start mt-6">
+                                            <img src="/images/users/user-3.jpg" class="rounded-full size-8 me-3" alt="Generic placeholder image" height="31" />
+                                            <div class="w-full">
+                                                <input type="text" id="simpleinput" class="form-input form-input-sm" placeholder="Add a comment..." />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-default-300 flex items-center justify-end gap-x-2 border-t border-dashed p-5">
+                                    <button type="button" class="btn bg-secondary text-white hover:bg-secondary-hover" data-hs-overlay="#taskDetailsModal">Close</button>
+
+                                    <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">Mark as Complete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+            </div>
+
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Todo Init Js -->
+        <script type="module" src="assets/js/pages/apps-todo.js"></script>
+    </body>
+</html>

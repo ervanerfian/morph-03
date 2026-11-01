@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="Gift Cards" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="Promo" title="Gift Cards"}} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="Promo" title="Gift Cards" }}
+
+                    <div class="container-fluid">
+                        <div data-table data-table-rows-per-page="8" class="card">
+                            <!-- card-header -->
+                            <div class="card-header">
+                                <div class="flex flex-wrap gap-2.5">
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input data-table-search type="text" type="search" placeholder="Search gift card..." class="form-input" />
+                                    </div>
+
+                                    <button data-table-delete-selected class="btn bg-danger text-white hover:bg-danger-hover hidden">Delete</button>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                    <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--activity input-icon"></i>
+                                        <select data-table-filter="gift-status" class="form-select">
+                                            <option value="All">Status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Redeemed">Redeemed</option>
+                                            <option value="Expired">Expired</option>
+                                            <option value="Pending">Pending</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--gift input-icon"></i>
+                                        <select data-table-filter="gift-type" class="form-select">
+                                            <option value="All">Type</option>
+                                            <option value="Digital">Digital</option>
+                                            <option value="Physical">Physical</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <select data-table-set-rows-per-page class="form-select">
+                                            <option value="5">5</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover" aria-haspopup="dialog" aria-expanded="false" aria-inputs="addGiftCardModal" data-hs-overlay="#addGiftCardModal">
+                                    <i class="iconify tabler--plus"></i>
+                                    Add Gift Card
+                                </button>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table class="table table-hover">
+                                    <thead class="thead-sm">
+                                        <tr class="bg-light/25 text-2xs uppercase">
+                                            <th class="w-[1%]">
+                                                <input data-table-select-all class="form-checkbox form-checkbox-light size-4.5" type="checkbox" id="checkAll" />
+                                            </th>
+                                            <th data-table-sort>Card Code</th>
+                                            <th data-table-sort>Recipient</th>
+                                            <th data-table-sort data-column="gift-type">Type</th>
+                                            <th data-table-sort>Value</th>
+                                            <th data-table-sort>Balance</th>
+                                            <th data-table-sort data-column="gift-status">Status</th>
+                                            <th data-table-sort>Issued On</th>
+                                            <th data-table-sort>Expires On</th>
+                                            <th class="text-center w-[1%]">Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <!-- Row 1 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#!" class="hover:text-primary">GFT-A1001</a>
+                                                </h5>
+                                            </td>
+
+                                            <td>
+                                                Olivia Jenkins
+                                                <br />
+                                                <small class="text-default-400">olivia.jenkins&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$100</td>
+                                            <td>$45</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>12 Apr 2025</td>
+                                            <td>12 Apr 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 2 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1002</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Liam Henderson
+                                                <br />
+                                                <small class="text-default-400">liam.henderson&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-secondary/15 text-secondary">Physical</span>
+                                            </td>
+                                            <td>$50</td>
+                                            <td>$0</td>
+                                            <td>
+                                                <div class="text-default-400 flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Redeemed
+                                                </div>
+                                            </td>
+                                            <td>5 Feb 2025</td>
+                                            <td>5 Feb 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 3 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1003</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Emma Wallace
+                                                <br />
+                                                <small class="text-default-400">emma.wallace&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$200</td>
+                                            <td>$200</td>
+                                            <td>
+                                                <div class="text-warning flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Pending
+                                                </div>
+                                            </td>
+                                            <td>20 May 2025</td>
+                                            <td>20 May 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 4 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1004</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Noah Parker
+                                                <br />
+                                                <small class="text-default-400">noah.parker&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-secondary/15 text-secondary">Physical</span>
+                                            </td>
+                                            <td>$150</td>
+                                            <td>$75</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>2 Mar 2025</td>
+                                            <td>2 Mar 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 5 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1005</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Ava Reed
+                                                <br />
+                                                <small class="text-default-400">ava.reed&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$75</td>
+                                            <td>$0</td>
+                                            <td>
+                                                <div class="text-danger flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Expired
+                                                </div>
+                                            </td>
+                                            <td>10 Jan 2024</td>
+                                            <td>10 Jan 2025</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 6 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#!" class="hover:text-primary">GFT-A1001</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Olivia Jenkins
+                                                <br />
+                                                <small class="text-default-400">olivia.jenkins&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$100</td>
+                                            <td>$45</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>12 Apr 2025</td>
+                                            <td>12 Apr 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 7 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1007</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Isabella Moore
+                                                <br />
+                                                <small class="text-default-400">isabella.moore&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-secondary/15 text-secondary">Physical</span>
+                                            </td>
+                                            <td>$250</td>
+                                            <td>$75</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>15 Mar 2025</td>
+                                            <td>15 Mar 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 8 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1008</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Elijah Bennett
+                                                <br />
+                                                <small class="text-default-400">elijah.bennett&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$75</td>
+                                            <td>$0</td>
+                                            <td>
+                                                <div class="text-default-400 flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Redeemed
+                                                </div>
+                                            </td>
+                                            <td>5 Feb 2025</td>
+                                            <td>5 Feb 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 9 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1009</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Harper Collins
+                                                <br />
+                                                <small class="text-default-400">harper.collins&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-secondary/15 text-secondary">Physical</span>
+                                            </td>
+                                            <td>$120</td>
+                                            <td>$40</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>18 Apr 2025</td>
+                                            <td>18 Apr 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 10 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1010</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Sophia Adams
+                                                <br />
+                                                <small class="text-default-400">sophia.adams&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$200</td>
+                                            <td>$0</td>
+                                            <td>
+                                                <div class="text-danger flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Expired
+                                                </div>
+                                            </td>
+                                            <td>1 Mar 2024</td>
+                                            <td>1 Mar 2025</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 11 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1011</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Jack Thompson
+                                                <br />
+                                                <small class="text-default-400">jack.thompson&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-secondary/15 text-secondary">Physical</span>
+                                            </td>
+                                            <td>$300</td>
+                                            <td>$260</td>
+                                            <td>
+                                                <div class="text-success flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td>8 Jan 2025</td>
+                                            <td>8 Jan 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Row 12 -->
+                                        <tr>
+                                            <td>
+                                                <input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" />
+                                            </td>
+                                            <td>
+                                                <h5 class="text-sm">
+                                                    <a href="#" class="hover:text-primary">GFT-A1012</a>
+                                                </h5>
+                                            </td>
+                                            <td>
+                                                Ella Johnson
+                                                <br />
+                                                <small class="text-default-400">ella.johnson&#64;mail.com</small>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-primary/15 text-primary">Digital</span>
+                                            </td>
+                                            <td>$150</td>
+                                            <td>$0</td>
+                                            <td>
+                                                <div class="text-default-400 flex items-center gap-2">
+                                                    <i class="iconify tabler--circle-filled text-sm"></i>
+                                                    Redeemed
+                                                </div>
+                                            </td>
+                                            <td>15 Feb 2025</td>
+                                            <td>15 Feb 2026</td>
+                                            <td>
+                                                <div class="flex justify-center gap-1.25">
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--eye text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400">
+                                                        <i class="iconify tabler--edit text-base"></i>
+                                                    </a>
+                                                    <a href="#" class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row>
+                                                        <i class="iconify tabler--trash text-base"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- card-footer -->
+                            <div class="card-footer">
+                                <div data-table-pagination-info="giftcards"></div>
+                                <div data-table-pagination></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+
+                <div
+                    id="addGiftCardModal"
+                    class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto"
+                    role="dialog"
+                    tabindex="-1"
+                    aria-labelledby="addGiftCardModalLabel"
+                >
+                    <div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+                        <div class="card pointer-events-auto flex w-full flex-col">
+                            <div class="card-header p-5 rounded-t-sm bg-default-100">
+                                <h3 id="addGiftCardModalLabel" class="flex items-center gap-2 text-sm font-semibold">
+                                    <i class="iconify tabler--gift text-primary text-sm"></i>
+                                    Add New Gift Card
+                                </h3>
+
+                                <button type="button" aria-label="Close" data-hs-overlay="#addGiftCardModal">
+                                    <i class="iconify tabler--x text-xl"></i>
+                                </button>
+                            </div>
+
+                            <form id="addCouponForm">
+                                <div class="card-body">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <!-- Gift Card Code -->
+                                        <div>
+                                            <label class="form-label">
+                                                Gift Card Code
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-input" name="gift_code" placeholder="e.g., GFT-A2025" required="" />
+                                        </div>
+
+                                        <!-- Gift Card Type -->
+                                        <div>
+                                            <label class="form-label">
+                                                Type
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select class="form-input" name="gift_type" required="">
+                                                <option value="">Select Type</option>
+                                                <option value="digital">Digital</option>
+                                                <option value="physical">Physical</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Value -->
+                                        <div>
+                                            <label class="form-label">
+                                                Gift Card Value ($)
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="number" class="form-input" name="gift_value" placeholder="e.g., 100" required="" />
+                                        </div>
+
+                                        <!-- Initial Balance -->
+                                        <div>
+                                            <label class="form-label">Initial Balance</label>
+                                            <input type="number" class="form-input" name="gift_balance" placeholder="e.g., 100" />
+                                        </div>
+
+                                        <!-- Recipient Name -->
+                                        <div>
+                                            <label class="form-label">
+                                                Recipient Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-input" name="recipient_name" placeholder="e.g., John Doe" required="" />
+                                        </div>
+
+                                        <!-- Recipient Email -->
+                                        <div>
+                                            <label class="form-label">
+                                                Recipient Email
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="email" class="form-input" name="recipient_email" placeholder="e.g., john.doe&#64;mail.com" required="" />
+                                        </div>
+
+                                        <!-- Message -->
+                                        <div class="md:col-span-2">
+                                            <label class="form-label">Personal Message</label>
+                                            <textarea class="form-textarea" name="gift_message" rows="2" placeholder="Write a short message to include with the gift card"></textarea>
+                                        </div>
+
+                                        <!-- Issue Date -->
+                                        <div>
+                                            <label class="form-label">
+                                                Issue Date
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-input flatpickr-input" data-provider="flatpickr" data-date-format="d M, Y" name="issue_date" placeholder="Select issue date" required="" readonly="readonly" />
+                                        </div>
+
+                                        <!-- Expiry Date -->
+                                        <div>
+                                            <label class="form-label">
+                                                Expiry Date
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-input flatpickr-input" data-provider="flatpickr" data-date-format="d M, Y" name="expiry_date" placeholder="Select expiry date" required="" readonly="readonly" />
+                                        </div>
+
+                                        <!-- Toggles -->
+                                        <div class="md:col-span-2">
+                                            <div class="mt-3 flex flex-wrap gap-base">
+                                                <div class="flex items-center gap-3">
+                                                    <input class="form-switch" type="checkbox" id="isGiftCardActive" checked="" />
+                                                    <label for="isGiftCardActive">Active</label>
+                                                </div>
+                                                <div class="flex items-center gap-3">
+                                                    <input class="form-switch" type="checkbox" id="isGiftCardDelivered" />
+                                                    <label for="isGiftCardDelivered">Send via Email</label>
+                                                </div>
+                                                <div class="flex items-center gap-3">
+                                                    <input class="form-switch" type="checkbox" id="isGiftCardPhysical" />
+                                                    <label for="isGiftCardPhysical">Physical Delivery</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+                                <button type="button" class="btn bg-light hover:text-primary" data-hs-overlay="#addGiftCardModal">Cancel</button>
+
+                                <button type="button" class="btn bg-primary text-white hover:bg-primary-hover">
+                                    <i class="iconify tabler--plus"></i>
+                                    Add Gift Card
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Custom table -->
+        <script type="module" src="assets/js/pages/custom-table.js"></script>
+    </body>
+</html>

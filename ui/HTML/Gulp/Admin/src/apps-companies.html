@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Companies"})
+
+    @@include('./partials/head-css.html')
+</head>
+
+<body>
+    <div class="wrapper">
+
+        @@include('./partials/topbar.html', {"subtitle": "Apps", "title":"Companies"})
+
+        @@include('./partials/sidenav.html')
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                @@include("./partials/page-title.html", {"subtitle": "Apps", "title":"Companies"})
+
+                <div class="container-fluid">
+                    <div class="card border border-default-300 mb-base">
+                        <div class="card-body">
+                            <div class="flex flex-wrap items-center justify-between gap-4">
+                                <!-- Search -->
+                                <div>
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="text" class="form-input w-full" placeholder="Search company name..." />
+                                    </div>
+                                </div>
+
+                                <!-- Filters & Controls -->
+                                <div>
+                                    <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                        <div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+                                            <div class="items-center gap-base md:flex">
+                                                <span class="font-semibold">Filter By:</span>
+
+                                                <!-- Designation Filter -->
+                                                <div class="input-icon-group">
+                                                    <i class="iconify tabler--map-pin input-icon"></i>
+                                                    <select class="form-select">
+                                                        <option selected>Location</option>
+                                                        <option value="USA">USA</option>
+                                                        <option value="Canada">Canada</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="India">India</option>
+                                                        <option value="UK">United Kingdom</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <!-- Location Filter -->
+                                            <div class="input-icon-group">
+                                                <i class="iconify tabler--briefcase input-icon"></i>
+                                                <select class="form-select">
+                                                    <option selected>Category</option>
+                                                    <option value="Tech">Tech</option>
+                                                    <option value="Finance">Finance</option>
+                                                    <option value="eCommerce">eCommerce</option>
+                                                    <option value="Healthcare">Healthcare</option>
+                                                    <option value="Automotive">Automotive</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Department Filter -->
+                                            <div class="input-icon-group">
+                                                <i class="iconify tabler--star input-icon"></i>
+                                                <select class="form-select">
+                                                    <option selected>Rating</option>
+                                                    <option value="5">5 Stars</option>
+                                                    <option value="4">4 Stars & Up</option>
+                                                    <option value="3">3 Stars & Up</option>
+                                                    <option value="2">2 Stars & Up</option>
+                                                    <option value="1">1 Star & Up</option>
+                                                </select>
+                                            </div>
+
+                                            <button type="submit" class="btn bg-primary text-white hover:bg-primary-hover">
+                                                <i class="iconify tabler--plus"></i>
+                                                Add
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-base mb-base">
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/amazon.svg" alt="Amazon Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Amazon Inc.</h4>
+                                            <a href="https://www.amazon.com" class="text-default-400 text-xs" target="_blank">www.amazon.com</a>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                            <i class="iconify tabler--heart"></i>
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Seattle, WA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">eCommerce</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 1994</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Amazon.com, Inc. is an American multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence. It’s one of the Big Five tech companies alongside Google, Apple, Microsoft, and Meta.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">1.5M+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$514B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Andy Jassy</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">AMZN</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning items-ceenter flex gap-1 text-lg">
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star text-base"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/apple.svg" alt="Apple Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Apple Inc.</h4>
+                                            <a href="https://www.apple.com" class="text-default-400 text-xs" target="_blank">www.apple.com</a>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                            <i class="iconify tabler--heart"></i>
+                                            Follow
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Cupertino, CA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Technology</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 1976</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Apple Inc. is an American multinational technology company that designs, develops, and sells consumer electronics, software, and online services. It’s one of the Big Five tech companies alongside Google, Amazon, Microsoft, and Meta.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">164K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$394B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Tim Cook</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">AAPL</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-base">
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/starbucks.svg" alt="Starbucks Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Starbucks Corporation</h4>
+                                            <a href="https://www.starbucks.com" class="text-default-400 text-xs" target="_blank">www.starbucks.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Seattle, WA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Coffeehouse</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 1971</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Starbucks Corporation is an American multinational chain of coffeehouses and roastery reserves. It’s the world’s largest coffeehouse chain and a premier roaster and retailer of specialty coffee.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">400K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$36B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Laxman Narasimhan</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">SBUX</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-lg">
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star text-base"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/meta.svg" alt="Meta Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Meta Platforms, Inc.</h4>
+                                            <a href="https://www.meta.com" class="text-default-400 text-xs" target="_blank">www.meta.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Menlo Park, CA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Social Media</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 2004</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Meta Platforms, Inc. is an American multinational technology conglomerate. It owns Facebook, Instagram, WhatsApp, and Quest VR products, focusing on social networking, virtual reality, and the metaverse.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">66K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$134B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">M. Zuckerberg</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">META</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-base">
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/spotify.svg" alt="Spotify Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Spotify Technology S.A.</h4>
+                                            <a href="https://www.spotify.com" class="text-default-400 text-xs" target="_blank">www.spotify.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Stockholm, Sweden</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Music Streaming</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 2006</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Spotify Technology S.A. is a Swedish audio streaming and media services provider. It’s one of the world’s largest music streaming service providers with millions of active users worldwide.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">8.9K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$13B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Daniel Ek</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+                                    <div class="text-center">
+                                        <h5 class="font-bold">SPOT</h5>
+                                        <small class="text-default-400">NYSE</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-lg">
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star text-base"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/google.svg" alt="Google Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Google LLC</h4>
+                                            <a href="https://www.google.com" class="text-default-400 text-xs" target="_blank">www.google.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">Mountain View, CA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Technology</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 1998</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Google LLC is an American multinational technology company focusing on search, online advertising, cloud computing, and artificial intelligence. It is a subsidiary of Alphabet Inc.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">182K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$307B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Sundar Pichai</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">GOOGL</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-base">
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/airbnb.svg" alt="Airbnb Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Airbnb, Inc.</h4>
+                                            <a href="https://www.airbnb.com" class="text-default-400 text-xs" target="_blank">www.airbnb.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">San Francisco, CA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Travel & Hospitality</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 2008</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Airbnb, Inc. is an American company operating an online marketplace for short-term homestays and experiences. It connects hosts with travelers looking for accommodations worldwide.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">6K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$9.9B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Brian Chesky</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">ABNB</h5>
+                                        <small class="text-default-400">Nasdaq</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-lg">
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star text-base"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/shell.svg" alt="Shell Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Shell plc</h4>
+                                            <a href="https://www.shell.com" class="text-default-400 text-xs" target="_blank">www.shell.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">London, UK</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Energy & Oil</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 1907</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Shell plc is a British multinational oil and gas company. It is one of the largest energy companies in the world, involved in oil, natural gas, and renewable energy development.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">90K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$381B</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">Wael Sawan</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">SHEL</h5>
+                                        <small class="text-default-400">NYSE</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-lg">
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star-filled text-base"></i>
+                                        <i class="iconify tabler--star text-base"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-5 flex items-start justify-between">
+                                    <div class="flex items-center gap-base">
+                                        <img src="assets/images/logos/asana.svg" alt="Asana Logo" class="size-12.5 rounded" />
+                                        <div>
+                                            <h4 class="mb-1.25 text-lg font-bold">Asana, Inc.</h4>
+                                            <a href="https://www.asana.com" class="text-default-400 text-xs" target="_blank">www.asana.com</a>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-sm border-danger hover:bg-danger text-danger hover:text-white">
+                                        <i class="iconify tabler--heart"></i>
+                                        Follow
+                                    </button>
+                                </div>
+
+                                <div class="mb-5 flex flex-wrap items-center gap-2.5">
+                                    <span class="badge font-semibold bg-primary/15 text-primary rounded-full px-2.5 py-1.25">San Francisco, CA</span>
+                                    <span class="badge font-semibold bg-success/15 text-success rounded-full px-2.5 py-1.25">Work Management</span>
+                                    <span class="badge font-semibold bg-info/15 text-info rounded-full px-2.5 py-1.25">Founded: 2008</span>
+                                </div>
+
+                                <p class="text-default-400 mb-7.5">Asana, Inc. is an American software company that provides a work management platform for teams to organize, track, and manage their work. It’s widely used for task, project, and workflow management.</p>
+
+                                <div class="mb-7.5 grid grid-cols-2 gap-base md:grid-cols-4">
+                                    <div class="text-center">
+                                        <h5 class="font-bold">1.7K+</h5>
+                                        <small class="text-default-400">Employees</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">$652M</h5>
+                                        <small class="text-default-400">Revenue</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">D. Moskovitz</h5>
+                                        <small class="text-default-400">CEO</small>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h5 class="font-bold">ASAN</h5>
+                                        <small class="text-default-400">NYSE</small>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <div class="text-warning flex items-center gap-1 text-base">
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star-filled"></i>
+                                        <i class="iconify tabler--star"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">Visit Company Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <nav class="mb-4 flex items-center justify-center gap-1.5" aria-label="Pagination">
+                        <button type="button" class="btn btn-icon bg-card border-default-300 hover:bg-default-50 hover:text-primary rounded-full" aria-label="Previous">
+                            <span>«</span>
+                        </button>
+                        <button type="button" class="btn btn-icon bg-primary rounded-full text-white">1</button>
+                        <button type="button" class="btn btn-icon bg-card hover:bg-default-50 border-default-300 hover:text-primary rounded-full">2</button>
+                        <button type="button" class="btn btn-icon bg-card hover:bg-default-50 border-default-300 hover:text-primary rounded-full">3</button>
+                        <button type="button" class="btn btn-icon bg-card hover:bg-default-50 border-default-300 hover:text-primary rounded-full">4</button>
+                        <button type="button" class="btn btn-icon bg-card hover:bg-default-50 border-default-300 hover:text-primary rounded-full">5</button>
+                        <button type="button" class="btn btn-icon bg-card border-default-300 hover:bg-default-50 hover:text-primary rounded-full" aria-label="Next">
+                            <span>»</span>
+                        </button>
+                    </nav>
+                </div>
+            </main>
+
+            @@include('./partials/footer.html')
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    @@include('./partials/customizer.html')
+
+    @@include('./partials/footer-scripts.html')
+</body>
+
+</html>

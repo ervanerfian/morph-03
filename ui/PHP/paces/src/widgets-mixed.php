@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Mixed"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Widgets"; $title = "Mixed"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Widgets"; $title = "Mixed"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid xl:grid-cols-5 md:grid-cols-2 grid-cols-1 mb-5 gap-base">
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-6.jpg')]">
+                            <div class="card-body rounded-md bg-primary/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--wallet-money-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Savings Target</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Monthly Budget</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="3200">0</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-7.jpg')]">
+                            <div class="card-body rounded-md bg-secondary/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--airbuds-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Gadgets Upgrade</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="1800">0</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-8.jpg')]">
+                            <div class="card-body rounded-md bg-warning/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--medal-ribbons-star-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Milestone</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Career Growth</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="5000">0</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-9.jpg')]">
+                            <div class="card-body rounded-md bg-danger/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--heart-pulse-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Health Plan</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Fitness Training</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="2400">0</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-10.jpg')]">
+                            <div class="card-body rounded-md bg-info/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--lightbulb-bolt-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Innovation</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Startup Idea</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="15000">0</span></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 mb-5 gap-base">
+                        <div class="card h-full">
+                            <div class="card-body">
+                                <div class="flex justify-between items-start flex-wrap">
+                                    <div>
+                                        <h4 class="text-sm mb-2.5 uppercase text-default-400 font-bold">Total Visitors</h4>
+                                        <div class="flex items-center gap-2.5 mb-2.5 py-1.25">
+                                            <div>
+                                                <span class="size-9 bg-secondary text-white flex justify-center items-center rounded-full">
+                                                    <i class="iconify tabler--eye text-xl"></i>
+                                                </span>
+                                            </div>
+
+                                            <h3 class="text-xl"><span data-target="82.3">82.30</span>M</h3>
+                                            <span class="badge text-sm ms-auto bg-success/15 text-success"> <i class="iconify tabler--arrow-up align-middle"></i> 6.84% </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--calendar input-icon text-default-400"></i>
+                                        <select class="form-select form-select-sm">
+                                            <option value="All">All Time</option>
+                                            <option value="today">Today</option>
+                                            <option value="last_7_days">Last 7 Days</option>
+                                            <option value="last_30_days">Last 30 Days</option>
+                                            <option value="last_90_days" selected="">Last 90 Days</option>
+                                            <option value="this_month">This Month</option>
+                                            <option value="last_month">Last Month</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between gap-1.25">
+                                    <div style="width: 69.4%">
+                                        <p class="mb-1.25 mt-2.5 text-default-400 uppercase text-sm font-medium">Mobile Phone</p>
+                                        <h3 class="font-normal mb-2.5 text-lg">69.40%</h3>
+                                        <div class="w-full h-3 bg-default-200 rounded-s-sm overflow-hidden mb-1.25">
+                                            <div class="h-full bg-secondary w-full"></div>
+                                        </div>
+                                        <p class="text-default-400">41,927 Sessions</p>
+                                    </div>
+
+                                    <div style="width: 30.6%">
+                                        <p class="mb-1.25 mt-2.5 text-default-400 uppercase text-sm font-medium">Desktop</p>
+                                        <h3 class="font-normal mb-2.5 text-lg">30.60%</h3>
+                                        <div class="w-full h-3 bg-default-200 rounded-e-sm overflow-hidden mb-1.25">
+                                            <div class="h-full bg-info w-full"></div>
+                                        </div>
+                                        <p class="text-default-400">18,476 Sessions</p>
+                                    </div>
+                                </div>
+
+                                <div class="overflow-x-auto mt-5 -mb-2.5">
+                                    <table class="table table-sm whitespace-nowrap table-borderless">
+                                        <thead class="bg-default-100 text-2xs uppercase thead-sm">
+                                            <tr>
+                                                <th class="p-2 text-start">Goal</th>
+                                                <th class="p-2 text-start">Completed</th>
+                                                <th class="p-2 text-start">Target</th>
+                                                <th class="p-2 text-start">Progress</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>Total Visitors</td>
+                                                <td>824,300</td>
+                                                <td>1,000,000</td>
+                                                <td>82%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobile Traffic</td>
+                                                <td>41,927</td>
+                                                <td>60,000</td>
+                                                <td>69%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Desktop Traffic</td>
+                                                <td>18,476</td>
+                                                <td>30,000</td>
+                                                <td>61%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card h-full">
+                            <div class="card-body">
+                                <div class="flex justify-between items-start flex-wrap">
+                                    <div>
+                                        <h4 class="text-sm mb-2.5 uppercase text-default-400 font-bold">Total Subscribers</h4>
+                                        <div class="flex items-center gap-2.5 mb-2.5 py-1.25">
+                                            <div>
+                                                <span class="size-9 bg-info text-white flex justify-center items-center rounded-full">
+                                                    <i class="iconify tabler--mail text-xl"></i>
+                                                </span>
+                                            </div>
+                                            <h3 class="text-xl"><span data-target="55.60">55.60</span>k</h3>
+                                            <span class="badge text-sm ms-auto bg-success/15 text-success"> <i class="iconify tabler--arrow-up align-middle"></i> 4.87% </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--calendar input-icon text-default-400"></i>
+                                        <select class="form-select form-select-sm">
+                                            <option value="All">All Time</option>
+                                            <option value="today">Today</option>
+                                            <option value="last_7_days">Last 7 Days</option>
+                                            <option value="last_30_days">Last 30 Days</option>
+                                            <option value="last_90_days" selected="">Last 90 Days</option>
+                                            <option value="this_month">This Month</option>
+                                            <option value="last_month">Last Month</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Email Marketing -->
+                                <div class="mt-2.5 pt-1.25">
+                                    <div class="flex items-center justify-between mb-2.5">
+                                        <h5 class="text-sm">Email Marketing</h5>
+
+                                        <div class="flex items-center text-sm">
+                                            <span>+ <span data-target="34,920">0</span></span>
+
+                                            <span class="flex items-center mx-6">
+                                                <i class="iconify tabler--circle-filled text-default-200 size-2.5"></i>
+                                            </span>
+
+                                            <span>27.41%</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div class="w-full h-1.25 bg-default-100 rounded mb-1.25">
+                                        <div class="h-full bg-secondary rounded-s-sm" style="width: 27.41%" aria-valuenow="27.41" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Social Marketing -->
+                                <div class="mt-5">
+                                    <div class="flex items-center justify-between mb-2.5">
+                                        <h5 class="text-sm">Social Marketing</h5>
+
+                                        <div class="flex items-center text-sm">
+                                            <span>+ <span data-target="58,775">0</span></span>
+
+                                            <span class="flex items-center mx-6">
+                                                <i class="iconify tabler--circle-filled text-default-200 size-2.5"></i>
+                                            </span>
+
+                                            <span>46.13%</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div class="w-full h-1.25 bg-default-100 rounded mb-1.25">
+                                        <div class="h-full bg-info rounded-s-sm" style="width: 46.13%" aria-valuenow="27.41" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Direct -->
+                                <div class="mt-5">
+                                    <div class="flex items-center justify-between mb-2.5">
+                                        <h5 class="text-sm">Direct</h5>
+
+                                        <div class="flex items-center text-sm">
+                                            <span>+ <span data-target="33,645">0</span></span>
+
+                                            <span class="flex items-center mx-6">
+                                                <i class="iconify tabler--circle-filled text-default-200 size-2.5"></i>
+                                            </span>
+
+                                            <span>26.46%</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Progress Bar -->
+                                    <div class="w-full h-1.25 bg-default-100 rounded mb-1.25">
+                                        <div class="h-full bg-success rounded-s-sm" style="width: 26.46%" aria-valuenow="27.41" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Milestone Card -->
+                                <div class="p-2.5 mt-5 border border-dashed border-default-300 rounded">
+                                    <div class="md:flex items-center md:justify-between gap-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <div class="size-12 flex justify-center items-center rounded-full bg-warning/15 text-warning">
+                                                    <i class="iconify tabler--medal size-7"></i>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <h5 class="text-md font-semibold">Congratulations !...</h5>
+                                                <p class="text-sm text-default-400">You've reached a new subscriber milestone.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="ms-auto">
+                                            <h4 class="mt-1.25 font-semibold text-base">29.4k</h4>
+                                            <span class="text-default-400 font-semibold text-xs">SUBSCRIBERS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card h-full">
+                            <div class="card-header justify-between">
+                                <h4 class="card-title flex items-center gap-2">
+                                    Top Traffic Sources
+
+                                    <div class="hs-tooltip [--placement:top]">
+                                        <button type="button" class="hs-tooltip-toggle">
+                                            <i class="iconify tabler--info-circle text-default-400 mt-2"></i>
+                                            <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-800 text-xs font-medium text-default-50 rounded-md" role="tooltip">
+                                                Shows which channels drive<br />
+                                                the most traffic.
+                                            </span>
+                                        </button>
+                                    </div>
+                                </h4>
+
+                                <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                    <a href="#" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300">
+                                        <i class="iconify tabler--dots-vertical text-base"></i>
+                                    </a>
+                                    <ul class="hs-dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#"> <i class="iconify tabler--chart-bar me-1"></i> View Detailed Report </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"> <i class="iconify tabler--download me-1"></i> Export Traffic Data </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#"> <i class="iconify tabler--filter-2 me-1"></i> Filter by Source </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--trash me-1"></i> Remove Widget </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid md:grid-cols-2 grid-cols-1 gap-base">
+                                    <div>
+                                        <div class="relative h-10 bg-warning/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/google.svg" alt="user-image" class="me-1.25 h-6" />
+                                                    <span class="font-semibold text-md">Google</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">87.8k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-warning/20" style="width: 72%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-danger/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/instagram.svg" alt="user-image" class="me-1.25 h-6" />
+                                                    <span class="font-semibold text-md">Instagram</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">42.9k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-danger/20" style="width: 30%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-info/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center" class="flex items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/linkedin.svg" alt="user-image" class="me-1.25 h-6" />
+                                                    <span class="font-semibold text-md">LinkedIn</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">58.5k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-info/20" style="width: 43%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-secondary/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center" class="flex items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/dribbble.svg" alt="user-image" class="me-1.25 h-6" />
+                                                    <span class="font-semibold text-md">Dribbble</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">2.85k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-secondary/20" style="width: 12%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-primary/10 w-full">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/messenger.svg" alt="user-image" class="me-1.25 h-6" />
+                                                    <span class="font-semibold text-md">Messenger</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">9.08k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-primary/20" style="width: 18%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="relative h-10 bg-primary/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/meta.svg" alt="user-image" class="me-1 h-4.5" />
+                                                    <span class="font-semibold text-md">Meta</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">77.7k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-primary/20" style="width: 66%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-success/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/telegram.svg" alt="user-image" class="me-1 h-6" />
+                                                    <span class="font-semibold text-md">Telegram</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">31.5k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-success/20" style="width: 46%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-dark/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/x.svg" alt="user-image" class="me-1 h-4" />
+                                                    <span class="font-semibold text-md">Twitter X</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">22.6k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-dark/20" style="width: 29%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-danger/10 w-full mb-5">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/whatsapp.svg" alt="user-image" class="me-1 h-6" />
+                                                    <span class="font-semibold text-md">WhatsApp</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">3.1k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-danger/20" style="width: 18%"></div>
+                                        </div>
+
+                                        <div class="relative h-10 bg-warning/10 w-full">
+                                            <div class="absolute size-full px-3.75 z-10 flex justify-between items-center">
+                                                <div class="flex items-center">
+                                                    <img src="assets/images/logos/snapchat.svg" alt="user-image" class="me-1 h-7" />
+                                                    <span class="font-semibold text-md">Snapchat</span>
+                                                </div>
+                                                <span class="font-semibold text-sm text-default-400 text-end">5.8k</span>
+                                            </div>
+                                            <div class="h-full absolute flex overflow-hidden bg-warning/20" style="width: 9%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 mb-5 gap-base">
+                        <div class="card bg-success! text-white bg-linear-to-b from-white/30 to-white/0">
+                            <div class="card-body rounded-md bg-[url('../images/flower-style.svg')] bg-no-repeat bg-contain bg-bottom-right">
+                                <h4 class="text-white text-lg mb-2">Revenue Overview</h4>
+                                <p class="text-white/75 mb-4">Get a quick snapshot of your company’s financial performance.</p>
+                                <div class="flex gap-2.5">
+                                    <a href="#!" class="btn btn-sm btn-success border border-success hover:border-success bg-white/10"> <i class="iconify tabler--chart-bar"></i> Report </a>
+                                    <a href="#!" class="btn btn-sm btn-success border border-success hover:border-success bg-white/10">
+                                        <i class="iconify tabler--phone"></i>
+                                    </a>
+                                    <a href="#!" target="_blank" class="btn btn-sm btn-success border border-success hover:border-success bg-white/10">
+                                        <i class="iconify tabler--world"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card bg-info! text-white bg-linear-to-b from-white/30 to-white/0">
+                            <div class="card-body rounded-md bg-[url('../images/flower-style.svg')] bg-no-repeat bg-contain bg-bottom-right">
+                                <h4 class="text-white text-lg mb-2">Customer Insights</h4>
+                                <p class="text-white/75 mb-4">Analyze customer behavior and discover actionable trends.</p>
+                                <div class="flex gap-2.5">
+                                    <a href="#!" class="btn btn-sm btn-info border border-info hover:border-info bg-white/10"> <i class="iconify tabler--users"></i> Insights </a>
+                                    <a href="#!" class="btn btn-sm btn-info border border-info hover:border-info bg-white/10">
+                                        <i class="iconify tabler--mail"></i>
+                                    </a>
+                                    <a href="#!" target="_blank" class="btn btn-sm btn-info border border-info hover:border-info bg-white/10">
+                                        <i class="iconify tabler--message-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card bg-danger! text-white bg-linear-to-b from-white/30 to-white/0">
+                            <div class="card-body rounded-md bg-[url('../images/flower-style.svg')] bg-no-repeat bg-contain bg-bottom-right">
+                                <h4 class="text-white text-lg mb-2">Performance Alerts</h4>
+                                <p class="text-white/75 mb-4">Stay informed with real-time alerts for key business indicators.</p>
+                                <div class="flex gap-2.5">
+                                    <a href="#!" class="btn btn-sm btn-danger border border-danger hover:border-danger bg-white/10"> <i class="iconify tabler--bell"></i> Insights </a>
+                                    <a href="#!" class="btn btn-sm btn-danger border border-danger hover:border-danger bg-white/10">
+                                        <i class="iconify tabler--share"></i>
+                                    </a>
+                                    <a href="#!" target="_blank" class="btn btn-sm btn-danger border border-danger hover:border-danger bg-white/10">
+                                        <i class="iconify tabler--layout-dashboard"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 mb-5 gap-base">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="flex items-center mb-7.5">
+                                    <div class="me-5 relative">
+                                        <img src="assets/images/users/user-5.jpg" alt="avatar" class="rounded-full" width="72" height="72" />
+                                        <span class="absolute bottom-0 end-0 badge bg-warning rounded-full p-1.25 text-white" title="Rating 4.8">
+                                            <i class="iconify tabler--star"></i>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="mb-1.25 flex items-center">
+                                            <a href="#!" class="hover:text-primary">Sophia Carter</a>
+                                            <img src="assets/images/flags/gb.svg" alt="UK" class="ms-2.5 rounded-full size-4" />
+                                        </h5>
+                                        <p class="text-default-400 mb-1.25">Lead UI/UX Designer</p>
+                                        <span class="badge bg-light badge-label">Admin</span>
+                                    </div>
+
+                                    <!-- Dropdown -->
+                                    <div class="relative ms-auto">
+                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                            <button type="button" class="hs-dropdown-toggle btn size-9.25 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                <i class="iconify tabler--dots-vertical text-base"></i>
+                                            </button>
+
+                                            <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--edit"></i>
+                                                    Edit
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--ban"></i>
+                                                    Block
+                                                </a>
+
+                                                <a class="dropdown-item text-danger" href="#">
+                                                    <i class="iconify tabler--trash"></i>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="text-default-400 mb-7.5">
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--mail"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">sophia&#64;designhub.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--phone"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">+44 7911 123456</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--map-pin"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">London, UK</h5>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--link"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="text-primary hover:text-primary-">www.sophiacarter.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="text-default-400 text-xs flex items-center">
+                                        <i class="iconify tabler--refresh me-1.25"></i>
+                                        Updated 30 min ago
+                                    </span>
+                                    <a href="#!" class="btn bg-primary/10 text-primary btn-sm rounded-full hover:bg-primary hover:text-white">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="flex items-center mb-7.5">
+                                    <div class="me-5 relative">
+                                        <img src="assets/images/users/user-6.jpg" alt="avatar" class="rounded-full" width="72" height="72" />
+                                        <span class="absolute bottom-0 end-0 badge bg-success rounded-full p-1.25 text-white" title="Rating 4.8">
+                                            <i class="iconify tabler--star"></i>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="mb-1.25 flex items-center">
+                                            <a href="#!" class="hover:text-primary">Marcus Lee</a>
+                                            <img src="assets/images/flags/us.svg" alt="US" class="ms-2.5 rounded-full size-4" />
+                                        </h5>
+                                        <p class="text-default-400 mb-1.25">Senior Developer</p>
+                                        <span class="badge bg-light badge-label">Team Lead</span>
+                                    </div>
+
+                                    <!-- Dropdown -->
+                                    <div class="relative ms-auto">
+                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                            <button type="button" class="hs-dropdown-toggle btn size-9.25 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                <i class="iconify tabler--dots-vertical text-base"></i>
+                                            </button>
+
+                                            <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--edit"></i>
+                                                    Edit
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--ban"></i>
+                                                    Block
+                                                </a>
+
+                                                <a class="dropdown-item text-danger" href="#">
+                                                    <i class="iconify tabler--trash"></i>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="text-default-400 mb-7.5">
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--mail"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">marcus&#64;devhub.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--phone"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">+1 408-222-9876</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--map-pin"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">Austin, TX</h5>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--link"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="text-primary hover:text-primary-">www.devhub.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="text-default-400 text-xs flex items-center">
+                                        <i class="iconify tabler--refresh me-1.25"></i>
+                                        Updated 1 hour ago
+                                    </span>
+                                    <a href="#!" class="btn bg-primary/10 text-primary btn-sm rounded-full hover:bg-primary hover:text-white">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="flex items-center mb-7.5">
+                                    <div class="me-5 relative">
+                                        <img src="assets/images/users/user-7.jpg" alt="avatar" class="rounded-full" width="72" height="72" />
+                                        <span class="absolute bottom-0 end-0 badge bg-danger rounded-full p-1.25 text-white" title="Rating 4.8">
+                                            <i class="iconify tabler--star"></i>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="mb-1.25 flex items-center">
+                                            <a href="#!" class="hover:text-primary">Emily Davis</a>
+                                            <img src="assets/images/flags/us.svg" alt="US" class="ms-2.5 rounded-full size-4" />
+                                        </h5>
+                                        <p class="text-default-400 mb-1.25">Marketing Strategist</p>
+                                        <span class="badge bg-light badge-label">Member</span>
+                                    </div>
+
+                                    <!-- Dropdown -->
+                                    <div class="relative ms-auto">
+                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                            <button type="button" class="hs-dropdown-toggle btn size-9.25 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                <i class="iconify tabler--dots-vertical text-base"></i>
+                                            </button>
+
+                                            <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--edit"></i>
+                                                    Edit
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--ban"></i>
+                                                    Block
+                                                </a>
+
+                                                <a class="dropdown-item text-danger" href="#">
+                                                    <i class="iconify tabler--trash"></i>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="text-default-400 mb-7.5">
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--mail"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">emily&#64;marketboost.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--phone"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">+1 212-555-7890</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--map-pin"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">New York, NY</h5>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--link"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="text-primary hover:text-primary-">www.marketboost.com</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="text-default-400 text-xs flex items-center">
+                                        <i class="iconify tabler--refresh me-1.25"></i>
+                                        Updated 10 min ago
+                                    </span>
+                                    <a href="#!" class="btn bg-primary/10 text-primary btn-sm rounded-full hover:bg-primary hover:text-white">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="flex items-center mb-7.5">
+                                    <div class="me-5 relative">
+                                        <img src="assets/images/users/user-8.jpg" alt="avatar" class="rounded-full" width="72" height="72" />
+                                        <span class="absolute bottom-0 end-0 badge bg-info rounded-full p-1.25 text-white" title="Rating 4.8">
+                                            <i class="iconify tabler--star"></i>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <h5 class="mb-1.25 flex items-center">
+                                            <a href="#!" class="hover:text-primary">Daniel Smith </a>
+                                            <img src="assets/images/flags/ca.svg" alt="US" class="ms-2.5 rounded-full size-4" />
+                                        </h5>
+                                        <p class="text-default-400 mb-1.25">Data Analyst</p>
+                                        <span class="badge bg-light badge-label">Contributor</span>
+                                    </div>
+
+                                    <!-- Dropdown -->
+                                    <div class="relative ms-auto">
+                                        <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                                            <button type="button" class="hs-dropdown-toggle btn size-9.25 text-default-400 hover:bg-default-100" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                                <i class="iconify tabler--dots-vertical text-base"></i>
+                                            </button>
+
+                                            <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--share"></i>
+                                                    Share
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--edit"></i>
+                                                    Edit
+                                                </a>
+
+                                                <a class="dropdown-item" href="#">
+                                                    <i class="iconify tabler--ban"></i>
+                                                    Block
+                                                </a>
+
+                                                <a class="dropdown-item text-danger" href="#">
+                                                    <i class="iconify tabler--trash"></i>
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <ul class="text-default-400 mb-7.5">
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--mail"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">daniel&#64;analyticspro.io</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--phone"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="hover:text-primary">+1 987-654-3210</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-2.5">
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--map-pin"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">Toronto, Canada</h5>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="flex items-center gap-2.5">
+                                            <div>
+                                                <span class="size-6 flex justify-center items-center bg-light text-default-800 rounded-full">
+                                                    <i class="iconify tabler--link"></i>
+                                                </span>
+                                            </div>
+                                            <h5 class="text-sm font-medium">
+                                                <a href="#" class="text-primary hover:text-primary-">www.analyticspro.io</a>
+                                            </h5>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="text-default-400 text-xs flex items-center">
+                                        <i class="iconify tabler--refresh me-1.25"></i>
+                                        Updated 45 min ago
+                                    </span>
+                                    <a href="#!" class="btn bg-primary/10 text-primary btn-sm rounded-full hover:bg-primary hover:text-white">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 gap-base mb-base">
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Chat</h4>
+                            </div>
+
+                            <div class="card-body h-89.5 py-0" data-simplebar>
+                                <!-- Message 1 -->
+                                <div class="my-5 flex items-start gap-2.5">
+                                    <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                    <div>
+                                        <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Hey! Are you available for a quick call? 📞</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            08:55 am
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Message 2 -->
+                                <div class="my-5 flex items-start justify-end gap-2.5">
+                                    <div>
+                                        <div class="bg-info/15 font-medium rounded px-5 py-2.5">Sure, give me 5 minutes. Just wrapping something up.</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center justify-end gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            08:57 am
+                                        </div>
+                                    </div>
+                                    <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                </div>
+
+                                <!-- Message 3-->
+                                <div class="my-5 flex items-start gap-2.5">
+                                    <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                    <div>
+                                        <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Perfect. Let me know when you're ready 👍</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            08:58 am
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Message 4 -->
+                                <div class="my-5 flex items-start justify-end gap-2.5">
+                                    <div>
+                                        <div class="bg-info/15 font-medium rounded px-5 py-2.5">Ready now. Calling you!</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center justify-end gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            09:00 am
+                                        </div>
+                                    </div>
+                                    <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                </div>
+
+                                <!-- Message 5 -->
+                                <div class="my-5 flex items-start gap-2.5">
+                                    <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                    <div>
+                                        <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Thanks for your time earlier!</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            09:45 am
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Message 6 -->
+                                <div class="my-5 flex items-start justify-end gap-2.5">
+                                    <div>
+                                        <div class="bg-info/15 font-medium rounded px-5 py-2.5">Of course! It was a productive discussion.</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center justify-end gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            09:46 am
+                                        </div>
+                                    </div>
+                                    <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                </div>
+
+                                <!-- Message 7 -->
+                                <div class="my-5 flex items-start gap-2.5">
+                                    <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                    <div>
+                                        <div class="bg-warning/15 font-medium rounded px-5 py-2.5">I’ll send over the updated files by noon.</div>
+                                        <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                            <i class="iconify tabler--clock"></i>
+                                            09:50 am
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-default-300 border-t border-dashed px-6 py-4.5">
+                                <div class="flex gap-2">
+                                    <div class="input-icon-group grow">
+                                        <i class="iconify tabler--message input-icon text-default-400"></i>
+                                        <input type="text" class="form-input border-light bg-light/20" placeholder="Enter message..." />
+                                    </div>
+
+                                    <a data-send href="#!" class="btn btn-icon bg-primary size-9.5 text-white">
+                                        <i class="iconify tabler--send-2 text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card h-full">
+                            <div class="card-header">
+                                <h4 class="card-title">Traffic Sources</h4>
+                                <div class="flex gap-1">
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-toggle"><i class="iconify tabler--chevron-up text-base"></i></a>
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-refresh"><i class="iconify tabler--refresh text-base"></i></a>
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-close"><i class="iconify tabler--x text-base"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="flex justify-between gap-base mb-2.5">
+                                    <div>
+                                        <h3 class="mb-2.5 text-xl font-bold"><span data-target="8,975">8,975</span></h3>
+                                        <p class="mb-2.5 text-default-400 font-semibold">Right Now</p>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="self-center">
+                                        <ul class="leading-6">
+                                            <li class="flex items-center gap-1.25">
+                                                <i class="iconify tabler--caret-right-filled align-middle text-primary"></i>
+                                                <span class="text-default-400">Organic</span>
+                                            </li>
+
+                                            <li class="flex items-center gap-1.25">
+                                                <i class="iconify tabler--caret-right-filled align-middle text-success"></i>
+                                                <span class="text-default-400">Direct</span>
+                                            </li>
+
+                                            <li class="flex items-center gap-1.25">
+                                                <i class="iconify tabler--caret-right-filled align-middle"></i>
+                                                <span class="text-default-400">Campaign</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mb-5 h-2.5 w-full overflow-hidden rounded bg-default-200 flex">
+                                    <div class="h-full bg-primary" style="width: 25%" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="h-full bg-success" style="width: 50%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="h-full bg-info" style="width: 15%" role="progressbar" aria-valuenow="25" aria-valuemin="100" aria-valuemax="100"></div>
+                                </div>
+
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full text-sm text-left">
+                                        <thead class="bg-default-100 align-middle">
+                                            <tr class="uppercase text-2xs">
+                                                <th class="ps-4.5 pe-2 py-2 text-default-400">URL</th>
+                                                <th class="p-2 text-default-400 text-end">Views</th>
+                                                <th class="pe-4.5 ps-2 py-2 text-default-400 text-end">Uniques</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr class="hover:bg-default-100 border-b border-default-300">
+                                                <td class="ps-4.5 pe-2 py-2 underline">/dashboard</td>
+                                                <td class="p-2 text-end">9.8k</td>
+                                                <td class="pe-4.5 ps-2 py-2 text-end">8.5k</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-default-100 border-b border-default-300">
+                                                <td class="ps-4.5 pe-2 py-2 underline">/ecommerce-index</td>
+                                                <td class="p-2 text-end">8.2k</td>
+                                                <td class="pe-4.5 ps-2 py-2 text-end">7.1k</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-default-100 border-b border-default-300">
+                                                <td class="ps-4.5 pe-2 py-2 underline">/apps/projects-overview</td>
+                                                <td class="p-2 text-end">7.6k</td>
+                                                <td class="pe-4.5 ps-2 py-2 text-end">6.2k</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-default-100 border-b border-default-300">
+                                                <td class="ps-4.5 pe-2 py-2 underline">/pages/contact</td>
+                                                <td class="p-2 text-end">5.9k</td>
+                                                <td class="pe-4.5 ps-2 py-2 text-end">4.8k</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-default-100 border-b border-default-300">
+                                                <td class="ps-4.5 pe-2 py-2 underline">/support/faq</td>
+                                                <td class="p-2 text-end">5.2k</td>
+                                                <td class="pe-4.5 ps-2 py-2 text-end">4.3k</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="text-center mt-5">
+                                    <a href="#!" class="hover:text-primary underline underline-offset-4 font-semibold flex items-center gap-1.25 justify-center"> View all Links <i class="iconify tabler--link"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Top Countries</h4>
+                                <div class="flex gap-1">
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-toggle"><i class="iconify tabler--chevron-up text-base"></i></a>
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-refresh"><i class="iconify tabler--refresh text-base"></i></a>
+                                    <a href="#!" class="size-6 flex justify-center items-center rounded-full bg-light hover:bg-primary/15 hover:text-primary" data-action="card-close"><i class="iconify tabler--x text-base"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/in.svg" alt="India" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">India</a> <small class="text-default-400 text-xs">Pop: 1.43B</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">14,217</p>
+                                            <p class="badge badge-label bg-success/10 text-success">+3.2%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/de.svg" alt="Germany" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">Germany</a> <small class="text-default-400 text-xs">Pop: 83.2M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">10,412</p>
+                                            <p class="badge badge-label bg-success/10 text-success">+1.5%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/fr.svg" alt="France" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">France</a> <small class="text-default-400 text-xs">Pop: 67.5M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">8,934</p>
+                                            <p class="badge badge-label bg-danger/10 text-danger">-0.8%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/us.svg" alt="United States" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">United States</a> <small class="text-default-400 text-xs">Pop: 339.9M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">18,522</p>
+                                            <p class="badge badge-label bg-success/10 text-success">+2.1%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/gb.svg" alt="United Kingdom" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">United Kingdom</a> <small class="text-default-400 text-xs">Pop: 67.3M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">7,614</p>
+                                            <p class="badge badge-label bg-danger/10 text-danger">-1.2%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/ca.svg" alt="Canada" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">Canada</a> <small class="text-default-400 text-xs">Pop: 39.6M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">6,221</p>
+                                            <p class="badge badge-label bg-success/10 text-success">+0.9%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-5">
+                                    <img src="assets/images/flags/jp.svg" alt="Japan" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">Japan</a> <small class="text-default-400 text-xs">Pop: 123.3M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">5,785</p>
+                                            <p class="badge badge-label bg-warning/10 text-warning">0.0%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5 mb-7">
+                                    <img src="assets/images/flags/au.svg" alt="Australia" class="size-4 rounded" />
+                                    <h5><a href="#!" class="hover:text-primary">Australia</a> <small class="text-default-400 text-xs">Pop: 26.8M</small></h5>
+                                    <div class="ms-auto">
+                                        <div class="flex items-center gap-base text-end">
+                                            <p class="font-medium">4,918</p>
+                                            <p class="badge badge-label bg-success/10 text-success">+1.1%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-5">
+                                    <a href="#!" class="hover:text-primary underline underline-offset-4 font-semibold flex items-center gap-1.25 justify-center"> View all Countries <i class="iconify tabler--world"></i> </a>
+                                </div>
+                            </div>
+                            <!-- end card-body -->
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-12 grid-cols-1 gap-base">
+                        <div class="xl:col-span-7">
+                            <div class="grid xl:grid-cols-2 grid-cols-1 gap-base">
+                                <div class="flex flex-col gap-base">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Channels</h4>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <!-- Facebook -->
+                                            <div class="flex justify-between items-center mb-1.25">
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/logos/meta.svg" alt="Meta" class="size-4 rounded" />
+                                                    <span>Facebook</span>
+                                                </div>
+                                                <span class="font-semibold">78%</span>
+                                            </div>
+                                            <div class="flex w-full h-2 mb-5 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="bg-success" style="width: 78%"></div>
+                                            </div>
+
+                                            <!-- Instagram -->
+                                            <div class="flex justify-between items-center mb-1.25">
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/logos/instagram.svg" alt="Meta" class="size-4 rounded" />
+                                                    <span>Instagram</span>
+                                                </div>
+                                                <span class="font-semibold">54%</span>
+                                            </div>
+                                            <div class="flex w-full h-2 mb-5 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="54" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="bg-success" style="width: 54%"></div>
+                                            </div>
+
+                                            <!-- LinkedIn -->
+                                            <div class="flex justify-between items-center mb-1.25">
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/logos/linkedin.svg" alt="Meta" class="size-4 rounded" />
+                                                    <span>LinkedIn</span>
+                                                </div>
+                                                <span class="font-semibold">39%</span>
+                                            </div>
+                                            <div class="flex w-full h-2 mb-5 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="bg-success" style="width: 39%"></div>
+                                            </div>
+
+                                            <!-- Google -->
+                                            <div class="flex justify-between items-center mb-1.25">
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/logos/google.svg" alt="Meta" class="size-4 rounded" />
+                                                    <span>Google Search</span>
+                                                </div>
+                                                <span class="font-semibold">22%</span>
+                                            </div>
+                                            <div class="flex w-full h-2 mb-5 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="bg-success" style="width: 22%"></div>
+                                            </div>
+
+                                            <!-- X (Twitter) -->
+                                            <div class="flex justify-between items-center mb-1.25">
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/logos/x.svg" alt="Meta" class="size-4 rounded" />
+                                                    <span>Twitter / X</span>
+                                                </div>
+                                                <span class="font-semibold">31%</span>
+                                            </div>
+                                            <div class="flex w-full h-2 mb-5 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="31" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="bg-success" style="width: 31%"></div>
+                                            </div>
+
+                                            <!-- Button -->
+                                            <button class="btn bg-primary text-white hover:bg-primary-hover w-full mt-2.5">Download Reports</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-secondary! bg-linear-to-b from-white/30 to-white/0">
+                                        <div class="card-body rounded-md bg-[url('../images/flower-style.svg')] bg-no-repeat bg-contain bg-bottom-right">
+                                            <h5 class="mb-1.25 text-white font-semibold">Company Contact</h5>
+                                            <p class="text-white/75 mb-base">Get in touch with our support team.</p>
+                                            <div class="mb-2.5 text-white/75 flex items-center text-sm">
+                                                <i class="iconify tabler--mail me-2.5 text-white"></i>
+                                                support&#64;company.com
+                                            </div>
+
+                                            <div class="mb-2.5 text-white/75 flex items-center text-sm">
+                                                <i class="iconify tabler--phone me-2.5 text-white"></i>
+                                                +1 (234) 567-890
+                                            </div>
+                                            <a href="mailto:support&#64;company.com" class="btn bg-light w-full hover:text-primary"> Contact Support </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col gap-base">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="flex items-center mb-5 text-default-400">
+                                                <span class="me-1.25">★</span>
+                                                <span><strong>Dane</strong>, Your Project Progress Can <strong>Inspire</strong> Your Team</span>
+                                            </div>
+
+                                            <div class="flex items-center -space-x-2 mb-base">
+                                                <img src="assets/images/users/user-7.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                <img src="assets/images/users/user-8.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                <img src="assets/images/users/user-9.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                <img src="assets/images/users/user-10.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                            </div>
+                                            <p class="mb-1.25"><strong>5 Team Members</strong> are currently waiting for your update on this project.</p>
+                                            <p class="text-default-400 text-xs mb-base">Share your progress and the team will be notified instantly.</p>
+                                            <button class="btn bg-info text-white w-full rounded-full hover:bg-info-hover">Update Project</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="flex justify-between items-start mb-base">
+                                                <div>
+                                                    <h6 class="mb-1.25 text-2xs">Project Update Needed</h6>
+                                                    <span class="text-default-400">Your team is waiting for your input</span>
+                                                </div>
+                                                <span class="badge bg-warning text-white">Pending</span>
+                                            </div>
+
+                                            <div class="flex items-center mb-base">
+                                                <div class="flex items-center -space-x-2 me-2.5">
+                                                    <img src="assets/images/users/user-2.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                    <img src="assets/images/users/user-3.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                    <img src="assets/images/users/user-4.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                    <img src="assets/images/users/user-5.jpg" alt="user" class="transitio-all size-8 rounded-full duration-200 hover:-translate-y-1" />
+                                                </div>
+
+                                                <small class="text-default-400 ms-1.25">+3 more reviewers</small>
+                                            </div>
+
+                                            <!-- Project Info -->
+                                            <div class="mb-5">
+                                                <p class="mb-1.25"><strong>Design System Revamp</strong> requires your final approval.</p>
+                                                <p class="text-default-400 italic">Once approved, the development team will begin implementing the new UI components.</p>
+                                            </div>
+
+                                            <!-- Progress -->
+                                            <div class="mb-5">
+                                                <div class="flex justify-between mb-2.5">
+                                                    <small class="text-default-400">Progress</small>
+                                                    <small class="font-semibold">72%</small>
+                                                </div>
+                                                <div class="flex w-full h-2 bg-default-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="bg-success" style="width: 72%"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Button -->
+                                            <button class="btn bg-primary text-white w-full rounded-full hover:bg-primary-hover">Review &amp; Approve</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="xl:col-span-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Search</h4>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="mb-2">Sizes</h5>
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="search" placeholder="Search here..." class="form-input form-input-sm" />
+                                    </div>
+
+                                    <div class="input-icon-group mt-5">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="search" placeholder="Search something here..." class="form-input" />
+                                    </div>
+
+                                    <div class="input-icon-group mt-5">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="search" placeholder="Search here..." class="form-input form-input-lg" />
+                                    </div>
+
+                                    <h5 class="mb-2 mt-5">Styles</h5>
+                                    <div class="input-icon-group">
+                                        <i class="iconify solar--magic-stick-3-bold-duotone input-icon text-secondary"></i>
+                                        <input type="search" placeholder="Search something here..." class="form-input" />
+                                    </div>
+
+                                    <div class="input-icon-group mt-5">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="search" placeholder="Search here..." class="form-input rounded-e-none!" />
+                                        <button class="btn bg-secondary text-white rounded-s-none input-group-text" type="button">Search</button>
+                                    </div>
+
+                                    <div class="input-icon-group mt-5">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input type="search" placeholder="Search something here..." class="form-input bg-light/50" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>

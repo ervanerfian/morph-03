@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Pro AI"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Apps"; $title = "Pro AI"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main class="pb-0!">
+
+                <?php $subtitle = "Apps"; $title = "Pro AI"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="lg:flex gap-1.5 lg:h-[calc(100vh-190px)]">
+                        <div class="w-full lg:w-70">
+                            <div id="outlookSidebaroffcanvas" class="hs-overlay hs-overlay-open:translate-x-0 w-70 card lg:rounded rounded-none fixed start-0 top-0 bottom-0 z-60 hidden h-full -translate-x-full transform transition-transform duration-300 [--auto-close:lg] lg:static lg:end-auto lg:bottom-0 lg:block! lg:translate-x-0" role="dialog" tabindex="-1" aria-label="Sidebar">
+                                <div class="card-body h-full" data-simplebar>
+                                    <!-- Top Actions -->
+                                    <div class="mb-9">
+                                        <a href="#" class="active hover:bg-default-100 bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--message-circle text-md"></i>
+                                            Start Chat
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--search text-md"></i>
+                                            Find Threads
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--archive text-md"></i>
+                                            Saved Sessions
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--cpu text-md"></i>
+                                            AI Tools
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--video text-md"></i>
+                                            AI Vision
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--grid-pattern text-md"></i>
+                                            Explore Models
+                                        </a>
+                                    </div>
+
+                                    <!-- Workspace Folders -->
+                                    <div class="mb-9">
+                                        <h6 class="text-default-400 mb-3 text-xs uppercase">Workspaces</h6>
+                                        <a href="#" class="hover:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder-plus text-md"></i>
+                                            New Workspace
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder text-md"></i>
+                                            Marketing
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder text-md"></i>
+                                            Design Team
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder text-md"></i>
+                                            DevOps
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder text-md"></i>
+                                            Legal
+                                        </a>
+
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">
+                                            <i class="iconify tabler--folder text-md"></i>
+                                            Freelancers
+                                        </a>
+                                    </div>
+
+                                    <!-- Recent Chats -->
+                                    <div>
+                                        <h6 class="text-default-400 mb-3 text-xs uppercase">Recent Conversations</h6>
+                                        <a href="#" class="hover:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Website Redesign Brief</a>
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Sprint Planning Q2</a>
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Client Onboarding Script</a>
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Legal Agreement Review</a>
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Product Launch Sequence</a>
+                                        <a href="#" class="hover:bg-default-100 focus:bg-default-100 flex w-full items-center gap-3 font-medium rounded px-3.75 py-2.25">Budget Automation Draft</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card h-[calc(100vh-190px)] w-full overflow-y-auto">
+                            <div class="card-header mb-4 flex items-center gap-2 text-start lg:hidden">
+                                <button class="btn btn-sm btn-icon border-default-300">
+                                    <i class="iconify tabler--menu-4 text-default-600 text-2xl" aria-haspopup="dialog" aria-expanded="false" aria-controls="outlookSidebaroffcanvas" aria-label="Toggle navigation" data-hs-overlay="#outlookSidebaroffcanvas"></i>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="mx-auto mt-5 w-full lg:w-3/5">
+                                    <div class="bg-dark mx-auto size-8 rounded-full">
+                                        <span class="btn btn-icon size-8 rounded-full text-white">
+                                            <i class="iconify tabler--sparkles"></i>
+                                        </span>
+                                    </div>
+
+                                    <h3 class="mt-3 mb-9 text-center text-2xl">How can I help, David Dev 👋?</h3>
+
+                                    <div class="mb-base grid grid-cols-1 gap-3 py-9 md:grid-cols-3">
+                                        <a href="#">
+                                            <div class="card bg-light/15 border-default-300 h-full border border-dashed">
+                                                <div class="card-body">
+                                                    <div class="bg-light mb-3 flex size-11 items-center justify-center rounded-full">
+                                                        <i class="iconify tabler--brain text-xl"></i>
+                                                    </div>
+                                                    <p class="text-default-400">Generate AI-powered insights from customer reviews</p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <a href="#">
+                                            <div class="card bg-light/15 border-default-300 h-full border border-dashed">
+                                                <div class="card-body">
+                                                    <div class="bg-light mb-3 flex size-11 items-center justify-center rounded-full">
+                                                        <i class="iconify tabler--robot text-xl"></i>
+                                                    </div>
+                                                    <p class="text-default-400">Create chatbot responses for common support questions</p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <a href="#">
+                                            <div class="card bg-light/15 border-default-300 h-full border border-dashed">
+                                                <div class="card-body">
+                                                    <div class="bg-light mb-3 flex size-11 items-center justify-center rounded-full">
+                                                        <i class="iconify tabler--text-recognition text-xl"></i>
+                                                    </div>
+                                                    <p class="text-default-400">Summarize lengthy documents using AI</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-12 mt-auto">
+                                <textarea class="form-textarea" id="exampleFormControlTextarea1" rows="4" placeholder="Enter message"></textarea>
+
+                                <div class="mt-3 flex gap-1.5 items-center justify-between">
+                                    <div class="flex gap-1.5">
+                                        <div class="hs-tooltip inline-block [--placement:top]">
+                                            <button type="button" class="hs-tooltip-toggle btn btn-icon size-8 border-default-300 hover:text-primary">
+                                                <i class="iconify tabler--paperclip"></i>
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-default-900 invisible absolute z-10 inline-block rounded px-2 py-1 text-xs font-medium text-default-100 opacity-0 shadow-2xs transition-opacity" role="tooltip">Attach files</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="hs-tooltip inline-block [--placement:top]">
+                                            <button type="button" class="hs-tooltip-toggle btn btn-icon size-8 border-default-300 hover:text-primary">
+                                                <i class="iconify tabler--link"></i>
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-default-900 invisible absolute z-10 inline-block rounded px-2 py-1 text-xs font-medium text-default-100 opacity-0 shadow-2xs transition-opacity" role="tooltip">Insert link</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="hs-tooltip inline-block [--placement:top]">
+                                            <button type="button" class="hs-tooltip-toggle btn btn-icon size-8 border-default-300 hover:text-primary">
+                                                <i class="iconify tabler--photo-up"></i>
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-default-900 invisible absolute z-10 inline-block rounded px-2 py-1 text-xs font-medium text-default-100 opacity-0 shadow-2xs transition-opacity" role="tooltip">Insert photo</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="hs-tooltip inline-block [--placement:top]">
+                                            <button type="button" class="hs-tooltip-toggle btn btn-icon size-8 border-default-300 hover:text-primary">
+                                                <i class="iconify tabler--microphone"></i>
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible bg-default-900 invisible absolute z-10 inline-block rounded px-2 py-1 text-xs font-medium text-default-100 opacity-0 shadow-2xs transition-opacity" role="tooltip">Voice</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="ms-auto">
+                                        <button type="button" class="btn btn-sm bg-primary text-white hover:bg-primary-hover">
+                                            <i class="iconify tabler--send-2"></i>
+                                            Send
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>
