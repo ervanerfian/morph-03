@@ -74,9 +74,9 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Workspace | Boundary tenant; identity dan membership dibuktikan server |
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
-| Table dan Field | Identitas stabil; binding menyatakan Field pada Table. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
+| Table dan Field | Identitas stabil; schema binding menyatakan Field tersedia pada Table/Data Source; Table View hanya presentation. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
 | Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
-| Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1 |
+| Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1; tanpa reverse Field otomatis |
 | Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
 | Lookup definition | Field turunan dengan path Relation + identitas target Field kanonis; capability, tipe hasil, dependency dan disclosure tervalidasi |
 
@@ -156,17 +156,19 @@ didukung tidak boleh diam-diam diganti.
   bahwa Record sumber berubah; lakukan authorization sumber/Field, CAS Record dan
   audit yang sama dengan edit langsung. Mengganti pilihan Relation tidak mengedit
   Record tujuan.
-- Hapus Database masuk Trash terlebih dahulu: record, schema dan identity tetap;
-  semua Page tidak menampilkannya sebagai aktif. Restore harus memeriksa izin,
-  konflik, relasi dan identitas, serta tidak otomatis membuat izin baru.
-  **Kebijakan dampak relation ke target yang di-trash/permanent delete belum
-  diputuskan**: jangan cascade-delete source atau menebak detach/null. Preview
-  incoming/outgoing dependencies, blokir operasi bila tidak aman, dan rancang
-  resolusi eksplisit serta recovery sebelum implementasi.
-- Permanent delete memerlukan konfirmasi terpisah, pemeriksaan referensi shared,
-  pembatasan policy, konsistensi transaksi, retensi file dan backup. Hapus hanya
-  data yang memang aman dihapus; keberadaan dalam backup/sistem eksternal memiliki
-  retensi berbeda. Tidak ada default masa retensi yang telah disepakati.
+- **Target Record Trash (keputusan pengguna):** tolak perubahan ke Trash selama
+  masih ada incoming Relation edge. Pengguna harus melepas atau mengganti link
+  secara eksplisit terlebih dahulu; validasi dan lifecycle write harus atomik.
+  Relation baru juga tidak boleh memilih target yang sudah berada di Trash.
+- **Permanent delete Record (keputusan pengguna):** tolak selama masih ada
+  incoming atau outgoing edge. Semua edge harus diselesaikan eksplisit sebelum
+  delete; jangan cascade-delete edge maupun source Record secara implisit.
+- Source Record yang memiliki outgoing edge saat di-Trash masih belum diputuskan.
+  Trash Database yang memuat Record bertarget juga kebijakan terpisah; ia tidak
+  boleh melewati aturan target-Record tanpa pemeriksaan/penyelesaian dependensi.
+- Database instance Trash, restore, dan permanent delete tetap memerlukan
+  pemeriksaan izin, konflik, identitas dan dependensi; restore tidak otomatis
+  membuat izin baru. Retention Trash, backup, dan file eksternal belum ditetapkan.
 
 ## 5. Export / import dan identitas
 
@@ -233,10 +235,11 @@ identitas target belum terbukti, berhenti.
   independen; rename/reorder tidak memutus Record/Relation. Validasi canonical,
   unknown capability dan duplicate keys fail closed.
 - Real PostgreSQL: cross-workspace dan wrong-table target ditolak, FK tidak
-  meninggalkan edge yatim; V1 single-target per source Record/Field
-  ditegakkan secara atomik dan satu target dapat direferensikan banyak source
-  Records. Uji concurrent create/relink/delete/schema/permission dan pastikan
-  rollback tidak meninggalkan write setengah jalan.
+  meninggalkan edge yatim; V1 single-target per source Record/Field ditegakkan
+  secara atomik dan satu target dapat direferensikan banyak source Records.
+  Target dengan incoming edge tidak dapat di-Trash; permanent delete ditolak
+  selama ada incoming/outgoing edge, tanpa cascade implisit. Uji concurrent
+  create/relink/lifecycle/schema/permission dan rollback.
 - Auth tests dengan principal dan membership nyata: tidak ada implicit Owner
   bypass atas creator View/Comment; test source/target/Field, hidden records,
   lookup, errors, sort/filter, autocomplete dan export; mock bukan bukti RLS.
@@ -249,11 +252,12 @@ identitas target belum terbukti, berhenti.
 
 ## 8. Pertanyaan produk tersisa
 
-- Apakah reverse Relation Field dibuat otomatis atau didefinisikan eksplisit,
-  serta bagaimana UI menampilkan target yang tidak dapat diakses; V1 cardinality
-  single-target per source Record/Field sudah dipilih.
-- Aturan penanganan incoming edges saat target di-Trash dan permanent delete,
-  retention Trash, serta siapa boleh restore/delete permanen Database.
+- Kebijakan UI saat target Relation tidak dapat diakses; V1 tidak menyediakan
+  reverse Relation Field atau backlink UI.
+- Lifecycle source Record dengan outgoing edges saat di-Trash dan Trash Database
+  yang memuat target Record; retention Trash serta siapa yang boleh restore atau
+  menghapus permanen Record/Database. Target Trash dan permanent delete dengan
+  edge aktif sudah dibatasi sesuai keputusan V1.
 - Cara instance Database, extension dan page berelasi; bagaimana kombinasi akses
   per instance/Page dengan creator-configured View/Comment.
 - Penerapan shared Field/Table, izin edit bersama dan transaksi multi-Database;

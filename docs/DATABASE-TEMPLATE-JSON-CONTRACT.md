@@ -10,7 +10,8 @@ Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture vali
 | Database Template | Cetakan konfigurasi untuk membuat satu Database logis | Pilihan dan pratinjau template |
 | Database | Hasil penerapan template dalam Workspace; bukan database PostgreSQL fisik baru | Satu section vertikal yang dapat ditata pada Page |
 | Table | Model untuk sekumpulan Record; dapat disusun/dirujuk dalam Database | Tab dalam section Database |
-| Field | Definisi tipe dan pengaturan nilai; binding menempatkannya pada Table | Kolom dan kontrol input |
+| Table View | Presentation atas Table/Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
+| Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Table/Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
 | Record | Satu entri dengan nilai Field dalam satu Table | Baris tabel |
 
 Tampilan Table sebagai tab dan Field sebagai kolom adalah **presentasi**, bukan
@@ -139,6 +140,17 @@ revision instance berbeda dan tidak boleh dipertukarkan.
     },
     {"id": "table_tasks", "label": "Tasks", "bindings": []}
   ],
+  "tableViews": [
+    {
+      "id": "view_projects_default",
+      "tableId": "table_projects",
+      "label": "Projects",
+      "columns": [
+        {"fieldId": "field_name", "visible": true, "position": 1},
+        {"fieldId": "field_notes", "visible": false, "position": 2}
+      ]
+    }
+  ],
   "fields": [
     {"id": "field_name", "label": "Nama", "type": "text"},
     {"id": "field_notes", "label": "Keterangan", "type": "textarea"}
@@ -148,7 +160,10 @@ revision instance berbeda dan tidak boleh dipertukarkan.
 
 Contoh sengaja menghilangkan config wajib, dependency pins dan metadata revision;
 ini bukan fixture valid compiler v1, bukan contoh payload API, dan tidak memutuskan
-apakah Table kosong diperbolehkan. ID contoh tidak boleh dipakai untuk instance
+apakah Table kosong diperbolehkan. `tables[].bindings` menunjukkan schema membership,
+sedangkan `tableViews[].columns` menunjukkan preferensi presentation terpisah;
+kolom view hanya boleh merujuk Field yang tersedia pada schema Table. Nama/key JSON
+masih ilustratif, bukan kontrak final. ID contoh tidak boleh dipakai untuk instance
 nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
 
 ### 3.1 Kontrak Relation yang dikonfirmasi pengguna
@@ -165,9 +180,16 @@ Untuk V1, target Relation dan nilai yang ditampilkan adalah dua hal berbeda:
 - Saat Display Field diganti, edge tetap menunjuk Record yang sama dan hanya
   proyeksinya yang berubah. Saat nilai Field target diedit, pembacaan Relation
   menampilkan nilai terbaru sesuai izin target; nama/label tidak disalin ke edge.
-- Checklist penempatan Field di Table/View tetap terpisah dari radio Display
-  Field. Multi-field Projection (misalnya Nama + Departemen) adalah kemampuan
-  berbeda di masa depan, bukan checkbox tambahan pada kontrol V1.
+- Field Binding mengaitkan Field Definition ke schema Table/Data Source; setiap
+  Table View hanya mengatur visibilitas, urutan, dan label tampilannya. Ini tetap
+  terpisah dari radio Display Field. Multi-field Projection (misalnya Nama +
+  Departemen) adalah kemampuan berbeda di masa depan, bukan checkbox tambahan.
+- V1 tidak membuat reverse Relation Field atau backlink UI; incoming edge tetap
+  dihitung untuk integritas dan lifecycle.
+- Target Record yang masih memiliki incoming edge tidak dapat di-Trash. Permanent
+  delete ditolak selama masih ada incoming/outgoing edge; edge harus diselesaikan
+  secara eksplisit dan tidak ada cascade implisit. Source/Database Trash masih
+  memerlukan kebijakan tersendiri.
 - Relation V1 menggunakan `cardinality: "single"`: setiap source Record/Relation
   Field memiliki nol atau satu target. Banyak source Records boleh menunjuk target
   yang sama; tidak ada keunikan target global. Kardinalitas berlaku pada config
@@ -347,20 +369,24 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   bagaimana perubahan dan permission lintas referensi bekerja?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
-- Scope Field binding (Data Source/Table versus Table View) dan representasi
-  identitas/config Field eksplisit yang berbeda bila semantik per Data Source
-  memang berbeda. Binding view-specific tidak boleh membuat salinan nilai;
-  konsolidasikan bersama `values_json` dan Relation edge.
-- Kebijakan lifecycle Relation edge (termasuk target Trash/permanent delete) dan
-  apakah reverse Relation Field dihasilkan otomatis atau didefinisikan eksplisit;
-  kardinalitas single-target V1 sudah dipilih dan terpisah dari Display Field.
+- Konsolidasi fisik identity Table/Data Source dengan schema-level Field Binding
+  dan penyimpanan preferensi Table View (visibilitas/urutan/label). Keputusan
+  produk sudah memisahkan binding schema dari presentation view; binding tidak
+  membuat salinan nilai. Jika semantik berbeda per Data Source, Field Definition
+  harus memiliki identitas/config eksplisit yang berbeda.
+- Kebijakan lifecycle source Record dan Database saat masuk Trash, retention,
+  restore permissions, serta UI untuk target yang tidak dapat diakses. Keputusan
+  V1 sudah memblokir Trash target Record yang masih punya incoming edge dan
+  permanent delete selama masih ada incoming/outgoing edge; tidak ada reverse
+  Relation Field atau cascade implisit.
 - Resolusi instance legacy yang overlapping/ambigu, termasuk urutan Page dan
   model standalone, setelah inventaris nyata; jangan mengasumsikan kepemilikan.
 - Scope dan hak untuk membuat/mengedit Database, Table, template dan view;
   bagaimana extension instance berhubungan dengan Database—tanpa mengubah
   keputusan Owner-only pembuatan/penonaktifan extension.
-- Aturan default visibilitas/urutan pada view versus schema Table, retensi,
-  restore, dan UX konflik/conversion; JSON Schema version/validator detail.
+- Default preferensi Table View saat schema binding/Field baru ditambahkan
+  (misalnya visible atau hidden dan posisi awal), retensi, restore, serta UX
+  konflik/conversion; JSON Schema version/validator detail.
 
 ## Rancangan lanjutan Relation dan storage
 
