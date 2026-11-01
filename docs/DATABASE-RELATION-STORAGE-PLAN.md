@@ -1,7 +1,7 @@
 # Rancangan penyimpanan Database dan Relation Morph
 
 **Status: rancangan untuk review; bukan DDL, implementasi, atau persetujuan migrasi.**
-Diperbarui: 2026-11-01. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
+Diperbarui: 2026-11-02. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
 [desain Field Binding dan Relation Edge](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md),
 [arsitektur aplikasi](ARCHITECTURE.md), dan [skema target](TARGET-POSTGRESQL-SCHEMA.md).
 
@@ -76,7 +76,7 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
 | Table dan Field | Identitas stabil; binding menyatakan Field pada Table. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
 | Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
-| Relation definition | Konfigurasi Field Relation: target Data Source dan satu Display Field; keputusan cardinality masih terbuka |
+| Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1 |
 | Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
 | Lookup definition | Field turunan dengan path Relation + identitas target Field kanonis; capability, tipe hasil, dependency dan disclosure tervalidasi |
 
@@ -101,18 +101,22 @@ perlu proof, bukan perubahan nama v1 secara langsung.
    transisi, tetapi hanya satu writer/sumber kebenaran yang sah pada setiap fase.
 4. **Records**: `(workspace, data_source_id, record_id)` dengan creator,
    revision yang dapat didecode, token version dan values JSONB untuk scalar.
-   Nilai memakai identitas Field kanonis, bukan ID binding presentation
-   Table View; rekomendasi konseptual V1 adalah `field_definition_id`, dengan
-   konfigurasi per-Data-Source yang memerlukan identitas terpisah bila dibutuhkan.
+   Nilai memakai identitas Field kanonis `field_definition_id`, bukan ID
+   binding presentation Table View. Reuse satu Field Definition berarti
+   semantik/config yang sama; perbedaan semantik per-Data-Source memerlukan
+   identitas/config eksplisit yang berbeda.
    FK/unique membuktikan scope workspace dan
    Data Source. Tidak membuat satu physical SQL table per Data Source pengguna.
 5. **Edges**: struktur typed/indexable dengan `(workspace_id,
    source_data_source_id, source_record_id, source_field_id,
    target_data_source_id, target_record_id)`; `source_field_id` adalah identitas
-   Field kanonis, bukan binding view-specific. `target_record_id` hanya ada pada
-   edge per Record. Config Relation terpisah membatasi target Data Source dan
-   satu `display_field_id`; jika kardinalitas dipilih, ia menjadi aturan config,
-   bukan atribut edge. Urutan hanya diperlukan bila multi-target disetujui.
+   Field kanonis `field_definition_id`, bukan binding view-specific.
+   `target_record_id` hanya ada pada edge per Record. Config Relation terpisah
+   membatasi target Data Source, satu `display_field_id`, dan maksimal satu
+   target per `(workspace_id, source_data_source_id, source_record_id,
+   field_definition_id)` pada V1. Target yang sama boleh dirujuk banyak source
+   Record; keunikan target global tidak diasumsikan. V1 tidak memerlukan ordinal;
+   multi-target adalah ekstensi masa depan, bukan atribut edge yang sudah aktif.
    Composite FK dan unique/index yang sesuai memverifikasi kedua endpoint berada
    di workspace/Data Source yang benar; schema service juga memvalidasi Field
    dan revision. Indeks arah keluar **dan masuk** diperlukan untuk read dan
@@ -229,8 +233,10 @@ identitas target belum terbukti, berhenti.
   independen; rename/reorder tidak memutus Record/Relation. Validasi canonical,
   unknown capability dan duplicate keys fail closed.
 - Real PostgreSQL: cross-workspace dan wrong-table target ditolak, FK tidak
-  meninggalkan edge yatim, single/multiple cardinality sesuai pilihan, concurrent
-  create/relink/delete/schema/permission diuji, rollback tidak setengah jalan.
+  meninggalkan edge yatim; V1 single-target per source Record/Field
+  ditegakkan secara atomik dan satu target dapat direferensikan banyak source
+  Records. Uji concurrent create/relink/delete/schema/permission dan pastikan
+  rollback tidak meninggalkan write setengah jalan.
 - Auth tests dengan principal dan membership nyata: tidak ada implicit Owner
   bypass atas creator View/Comment; test source/target/Field, hidden records,
   lookup, errors, sort/filter, autocomplete dan export; mock bukan bukti RLS.
@@ -243,8 +249,9 @@ identitas target belum terbukti, berhenti.
 
 ## 8. Pertanyaan produk tersisa
 
-- Default single atau multi-target untuk setiap Relation, bidirectional field
-  otomatis atau eksplisit, dan display untuk target yang tidak dapat diakses.
+- Apakah reverse Relation Field dibuat otomatis atau didefinisikan eksplisit,
+  serta bagaimana UI menampilkan target yang tidak dapat diakses; V1 cardinality
+  single-target per source Record/Field sudah dipilih.
 - Aturan penanganan incoming edges saat target di-Trash dan permanent delete,
   retention Trash, serta siapa boleh restore/delete permanen Database.
 - Cara instance Database, extension dan page berelasi; bagaimana kombinasi akses

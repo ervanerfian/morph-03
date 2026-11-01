@@ -1,7 +1,7 @@
 # Target PostgreSQL Schema Design — Morph Workspace (Komprehensif)
 
 **Status: proposal target untuk database development baru; bukan persetujuan skema, DDL, migrasi, atau pembersihan.**
-Diperbarui: 2026-11-01. Arah Fresh Database Architecture tidak mengotorisasi perubahan database.
+Diperbarui: 2026-11-02. Arah Fresh Database Architecture tidak mengotorisasi perubahan database.
 
 Ini adalah **dokumen desain, bukan DDL siap eksekusi**. Tidak ada DDL yang dijalankan dari sandbox ini. Nama tabel, key, constraint, tipe, dan batas transaksi masih harus direview; belum ada skrip untuk dijalankan sebelum konsolidasi dan persetujuan eksplisit.
 
@@ -183,14 +183,14 @@ Tidak ada elemen visual yang terikat pada nama preset, tabel fisik, atau kode de
                                                          │ id (PK)                  │  │ field_definition_id*     │
                                                          │ workspace_id             │  │ target_data_source_id    │
                                                          │ source_data_source_id    │  │ display_field_id (one)   │
-                                                         │ source_record_id          │  │ cardinality_policy (TBD)│
+                                                         │ source_record_id          │  │ cardinality = single V1 │
                                                          │ source_field_id*          │  │                          │
                                                          │ target_data_source_id    │  │                          │
                                                          │ target_record_id          │  │                          │
                                                          └──────────────────────────┘  └──────────────────────────┘
 ```
 
-`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis; rekomendasi konseptual V1 adalah `field_definition_id`, bukan ID `morph_field_bindings` yang mengatur placement/presentasi Table View. Key/constraint final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config hanya menentukan target Data Source dan satu `display_field_id`. Kardinalitas adalah keputusan terpisah dan belum dipilih.
+`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis V1: `field_definition_id`, bukan ID `morph_field_bindings` yang mengatur placement/presentasi Table View. Key/constraint PostgreSQL final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config menentukan target Data Source, satu `display_field_id`, dan `single` target per source Record/Field. Source Record lain boleh menunjuk target yang sama; tidak ada keunikan target global.
 
 ---
 
@@ -546,7 +546,8 @@ Setiap Table View dan Field Definition dihasilkan dari definisi deklaratif JSON.
       "type": "relation",
       "config_json": {
         "target_data_source_id": "uuid-employee-source",
-        "display_field_id": "uuid-employee-name-field"
+        "display_field_id": "uuid-employee-name-field",
+        "cardinality": "single"
       },
       "is_system": false
     },
@@ -567,7 +568,7 @@ Setiap Table View dan Field Definition dihasilkan dari definisi deklaratif JSON.
 }
 ```
 
-Contoh Relation di atas hanya konfigurasi skema: `target_data_source_id` dan tepat satu `display_field_id`. Target Record yang dipilih pada setiap source Record disimpan sebagai `target_record_id` pada `morph_relation_edges`, bukan di `config_json`. Jika kardinalitas kelak dipilih, ia berlaku pada konfigurasi Relation dan kumpulan edge, bukan pada setiap edge; default/single-vs-multiple belum diputuskan.
+Contoh Relation di atas hanya konfigurasi skema: `target_data_source_id`, tepat satu `display_field_id`, dan `cardinality = 'single'` pada V1. Target Record yang dipilih pada setiap source Record disimpan sebagai `target_record_id` pada `morph_relation_edges`, bukan di `config_json`. Paling banyak satu edge berlaku bagi satu source Record/Field; beberapa source Record boleh menunjuk target yang sama. Kardinalitas bukan atribut setiap edge, dan batasan fisik final tetap perlu review sebelum DDL.
 
 **Aturan JSON Schema DSL:**
 
@@ -594,7 +595,7 @@ Berikut daftar field type yang didukung, dengan konfigurasi masing-masing:
 | **Email** | `placeholder` | Input email | Validasi format email |
 | **Phone** | `pattern`, `country_code` | Input telepon | Validasi nomor telepon |
 | **Formula** | `expression`, `result_type` | Read-only display | Dievaluasi engine, tidak disimpan langsung |
-| **Relation** | `target_data_source_id`, satu `display_field_id`; kardinalitas masih terbuka | Autocomplete record | Target `record_id` disimpan per nilai pada relation edge |
+| **Relation** | `target_data_source_id`, satu `display_field_id`, `cardinality = 'single'` (V1) | Autocomplete record | Target `record_id` disimpan per nilai pada relation edge; maksimal satu per source Record/Field |
 | **Rollup** | `relation_field`, `target_field`, `aggregation` | Read-only display | Agregasi dari relasi |
 | **Created time** | `format` | Read-only | Timestamp pembuatan |
 | **Created by** | `user_field` | Read-only display | Referensi user pembuat |
@@ -694,10 +695,10 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 | Item | Nilai yang Diperlukan | Catatan |
 |---|---|---|
 | `DRIVER` | `postgres` | Di `.env` |
-| `DATABASE_URL` | `postgresql://morph_admin:morph123@localhost:5434/morph?sslmode=disable` | Gunakan `morph_admin` (SUPERUSER) untuk development |
+| `DATABASE_URL` | Simpan hanya di `.env` lokal yang tidak dilacak; gunakan `morph03_app` menuju `127.0.0.1:5433/morph_03` | Role dan privileges belum diverifikasi; jangan gunakan `morph03_admin` untuk PHP |
 | PHP extension `pdo_pgsql` | Loaded | Cek via `php -m | grep pdo_pgsql` |
 | PHP extension `pdo` | Loaded | Cek via `php -m | grep pdo` |
-| Koneksi PostgreSQL | Berhasil | Cek via `php -r "new PDO(...)"` |
+| Koneksi PostgreSQL | Harus diverifikasi dengan `morph03_app` | CLI/PDO yang sudah diverifikasi memakai `morph03_admin`; role runtime dan Laragon web-SAPI masih pending (lihat `LOCAL-DEVELOPMENT.md`) |
 | Web server restart | Dilakukan | Setelah mengubah `.env`, restart Apache/Nginx |
 
 ### 3.12.4 Aturan Untuk Pengembangan Selanjutnya
@@ -705,7 +706,7 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 1. **Jangan mengandalkan hanya `DRIVER` env** — selalu verifikasi `DATABASE_URL` juga tersedia dan valid.
 2. **Jangan fallback diam-diam ke JsonDriver** saat PostgreSQL tersedia — jika koneksi gagal, throw exception agar masalah terdeteksi segera.
 3. **Selalu restart web server** setelah mengubah `.env` (terutama `DRIVER` dan `DATABASE_URL`).
-4. **Gunakan `morph_admin` untuk development** — SUPERUSER, semua privileges, tidak perlu `GRANT` ulang setiap kali membuat tabel baru.
+4. **Gunakan `morph03_app` untuk PHP runtime hanya setelah role dan scoped non-superuser privileges diverifikasi**; `morph03_admin` hanya untuk administrasi/provisioning. Jangan gunakan superuser sebagai role runtime.
 5. **Verifikasi driver aktif** saat boot — tambahkan log atau health check yang mencetak class driver yang aktif.
 
 ---
@@ -782,14 +783,14 @@ morph_records:
 
 ## 8. Relation Edge & Cardinality Model
 
-Tabel berikut hanya menggambarkan pola konseptual, bukan keputusan V1. Kardinalitas (`single`/`multi`) tetap pertanyaan terbuka dan terpisah dari pemilihan satu Display Field. Jika dipilih, kardinalitas adalah aturan konfigurasi Relation yang ditegakkan terhadap kumpulan edge per source Record; ia bukan atribut masing-masing edge.
+Kontrak Relation V1 yang dipilih adalah `cardinality = 'single'`: paling banyak satu target untuk setiap `(source_data_source_id, source_record_id, field_definition_id)`. Beberapa source Record boleh menunjuk target yang sama; V1 tidak menyiratkan unique target atau one-to-one. Ini adalah batas logis yang perlu ditegakkan terhadap kumpulan edge per source Record/Field, bukan atribut yang diulang pada tiap edge. Bentuk constraint fisik, concurrency control, dan transaction boundary masih memerlukan review sebelum DDL.
 
-| Kardinalitas | Contoh | Implementasi |
+| Pola | Status V1 | Catatan |
 |---|---|---|
-| One-to-One | Satu karyawan memiliki satu profil | `cardinality = 'single'` |
-| Many-to-One | Banyak proyek memiliki satu PIC | `cardinality = 'single'` (banyak source → satu target) |
-| One-to-Many | Satu klien memiliki banyak proyek | `cardinality = 'multi'` (satu source → banyak target) |
-| Many-to-Many | Banyak karyawan terlibat dalam banyak proyek | `cardinality = 'multi'` (banyak source → banyak target) |
+| Many-to-One | Didukung secara semantik | Banyak source dapat menunjuk target sama; satu target maksimal per source Record/Field. |
+| One-to-One | Tidak dijamin | Memerlukan constraint unik tambahan pada target yang belum dipilih. |
+| One-to-Many | Masa depan | Memerlukan multi-target pada satu source Record/Field. |
+| Many-to-Many | Masa depan | Memerlukan multi-target per source dan aturan tambahan. |
 
 Integritas logical relation edge:
 1. Source record harus berasal dari source data source yang sesuai.
@@ -808,7 +809,7 @@ Integritas logical relation edge:
 | `morph_relation_config.display_field_id` | Satu Field target yang diproyeksikan untuk Relation (radio) |
 | `morph_lookup_definitions` | Nilai derived dari record tujuan (read-only) |
 
-Nilai scalar dan Relation edge harus memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation yang berbeda untuk setiap view. Rekomendasi konseptual V1 adalah `field_definition_id`; review final harus memastikan bahwa semua reuse Field memang berbagi semantik/config, dan kebutuhan per-Data-Source mendapat identitas eksplisit sebelum skema disetujui.
+Nilai scalar dan Relation edge harus memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation yang berbeda untuk setiap view. Keputusan V1 adalah `field_definition_id`: penggunaan ulang Field Definition membawa semantik/config yang sama. Bila semantik/config berbeda per Data Source, diperlukan identitas/config eksplisit yang berbeda; jangan menyamarkan perbedaan itu melalui binding view. Bentuk fisik dan constraint tetap menunggu review skema.
 
 Contoh tampilan:
 - "PM - Project" → Data Source Proyek → kolom: Nama, PIC (relation ke Karyawan), Status

@@ -1,7 +1,7 @@
 # Rancangan: Template → Database → Table → Field → Record
 
 **Status: rancangan produk dan kontrak usulan; belum diimplementasikan dan bukan persetujuan DDL.**
-Diperbarui 2026-11-01. Contoh JSON adalah ilustrasi, bukan API atau fixture valid. Dokumen ini melengkapi [architecture](ARCHITECTURE.md), [module boundaries](MODULE-BOUNDARIES.md), [roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan [desain Relation](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md). Tidak mengubah DB, permissions, route atau perilaku runtime yang sudah berjalan.
+Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture valid. Dokumen ini melengkapi [architecture](ARCHITECTURE.md), [module boundaries](MODULE-BOUNDARIES.md), [roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan [desain Relation](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md). Tidak mengubah DB, permissions, route atau perilaku runtime yang sudah berjalan.
 
 ## 1. Istilah dan batas
 
@@ -168,9 +168,11 @@ Untuk V1, target Relation dan nilai yang ditampilkan adalah dua hal berbeda:
 - Checklist penempatan Field di Table/View tetap terpisah dari radio Display
   Field. Multi-field Projection (misalnya Nama + Departemen) adalah kemampuan
   berbeda di masa depan, bukan checkbox tambahan pada kontrol V1.
-- Single-target versus multi-target tetap keputusan terpisah yang belum dibuat.
-  Jika diputuskan, kardinalitas berlaku pada konfigurasi Field dan kumpulan edge,
-  bukan disimpan berulang pada tiap edge.
+- Relation V1 menggunakan `cardinality: "single"`: setiap source Record/Relation
+  Field memiliki nol atau satu target. Banyak source Records boleh menunjuk target
+  yang sama; tidak ada keunikan target global. Kardinalitas berlaku pada config
+  dan kumpulan edge, bukan disimpan berulang pada tiap edge. Multi-target adalah
+  kemampuan masa depan dan tidak diaktifkan oleh kontrak V1.
 
 Ilustrasi berikut **bukan format API/DDL**; ia hanya memisahkan schema config
 Relation dari nilai edge per Record:
@@ -179,7 +181,8 @@ Relation dari nilai edge per Record:
 {
   "relationFieldConfig": {
     "targetDataSourceId": "employee_data_source",
-    "displayFieldId": "employee_name_field"
+    "displayFieldId": "employee_name_field",
+    "cardinality": "single"
   },
   "relationEdge": {
     "sourceRecordId": "project_record_uuid",
@@ -191,14 +194,13 @@ Relation dari nilai edge per Record:
 ```
 
 `sourceFieldId` harus mengidentifikasi nilai Field kanonis, bukan binding
-presentation yang berbeda untuk setiap Table View. Rekomendasi konseptual V1
-adalah memakai `field_definition_id` sebagai key nilai pada sebuah Record:
-Field Definition yang sama berarti semantik/config yang sama, tetapi Record
-berbeda tetap menyimpan nilai berbeda. Jika semantik harus berbeda per Data
-Source, diperlukan identitas/config Field berscope Data Source yang eksplisit,
-bukan key view binding. Bentuk persistensi dan constraint final tetap perlu
-review sebelum DDL. Relation target/display config juga harus memiliki revision
-dan capability pins yang sesuai; exact storage boundary remains under review.
+presentation yang berbeda untuk setiap Table View. Keputusan V1 adalah memakai
+`field_definition_id` sebagai key nilai pada sebuah Record: Field Definition
+yang sama berarti semantik/config yang sama, tetapi Record berbeda tetap
+menyimpan nilai berbeda. Jika semantik harus berbeda per Data Source, diperlukan
+identitas/config Field eksplisit yang berbeda, bukan key view binding. Bentuk
+persistensi, constraint final, revision pin, dan capability pin tetap perlu
+review sebelum DDL.
 
 ## 4. Template composable dan pengalaman user
 
@@ -345,12 +347,13 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   bagaimana perubahan dan permission lintas referensi bekerja?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
-- Review rekomendasi `field_definition_id` sebagai identitas nilai kanonis;
-  tentukan apakah ada kebutuhan konfigurasi Field berscope Data Source yang
-  memerlukan identitas tambahan. Bindings view-specific tidak boleh membuat
-  salinan nilai. Konsolidasikan bersama `values_json` dan Relation edge.
-- Cardinality Relation (single vs. multi target) dan kebijakan lifecycle edge;
-  jangan mencampurnya dengan satu Display Field V1.
+- Scope Field binding (Data Source/Table versus Table View) dan representasi
+  identitas/config Field eksplisit yang berbeda bila semantik per Data Source
+  memang berbeda. Binding view-specific tidak boleh membuat salinan nilai;
+  konsolidasikan bersama `values_json` dan Relation edge.
+- Kebijakan lifecycle Relation edge (termasuk target Trash/permanent delete) dan
+  apakah reverse Relation Field dihasilkan otomatis atau didefinisikan eksplisit;
+  kardinalitas single-target V1 sudah dipilih dan terpisah dari Display Field.
 - Resolusi instance legacy yang overlapping/ambigu, termasuk urutan Page dan
   model standalone, setelah inventaris nyata; jangan mengasumsikan kepemilikan.
 - Scope dan hak untuk membuat/mengedit Database, Table, template dan view;

@@ -1,6 +1,6 @@
 # Morph Space — Local Development Environment
 
-**Status:** PostgreSQL identity and Windows CLI PDO connection verified by the developer; Laragon web-SAPI integration remains pending.
+**Status:** PostgreSQL identity and Windows CLI PDO connection verified by the developer; Laragon web-SAPI integration and the selected PHP runtime role (`morph03_app`) remain unverified.
 **Recorded:** 2026-11-01
 **Project:** `morph-03` (`C:\laragon\www\morph-03`)
 
@@ -32,7 +32,7 @@ The developer reports that `pdo_pgsql` and `pgsql` are loaded. The CLI binary di
 
 The commands shared so far created or updated `morph03_admin` and created `morph_03`. They did not create `morph03_app`. The presence or absence of any pre-existing `morph03_app` role has not been queried.
 
-Per the repository's connection standard, database administration uses the project admin role; PHP runtime configuration must use a separate project application role with scoped database privileges, not a cluster superuser. Create/verify that role and its exact grants before configuring application runtime. Never store local credentials in Git or this document.
+**Role decision (2026-11-02):** the developer selected `morph03_app` as PHP's scoped, non-superuser runtime role; `morph03_admin` is reserved for administration/provisioning. This is a policy decision, not evidence that `morph03_app` exists or has the required privileges. Before any PHP `DATABASE_URL` is configured, verify the role and its current database/schema privileges read-only and review an exact least-privilege plan. No role creation, grant, DDL, or credential change has been performed. Never store local credentials in Git or this document.
 
 ## Isolation and safety
 

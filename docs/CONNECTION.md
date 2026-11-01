@@ -4,7 +4,7 @@ category: "Operasional"
 order: 8
 icon: "plug"
 summary: "Kontrak operasional sumber kebenaran untuk koneksi Postgres lokal (Windows + Docker Desktop) - discovery, verification, dan change management."
-updated: "2026-10-25"
+updated: "2026-11-02"
 ---
 
 # Local Development Connection Standard
@@ -1167,6 +1167,8 @@ THEN ACT.
 This document is the canonical operating contract for local PostgreSQL development.
 
 ---
+
+> **Morph-03 specific (2026-11-02):** native Windows PostgreSQL `18.3` at `127.0.0.1:5433`, database `morph_03`. `morph03_admin` is the verified superuser for administration/provisioning only. The developer selected scoped non-superuser `morph03_app` for PHP runtime; its existence and privileges have not been verified, and no grants or DDL were performed. Configure PHP with `morph03_app` only after read-only role/privilege verification and grant-plan review; keep the secret in the local untracked `.env`. See [LOCAL-DEVELOPMENT.md](LOCAL-DEVELOPMENT.md).
 
 > **Morph-01 specific (2026-10-27):** Docker `morph-pg: postgres:16` `5434:5432` `morph`/`morph_app` — `DATABASE_URL=postgresql://morph_app:[REDACTED]@localhost:5434/morph`. Driver `PostgresDriver` + `TenantMiddleware SET LOCAL app.workspace_id` → RLS; `JsonDriver` fallback `data/collections/*.json`. Verifikasi via `GET /api/debug/session` (trace `sd_session Path=/`) + `GET /api/auth/me` + `psql -h 127.0.0.1 -p 5434 -U morph_app -d morph -c "SELECT current_database(), current_user, inet_server_port(), version()"`.
 
