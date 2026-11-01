@@ -52,6 +52,8 @@ PHP is authoritative for authentication, workspace membership, authorization, va
 
 **Dependency discovery:** querying the npm registry for the bare package name `datastar-rocket` returned `E404` on 2026-11-01. The import example in `INTRODUCTION.md` is not proof that this package is installable from npm. Before Phase 3, pin and verify the official Rocket bundle/source and its licensing/build path; do not add an assumed npm dependency or load an unpinned third-party CDN.
 
+For browser interaction policy, use [DATASTAR-NATIVE-WEB-GUIDANCE.md](DATASTAR-NATIVE-WEB-GUIDANCE.md) as the user's source of truth: evaluate Datastar before custom JS, use native browser APIs only as complementary adapters, and keep PHP authoritative. Cross-tab messages, if a real feature later needs them, are untrusted invalidation hints followed by server-side permission/session revalidation—not shared auth state. The guidance is policy, not evidence that any adapter/API is implemented; its external references still require version/browser-specific review.
+
 Do not add SPA frameworks, a parallel client-side data authority, a second reactive engine, an ORM, a per-template CRUD implementation, or a physical PostgreSQL database per logical Database without a reviewed architectural change.
 
 ## Persistence and tenancy invariants

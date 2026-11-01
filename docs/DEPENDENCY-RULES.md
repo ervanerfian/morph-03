@@ -2,6 +2,9 @@
 
 **Status:** architecture contract for new code; automated enforcement is planned.
 
+For browser-side interaction, native APIs and lifecycle policy, follow the user's
+[Datastar-first & Native Web Platform guidance](DATASTAR-NATIVE-WEB-GUIDANCE.md).
+
 ## Layer direction
 
 ```text

@@ -32,7 +32,7 @@ npm run build
 
 The generated `public/assets/build/` directory is ignored by Git and must be built locally/deployed as part of the asset step. The checked-in CSS is served from `public/assets/css/app.css`. Node/npm are development tooling only; they are not a production application runtime.
 
-No Datastar bundle or Datastar Rocket bundle is loaded by this preview. Add Datastar to real server-driven interactions in the relevant feature slice, and add Rocket only after its official source, version, and distribution path have been verified and pinned. Do not use an unpinned CDN or assume an unavailable npm package name.
+No Datastar bundle or Datastar Rocket bundle is loaded by this preview. Follow [DATASTAR-NATIVE-WEB-GUIDANCE.md](DATASTAR-NATIVE-WEB-GUIDANCE.md) for Datastar-first interaction design, thin JavaScript adapters, and lifecycle/accessibility requirements. Add Datastar to real server-driven interactions in the relevant feature slice, and add Rocket only after its official source, version, and distribution path have been verified and pinned. Do not use an unpinned CDN or assume an unavailable npm package name.
 
 ## Product and security progression
 

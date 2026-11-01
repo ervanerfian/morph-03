@@ -1173,13 +1173,9 @@ This document is the canonical operating contract for local PostgreSQL developme
 <!-- datastar-native-web-policy:2026-10-29 -->
 ## Arahan lintas dokumentasi: Datastar & Native Web Platform
 
-Dalam observasi dan development, prioritaskan kemampuan utama **Datastar** untuk
-reaktivitas dan SSE; manfaatkan **API native browser** yang sesuai (termasuk
-BroadcastChannel/storage event untuk notifikasi lintas tab) tanpa membuat state
-atau renderer tandingan. **PHP tetap otoritas data, transaksi, dan permission.**
-Evaluasi lifecycle/cleanup, keamanan, dukungan browser, aksesibilitas, dan bukti
-tes dengan merujuk MDN Web APIs serta Chrome Modern Web Guidance.
-
-Pedoman wajib: [arsitektur Morph](ARCHITECTURE.md) dan [PLEASE](PLEASE.md); keduanya mengatur batas Datastar/native-web serta otoritas server-side.
-Catatan ini menetapkan kebijakan kerja; bukan klaim bahwa semua API telah
-diimplementasikan atau bahwa catatan historis di dokumen ini telah diuji ulang.
+Kebijakan interaksi browser, Datastar-first, native API, lifecycle, dan pengujian
+berlaku dari [DATASTAR-NATIVE-WEB-GUIDANCE.md](DATASTAR-NATIVE-WEB-GUIDANCE.md).
+Kontrak khusus Morph dirinci dalam [ARCHITECTURE.md](ARCHITECTURE.md), dan
+standar kerja umum dalam [PLEASE.md](PLEASE.md). Bagian ini sengaja hanya menjadi
+rujukan agar aturan rinci tidak disalin dan berkembang berbeda-beda; tautan ini
+bukan bukti bahwa API atau adapter terkait sudah diimplementasikan.

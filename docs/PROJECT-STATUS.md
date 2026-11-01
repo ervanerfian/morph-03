@@ -17,7 +17,7 @@ The PHP Native application foundation is in the open PR. A Morph-authored Twig a
 | UI reference variants | Received and retained | `ui/HTML`, `ui/PHP`, and `ui/Symfony`; reference only, not runtime dependencies. |
 | PHP application foundation | Implemented in source | Router, module manifest, Twig renderer, PDO factory, and health/readiness routes. Native PHP/Laragon HTTP integration remains unverified. |
 | Morph UI shell | Implemented as preview | Shared Twig shell, responsive navigation, Morph-owned CSS, and TypeScript ESM build. No real account, workspace, or product data is shown. |
-| Datastar interactions | Not implemented | Add with real server-driven module behavior; not needed for the static preview. |
+| Datastar interactions | Not implemented | Follow `DATASTAR-NATIVE-WEB-GUIDANCE.md`: evaluate Datastar first, keep JS thin, and treat cross-tab signals only as invalidation hints requiring server revalidation. No cross-tab adapter is implemented. |
 | Datastar Rocket | Not integrated | Bundle/source and distribution must be verified and pinned first. |
 | Identity & Workspace | Not implemented | Needs reviewed contracts, server-side session/auth and membership policies. |
 | Logical Database Builder | Design only | No data engine/runtime or approved schema. Relation config, one Display Field radio choice, immutable per-record edge identity, and Table View placement are now separated in docs; stable field-value identity and relation cardinality remain open. No migration is authorized. |
@@ -38,6 +38,8 @@ The PHP Native application foundation is in the open PR. A Morph-authored Twig a
 The repository connection guidance calls for a scoped, non-superuser application role, while another target note shows a superuser URL and the developer requested full-superuser development access. `morph03_admin` is a superuser and bypasses RLS. Do not silently use it for PHP or create/grant `morph03_app`; obtain an explicit runtime-role decision before configuring application access or applying DDL.
 
 Relation semantics confirmed by the developer: the radio chooses exactly one target Display Field; the actual immutable target `record_id` belongs to each edge, not Relation config. Table/View placement checkboxes are separate; Multi-field Projection is future scope. Single-versus-multiple target cardinality remains open. A related schema identity question is now explicit: values/edges must not be keyed by a Table View's presentation binding; `field_definition_id` is a candidate, but the canonical field identity needs review before DDL.
+
+`DATASTAR-NATIVE-WEB-GUIDANCE.md` is now the source of truth for Datastar-first and native-browser interaction policy. It says native ESM/no-build, while the current foundation uses `tsc` to emit browser ESM (without a bundler). This wording needs clarification before changing the existing TypeScript pipeline: it may mean no bundler/runtime build, or it may prohibit the current compile step. No tooling change was made. The guide's external references also have not been independently reviewed from the sandbox.
 
 ## Next steps
 
