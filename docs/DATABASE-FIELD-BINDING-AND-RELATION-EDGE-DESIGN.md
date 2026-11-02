@@ -104,11 +104,14 @@ morph_tables (logical reference; not final DDL)
 - is_active: boolean
 ```
 
-Keputusan pengguna: beberapa Table dan/atau Database boleh merujuk secara
-eksplisit ke `data_source_id` yang sama. Referensi tersebut membagikan Record dan
-schema, bukan salinan, tetapi tidak otomatis memberikan akses. Table tidak boleh
-dianggap milik eksklusif satu extension; aturan ownership, permission, revision,
-dan perubahan pada sumber yang dibagikan masih perlu kontrak tersendiri.
+Keputusan pengguna: setiap identity Table berada pada tepat satu Database;
+Database lain yang memakai sumber sama mendapat Table ID tersendiri. Beberapa
+Table berbeda boleh secara eksplisit merujuk `data_source_id` yang sama, sehingga
+berbagi Record dan schema (bukan salinannya), tanpa otomatis memberikan akses.
+Metadata seperti `label`, `binding_key`, `ordering`, dan `is_active` tetap pada
+identity Table masing-masing; Data Source tetap pemilik Record dan schema Field.
+Table tidak otomatis dimiliki eksklusif extension. Ownership, permission,
+revision, dan perubahan pada Data Source bersama masih perlu kontrak tersendiri.
 
 ### 3.5 Field definition (definisi kolom yang bisa shared)
 
@@ -482,13 +485,13 @@ Perubahan nama/pengaturan field definition harus dilakukan hati-hati jika bindin
 
 ## 10. Pertanyaan produk tersisa
 
-1. Apakah satu Record boleh muncul secara fisik di banyak Table, atau hanya ditampilkan melalui edge/lookup dari satu canonical Data Source?
+1. Bagaimana query, authorization, dan revision pin diterapkan ketika Table ID berbeda pada beberapa Database membaca Record dari Data Source kanonis yang sama?
 2. Bagaimana lifecycle source Record dengan outgoing edges saat di-Trash, dan bagaimana Trash/restore Database menangani Records yang menjadi target Relation?
 3. Berapa lama masa penyimpanan Trash Database/Record?
 4. Siapa yang boleh restore atau menghapus permanen Record/Database?
 5. Bagaimana UI menampilkan target yang tidak dapat diakses tanpa membocorkan keberadaan atau nilainya?
 
-Keputusan binding adalah schema-level pada Data Source kanonis (`morph_data_sources.id`); Table View hanya mengatur visibilitas, urutan, dan label. Field Definition yang dipakai ulang memiliki semantik/config yang sama dan nilai V1 dikunci oleh `field_definition_id`. Jika semantik/config berbeda per Data Source, gunakan identitas/config eksplisit yang berbeda; jangan mengubah arti sebuah Field hanya melalui Table View.
+Keputusan pengguna: identity setiap Table hanya berada pada satu Database; Database berbeda harus memakai Table ID berbeda meski keduanya dapat menunjuk Data Source ID sama. Dengan demikian Record dan schema dibagi melalui Data Source, bukan disalin atau dimiliki Table. Field Binding bersifat schema-level pada Data Source kanonis (`morph_data_sources.id`); Table View hanya mengatur visibilitas, urutan, dan label. Field Definition yang dipakai ulang memiliki semantik/config yang sama dan nilai V1 dikunci oleh `field_definition_id`. Jika semantik/config berbeda per Data Source, gunakan identitas/config eksplisit yang berbeda; jangan mengubah arti sebuah Field hanya melalui Table View.
 
 ## 11. Acceptance gates (belum diimplementasi)
 

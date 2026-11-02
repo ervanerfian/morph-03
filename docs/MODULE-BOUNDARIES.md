@@ -56,4 +56,4 @@ The exact registry/snapshot tables and publication strategy are still subject to
 
 ## Deferred product decisions
 
-Until explicitly designed, modules must not assume: shared Table/Field edit rights across logical Databases; Page placement grants resource access; Owner bypasses creator-configured View/Comment; cross-workspace relations; automatic bidirectional relations; cascade deletion of linked records; a default Trash retention period; or general Page composition through extensions.
+Until explicitly designed, modules must not assume: shared Data Source/Field-schema edit rights across logical Databases; Page placement grants resource access; Owner bypasses creator-configured View/Comment; cross-workspace relations; automatic bidirectional relations; cascade deletion of linked records; a default Trash retention period; or general Page composition through extensions.

@@ -74,8 +74,8 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Workspace | Boundary tenant; identity dan membership dibuktikan server |
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
-| Table dan Field | Schema binding Field dimiliki Data Source kanonis; beberapa Table/Database dapat merujuk ID Data Source yang sama secara eksplisit dan berbagi Record/schema. Akses, ownership, revision, dan perubahan lintas referensi tetap memerlukan policy tersendiri |
-| Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
+| Table dan Field | Setiap Table ID dimiliki tepat satu logical Database; Database berbeda memakai Table ID berbeda untuk merujuk Data Source yang sama. Binding schema Field, Record, dan schema dimiliki Data Source kanonis; referensi eksplisit berbagi Record/schema, bukan akses. Ownership, permission, revision, dan perubahan lintas referensi tetap memerlukan policy tersendiri |
+| Record | ID stabil milik Data Source kanonis (bukan Table); creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision. Table berbeda yang merujuk Data Source yang sama melihat Record set yang sama |
 | Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1; tanpa reverse Field otomatis |
 | Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
 | Lookup definition | Field turunan dengan path Relation + identitas target Field kanonis; capability, tipe hasil, dependency dan disclosure tervalidasi |
@@ -91,13 +91,13 @@ perlu proof, bukan perubahan nama v1 secara langsung.
 
 1. **Registry instance**: `(workspace_id, logical_database_id)` dengan lifecycle,
    label, provenance dan head/version; Database ini bukan `database_id` v1.
-2. **Registry Table/Data Source dan binding**: schema membership Field dimiliki
-   Data Source kanonis; beberapa referensi Table/Database boleh menunjuk ID Data
-   Source yang sama secara eksplisit dan berbagi Record/schema. Referensi Table
-   resolve ke ID itu saat membaca binding; scope tetap per Workspace. Referensi
-   tidak otomatis memberi akses. Ownership, permission, revision, serta dampak
-   perubahan pada shared Data Source memerlukan policy tersendiri. Apakah identity
-   Table yang sama boleh dirujuk beberapa Database tetap pertanyaan terpisah.
+2. **Registry Table/Data Source dan binding**: setiap Table ID terikat pada tepat
+   satu logical Database; Database lain yang memakai sumber sama memiliki Table ID
+   tersendiri. Table berbeda boleh secara eksplisit resolve ke Data Source ID yang
+   sama dan berbagi Record/schema; schema membership Field tetap dimiliki Data
+   Source kanonis. Scope tetap per Workspace dan referensi tidak otomatis memberi
+   akses. Ownership, permission, revision, serta dampak perubahan pada shared Data
+   Source memerlukan policy tersendiri.
 3. **Published definitions**: immutable `(workspace, logical_database_id,
    revision)` + pin versi registry/dependensi, dan draft/head CAS. Alternatif
    workspace graph head dengan per-Database projections dapat dipakai sebagai
@@ -266,5 +266,6 @@ identitas target belum terbukti, berhenti.
   edge aktif sudah dibatasi sesuai keputusan V1.
 - Cara instance Database, extension dan page berelasi; bagaimana kombinasi akses
   per instance/Page dengan creator-configured View/Comment.
-- Penerapan shared Field/Table, izin edit bersama dan transaksi multi-Database;
-  desain index/codec, history Record/edge, dan export file eksternal.
+- Penerapan Data Source/Field schema bersama, izin edit lintas Database dan
+  transaksi multi-Database; desain index/codec, history Record/edge, dan export
+  file eksternal.

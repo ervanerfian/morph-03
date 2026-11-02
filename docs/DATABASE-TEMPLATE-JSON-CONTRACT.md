@@ -9,14 +9,19 @@ Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture vali
 | --- | --- | --- |
 | Database Template | Cetakan konfigurasi untuk membuat satu Database logis | Pilihan dan pratinjau template |
 | Database | Hasil penerapan template dalam Workspace; bukan database PostgreSQL fisik baru | Satu section vertikal yang dapat ditata pada Page |
-| Table | Unit organisasi dalam Database logis yang merujuk pada sumber Record di graph canonical | Tab dalam section Database |
+| Table | Unit organisasi dalam satu Database logis; identity-nya hanya dimiliki satu Database dan merujuk pada sumber Record di graph canonical | Tab dalam section Database |
 | Data Source | Pemilik persisten Record dan schema-level Field Binding; beberapa Table/Database dapat merujuk ID yang sama secara eksplisit | Referensi berbagi Record/schema; akses dan revision policy tetap terpisah |
 | Table View | Presentation atas Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
 | Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
-| Record | Satu entri dengan nilai Field dalam satu Table | Baris tabel |
+| Record | Entri persisten milik Data Source; Table adalah referensi/presentasi, bukan pemilik Record | Baris tabel |
 
 Tampilan Table sebagai tab dan Field sebagai kolom adalah **presentasi**, bukan
-identitas data. **Workspace menampung koleksi Database**; alur yang disepakati
+identitas data. Keputusan pengguna: satu Table ID hanya boleh dimiliki satu
+Database. Database lain yang memerlukan Record/schema yang sama memakai Table ID
+berbeda yang secara eksplisit merujuk Data Source ID kanonis yang sama; dengan
+begitu Record/schema dibagi, bukan disalin. Dalam kontrak JSON, satu Table ID
+hanya boleh menjadi anggota satu Database melalui `tableRefs`. **Workspace
+menampung koleksi Database**; alur yang disepakati
 adalah user memilih Template untuk membuat Database dalam Workspace. Kemungkinan
 template kosong atau jalur pembuatan lain belum diputuskan.
 
@@ -44,11 +49,13 @@ tetapi kardinalitas extension ↔ Database serta aturan ownership bersama masih
 keputusan produk. Jangan menciptakan extension, page, relasi, permission atau
 record hanya karena sebuah Database Template diterapkan.
 
-Database mengatur komposisi/referensi Table; jangan menjadikan Field atau Table
-selalu milik eksklusif sebuah extension atau Database. Kebutuhan mengacu Table
-yang sama dari beberapa Database, cara izin dan dampak perubahan bersama perlu
-kontrak terpisah. Hingga selesai, jangan menawarkan sharing baru yang tidak aman;
-keanggotaan atau tampilan tidak boleh menjadi bukti hak akses.
+Database mengatur komposisi/referensi Table; identity Table hanya milik satu
+Database, sedangkan extension ownership tetap merupakan pertanyaan terpisah.
+Database berbeda dapat memakai Table ID berbeda yang merujuk Data Source ID sama
+secara eksplisit, sehingga berbagi Record/schema tanpa menduplikasi datanya.
+Field Definition boleh dipakai ulang hanya dengan semantik/config yang sama.
+Izin dan dampak perubahan pada Data Source/Field bersama memerlukan kontrak
+tersendiri; keanggotaan atau tampilan tidak menjadi bukti hak akses.
 
 ## 2. Catatan legacy dan keadaan branch morph-03
 
@@ -259,9 +266,11 @@ review sebelum DDL.
   Provenance adalah metadata, bukan mekanisme live sync. Pembaruan template
   tidak otomatis menimpa definisi atau data user; update terkelola/diff/opt-in
   adalah kemampuan masa depan.
-- Default hasil template independen; penggunaan Field/Table bersama adalah
-  fitur eksplisit berbeda yang memerlukan kebijakan perubahan dan izin. Hindari
-  asumsi bahwa Field atau Table intrinsik hanya boleh berada di satu Database.
+- Hasil template independen secara default. Setiap Database memiliki Table ID
+  tersendiri; jika beberapa Database harus berbagi Record/schema, Table mereka
+  secara eksplisit merujuk Data Source ID yang sama. Field Definition dapat
+  digunakan ulang dengan semantik/config identik; policy perubahan dan izin atas
+  Data Source bersama tetap perlu ditetapkan.
 - Menyembunyikan kolom adalah perubahan view, bukan menghapus Field/nilai.
   Menghapus Field memerlukan desain dampak, arsip/pemulihan dan konfirmasi;
   fitur delete belum tersedia. Tidak pernah membuang nilai otomatis.
@@ -376,11 +385,10 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
 
 ## 8. Keputusan terbuka
 
-- Untuk Data Source ID yang secara eksplisit dirujuk oleh beberapa Table/Database,
-  bagaimana ownership, permission, revision, dan perubahan lintas referensi bekerja?
-  Saat menyalin Database, apakah referensi dipertahankan sebagai shared ID atau
-  Data Source di-fork beserta Record? Secara terpisah, apakah identity Table yang
-  sama sendiri boleh dirujuk beberapa Database?
+- Untuk Data Source ID yang secara eksplisit dirujuk oleh Table dari beberapa
+  Database, bagaimana ownership, permission, revision, dan perubahan lintas
+  referensi bekerja? Saat menyalin Database, apakah referensi dipertahankan sebagai
+  shared ID atau Data Source di-fork beserta Record?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
 - Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta
