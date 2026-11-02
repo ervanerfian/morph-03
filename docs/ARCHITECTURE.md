@@ -10,7 +10,7 @@ Morph Space is a multi-workspace platform. A physical PostgreSQL database stores
 The data model distinguishes:
 
 - **Database instance** — a workspace-owned composition/provenance unit created from a versioned template or a custom definition.
-- **Data Source** — the persistent identity and home of records.
+- **Data Source** — the persistent identity and home of records/schema; multiple Tables or logical Databases may explicitly reference the same ID and share records/schema, but reference does not grant access and sharing policy remains separate.
 - **Table View** — a presentation over a Data Source. Multiple views may show the same record set without copying records.
 - **Field definition / schema binding** — reusable field semantics and membership in the canonical Data Source schema (`data_source_id`); each Table View controls visibility, order and label separately.
 - **Record** — stable UUID identity plus a separately mutable business key and schema/version context.

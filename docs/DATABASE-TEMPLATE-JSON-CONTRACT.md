@@ -10,7 +10,7 @@ Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture vali
 | Database Template | Cetakan konfigurasi untuk membuat satu Database logis | Pilihan dan pratinjau template |
 | Database | Hasil penerapan template dalam Workspace; bukan database PostgreSQL fisik baru | Satu section vertikal yang dapat ditata pada Page |
 | Table | Unit organisasi dalam Database logis yang merujuk pada sumber Record di graph canonical | Tab dalam section Database |
-| Data Source | Pemilik persisten Record dan schema-level Field Binding | Dapat dibaca melalui satu atau beberapa Table View |
+| Data Source | Pemilik persisten Record dan schema-level Field Binding; beberapa Table/Database dapat merujuk ID yang sama secara eksplisit | Referensi berbagi Record/schema; akses dan revision policy tetap terpisah |
 | Table View | Presentation atas Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
 | Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
 | Record | Satu entri dengan nilai Field dalam satu Table | Baris tabel |
@@ -128,11 +128,12 @@ revision instance berbeda dan tidak boleh dipertukarkan.
   "database": {
     "id": "db_project_a",
     "label": "Project Management A",
-    "tableRefs": ["table_projects", "table_tasks"]
+    "tableRefs": ["table_projects", "table_tasks", "table_projects_report"]
   },
   "tables": [
     {"id": "table_projects", "label": "Projects", "dataSourceId": "ds_projects"},
-    {"id": "table_tasks", "label": "Tasks", "dataSourceId": "ds_tasks"}
+    {"id": "table_tasks", "label": "Tasks", "dataSourceId": "ds_tasks"},
+    {"id": "table_projects_report", "label": "Project report", "dataSourceId": "ds_projects"}
   ],
   "dataSources": [
     {
@@ -167,11 +168,14 @@ Contoh sengaja menghilangkan config wajib, dependency pins dan metadata revision
 ini bukan fixture valid compiler v1, bukan contoh payload API, dan tidak memutuskan
 apakah Table kosong diperbolehkan. `dataSources[].bindings` menunjukkan schema
 membership pada Data Source kanonis; `tables[].dataSourceId` dan
-`tableViews[].dataSourceId` menunjuk ke identity yang sama. `tableViews[].columns`
-hanya menyimpan preferensi presentation dan boleh merujuk Field yang tersedia pada
-schema Data Source tersebut. Nama/key JSON masih ilustratif, bukan kontrak final. ID
-contoh tidak boleh dipakai untuk instance nyata. Kontrak final harus dirinci dan
-divalidasi sebelum implementasi.
+`tableViews[].dataSourceId` menunjuk ke identity yang sama. Dua Table pada contoh
+secara eksplisit merujuk `ds_projects` yang sama, sehingga berbagi Record/schema,
+bukan menyalin nilai. Referensi dari Database lain juga dapat menggunakan ID itu;
+akses tidak diberikan otomatis, dan policy permission/revision tetap perlu kontrak.
+`tableViews[].columns` hanya menyimpan preferensi presentation dan boleh merujuk
+Field yang tersedia pada schema Data Source tersebut. Nama/key JSON masih
+ilustratif, bukan kontrak final. ID contoh tidak boleh dipakai untuk instance nyata.
+Kontrak final harus dirinci dan divalidasi sebelum implementasi.
 
 ### 3.1 Kontrak Relation yang dikonfirmasi pengguna
 
@@ -372,8 +376,11 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
 
 ## 8. Keputusan terbuka
 
-- Apakah Table yang sama dapat secara eksplisit dirujuk beberapa Database,
-  bagaimana perubahan dan permission lintas referensi bekerja?
+- Untuk Data Source ID yang secara eksplisit dirujuk oleh beberapa Table/Database,
+  bagaimana ownership, permission, revision, dan perubahan lintas referensi bekerja?
+  Saat menyalin Database, apakah referensi dipertahankan sebagai shared ID atau
+  Data Source di-fork beserta Record? Secara terpisah, apakah identity Table yang
+  sama sendiri boleh dirujuk beberapa Database?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
 - Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta

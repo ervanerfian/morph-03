@@ -25,7 +25,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 |---|---|
 | Database instance | Instance logis dari Template di Workspace. Bukan database PostgreSQL fisik baru. |
 | Table View | Representasi presentasi data: konfigurasi kolom, urutan, visibilitas, filter, pengaturan tampilan. Bukan tabel fisik mandiri. |
-| Data Source | Sumber data permanen (Employee, Project, Client, dst.). Satu Data Source dapat memiliki banyak Table View. |
+| Data Source | Pemilik persisten Record dan schema Field. Satu Data Source dapat dirujuk secara eksplisit oleh beberapa Table/Database dan memiliki banyak Table View. |
 | Field definition | Definisi kolom yang bisa digunakan ulang (nama, tipe, konfigurasi, pilihan). |
 | Field binding | Mengaitkan Field Definition ke schema Data Source kanonis; visibilitas, urutan, dan label tiap Table View diatur terpisah. |
 | Record | Baris data milik Data Source. Memiliki `record_id` immutabel dan `record_key` (bisnis identifier yang boleh berubah). |
@@ -93,17 +93,22 @@ Satu Template dapat menghasilkan banyak instance. Setiap instance memiliki head 
 ### 3.4 Table (grup kolom dalam Database instance)
 
 ```text
-morph_tables
+morph_tables (logical reference; not final DDL)
 - id: UUID / stabil
 - database_id: FK → morph_database_instances.id
 - workspace_id: text (denormalisasi untuk kemudahan query dan isolasi)
+- data_source_id: FK → morph_data_sources.id (canonical owner Record/schema)
 - label: text (misal "Proyek", "Tugas", "Karyawan")
 - binding_key: text (kunci unik dalam database instance)
 - ordering: int
 - is_active: boolean
 ```
 
-Table tidak boleh dianggap milik eksklusif satu extension. Sharing harus eksplisit.
+Keputusan pengguna: beberapa Table dan/atau Database boleh merujuk secara
+eksplisit ke `data_source_id` yang sama. Referensi tersebut membagikan Record dan
+schema, bukan salinan, tetapi tidak otomatis memberikan akses. Table tidak boleh
+dianggap milik eksklusif satu extension; aturan ownership, permission, revision,
+dan perubahan pada sumber yang dibagikan masih perlu kontrak tersendiri.
 
 ### 3.5 Field definition (definisi kolom yang bisa shared)
 

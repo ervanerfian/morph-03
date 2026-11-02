@@ -74,7 +74,7 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Workspace | Boundary tenant; identity dan membership dibuktikan server |
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
-| Table dan Field | Identitas stabil; schema binding Field dimiliki Data Source kanonis; Table View hanya presentation. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
+| Table dan Field | Schema binding Field dimiliki Data Source kanonis; beberapa Table/Database dapat merujuk ID Data Source yang sama secara eksplisit dan berbagi Record/schema. Akses, ownership, revision, dan perubahan lintas referensi tetap memerlukan policy tersendiri |
 | Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
 | Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1; tanpa reverse Field otomatis |
 | Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
@@ -92,11 +92,12 @@ perlu proof, bukan perubahan nama v1 secara langsung.
 1. **Registry instance**: `(workspace_id, logical_database_id)` dengan lifecycle,
    label, provenance dan head/version; Database ini bukan `database_id` v1.
 2. **Registry Table/Data Source dan binding**: schema membership Field dimiliki
-   Data Source kanonis; referensi Table harus resolve ke ID Data Source itu saat
-   membaca binding. Identitas dan referensi tetap berscope workspace. Tidak
-   memaksakan Table hanya boleh berada dalam satu Database; sharing aktif
-   memerlukan kontrak policy tersendiri. Jangan menganggap group lama sebagai
-   ownership definitif.
+   Data Source kanonis; beberapa referensi Table/Database boleh menunjuk ID Data
+   Source yang sama secara eksplisit dan berbagi Record/schema. Referensi Table
+   resolve ke ID itu saat membaca binding; scope tetap per Workspace. Referensi
+   tidak otomatis memberi akses. Ownership, permission, revision, serta dampak
+   perubahan pada shared Data Source memerlukan policy tersendiri. Apakah identity
+   Table yang sama boleh dirujuk beberapa Database tetap pertanyaan terpisah.
 3. **Published definitions**: immutable `(workspace, logical_database_id,
    revision)` + pin versi registry/dependensi, dan draft/head CAS. Alternatif
    workspace graph head dengan per-Database projections dapat dipakai sebagai
@@ -182,8 +183,11 @@ valid. Tidak mengasumsikan semua user boleh export seluruh Database.
 
 - **Restore**: mempertahankan ID hanya jika provenance/target scope dan konflik
   diperiksa. Keputusan konflik harus jelas; tidak menimpa instance lain otomatis.
-- **Salinan**: menghasilkan ID baru untuk Database/Table/Field/binding/Record,
-  lalu remap semua relasi internal dan pilihan sesuai peta tervalidasi.
+- **Salinan**: menghasilkan ID baru untuk Database/Table/Field/binding dan remap
+  relasi sesuai peta tervalidasi. Untuk tiap Data Source, kontrak masih harus
+  menetapkan apakah ID dipertahankan sebagai shared reference eksplisit atau
+  di-fork bersama Record ke ID baru; jangan menebak, menyalin data, atau memberi
+  akses otomatis secara diam-diam.
 - **Relation ke Database eksternal paket**: tidak otomatis mengikat hanya karena
   label/ID tampak sama. Preview dan minta mapping dengan pemeriksaan scope dan
   izin; jika tidak cocok, fail closed atau selesaikan secara eksplisit, jangan
