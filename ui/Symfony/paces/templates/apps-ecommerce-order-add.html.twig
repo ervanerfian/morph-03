@@ -1,0 +1,132 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Add/Edit Order' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Add/Edit Order"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Add/Edit Order"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Create Order</h4>
+</div>
+<div class="card-body">
+<div class="grid md:grid-cols-2 gap-5">
+<!-- Order ID -->
+<div>
+<label class="form-label" for="orderId">Order ID</label>
+<input class="form-input bg-default-100! font-semibold!" disabled="" id="orderId" placeholder="#WB20100" type="text"/>
+</div>
+<!-- Order Date -->
+<div>
+<label class="form-label" for="orderDate">Order Date</label>
+<input class="form-input flatpickr-input" data-altformat="F j, Y" data-provider="flatpickr" id="orderDate" required="" type="datetime-local"/>
+</div>
+<!-- Customer Name -->
+<div>
+<label class="form-label" for="customerName">Customer Name</label>
+<input class="form-input" id="customerName" placeholder="Mason Carter" required="" type="text"/>
+</div>
+<!-- Customer Email -->
+<div>
+<label class="form-label" for="customerEmail">Customer Email</label>
+<input class="form-input" id="customerEmail" placeholder="mason.carter@shopmail.com" type="email"/>
+</div>
+<!-- Product Name -->
+<div>
+<label class="form-label" for="productName">Product Name</label>
+<select class="form-select" id="productName">
+<option disabled="" selected="" value="">Select Product</option>
+<option value="iPhone 15 Pro">iPhone 15 Pro</option>
+<option value="MacBook Air M3">MacBook Air M3</option>
+<option value="iPad Pro 13″ (M4)">iPad Pro 13″ (M4)</option>
+<option value="Apple Watch Ultra 2">Apple Watch Ultra 2</option>
+<option value="AirPods Pro (2nd Gen)">AirPods Pro (2nd Gen)</option>
+</select>
+</div>
+<!-- Quantity -->
+<div>
+<label class="form-label" for="quantity">Quantity</label>
+<input class="form-input" id="quantity" min="1" type="text" value="1"/>
+</div>
+<!-- Amount -->
+<div>
+<label class="form-label" for="amount">Amount ($)</label>
+<input class="form-input" id="amount" placeholder="129.45" type="text"/>
+</div>
+<!-- Payment Status -->
+<div>
+<label class="form-label" for="paymentStatus">Payment Status</label>
+<select class="form-select" id="paymentStatus">
+<option value="Paid">Paid</option>
+<option value="Pending">Pending</option>
+<option value="Failed">Failed</option>
+</select>
+</div>
+<!-- Order Status -->
+<div>
+<label class="form-label" for="orderStatus">Order Status</label>
+<select class="form-select" id="orderStatus">
+<option value="Ordered">Ordered</option>
+<option value="Processing">Processing</option>
+<option value="Delivered">Delivered</option>
+<option value="Cancelled">Cancelled</option>
+<option value="Returned">Returned</option>
+</select>
+</div>
+<!-- Payment Method -->
+<div>
+<label class="form-label" for="paymentMethod">Payment Method</label>
+<select class="form-select" id="paymentMethod">
+<option value="Visa">Visa</option>
+<option value="Mastercard">Mastercard</option>
+<option value="PayPal">PayPal</option>
+<option value="COD">Cash on Delivery</option>
+</select>
+</div>
+<!-- Card Number -->
+<div>
+<label class="form-label" for="cardNumber">Card Last 4 Digits</label>
+<input class="form-input" id="cardNumber" placeholder="7832" type="text"/>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-5">
+<div class="text-center">
+<button class="btn bg-light me-2.5 hover:text-primary" data-bs-dismiss="modal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="submit">Save Order</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

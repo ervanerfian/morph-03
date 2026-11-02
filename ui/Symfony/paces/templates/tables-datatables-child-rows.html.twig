@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Child Row' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Tables", "title": "Child Row"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Tables", "title": "Child Row"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Example</h4>
+</div>
+<div class="card-body">
+<div class="table-wrapper -mb-4">
+<table class="table table-striped" id="child-rows-data">
+<thead class="text-2xs font-semibold uppercase">
+<tr>
+<th></th>
+<th>Company</th>
+<th>Symbol</th>
+<th>Price</th>
+<th>Change</th>
+<th>Volume</th>
+<th>Market Cap</th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Jquery for Datatables-->
+
+<!-- Datatables js -->
+
+
+<!-- Page js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/datatables-dt/dataTables.min.js"></script>
+    <script src="/plugins/datatables-dt/dataTables.responsive.min.js"></script>
+    <script src="/js/pages/datatables-child-rows.js"></script>
+{% endblock %}

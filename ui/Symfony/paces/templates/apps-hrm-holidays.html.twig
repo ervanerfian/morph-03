@@ -1,0 +1,593 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Holidays' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Holidays"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Holidays"}) }}
+
+                <div class="container-fluid">
+<div class="mb-1.25 grid grid-cols-1 gap-1.25 md:grid-cols-2 lg:grid-cols-6">
+<!-- Total Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--calendar text-default-800 text-xl"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25">Total Holidays</p>
+<h4 class="text-lg">14</h4>
+</div>
+</div>
+</div>
+</div>
+<!-- Federal Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--flag text-default-800 text-xl"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25">Federal Holidays</p>
+<h4 class="text-lg">11</h4>
+</div>
+</div>
+</div>
+</div>
+<!-- Optional Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--filter-2 text-default-800 text-xl"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25">Optional Holidays</p>
+<h4 class="text-lg">3</h4>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-light flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--calendar-clock text-default-800 text-xl"></i>
+</div>
+<div>
+<p class="text-default-400 mb-1.25">Upcoming Holidays</p>
+<h4 class="text-lg">5</h4>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-success/15 flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--circle-check text-success text-xl"></i>
+</div>
+<div>
+<p class="text-success mb-1.25">Active</p>
+<h4 class="text-lg text-success">12</h4>
+</div>
+</div>
+</div>
+</div>
+<!-- Inactive Holidays -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-center gap-base">
+<div class="bg-danger/15 flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--minus text-danger text-xl"></i>
+</div>
+<div>
+<p class="text-danger mb-1.25">Inactive</p>
+<h4 class="text-lg text-danger">2</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card" data-table="" data-table-rows-per-page="10">
+<div class="card-header">
+<div class="flex flex-wrap gap-2.5">
+<!-- Search -->
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search holidays..." type="search"/>
+</div>
+<!-- Delete Selected -->
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<!-- Add New Holiday -->
+<button aria-controls="addHolidayModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#addHolidayModal" type="button">
+<i class="iconify tabler--plus"></i>
+                                    Add Holiday
+                                </button>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="">Holiday Name</th>
+<th data-table-sort="">Date</th>
+<th data-table-sort="">Day</th>
+<th>Description</th>
+<th data-table-sort="">Status</th>
+<th data-table-sort="">Optional</th>
+<th data-table-sort="">Created On</th>
+<th data-table-sort="">Added By</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Record 1 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>New Year’s Day</td>
+<td>01 Jan 2026</td>
+<td>Thursday</td>
+<td>Celebration of the first day of the year</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>15 Dec 2025</td>
+<td>Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 2 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Martin Luther King Jr. Day</td>
+<td>19 Jan 2026</td>
+<td>Monday</td>
+<td>Honoring the civil rights leader Martin Luther King Jr.</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>03 Jan 2026</td>
+<td>HR Dept</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 3 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Presidents’ Day</td>
+<td>16 Feb 2026</td>
+<td>Monday</td>
+<td>Honoring George Washington and all U.S. presidents</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>10 Jan 2026</td>
+<td>HR Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 4 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Memorial Day</td>
+<td>25 May 2026</td>
+<td>Monday</td>
+<td>Honoring U.S. military personnel who died in service</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>15 Apr 2026</td>
+<td>Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 5 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Juneteenth National Independence Day</td>
+<td>19 Jun 2026</td>
+<td>Friday</td>
+<td>Commemorating the end of slavery in the United States</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>20 May 2026</td>
+<td>HR Dept</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 6 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Independence Day</td>
+<td>04 Jul 2026</td>
+<td>Saturday</td>
+<td>Celebration of U.S. independence from Great Britain</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>05 Jun 2026</td>
+<td>HR Team</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 7 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Labor Day</td>
+<td>07 Sep 2026</td>
+<td>Monday</td>
+<td>Honoring workers and labor rights</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>10 Aug 2026</td>
+<td>HR Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 8 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Columbus Day</td>
+<td>12 Oct 2026</td>
+<td>Monday</td>
+<td>Commemorating the arrival of Christopher Columbus</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>Yes</td>
+<td>15 Sep 2026</td>
+<td>Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 9 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Thanksgiving Day</td>
+<td>26 Nov 2026</td>
+<td>Thursday</td>
+<td>National day of gratitude and family gatherings</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>01 Nov 2026</td>
+<td>Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 10 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Black Friday</td>
+<td>27 Nov 2026</td>
+<td>Friday</td>
+<td>Day after Thanksgiving, observed in some companies</td>
+<td>
+<span class="badge bg-info/15 text-info">Optional</span>
+</td>
+<td>Yes</td>
+<td>05 Nov 2026</td>
+<td>HR Dept</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 11 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Christmas Eve</td>
+<td>24 Dec 2026</td>
+<td>Thursday</td>
+<td>Observed as an early company closure day</td>
+<td>
+<span class="badge bg-info/15 text-info">Optional</span>
+</td>
+<td>Yes</td>
+<td>01 Dec 2026</td>
+<td>HR Admin</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Record 12 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Christmas Day</td>
+<td>25 Dec 2026</td>
+<td>Friday</td>
+<td>Celebration of Christmas Day</td>
+<td>
+<span class="badge bg-success/15 text-success">Active</span>
+</td>
+<td>No</td>
+<td>10 Dec 2026</td>
+<td>HR Team</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="records"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addHolidayModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addHolidayModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="text-sm" id="addHolidayModalLabel">Add New Holiday</h3>
+<button aria-label="Close" data-hs-overlay="#addHolidayModal" type="button">
+<i class="iconify tabler--x text-xl"></i>
+</button>
+</div>
+<form id="addHolidayForm">
+<div class="card-body overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Holiday Name -->
+<div>
+<label class="form-label" for="holidayName">
+                                            Holiday Name
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="holidayName" placeholder="Enter holiday name" required="" type="text"/>
+</div>
+<!-- Date -->
+<div>
+<label class="form-label" for="holidayDate">
+                                            Date
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" data-date-format="d M, Y" data-provider="flatpickr" id="holidayDate" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Day -->
+<div>
+<label class="form-label" for="holidayDay">
+                                            Day
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="holidayDay" required="">
+<option value="">Select day</option>
+<option>Monday</option>
+<option>Tuesday</option>
+<option>Wednesday</option>
+<option>Thursday</option>
+<option>Friday</option>
+<option>Saturday</option>
+<option>Sunday</option>
+</select>
+</div>
+<!-- Optional Holiday -->
+<div>
+<label class="form-label" for="optionalHoliday">
+                                            Optional Holiday
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="optionalHoliday" required="">
+<option value="">Select option</option>
+<option value="No">No (Federal)</option>
+<option value="Yes">Yes (Optional)</option>
+</select>
+</div>
+<!-- Description -->
+<div class="md:col-span-2">
+<label class="form-label" for="holidayDescription">
+                                            Description
+                                            <span class="text-danger">*</span>
+</label>
+<textarea class="form-textarea" id="holidayDescription" placeholder="Enter holiday description" required="" rows="3"></textarea>
+</div>
+<!-- Added By -->
+<div>
+<label class="form-label" for="holidayAddedBy">
+                                            Added By
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="holidayAddedBy" placeholder="Enter admin name" required="" type="text"/>
+</div>
+<!-- Status -->
+<div>
+<label class="form-label" for="holidayStatus">
+                                            Status
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="holidayStatus" required="">
+<option value="">Select status</option>
+<option value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+</div>
+</div>
+</div>
+</form>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addHolidayModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Save Holiday
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

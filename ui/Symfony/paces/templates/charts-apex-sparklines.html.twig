@@ -1,0 +1,111 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Sparkline Apexcharts' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Charts", "title": "Sparkline Apexcharts"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Charts", "title": "Sparkline Apexcharts"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-body">
+<div dir="ltr">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-base">
+<div class="apex-charts" id="spark1"></div>
+<div class="apex-charts" id="spark2"></div>
+<div class="apex-charts" id="spark3"></div>
+</div>
+</div>
+</div>
+<!-- end card body-->
+<div class="table-wrapper">
+<table class="table">
+<thead class="thead-sm bg-light/25 text-xs uppercase">
+<tr>
+<th>Total Value</th>
+<th>Percentage of Portfolio</th>
+<th>Last 10 days</th>
+<th>Volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$32,554</td>
+<td>15%</td>
+<td>
+<div id="chart1"></div>
+</td>
+<td>
+<div id="chart5"></div>
+</td>
+</tr>
+<tr>
+<td>$23,533</td>
+<td>7%</td>
+<td>
+<div id="chart2"></div>
+</td>
+<td>
+<div id="chart6"></div>
+</td>
+</tr>
+<tr>
+<td>$54,276</td>
+<td>9%</td>
+<td>
+<div id="chart3"></div>
+</td>
+<td>
+<div id="chart7"></div>
+</td>
+</tr>
+<tr>
+<td>$11,533</td>
+<td>2%</td>
+<td>
+<div id="chart4"></div>
+</td>
+<td>
+<div id="chart8"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- end card -->
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Charts js -->
+
+<!-- Apex Chart Sparkline Demo js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/chart-apex-sparklines.js"></script>
+{% endblock %}

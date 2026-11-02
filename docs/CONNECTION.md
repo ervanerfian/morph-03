@@ -4,7 +4,7 @@ category: "Operasional"
 order: 8
 icon: "plug"
 summary: "Kontrak operasional sumber kebenaran untuk koneksi Postgres lokal (Windows + Docker Desktop) - discovery, verification, dan change management."
-updated: "2026-10-25"
+updated: "2026-11-02"
 ---
 
 # Local Development Connection Standard
@@ -1168,18 +1168,16 @@ This document is the canonical operating contract for local PostgreSQL developme
 
 ---
 
+> **Morph-03 specific (2026-11-02):** native Windows PostgreSQL `18.3` at `127.0.0.1:5433`, database `morph_03`. `morph03_admin` is the verified superuser for administration/provisioning only. The developer selected scoped non-superuser `morph03_app` for PHP runtime; a read-only catalog check found that role absent, so it is not yet available for PHP. No role creation, grants, or DDL were performed. Do not configure the superuser in PHP; any future provisioning requires explicit authorization and grant-plan review. Keep credentials in the local untracked `.env`. See [LOCAL-DEVELOPMENT.md](LOCAL-DEVELOPMENT.md) and [DATABASE-ROLE-PRIVILEGE-PLAN.md](DATABASE-ROLE-PRIVILEGE-PLAN.md).
+
 > **Morph-01 specific (2026-10-27):** Docker `morph-pg: postgres:16` `5434:5432` `morph`/`morph_app` — `DATABASE_URL=postgresql://morph_app:[REDACTED]@localhost:5434/morph`. Driver `PostgresDriver` + `TenantMiddleware SET LOCAL app.workspace_id` → RLS; `JsonDriver` fallback `data/collections/*.json`. Verifikasi via `GET /api/debug/session` (trace `sd_session Path=/`) + `GET /api/auth/me` + `psql -h 127.0.0.1 -p 5434 -U morph_app -d morph -c "SELECT current_database(), current_user, inet_server_port(), version()"`.
 
 <!-- datastar-native-web-policy:2026-10-29 -->
 ## Arahan lintas dokumentasi: Datastar & Native Web Platform
 
-Dalam observasi dan development, prioritaskan kemampuan utama **Datastar** untuk
-reaktivitas dan SSE; manfaatkan **API native browser** yang sesuai (termasuk
-BroadcastChannel/storage event untuk notifikasi lintas tab) tanpa membuat state
-atau renderer tandingan. **PHP tetap otoritas data, transaksi, dan permission.**
-Evaluasi lifecycle/cleanup, keamanan, dukungan browser, aksesibilitas, dan bukti
-tes dengan merujuk MDN Web APIs serta Chrome Modern Web Guidance.
-
-Pedoman wajib: [Datastar-first & Native Web Platform](DATASTAR-NATIVE-WEB-GUIDANCE.md).
-Catatan ini menetapkan kebijakan kerja; bukan klaim bahwa semua API telah
-diimplementasikan atau bahwa catatan historis di dokumen ini telah diuji ulang.
+Kebijakan interaksi browser, Datastar-first, native API, lifecycle, dan pengujian
+berlaku dari [DATASTAR-NATIVE-WEB-GUIDANCE.md](DATASTAR-NATIVE-WEB-GUIDANCE.md).
+Kontrak khusus Morph dirinci dalam [ARCHITECTURE.md](ARCHITECTURE.md), dan
+standar kerja umum dalam [PLEASE.md](PLEASE.md). Bagian ini sengaja hanya menjadi
+rujukan agar aturan rinci tidak disalin dan berkembang berbeda-beda; tautan ini
+bukan bukti bahwa API atau adapter terkait sudah diimplementasikan.

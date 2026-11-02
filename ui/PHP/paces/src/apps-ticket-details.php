@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Ticket Details"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Support"; $title = "Ticket Details"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Support"; $title = "Ticket Details"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-base">
+                        <div class="lg:col-span-2">
+                            <!-- card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div>
+                                        <h5>
+                                            #SUP-2523 -
+                                            <span class="text-default-400 text-sm">App freezes when uploading files</span>
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <span class="badge badge-label bg-warning text-white">Pending</span>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-base mb-7.5">
+                                        <div>
+                                            <h6 class="text-default-400 mb-2 text-xs uppercase">Requested By</h6>
+                                            <div class="flex items-center gap-2.5">
+                                                <img src="assets/images/users/user-5.jpg" alt="Ava Sullivan" class="size-8 rounded-full" />
+                                                <span>Ava Sullivan</span>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <h6 class="text-default-400 mb-2 text-xs uppercase">Assigned Agent</h6>
+                                            <div class="flex items-center gap-2.5">
+                                                <img src="assets/images/users/user-4.jpg" alt="Liam Brooks" class="size-8 rounded-full" />
+                                                <span>Liam Brooks</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-base mb-7.5">
+                                        <div>
+                                            <h6 class="text-default-400 mb-2 text-xs uppercase">Priority</h6>
+                                            <span class="badge bg-danger text-white hover:bg-danger-hover">High</span>
+                                        </div>
+
+                                        <div>
+                                            <h6 class="text-default-400 mb-2 text-xs uppercase">Created On</h6>
+                                            <p>
+                                                05 Aug, 2025
+                                                <small class="text-default-400">1:20 PM</small>
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <h6 class="text-default-400 mb-2 text-xs uppercase">Due Date</h6>
+                                            <p>09 Aug, 2025</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-7.5">
+                                        <h6 class="text-default-400 mb-2 text-xs uppercase">Description</h6>
+                                        <p>When trying to upload files through the project form, the application becomes unresponsive after selecting a file larger than 5MB. This issue occurs consistently across browsers. Please investigate and apply a fix.</p>
+                                    </div>
+
+                                    <div class="mb-7.5">
+                                        <h6 class="text-default-400 mb-2 text-xs uppercase">Tags</h6>
+                                        <div class="inline-flex flex-wrap gap-1.5">
+                                            <span class="badge bg-light text-dark">Upload</span>
+                                            <span class="badge bg-light text-dark">Performance</span>
+                                            <span class="badge bg-light text-dark">UI Bug</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-7.5">
+                                        <h6 class="text-default-400 mb-7.5 text-xs uppercase">Activity:</h6>
+                                        <div>
+                                            <div class="flex gap-x-5">
+                                                <div class="w-15 text-end md:w-25">
+                                                    <span class="text-default-400">Just Now</span>
+                                                </div>
+
+                                                <div class="after:border-default-300 relative after:absolute after:start-1/2 after:top-3 after:bottom-0 after:w-px after:border-e -ms-px after:border-dashed last:after:hidden">
+                                                    <div class="relative z-10 flex items-center justify-center">
+                                                        <div class="bg-success ms-0.5 size-3.25 rounded-full"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-1 pb-7.5">
+                                                    <h5 class="mb-1.25">Ticket Resolved</h5>
+                                                    <p class="text-default-400 mb-1.25">Agent closed the ticket after applying a patch for the file upload freeze issue.</p>
+                                                    <span class="text-primary font-semibold">By Liam Brooks</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex gap-x-5">
+                                                <div class="w-15 text-end md:w-25">
+                                                    <span class="text-default-400">10:00 AM, Tuesday</span>
+                                                </div>
+
+                                                <div class="after:border-default-300 relative after:absolute after:start-1/2 after:top-0 after:bottom-0 after:w-px after:border-e -ms-px after:border-dashed last:after:hidden">
+                                                    <div class="relative z-10 flex items-center justify-center">
+                                                        <div class="bg-info ms-0.5 size-3.25 rounded-full"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-1 pb-7.5">
+                                                    <h5 class="mb-1.25">Status Changed to "In Progress"</h5>
+                                                    <p class="text-default-400 mb-1.25">Ticket was picked up by the assigned agent for investigation.</p>
+                                                    <span class="text-primary font-semibold">By Liam Brooks</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex gap-x-5">
+                                                <div class="w-15 text-end md:w-25">
+                                                    <span class="text-default-400">Yesterday, 3:15 PM</span>
+                                                </div>
+
+                                                <div class="after:border-default-300 relative after:absolute after:start-1/2 after:top-0 after:bottom-0 after:w-px after:border-e -ms-px after:border-dashed last:after:hidden">
+                                                    <div class="relative z-10 flex items-center justify-center">
+                                                        <div class="bg-warning ms-0.5 size-3.25 rounded-full"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-1 pb-7.5">
+                                                    <h5 class="mb-1.25">User Comment Added</h5>
+                                                    <p class="text-default-400 mb-1.25">User emphasized urgency due to impact on production file uploads.</p>
+                                                    <span class="text-primary font-semibold">By Ava Sullivan</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex gap-x-5">
+                                                <div class="w-15 text-end md:w-25">
+                                                    <span class="text-default-400">02 Aug, 2025 - 3:00 PM</span>
+                                                </div>
+
+                                                <div class="relative">
+                                                    <div class="relative z-10 flex items-center justify-center">
+                                                        <div class="bg-danger ms-0.5 size-3.25 rounded-full"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex-1 pb-7.5">
+                                                    <h5 class="mb-1.25">Ticket Created</h5>
+                                                    <p class="text-default-400 mb-1.25">Ticket submitted regarding the app freezing on file upload.</p>
+                                                    <span class="text-primary font-semibold">By Ava Sullivan</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap items-center justify-center gap-2.5">
+                                        <a href="apps-ticket-create.php" class="btn bg-primary text-white hover:bg-primary-hover">
+                                            <i class="iconify tabler--pencil"></i>
+                                            Edit Ticket
+                                        </a>
+
+                                        <a href="#" class="btn bg-danger text-white hover:bg-danger-hover">
+                                            <i class="iconify tabler--x"></i>
+                                            Close Ticket
+                                        </a>
+
+                                        <a href="tickets-list.php" class="btn border-secondary hover:bg-secondary text-secondary hover:text-white">
+                                            <i class="iconify tabler--arrow-left"></i>
+                                            Back to List
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-1">
+                            <!-- card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Chat</h4>
+                                </div>
+
+                                <div class="card-body h-95 py-0" data-simplebar>
+                                    <!-- Message 1 -->
+                                    <div class="my-5 flex items-start gap-2.5">
+                                        <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                        <div>
+                                            <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Hey! Are you available for a quick call? 📞</div>
+                                            <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                08:55 am
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message 2 -->
+                                    <div class="my-5 flex items-start justify-end gap-2.5">
+                                        <div>
+                                            <div class="bg-info/15 font-medium rounded px-5 py-2.5">Sure, give me 5 minutes. Just wrapping something up.</div>
+                                            <div class="text-default-400 mt-1.5 flex items-center justify-end gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                08:57 am
+                                            </div>
+                                        </div>
+                                        <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                    </div>
+
+                                    <!-- Message 3-->
+                                    <div class="my-5 flex items-start gap-2.5">
+                                        <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                        <div>
+                                            <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Perfect. Let me know when you're ready 👍</div>
+                                            <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                08:58 am
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message 4 -->
+                                    <div class="my-5 flex items-start justify-end gap-2.5">
+                                        <div>
+                                            <div class="bg-info/15 font-medium rounded px-5 py-2.5">Ready now. Calling you!</div>
+                                            <div class="text-default-400 mt-1.5 flex items-center justify-end gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                09:00 am
+                                            </div>
+                                        </div>
+                                        <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                    </div>
+
+                                    <!-- Message 5 -->
+                                    <div class="my-5 flex items-start gap-2.5">
+                                        <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                        <div>
+                                            <div class="bg-warning/15 font-medium rounded px-5 py-2.5">Thanks for your time earlier!</div>
+                                            <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                09:45 am
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Message 6 -->
+                                    <div class="my-5 flex items-start justify-end gap-2.5">
+                                        <div>
+                                            <div class="bg-info/15 font-medium rounded px-5 py-2.5">Of course! It was a productive discussion.</div>
+                                            <div class="text-default-400 mt-1.5 flex items-center justify-end gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                09:46 am
+                                            </div>
+                                        </div>
+                                        <img src="assets/images/users/user-2.jpg" class="size-9 rounded-full" alt="User" />
+                                    </div>
+
+                                    <!-- Message 7 -->
+                                    <div class="my-5 flex items-start gap-2.5">
+                                        <img src="assets/images/users/user-5.jpg" class="size-9 rounded-full" alt="User" />
+                                        <div>
+                                            <div class="bg-warning/15 font-medium rounded px-5 py-2.5">I’ll send over the updated files by noon.</div>
+                                            <div class="text-default-400 mt-1.25 flex items-center gap-1 text-xs">
+                                                <i class="iconify tabler--clock"></i>
+                                                09:50 am
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-default-300 border-t border-dashed px-5 py-3.75">
+                                    <div class="flex gap-2.5">
+                                        <div class="input-icon-group grow">
+                                            <i class="iconify tabler--message input-icon text-default-400"></i>
+                                            <input type="text" class="form-input border-light bg-light/20" placeholder="Enter message..." />
+                                        </div>
+
+                                        <a data-send href="#!" class="btn btn-icon bg-primary size-9.5 text-white">
+                                            <i class="iconify tabler--send-2 text-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>

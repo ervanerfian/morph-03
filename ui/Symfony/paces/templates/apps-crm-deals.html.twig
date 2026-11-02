@@ -1,0 +1,779 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Deals' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "CRM", "title": "Deals"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "CRM", "title": "Deals"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-5 mb-2.5">
+<!-- Total Deals Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex">
+<div class="flex-1">
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-lg">1,230</h5>
+<div class="flex items-center gap-1.5">
+<span>9.85%</span>
+<i class="iconify tabler--arrow-up text-success"></i>
+</div>
+</div>
+<p class="text-default-400 mb-2.5">Total deals created</p>
+<div class="bg-default-100 h-1.25 w-full rounded-full">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="9.85" class="bg-primary h-1.25 rounded-s-full" role="progressbar" style="width: 9.85%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deals Won Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex">
+<div class="flex-1">
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-lg">860</h5>
+<div class="flex items-center gap-1.5">
+<span>5.20%</span>
+<i class="iconify tabler--arrow-up text-success"></i>
+</div>
+</div>
+<p class="text-default-400 mb-2.5">Deals won</p>
+<div class="bg-success/15 h-1.25 w-full rounded-full">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="5.2" class="bg-success h-1.25 rounded-s-full" role="progressbar" style="width: 5.2%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Deals Lost Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex">
+<div class="flex-1">
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-lg">270</h5>
+<div class="flex items-center gap-1.5">
+<span>2.45%</span>
+<i class="iconify tabler--arrow-down text-success"></i>
+</div>
+</div>
+<p class="text-default-400 mb-2.5">Deals lost</p>
+<div class="bg-danger/15 h-1.25 w-full rounded-full">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="2.45" class="bg-danger h-1.25 rounded-s-full" role="progressbar" style="width: 2.45%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Highest Deal Value Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex">
+<div class="flex-1">
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-lg">$220,000</h5>
+<div class="flex items-center gap-1.5">
+<span>Top value</span>
+<i class="iconify tabler--currency-dollar text-success"></i>
+</div>
+</div>
+<p class="text-default-400 mb-2.5">Highest deal closed</p>
+<div class="bg-warning/15 h-1.25 w-full rounded-full">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" class="bg-warning h-1.25 rounded-s-full" role="progressbar" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Avg. Deal Close Time Widget -->
+<div class="card">
+<div class="card-body">
+<div class="flex">
+<div class="flex-1">
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-lg">
+                                                15
+                                                <small class="text-2xs">days</small>
+</h5>
+<div class="flex items-center gap-1.5">
+<span>+1.1%</span>
+<i class="iconify tabler--clock text-warning"></i>
+</div>
+</div>
+<p class="text-default-400 mb-2.5">Avg. close time</p>
+<div class="bg-default-100 h-1.25 w-full rounded-full">
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="15.1" class="bg-secondary h-1.25 rounded-s-full" role="progressbar" style="width: 5.1%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card" data-table="" data-table-rows-per-page="8">
+<div class="card-header justify-between gap-2.5">
+<div class="flex flex-wrap gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search deals..." type="search"/>
+</div>
+<button aria-controls="createDealModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#createDealModal" type="button">
+<i class="iconify tabler--plus"></i>
+                                    Create Deal
+                                </button>
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- Stage Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--arrows-shuffle input-icon"></i>
+<select class="form-select" data-table-filter="stage">
+<option value="">Stage</option>
+<option value="Qualification">Qualification</option>
+<option value="Proposal Sent">Proposal Sent</option>
+<option value="Negotiation">Negotiation</option>
+<option value="Won">Won</option>
+<option value="Lost">Lost</option>
+</select>
+</div>
+<!-- Price Range Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--currency-dollar input-icon"></i>
+<select class="form-select" data-table-range-filter="amount">
+<option value="">Amount Range</option>
+<option value="0-1000">$0 - $10,000</option>
+<option value="10001-25000">$10,001 - $25,000</option>
+<option value="25001-50000">$25,001 - $50,000</option>
+<option value="50000+">$50,000+</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="8">8</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="select-all-products" type="checkbox"/>
+</th>
+<th data-table-sort="">Deal Name</th>
+<th>Company</th>
+<th data-column="amount" data-table-sort="">Amount (USD)</th>
+<th data-column="stage" data-table-sort="">Status</th>
+<th data-table-sort="">Probability</th>
+<th data-table-sort="">Closing Date</th>
+<th class="text-center" style="width: 1%">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Enterprise Software</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/google.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Google Inc</a>
+</div>
+</div>
+</td>
+<td>$102,000</td>
+<td>Proposal Sent</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">65%</strong>
+</div>
+</td>
+<td>15 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Marketing Automation</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/airbnb.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Airbnb</a>
+</div>
+</div>
+</td>
+<td>$85,000</td>
+<td>Qualified</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">55%</strong>
+</div>
+</td>
+<td>10 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Cloud Storage Deal</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/dropbox.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Dropbox</a>
+</div>
+</div>
+</td>
+<td>$47,000</td>
+<td>Negotiation</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">80%</strong>
+</div>
+</td>
+<td>18 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>AI Chatbot Integration</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/openai.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">OpenAI</a>
+</div>
+</div>
+</td>
+<td>$59,500</td>
+<td>Proposal Sent</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">65%</strong>
+</div>
+</td>
+<td>22 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>eCommerce Platform</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/apple.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Apple</a>
+</div>
+</div>
+</td>
+<td>$71,200</td>
+<td>Qualification</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">45%</strong>
+</div>
+</td>
+<td>25 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Sales CRM Deal</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/shell.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Shell</a>
+</div>
+</div>
+</td>
+<td>$95,000</td>
+<td>Won</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+</div>
+<strong class="text-dark">100%</strong>
+</div>
+</td>
+<td>30 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Video Conferencing License</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/figma.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Figma Inc</a>
+</div>
+</div>
+</td>
+<td>$38,000</td>
+<td>Lost</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-danger/25"></div>
+<div class="w-1 h-4 rounded bg-danger/25"></div>
+<div class="w-1 h-4 rounded bg-danger/25"></div>
+<div class="w-1 h-4 rounded bg-danger/25"></div>
+<div class="w-1 h-4 rounded bg-danger/25"></div>
+</div>
+<strong class="text-dark">0%</strong>
+</div>
+</td>
+<td>12 Sep, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Customer Support Suite</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/starbucks.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Starbucks</a>
+</div>
+</div>
+</td>
+<td>$52,000</td>
+<td>Proposal Sent</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">70%</strong>
+</div>
+</td>
+<td>03 Sep, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Project Management SaaS</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/slack.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Slack</a>
+</div>
+</div>
+</td>
+<td>$44,000</td>
+<td>Negotiation</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">60%</strong>
+</div>
+</td>
+<td>06 Sep, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Data Visualization Tool</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/asana.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Asana</a>
+</div>
+</div>
+</td>
+<td>$67,300</td>
+<td>Qualified</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success/50"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+<div class="w-1 h-4 rounded bg-success/25"></div>
+</div>
+<strong class="text-dark">50%</strong>
+</div>
+</td>
+<td>10 Sep, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>Team Chat Platform</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div>
+<div class="btn btn-icon border-default-300 size-8 rounded-full border border-dashed">
+<img alt="Product" class="size-5" src="/images/logos/slack.svg"/>
+</div>
+</div>
+<div>
+<a class="hover:text-primary" href="#!">Slack</a>
+</div>
+</div>
+</td>
+<td>$62,000</td>
+<td>Won</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="flex gap-1.5">
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+<div class="w-1 h-4 rounded bg-success"></div>
+</div>
+<strong class="text-dark">100%</strong>
+</div>
+</td>
+<td>15 Sep, 2025</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="Deals"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="createDealModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="createDealModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="border-default-300 pointer-events-auto flex w-full flex-col rounded-md border card">
+<div class="card-header p-5">
+<h3 class="text-sm" id="createDealModalLabel">Create New Deal</h3>
+<button aria-label="Close" data-hs-overlay="#createDealModal" type="button">
+<i class="iconify tabler--x text-xl"></i>
+</button>
+</div>
+<div class="overflow-y-auto card-body">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="form-label" for="dealName">Deal Name</label>
+<input class="form-input" id="dealName" placeholder="Enter deal name" required="" type="text"/>
+</div>
+<div>
+<label class="form-label" for="companyName">Company</label>
+<input class="form-input" id="companyName" placeholder="Enter company name" required="" type="text"/>
+</div>
+<div>
+<label class="form-label" for="amount">Amount (USD)</label>
+<input class="form-input" id="amount" placeholder="e.g. 100000" required="" type="number"/>
+</div>
+<div>
+<label class="form-label" for="stage">Stage</label>
+<select class="form-select" id="stage" required="">
+<option value="">Select stage</option>
+<option value="Qualification">Qualification</option>
+<option value="Proposal Sent">Proposal Sent</option>
+<option value="Negotiation">Negotiation</option>
+<option value="Won">Won</option>
+<option value="Lost">Lost</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="probability">Probability (%)</label>
+<input class="form-input" id="probability" max="100" min="0" placeholder="e.g. 75" required="" type="number"/>
+</div>
+<div>
+<label class="form-label" for="closingDate">Expected Closing Date</label>
+<input class="form-input" data-date-format="d M, Y" data-provider="flatpickr" id="closingDate" required="" type="date"/>
+</div>
+</div>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#createDealModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">Save Deal</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

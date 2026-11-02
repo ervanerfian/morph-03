@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Other Echart' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Charts", "title": "Other Echart"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Charts", "title": "Other Echart"}) }}
+
+                <div class="container-fluid">
+<div class="grid xl:grid-cols-2 gap-base">
+<div class="card">
+<div class="card-header border-none">
+<h4 class="card-title">Pictorialbar Dotted Chart</h4>
+</div>
+<div class="card-body p-3 pt-0">
+<div class="rounded-md overflow-hidden" id="echart-pictorialbar-dotted" style="min-height: 400px"></div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Basic Sunburst Chart</h4>
+</div>
+<div class="card-body p-2 pt-0">
+<div id="echar-basic-sunburst" style="min-height: 399px"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Nested Pie Chart</h4>
+</div>
+<div class="card-body">
+<div id="chart-pie-nest" style="min-height: 600px"></div>
+</div>
+</div>
+</div>
+<!-- end col -->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- E Charts js -->
+
+<!-- E Charts Demo js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/echarts/echarts.min.js"></script>
+    <script src="/js/pages/chart-echart-other.js"></script>
+{% endblock %}

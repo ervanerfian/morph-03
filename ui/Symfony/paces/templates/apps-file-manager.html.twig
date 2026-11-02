@@ -1,0 +1,1386 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'File Manager' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Apps", "title": "File Manager"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main class="pb-0!">
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Apps", "title": "File Manager"}) }}
+
+                <div class="container-fluid">
+<div class="flex lg:gap-1.25 h-[calc(100vh-200px)]">
+<div class="card h-full">
+<div aria-label="Sidebar" class="hs-overlay hs-overlay-open:translate-x-0 rounded fixed start-0 top-0 bottom-0 z-50 h-full w-62.5 -translate-x-full transform bg-card transition-all duration-300 [--auto-close:lg] lg:static lg:end-auto lg:bottom-0 lg:block! lg:translate-x-0" id="fileSidebaroffcanvas" role="dialog" tabindex="-1">
+<div class="card-body h-full" data-simplebar="">
+<a class="btn w-full bg-danger text-white hover:bg-danger-hover" href="#!">Upload Files</a>
+<div class="mt-5">
+<!-- Menu Links -->
+<div class="flex flex-col">
+<a class="bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="/file-manager">
+<i class="iconify tabler--folder text-base align-middle"></i>
+<span class="align-middle">My Files</span>
+<span class="ms-auto badge text-2xs bg-danger/15 text-danger font-semibold">21</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--share text-base align-middle text-default-700"></i>
+<span class="align-middle">Shared with Me</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--clock text-base align-middle text-default-700"></i>
+<span class="align-middle">Recent</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--star text-base align-middle text-default-700"></i>
+<span class="align-middle">Favourites</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--download text-base align-middle text-default-700"></i>
+<span class="align-middle">Downloads</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--trash text-base align-middle text-default-700"></i>
+<span class="align-middle">Trash</span>
+</a>
+</div>
+<!-- Labels Section -->
+<div class="mt-2.5">
+<div class="text-default-800 px-3 py-2 text-sm font-medium tracking-wider">Categories</div>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--chart-donut text-primary align-middle text-sm"></i>
+<span class="align-middle">Work</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--chart-donut text-secondary align-middle text-sm"></i>
+<span class="align-middle">Projects</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--chart-donut text-info align-middle text-sm"></i>
+<span class="align-middle">Media</span>
+</a>
+<a class="hover:bg-default-100 font-medium flex items-center gap-2 rounded px-3 py-2 transition" href="javascript:void(0);">
+<i class="iconify tabler--chart-donut text-warning align-middle text-sm"></i>
+<span class="align-middle">Documents</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-0 flex-1">
+<div class="card h-full" data-table="" data-table-rows-per-page="8">
+<div class="card-header">
+<div class="flex gap-2.5">
+<div class="flex items-center gap-2.5 text-start lg:hidden">
+<button class="btn btn-sm btn-icon border-default-300">
+<i aria-controls="fileSidebaroffcanvas" aria-expanded="false" aria-haspopup="dialog" aria-label="Toggle navigation" class="iconify tabler--menu-4 text-default-600 size-6" data-hs-overlay="#fileSidebaroffcanvas"></i>
+</button>
+</div>
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search files..." type="search"/>
+</div>
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- File Type Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--file input-icon"></i>
+<select class="form-select" data-table-filter="type">
+<option selected="" value="">File Type</option>
+<option value="Folder">Folder</option>
+<option value="MySQL">MySQL</option>
+<option value="MP4">MP4</option>
+<option value="Audio">Audio</option>
+<option value="Figma">Figma</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option value="8">8</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="card-body h-[calc(100%-100px)]" data-simplebar="">
+<div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4 mb-base">
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">Premium Multi</a>
+</h5>
+<p class="text-default-400 text-xs">2.3 GB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">Material Design</a>
+</h5>
+<p class="text-default-400 text-xs">105.3MB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">DashPro UI Kit</a>
+</h5>
+<p class="text-default-400 text-xs">512MB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">VueStudio Pack</a>
+</h5>
+<p class="text-default-400 text-xs">880MB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">Nextify Pro</a>
+</h5>
+<p class="text-default-400 text-xs">1.1 GB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">Blazor Studio</a>
+</h5>
+<p class="text-default-400 text-xs">780MB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">Angular Prime</a>
+</h5>
+<p class="text-default-400 text-xs">940MB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card border-default-300 border border-dashed">
+<div class="card-body p-2.5">
+<div class="flex items-center justify-between gap-3">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded-md">
+<i class="iconify tabler--folder text-2xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25 text-xs">
+<a class="hover:text-primary" href="#!">React Kit Pro</a>
+</h5>
+<p class="text-default-400 text-xs">1.6 GB</p>
+</div>
+<!-- Dropdown -->
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                        Share
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                        Get Sharable Link
+                                                                    </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                        Download
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                        Pin
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                        Edit
+                                                                    </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                        Delete
+                                                                    </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm border-t border-default-200">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="name">Name</th>
+<th data-column="type" data-table-sort="">Type</th>
+<th data-table-sort="">Modified</th>
+<th data-table-sort="owner">Owner</th>
+<th>Shared with</th>
+<th class="text-end">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--video text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Project Overview Video</a>
+</h5>
+<p class="text-default-400 text-xs">120MB</p>
+</div>
+</div>
+</td>
+<td>MP4</td>
+<td>April 2, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">john@techgroup.com</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="transitio-all size-6 rounded-full duration-200 hover:-translate-y-1" src="/images/users/user-5.jpg"/>
+<img alt="" class="transitio-all size-6 rounded-full duration-200 hover:-translate-y-1" src="/images/users/user-7.jpg"/>
+<img alt="" class="transitio-all size-6 rounded-full duration-200 hover:-translate-y-1" src="/images/users/user-6.jpg"/>
+<img alt="" class="transitio-all size-6 rounded-full duration-200 hover:-translate-y-1" src="/images/users/user-8.jpg"/>
+</div>
+</td>
+<td>
+<div class="flex items-center justify-end gap-3">
+<div class="relative">
+<span id="star-1"></span>
+<button data-hs-toggle-password='{"target": "#star-1"}' type="button">
+<div class="hs-password-active:flex hidden items-center gap-1">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex items-center gap-1">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="dropdown-item" download="" href="/images/users/user-1.jpg">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<!-- Checkbox -->
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<!-- File Info -->
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--video text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Team Meeting Video</a>
+</h5>
+<p class="text-default-400 text-xs">200MB</p>
+</div>
+</div>
+</td>
+<!-- Type -->
+<td>MP4</td>
+<!-- Date -->
+<td>April 15, 2025</td>
+<!-- Owner -->
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">michael@devteam.com</a>
+</h5>
+</div>
+</td>
+<!-- Shared Users -->
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-2.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-3.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-5.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<!-- Star Toggle -->
+<div class="relative">
+<span id="star-2"></span>
+<button data-hs-toggle-password='{"target":"#star-2"}' type="button">
+<div class="hs-password-active:flex hidden items-center gap-1">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex items-center gap-1">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="dropdown-item" download="" href="/images/users/user-4.jpg">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="dropdown-item" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="dropdown-item" href="#">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--brand-figma text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Marketing Strategy Design</a>
+</h5>
+<p class="text-default-400 text-xs">150MB</p>
+</div>
+</div>
+</td>
+<td>Figma</td>
+<td>April 20, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">susan@marketing.com</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-1.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-3.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-6.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-9.jpg"/>
+</div>
+</td>
+<td>
+<div class="flex items-center justify-end gap-3">
+<div class="relative">
+<span id="star-3"></span>
+<button data-hs-toggle-password='{"target":"#star-3"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-label="Dropdown" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" download="" href="#">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<!-- Checkbox -->
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<!-- File Info -->
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--file-type-pdf text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Client Proposal PDF</a>
+</h5>
+<p class="text-default-400 text-xs">45MB</p>
+</div>
+</div>
+</td>
+<!-- File Type -->
+<td>PDF</td>
+<!-- Date -->
+<td>May 5, 2025</td>
+<!-- Owner -->
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-8.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">mark@clientservices.com</a>
+</h5>
+</div>
+</td>
+<!-- Shared Users -->
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-2.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-4.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all duration-200 hover:-translate-y-1" src="/images/users/user-7.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<!-- Star Toggle -->
+<div class="relative">
+<span id="star-4"></span>
+<button data-hs-toggle-password='{"target":"#star-4"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="javascript:void(0);">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="javascript:void(0);">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" download="" href="/files/proposal.pdf">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="javascript:void(0);">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="javascript:void(0);">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<!-- Checkbox -->
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<!-- File Info -->
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--database text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Database Schema</a>
+</h5>
+<p class="text-default-400 text-xs">30MB</p>
+</div>
+</div>
+</td>
+<!-- File Type -->
+<td>MySQL</td>
+<!-- Date -->
+<td>April 1, 2025</td>
+<!-- Owner -->
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">alex@creatix.io</a>
+</h5>
+</div>
+</td>
+<!-- Shared Users -->
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-4.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-8.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<!-- Star Toggle -->
+<div class="relative">
+<span id="star-5"></span>
+<button data-hs-toggle-password='{"target":"#star-5"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button class="hs-dropdown-toggle text-xl text-default-400" type="button">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" download="" href="#">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-x-3 px-3.75 py-1.5" href="#">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--code text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Website Script</a>
+</h5>
+<p class="text-default-400 text-xs">15MB</p>
+</div>
+</div>
+</td>
+<td>JS</td>
+<td>April 2, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">john@techgroup.com</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-5.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-7.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-6.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-4.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<!-- Star Toggle -->
+<div class="relative">
+<span id="star-script"></span>
+<button data-hs-toggle-password='{"target":"#star-script"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button class="hs-dropdown-toggle text-xl text-default-400">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5" download="" href="#">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--package text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Dependency Package</a>
+</h5>
+<p class="text-default-400 text-xs">5MB</p>
+</div>
+</div>
+</td>
+<td>DEP</td>
+<td>April 15, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">michael@devteam.com</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-2.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-3.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-5.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<div class="relative">
+<span id="star-dep"></span>
+<button data-hs-toggle-password='{"target":"#star-dep"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button class="hs-dropdown-toggle text-xl text-default-400">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5" download="" href="/files/dependency.dep">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--folder text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#!">Internet Portal</a>
+</h5>
+<p class="text-default-400 text-xs">87MB</p>
+</div>
+</div>
+</td>
+<td>Folder</td>
+<td>March 10, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-6.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#!">emma@devcore.com</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-7.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-9.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-10.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-3.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-8.jpg"/>
+</div>
+</td>
+<!-- Actions -->
+<td>
+<div class="flex items-center justify-end gap-3">
+<div class="relative">
+<span id="star-folder"></span>
+<button data-hs-toggle-password='{"target":"#star-folder"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<!-- Dropdown -->
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button class="hs-dropdown-toggle text-xl text-default-400">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5" download="" href="/images/users/user-6.jpg">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="bg-light/50 text-default-400 flex size-9 items-center justify-center rounded">
+<i class="iconify tabler--music text-xl"></i>
+</div>
+<div>
+<h5 class="mb-1.25">
+<a class="hover:text-primary" data-sort="name" href="#">Podcast Episode 12</a>
+</h5>
+<p class="text-default-400 text-xs">55MB</p>
+</div>
+</div>
+</td>
+<td>Audio</td>
+<td>April 1, 2025</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<h5>
+<a class="hover:text-primary transition-all" data-sort="owner" href="#">alex@creatix.io</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center -space-x-2">
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-4.jpg"/>
+<img alt="" class="size-6 rounded-full transition-all hover:-translate-y-1" src="/images/users/user-8.jpg"/>
+</div>
+</td>
+<td>
+<div class="flex items-center justify-end gap-3">
+<div class="relative">
+<span id="star-music"></span>
+<button data-hs-toggle-password='{"target":"#star-music"}' type="button">
+<div class="hs-password-active:flex hidden">
+<i class="iconify tabler--star-filled text-warning text-base"></i>
+</div>
+<div class="hs-password-active:hidden flex">
+<i class="iconify tabler--star-filled text-default-400 text-base"></i>
+</div>
+</button>
+</div>
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button class="hs-dropdown-toggle text-xl text-default-400">
+<i class="iconify tabler--dots-vertical text-xl"></i>
+</button>
+<div class="hs-dropdown-menu">
+<div class="space-y-0.5">
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--share"></i>
+                                                                                Share
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--link"></i>
+                                                                                Get Sharable Link
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--download"></i>
+                                                                                Download
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--pin"></i>
+                                                                                Pin
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--edit"></i>
+                                                                                Edit
+                                                                            </a>
+<a class="hover:bg-default-100 flex items-center gap-3 px-3.75 py-1.5">
+<i class="iconify tabler--trash"></i>
+                                                                                Delete
+                                                                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-center gap-2.5 p-5">
+<strong>Loading...</strong>
+<div aria-label="loading" class="text-danger inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent" role="status">
+<span class="sr-only">Loading...</span>
+</div>
+</div>
+</div>
+<!-- end card-body -->
+</div>
+<!-- end card-->
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

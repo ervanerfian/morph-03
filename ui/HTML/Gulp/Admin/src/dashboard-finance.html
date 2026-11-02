@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Finance Dashboard" })
+
+    @@include('./partials/head-css.html')
+</head>
+
+<body>
+
+    <div class="wrapper">
+        @@include('./partials/topbar.html', {"subtitle": "Dashboard", "title":"Finance"})
+
+        @@include('./partials/sidenav.html')
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+                @@include("./partials/page-title.html", {"subtitle": "Dashboard", "title":"Finance"})
+
+                <div class="container-fluid">
+                    <div id="dashboard-alert" class="mb-4 hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 bg-primary/10 text-primary text-sm rounded ps-4 py-0.5 pe-0" role="alert" tabindex="-1" aria-labelledby="hs-dismiss-button-label">
+                        <div class="flex flex-wrap items-center gap-1.25">
+                            <div class="flex lg:items-center items-start gap-1.25">
+                                <div>
+                                    <i class="iconify tabler--lifebuoy text-2xl align-middle"></i>
+                                </div>
+
+                                <div>
+                                    <div id="hs-dismiss-button-label" class="text-sm font-medium">
+                                        <b> Dear David Dev - </b>
+                                        We kindly encourage you to review your recent transactions and financial commitments to ensure that your account is in good standing.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ms-auto">
+                                <div class="flex items-center">
+                                    <div>
+                                        <a href="#!" class="text-primary underline underline-offset-4"><b>Action Now</b></a>
+                                    </div>
+
+                                    <button type="button" data-hs-remove-element="#dashboard-alert" class="size-11.5 flex justify-center items-center">
+                                        <i class="iconify tabler--x text-2xl text-default-700 align-middle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 gap-base mb-base">
+                        <div class="xl:col-span-1">
+                            <div class="card h-full">
+                                <div class="card-header border-0">
+                                    <h4 class="card-title">Total Balance</h4>
+
+                                    <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                        <a href="#!" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300 hover:text-primary">
+                                            <i class="iconify tabler--dots-vertical text-base"></i>
+                                        </a>
+                                        <ul class="hs-dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--wallet"></i> Add Funds</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--cash-banknote-move-back"></i>Withdraw Funds</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--transaction-dollar"></i>Transaction History</a>
+                                            </li>
+
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--lock"></i> Freeze Account </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-body pt-0">
+                                    <h2 class="font-bold mb-2 text-2xl relative" id="user-balance-data">
+                                        <span id="user-balance-number">$76,852.36</span>
+                                        <span data-toggler="off" id="user-b-show-hide">
+                                            <button type="button" data-hs-toggle-password='{"target": "#user-b-show-hide"}' class="text-xl">
+                                                <i class="iconify tabler--eye hs-password-active:hidden flex text-warning"></i>
+                                                <i class="iconify tabler--eye-off hs-password-active:flex hidden text-default-400"></i>
+                                            </button>
+                                        </span>
+                                    </h2>
+
+                                    <div class="p-2.5 bg-light/50 rounded mt-5 gap-2.5 flex items-center">
+                                        <img src="assets/images/debit-card.png" alt="" class="rounded h-9 me-1.25" />
+                                        <div>
+                                            <p class="text-sm font-semibold">$<span data-target="59,258.25">0</span></p>
+                                            <p class="text-default-400 text-xs">**** **** **** 3698</p>
+                                        </div>
+                                        <a href="#!" class="btn underline font-medium ms-auto underline-offset-4">Details</a>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2.5 mt-7.5">
+                                        <div>
+                                            <a href="#!" class="btn bg-secondary hover:bg-secondary-hover text-white bg-linear-to-b from-white/30 to-white/0 w-full">
+                                                <i class="iconify tabler--coin"></i>
+                                                Transfer
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="btn bg-info hover:bg-info-hover text-white bg-linear-to-b from-white/30 to-white/0 w-full">
+                                                <i class="iconify tabler--coin"></i>
+                                                Request
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-body -->
+                            </div>
+                        </div>
+
+                        <div class="xl:col-span-2">
+                            <div class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-base h-full">
+                                <div class="card h-full">
+                                    <div class="card-body">
+                                        <i class="iconify solar--leaf-bold-duotone text-4xl text-success"></i>
+                                        <h3 class="text-xl font-bold mt-5 mb-1.25">$<span data-target="51.68">0</span>k</h3>
+                                        <p class="text-default-400 text-sm mb-4">Total Income</p>
+                                        <span class="badge py-0 bg-success/15 text-xs text-success"><i class="iconify tabler--arrow-badge-up"></i> 8.72%</span>
+                                        <div id="total-income-chart" class="mt-5"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card h-full">
+                                    <div class="card-body">
+                                        <i class="iconify solar--wallet-money-bold-duotone text-4xl text-info"></i>
+                                        <h3 class="text-xl font-bold mt-5 mb-1.25">$<span data-target="24.03">0</span>k</h3>
+                                        <p class="text-default-400 text-sm mb-4">Total Expenses</p>
+                                        <span class="badge py-0 bg-danger/15 text-xs text-danger"><i class="iconify tabler--arrow-badge-down"></i>3.28%</span>
+                                        <div id="total-expenses-chart" class="mt-5"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card h-full">
+                                    <div class="card-body">
+                                        <i class="iconify solar--chart-2-bold-duotone text-4xl text-warning"></i>
+                                        <h3 class="text-xl font-bold mt-5 mb-1.25">$<span data-target="48.21">0</span>k</h3>
+                                        <p class="text-default-400 text-sm mb-4">Investments</p>
+                                        <span class="badge py-0 bg-danger/15 text-xs text-danger"><i class="iconify tabler--arrow-badge-down"></i>5.69%</span>
+                                        <div id="investments-chart" class="mt-5"></div>
+                                    </div>
+                                </div>
+
+                                <div class="card h-full">
+                                    <div class="card-body">
+                                        <i class="iconify solar--hand-money-bold text-4xl text-secondary"></i>
+                                        <h3 class="text-xl font-bold mt-5 mb-1.25">$<span data-target="11.65">0</span>k</h3>
+                                        <p class="text-default-400 text-sm mb-4">Savings</p>
+                                        <span class="badge py-0 bg-success/15 text-xs text-success"><i class="iconify tabler--arrow-badge-up"></i>10.58%</span>
+                                        <div id="savings-chart" class="mt-5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 gap-base mb-base">
+                        <div class="xl:col-span-2">
+                            <div class="card h-full">
+                                <div class="card-header border-0 justify-content-between">
+                                    <h4 class="card-title">Financial Overview</h4>
+
+                                    <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                        <a href="#!" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300 hover:text-primary">
+                                            <i class="iconify tabler--dots-vertical text-base"></i>
+                                        </a>
+
+                                        <ul class="hs-dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--refresh"></i> Refresh Data</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--chart-bar"></i>View Analytics</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--filter-2"></i>Filter Report</a>
+                                            </li>
+
+                                            <li>
+                                                <hr class="dropdown-divider" />
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--download"></i> Export Data </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-body p-0">
+                                    <div class="bg-light/40">
+                                        <div class="grid md:grid-cols-4 grid-cols-2 gap-base text-center">
+                                            <div>
+                                                <p class="text-default-400 mt-5 mb-1.25">Revenue</p>
+                                                <h4 class="mb-5 flex items-center justify-center text-lg">
+                                                    <i class="iconify tabler--square-rounded-arrow-down text-success me-1.25 text-lg"></i>
+                                                    <span>$<span data-target="29.56">0</span>k</span>
+                                                </h4>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-default-400 mt-5 mb-1.25">Expenses</p>
+                                                <h4 class="mb-5 flex items-center justify-center text-lg">
+                                                    <i class="iconify tabler--square-rounded-arrow-up text-danger me-1.25 text-lg"></i>
+                                                    <span>$<span data-target="15.08">0</span>k</span>
+                                                </h4>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-default-400 mt-5 mb-1.25">Investment</p>
+                                                <h4 class="mb-5 flex items-center justify-center text-lg">
+                                                    <i class="iconify tabler--chart-infographic me-1.25 text-lg"></i>
+                                                    <span>$<span data-target="3.67">0</span>k</span>
+                                                </h4>
+                                            </div>
+
+                                            <div>
+                                                <p class="text-default-400 mt-5 mb-1.25">Savings</p>
+                                                <h4 class="mb-5 flex items-center justify-center text-lg">
+                                                    <i class="iconify tabler--pig me-1.25 text-lg"></i>
+                                                    <span>$<span data-target="6.72">0</span>k</span>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-2.5">
+                                        <div id="financial-overview-chart" class="apex-charts"></div>
+                                    </div>
+                                </div>
+                                <!-- end card-body-->
+                            </div>
+                        </div>
+
+                        <div class="xl:col-span-1">
+                            <div class="card bg-secondary! bg-linear-to-b from-white/30 to-white/0 text-white bg-cover bg-right mb-base">
+                                <div class="card-body bg-no-repeat bg-contain bg-bottom-right bg-[url('../images/flower-style.svg')]">
+                                    <h4 class="text-lg text-white mb-2">Investment Growth</h4>
+                                    <p class="text-white/75 text-sm mb-4">Track performance and see where your money is heading.</p>
+                                    <a href="#!" class="btn btn-sm rounded-full bg-info hover:bg-info-hover bg-linear-to-b from-white/30 to-white/0 text-white">View Portfolio</a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header justify-content-between">
+                                    <h4 class="card-title flex items-center gap-2">
+                                        Quick Transfer
+                                        <div class="hs-tooltip [--placement:top]">
+                                            <button type="button" class="hs-tooltip-toggle">
+                                                <i class="iconify tabler--info-circle text-default-400 mt-2"></i>
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-800 text-xs font-medium text-default-50 rounded-md" role="tooltip">
+                                                    Quickly send money to your<br />
+                                                    saved contacts.
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </h4>
+
+                                    <div class="hs-dropdown [--placement:bottom-right] ms-auto">
+                                        <a href="#!" class="hs-dropdown-toggle btn btn-sm btn-icon border-default-300 hover:text-primary">
+                                            <i class="iconify tabler--dots-vertical text-base"></i>
+                                        </a>
+
+                                        <ul class="hs-dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--user-plus"></i> Add Recipient</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--history"></i>Recent Transfers</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item" href="#"> <i class="iconify tabler--download"></i> Export Transfers</a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#"> <i class="iconify tabler--trash"></i> Remove All </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="flex gap-2.5 justify-center">
+                                        <!-- Hidden radio (btn-check equivalent) -->
+                                        <div>
+                                            <input type="radio" name="recipient" id="rec1" checked class="peer absolute w-px h-px overflow-hidden pointer-events-none" style="clip: rect(0, 0, 0, 0)" />
+
+                                            <label for="rec1" class="hs-tooltip [--placement:top] inline-block cursor-pointer peer-checked:[&>img]:border-primary">
+                                                <!-- Avatar -->
+                                                <img src="assets/images/users/user-4.jpg" alt="" class="size-11 rounded-full p-1 bg-light border border-default-200 transition" />
+
+                                                <!-- Tooltip -->
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md" role="tooltip"> Alexa Newsome </span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" name="recipient" id="rec2" class="peer absolute w-px h-px overflow-hidden pointer-events-none" style="clip: rect(0, 0, 0, 0)" />
+
+                                            <label for="rec2" class="hs-tooltip [--placement:top] inline-block cursor-pointer peer-checked:[&>img]:border-primary">
+                                                <!-- Avatar -->
+                                                <img src="assets/images/users/user-5.jpg" alt="" class="size-11 rounded-full p-1 bg-light border border-default-200 transition" />
+
+                                                <!-- Tooltip -->
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md" role="tooltip"> Shelly Dorey</span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" name="recipient" id="rec3" class="peer absolute w-px h-px overflow-hidden pointer-events-none" style="clip: rect(0, 0, 0, 0)" />
+
+                                            <label for="rec3" class="hs-tooltip [--placement:top] inline-block cursor-pointer peer-checked:[&>img]:border-primary">
+                                                <!-- Avatar -->
+                                                <img src="assets/images/users/user-3.jpg" alt="" class="size-11 rounded-full p-1 bg-light border border-default-200 transition" />
+
+                                                <!-- Tooltip -->
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md" role="tooltip"> Fredrick Arnett</span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" name="recipient" id="rec4" class="peer absolute w-px h-px overflow-hidden pointer-events-none" style="clip: rect(0, 0, 0, 0)" />
+                                            <label for="rec4" class="hs-tooltip [--placement:top] inline-block cursor-pointer peer-checked:[&>img]:border-primary">
+                                                <!-- Avatar -->
+                                                <img src="assets/images/users/user-8.jpg" alt="" class="size-11 rounded-full p-1 bg-light border border-default-200 transition" />
+
+                                                <!-- Tooltip -->
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md" role="tooltip"> Barbara Frink</span>
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <input type="radio" name="recipient" id="rec5" class="peer absolute w-px h-px overflow-hidden pointer-events-none" style="clip: rect(0, 0, 0, 0)" />
+                                            <label for="rec5" class="hs-tooltip [--placement:top] inline-block cursor-pointer peer-checked:[&>img]:border-primary">
+                                                <!-- Avatar -->
+                                                <img src="assets/images/users/user-2.jpg" alt="" class="size-11 rounded-full p-1 bg-light border border-default-200 transition" />
+
+                                                <!-- Tooltip -->
+                                                <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-default-900 text-xs font-medium text-default-50 rounded-md" role="tooltip">Adam M</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-5">
+                                        <label for="sendFrom" class="form-label">Send From</label>
+                                        <select id="sendFrom" class="form-input form-select">
+                                            <option value="visa">Visa •••• 3698</option>
+                                            <option value="mastercard">Mastercard •••• 1425</option>
+                                            <option value="paypal">PayPal Wallet</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 grid-cols-1 gap-3 mb-2">
+                                        <div>
+                                            <label for="currency" class="form-label">Currency</label>
+                                            <select id="currency" class="form-input form-select">
+                                                <option value="USD">$ USD — US Dollar</option>
+                                                <option value="EUR">€ EUR — Euro</option>
+                                                <option value="GBP">£ GBP — British Pound</option>
+                                                <option value="INR">₹ INR — Indian Rupee</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <label for="enterAmount" class="form-label">Amount</label>
+                                            <input type="number" id="enterAmount" class="form-input" placeholder="0.00" min="1" step="0.01" />
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2.5 mt-7.5">
+                                        <div>
+                                            <a href="#!" class="btn bg-primary hover:bg-primary-hover text-white w-full">Send Money</a>
+                                        </div>
+                                        <div>
+                                            <a href="#!" class="btn border-secondary hover:bg-secondary text-secondary hover:text-white w-full">Save as Draft</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <div data-table data-table-rows-per-page="8" class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Recent Transactions <span class="text-default-400 font-normal text-sm">(95.6k+ Transactions)</span></h4>
+
+                                <div class="flex flex-wrap items-center gap-2.5">
+                                    <span class="font-semibold me-2.5">Filter By:</span>
+
+                                    <!-- Transaction Status Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--filter-2 input-icon text-default-400"></i>
+                                        <select data-table-filter="transaction-status" class="form-input form-select">
+                                            <option value="All">All Status</option>
+                                            <option value="Success">Success</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Failed">Failed</option>
+                                            <option value="Processing">Processing</option>
+                                            <option value="Onhold">On Hold</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Search Transactions -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon text-default-400"></i>
+                                        <input data-table-search type="search" class="form-input" placeholder="Search transactions..." />
+                                    </div>
+
+                                    <!-- Records Per Page -->
+                                    <div>
+                                        <select data-table-set-rows-per-page class="form-input form-select">
+                                            <option value="5">5</option>
+                                            <option value="10" selected>10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive overflow-x-auto">
+                                <table class="table table-hover whitespace-nowrap w-full">
+                                    <thead class="bg-light/25 thead-sm">
+                                        <tr class="uppercase text-2xs">
+                                            <th data-table-sort class="text-default-400">ID</th>
+                                            <th data-table-sort class="text-default-400">Name / Business</th>
+                                            <th class="text-default-400">Description</th>
+                                            <th data-table-sort class="text-default-400">Amount</th>
+                                            <th data-table-sort class="text-default-400">Timestamp</th>
+                                            <th data-table-sort class="text-default-400">Type</th>
+                                            <th data-table-sort class="text-default-400">Payment Method</th>
+                                            <th data-table-sort data-column="transaction-status" class="text-default-400">Status</th>
+                                            <th class="text-default-400">•••</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX901</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-5.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Sophia Miller</span>
+                                                </div>
+                                            </td>
+                                            <td>Subscription Renewal</td>
+                                            <td class="text-success">USD $299.00</td>
+                                            <td>22 Nov,25 <small class="text-default-400">08:24 am</small></td>
+                                            <td>Credit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/visa.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">*4321</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye align-middle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX900</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-2.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span>James Carter</span>
+                                                </div>
+                                            </td>
+                                            <td>Refund Processed</td>
+                                            <td class="text-danger">-USD $150.50</td>
+                                            <td>21 Nov,25 <small class="text-default-400">07:40 pm</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/mastercard.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>*9333</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning/15 text-warning">Pending</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye align-middle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX899</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="size-6 rounded-full bg-secondary/15 text-secondary flex items-center justify-center text-xs font-semibold">W</div>
+                                                    <span>WavePay</span>
+                                                </div>
+                                            </td>
+                                            <td>Wallet Top-Up</td>
+                                            <td class="text-success">USD $620.00</td>
+                                            <td>21 Nov,25 <small class="text-default-400">03:12 pm</small></td>
+                                            <td>Credit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/paypal.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>PayPal</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX898</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-3.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span>Liam Thompson</span>
+                                                </div>
+                                            </td>
+                                            <td>Service Charge</td>
+                                            <td class="text-danger">-USD $19.99</td>
+                                            <td>20 Nov,25 <small class="text-default-400">11:09 am</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/stripe.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>Stripe</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-danger/15 text-danger">Failed</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX897</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-4.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span>Emma Stone</span>
+                                                </div>
+                                            </td>
+                                            <td>Invoice #2112</td>
+                                            <td class="text-success">EUR €420.72</td>
+                                            <td>18 Nov,25 <small class="text-default-400">09:51 pm</small></td>
+                                            <td>Credit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/mastercard.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>*2112</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX896</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="size-6 rounded-full bg-warning/15 text-warning flex items-center justify-center text-xs font-semibold">S</div>
+                                                    <span>StorePay</span>
+                                                </div>
+                                            </td>
+                                            <td>Point of Sale Payment</td>
+                                            <td class="text-danger">-GBP £15.00</td>
+                                            <td>17 Nov,25 <small class="text-default-400">02:10 pm</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/unionpay.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>*5510</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX895</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-8.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span>Olivia Brown</span>
+                                                </div>
+                                            </td>
+                                            <td>Personal Transfer</td>
+                                            <td class="text-success">USD $250.00</td>
+                                            <td>16 Nov,25 <small class="text-default-400">07:48 am</small></td>
+                                            <td>Credit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/visa.svg" alt="" class="size-6 rounded-full" />
+                                                    <span>*0244</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX894</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-1.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">David Chen</span>
+                                                </div>
+                                            </td>
+                                            <td>ATM Withdrawal</td>
+                                            <td class="text-danger">-USD $180.00</td>
+                                            <td>15 Nov,25 <small class="text-default-400">04:33 pm</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/mastercard.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">*7780</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning/15 text-warning">Processing</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye align-middle"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX893</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-6.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Marcus Lee</span>
+                                                </div>
+                                            </td>
+                                            <td>Online Purchase</td>
+                                            <td class="text-danger">-USD $65.49</td>
+                                            <td>14 Nov,24 <small class="text-default-400">02:09 pm</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/stripe.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Stripe</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX892</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="size-6 rounded-full bg-danger/15 text-danger flex items-center justify-center text-xs font-semibold">U</div>
+                                                    <span class="align-middle">Utility Co.</span>
+                                                </div>
+                                            </td>
+                                            <td>Electricity Bill</td>
+                                            <td class="text-danger">-GBP £72.10</td>
+                                            <td>12 Nov,24 <small class="text-default-400">09:30 am</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/visa.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">*1188</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX891</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-7.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Henry Walker</span>
+                                                </div>
+                                            </td>
+                                            <td>Loan EMI Payment</td>
+                                            <td class="text-danger">-USD $320.00</td>
+                                            <td>11 Nov,24 <small class="text-default-400">04:55 pm</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/mastercard.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">*9982</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX890</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <div class="size-6 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-semibold">G</div>
+                                                    <span class="align-middle">Google Services</span>
+                                                </div>
+                                            </td>
+                                            <td>Cloud Subscription</td>
+                                            <td class="text-danger">-USD $12.99</td>
+                                            <td>10 Nov,24 <small class="text-default-400">08:12 am</small></td>
+                                            <td>Debit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/stripe.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Stripe</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-warning/15 text-warning">Pending</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><a href="#!" class="font-medium">#TX889</a></td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/users/user-3.jpg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">Emily Frost</span>
+                                                </div>
+                                            </td>
+                                            <td>Client Invoice #2455</td>
+                                            <td class="text-success">USD $980.00</td>
+                                            <td>09 Nov,24 <small class="text-default-400">11:21 am</small></td>
+                                            <td>Credit</td>
+                                            <td>
+                                                <div class="flex items-center gap-2">
+                                                    <img src="assets/images/cards/paypal.svg" alt="" class="size-6 rounded-full" />
+                                                    <span class="align-middle">PayPal</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="badge bg-success/15 text-success ">Success</span></td>
+                                            <td>
+                                                <a href="#!" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-footer">
+                                <div data-table-pagination-info="transactions"></div>
+                                <div data-table-pagination></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center mt-2.5 mb-base">
+                        <h4 class="font-bold text-md mb-2">My Targets & Goals</h4>
+                        <a href="#!" class="underline underline-offset-4 font-semibold text-md ms-auto">See All</a>
+                    </div>
+
+                    <div class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-base">
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-1.jpg')]">
+                            <div class="card-body rounded-md bg-primary/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--bus-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">New Car</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="25,000">25,000</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-2.jpg')]">
+                            <div class="card-body rounded-md bg-secondary/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--globus-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Vacation Trip</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="7500">7500</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-3.jpg')]">
+                            <div class="card-body rounded-md bg-warning/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--square-academic-cap-2-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Education</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="15,200">15,200</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-4.jpg')]">
+                            <div class="card-body rounded-md bg-danger/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--home-2-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">New Home</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="120,000">120,000</span></h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-5.jpg')]">
+                            <div class="card-body rounded-md bg-info/90 bg-linear-to-b from-white/30 to-white/0">
+                                <i class="iconify solar--banknote-2-bold-duotone text-4xl"></i>
+                                <p class="text-white/75 mb-1.25 uppercase">Goal</p>
+                                <h3 class="font-semibold mb-2.5 text-xl">Emergency Fund</h3>
+                                <h4 class="font-medium text-base mb-1.25">$<span data-target="10,000">10,000</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            @@include('./partials/footer.html')
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    @@include('./partials/customizer.html')
+
+    @@include('./partials/footer-scripts.html')
+
+    <!-- Apex Chart js -->
+    <script src="assets/plugins/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+
+    <!-- Dashboard js -->
+    <script src="assets/js/pages/dashboard-finance.js"></script>
+</body>
+
+</html>

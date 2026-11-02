@@ -1,9 +1,9 @@
 # Target PostgreSQL Schema Design — Morph Workspace (Komprehensif)
 
-**Status: target architecture untuk fresh database, bukan evolution dari skema lama.**
-Tanggal: 2026-10-31. Ditulis berdasarkan keputusan Fresh Database Architecture yang disetujui.
+**Status: proposal target untuk database development baru; bukan persetujuan skema, DDL, migrasi, atau pembersihan.**
+Diperbarui: 2026-11-02. Arah Fresh Database Architecture tidak mengotorisasi perubahan database.
 
-Ini adalah **dokumen desain, bukan DDL siap eksekusi**. Tidak akan ada DDL yang dijalankan dari sandbox ini. Skrip SQL akan disediakan sebagai dokumen untuk Anda jalankan sendiri di HeidiSQL/psql setelah direview dan disetujui.
+Ini adalah **dokumen desain, bukan DDL siap eksekusi**. Tidak ada DDL yang dijalankan dari sandbox ini. Nama tabel, key, constraint, tipe, dan batas transaksi masih harus direview; belum ada skrip untuk dijalankan sebelum konsolidasi dan persetujuan eksplisit.
 
 Dokumen ini mencakup **semua fitur Morph**: Generic Data Engine, Roles & Permissions, Pages, Workspace, View, IDs, Modal Mechanism, Reorder, Layout, Pinned, dan semua konfigurasi data yang terkait.
 
@@ -33,7 +33,7 @@ Semua aspek visual dan perilaku Morph dihasilkan secara dinamis dari konfigurasi
 | Aspek | Sumber | Eksekusi |
 |---|---|---|
 | Tampilan halaman | `morph_pages.config`, `morph_page_sections.config` | Code reads config → render UI on the fly |
-| Kolom tabel | `morph_field_bindings.is_active`, `position`, `label_override` | Code reads binding → tampilkan kolom sesuai config |
+| Keanggotaan Field di Data Source | `morph_field_bindings.is_active` dengan owner `morph_data_sources.id` | View config mengatur visibilitas, urutan, dan label tanpa mengubah schema/value |
 | Tipe field | `morph_field_definitions.type`, `config_json` | Code reads type → pilih renderer/input yang sesuai |
 | Relasi | `morph_relation_edges`, `morph_relation_config.display_field_id` | Code baca edge → tampilkan nilai dari record tujuan |
 | Modal | `morph_modal_configs.config` | Code baca config → tampilkan close control, shared token, geometry |
@@ -127,69 +127,27 @@ Tidak ada elemen visual yang terikat pada nama preset, tabel fisik, atau kode de
                                   │ is_visible   │                   │ is_visible   │
                                   │ config JSONB │                   │ config JSONB │
                                   └──────────────┘                   └──────────────┘
-                                          │
-                                          │
-                                          ▼
-                                  ┌──────────────┐       ┌──────────────────┐
-                                  │ morph_data_sources│      │ morph_table_views │
-                                  ├──────────────┤       ├──────────────────┤
-                                  │ id (PK)      │       │ id (PK)          │
-                                  │ workspace_id │       │ workspace_id     │
-                                  │ label        │───────┤ data_source_id   │
-                                  │ binding_key  │       │   → data_sources.id│
-                                  │ template_id  │       │ label            │
-                                  │ head_revision│       │ ordering         │
-                                  │ lifecycle    │       │ is_active        │
-                                  │ ...          │       │ config JSONB     │
-                                  └──────────────┘       └──────────────────┘
-                                          │                       │
-                                          │                       │
-                                          ▼                       ▼
-                                  ┌──────────────┐       ┌──────────────┐
-                                  │morph_field_def│       │morph_field_bindings│
-                                  │initions      │       ├──────────────┤
-                                  ├──────────────┤       │ id (PK)        │
-                                  │ id (PK)      │       │ workspace_id   │
-                                  │ label        │       │ table_view_id  │
-                                  │ type         │───────┤   → table_views.id│
-                                  │ config_json  │       │ field_def_id   │
-                                  │ is_system    │       │   → field_defs.id│
-                                  │ ...          │       │ is_active      │
-                                  └──────────────┘       │ position       │
-                                                         │ label_override │
-                                                         └────────────────┘
-                                                                │
-                                                                ▼
-                                                         ┌──────────────┐
-                                                         │ morph_records│
-                                                         ├──────────────┤
-                                                         │ id (PK,      │
-                                                         │   record_id  │
-                                                         │   immutabel) │
-                                                         │ record_key   │
-                                                         │ workspace_id │
-                                                         │ data_source_id│
-                                                         │ creator_id   │
-                                                         │ schema_revision│
-                                                         │ values_json  │
-                                                         │ version_token│
-                                                         │ lifecycle    │
-                                                         └──────────────┘
-                                                                │
-                                                                ▼
-                                                         ┌──────────────┐       ┌──────────────┐
-                                                         │morph_relation_edges│   │morph_relation_config│
-                                                         ├──────────────┤       ├──────────────┤
-                                                         │ id (PK)      │       │ field_binding_id│
-                                                         │ workspace_id │       │   PK → bindings.id│
-                                                         │ source_data_source_id│ │ target_data_source_id│
-                                                         │ source_record_id│     │ target_record_id │
-                                                         │ source_field_id│     │ display_field_id │
-                                                         │ target_data_source_id│ │ ...              │
-                                                         │ target_record_id│     └──────────────┘
-                                                         │ cardinality    │
-                                                         └──────────────┘
+                         ┌────────────────────┐
+                         │ morph_data_sources │
+                         └─────────┬──────────┘
+                                   │
+                     ┌─────────────┼──────────────────────┐
+                     │             │                      │
+                     ▼             ▼                      ▼
+              morph_table_views  morph_records      morph_field_bindings ◄── morph_field_definitions
+              (presentation:     │                  (data_source_id schema membership;
+               visibility/order/ │                   is_active/is_required)
+               label only)       ▼
+                          morph_relation_edges
+                          (source_field_id = field_definition_id;
+                           immutable target_record_id per edge)
+
+              morph_relation_config (schema, not a per-record value):
+                field_definition_id, target_data_source_id,
+                one display_field_id, cardinality = single V1
 ```
+
+`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis V1: `field_definition_id`, bukan ID `morph_field_bindings`. Sesuai keputusan pengguna, schema membership pada `morph_field_bindings` dimiliki oleh Data Source kanonis melalui `data_source_id → morph_data_sources.id`, bukan Table View; `morph_table_views.config` hanya menyimpan preferensi visibilitas/urutan/label. Setiap identity Table berada pada tepat satu Database; Database berbeda memakai Table ID berbeda meskipun keduanya dapat secara eksplisit merujuk `data_source_id` yang sama dan berbagi Record/schema tanpa menyalin data. Referensi tidak memberikan akses otomatis. Scope Workspace, permission, ownership, dan revision policy untuk Data Source bersama tetap perlu review. Key/constraint PostgreSQL final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config menentukan target Data Source, satu `display_field_id`, dan `single` target per source Record/Field. Source Record lain boleh menunjuk target yang sama; tidak ada keunikan target global.
 
 ---
 
@@ -381,11 +339,11 @@ Tabel-tabel ini sudah dirinci di bagian 3.2 Metadata Layer dan 3.3 Data Layer da
 |---|---|
 | `morph_data_sources` | Sumber data permanen |
 | `morph_table_views` | Representasi tampilan/preset |
-| `morph_field_definitions` | Definisi kolom reusable |
-| `morph_field_bindings` | "Pengaturan Kolom" checklist per Table View |
+| `morph_field_definitions` | Definisi Field dan semantik tipe yang reusable |
+| `morph_field_bindings` | Keanggotaan Field pada schema Data Source kanonis; bukan per Table View |
 | `morph_records` | Record dengan record_id immutabel + record_key |
-| `morph_relation_edges` | Logical relation edge |
-| `morph_relation_config` | Display Field (radio) |
+| `morph_relation_edges` | Nilai Relation per source Record ke target Record immutable |
+| `morph_relation_config` | Target Data Source + satu Display Field (radio); tanpa target Record |
 | `morph_lookup_definitions` | Lookup read-only |
 
 **Peringatan arsitektur:** Generic Data Engine bukan developer-defined CRUD atau per-post dynamic fields. Semua tampilan dan perilaku dihasilkan dari konfigurasi data (`config_json`, `values_json`, `permissions`, `ordering_config`, dll.), bukan dari kode yang dikodekan keras untuk tiap preset. Reuse existing contracts, no legacy route restoration.
@@ -544,9 +502,8 @@ Setiap Table View dan Field Definition dihasilkan dari definisi deklaratif JSON.
       "label": "PIC",
       "type": "relation",
       "config_json": {
-        "target_data_source": "karyawan",
-        "target_record_id_field": "record_id",
-        "display_field": "nama",
+        "target_data_source_id": "uuid-employee-source",
+        "display_field_id": "uuid-employee-name-field",
         "cardinality": "single"
       },
       "is_system": false
@@ -567,6 +524,8 @@ Setiap Table View dan Field Definition dihasilkan dari definisi deklaratif JSON.
   ]
 }
 ```
+
+Contoh Relation di atas hanya konfigurasi skema: `target_data_source_id`, tepat satu `display_field_id`, dan `cardinality = 'single'` pada V1. Target Record yang dipilih pada setiap source Record disimpan sebagai `target_record_id` pada `morph_relation_edges`, bukan di `config_json`. Paling banyak satu edge berlaku bagi satu source Record/Field; beberapa source Record boleh menunjuk target yang sama. Kardinalitas bukan atribut setiap edge, dan batasan fisik final tetap perlu review sebelum DDL.
 
 **Aturan JSON Schema DSL:**
 
@@ -593,7 +552,7 @@ Berikut daftar field type yang didukung, dengan konfigurasi masing-masing:
 | **Email** | `placeholder` | Input email | Validasi format email |
 | **Phone** | `pattern`, `country_code` | Input telepon | Validasi nomor telepon |
 | **Formula** | `expression`, `result_type` | Read-only display | Dievaluasi engine, tidak disimpan langsung |
-| **Relation** | `target_data_source`, `target_record_id_field`, `display_field`, `cardinality` | Autocomplete record | Logical relation edge |
+| **Relation** | `target_data_source_id`, satu `display_field_id`, `cardinality = 'single'` (V1) | Autocomplete record | Target `record_id` disimpan per nilai pada relation edge; maksimal satu per source Record/Field |
 | **Rollup** | `relation_field`, `target_field`, `aggregation` | Read-only display | Agregasi dari relasi |
 | **Created time** | `format` | Read-only | Timestamp pembuatan |
 | **Created by** | `user_field` | Read-only display | Referensi user pembuat |
@@ -603,12 +562,14 @@ Berikut daftar field type yang didukung, dengan konfigurasi masing-masing:
 | **Place** | `map_config`, `allow_search` | Picker lokasi | Data lokasi/peta |
 | **ID** | `prefix`, `format`, `auto_generate` | Read-only display | Identifier unik otomatis |
 
+Katalog tabel ini adalah daftar kemampuan target yang sudah disebutkan, bukan enum tipe tertutup. Tipe baru harus dapat didaftarkan oleh modul tepercaya melalui registry berversi yang menyediakan config schema, validation/normalization, codec, renderer, query/index capability, authorization/disclosure rules, dan compatibility/migration behavior. Config pengguna tetap data deklaratif; tidak memuat kode executable. Registry tidak boleh berubah menjadi `switch`/mapping tertutup yang harus diedit pada setiap alur CRUD. Tipe/version yang tidak dikenal gagal tertutup dan data tersimpan tidak boleh dibuang diam-diam.
+
 **Aturan field type:**
 
-- Semua tipe disimpan di `morph_field_definitions.type` dan `config_json`.
-- Engine membaca `type` dan `config_json` untuk memilih renderer input yang sesuai on the fly.
+- Setiap Field merujuk ke type ID dan versi kontrak registry; `config_json` divalidasi oleh kontrak tersebut.
+- Engine membaca descriptor melalui registry tepercaya untuk validasi, codec, renderer, dan kapabilitas lain.
 - Tipe yang belum didukung tidak boleh diam-diam diganti atau diabaikan.
-- `Relation` menggunakan `target_record_id` (UUID immutabel), bukan `record_key` (boleh berubah).
+- `target_record_id` (UUID immutabel) adalah identitas tujuan pada Relation edge per Record, bukan config tipe; jangan memakai `record_key` yang boleh berubah.
 - `Formula` dan `Rollup` adalah read-only, nilai dihitung engine saat baca.
 
 #### 3.11.3 Replikasi Tabel (Database / Table View)
@@ -691,10 +652,10 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 | Item | Nilai yang Diperlukan | Catatan |
 |---|---|---|
 | `DRIVER` | `postgres` | Di `.env` |
-| `DATABASE_URL` | `postgresql://morph_admin:morph123@localhost:5434/morph?sslmode=disable` | Gunakan `morph_admin` (SUPERUSER) untuk development |
+| `DATABASE_URL` | Simpan hanya di `.env` lokal yang tidak dilacak; gunakan `morph03_app` menuju `127.0.0.1:5433/morph_03` | Read-only audit menemukan `morph03_app` belum ada; jangan gunakan `morph03_admin` untuk PHP |
 | PHP extension `pdo_pgsql` | Loaded | Cek via `php -m | grep pdo_pgsql` |
 | PHP extension `pdo` | Loaded | Cek via `php -m | grep pdo` |
-| Koneksi PostgreSQL | Berhasil | Cek via `php -r "new PDO(...)"` |
+| Koneksi PostgreSQL | Harus diverifikasi dengan `morph03_app` | CLI/PDO yang sudah diverifikasi memakai `morph03_admin`; read-only audit menemukan `morph03_app` belum ada dan Laragon web-SAPI masih pending (lihat `LOCAL-DEVELOPMENT.md`) |
 | Web server restart | Dilakukan | Setelah mengubah `.env`, restart Apache/Nginx |
 
 ### 3.12.4 Aturan Untuk Pengembangan Selanjutnya
@@ -702,7 +663,7 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 1. **Jangan mengandalkan hanya `DRIVER` env** — selalu verifikasi `DATABASE_URL` juga tersedia dan valid.
 2. **Jangan fallback diam-diam ke JsonDriver** saat PostgreSQL tersedia — jika koneksi gagal, throw exception agar masalah terdeteksi segera.
 3. **Selalu restart web server** setelah mengubah `.env` (terutama `DRIVER` dan `DATABASE_URL`).
-4. **Gunakan `morph_admin` untuk development** — SUPERUSER, semua privileges, tidak perlu `GRANT` ulang setiap kali membuat tabel baru.
+4. **Gunakan `morph03_app` untuk PHP runtime hanya setelah role dan scoped non-superuser privileges diverifikasi**; `morph03_admin` hanya untuk administrasi/provisioning. Jangan gunakan superuser sebagai role runtime.
 5. **Verifikasi driver aktif** saat boot — tambahkan log atau health check yang mencetak class driver yang aktif.
 
 ---
@@ -721,7 +682,7 @@ if ($databaseUrl && extension_loaded('pdo_pgsql')) {
 | `morph_field_bindings` | Workspace | Per workspace | `workspace_id` |
 | `morph_records` | Workspace | Per workspace | `workspace_id` |
 | `morph_relation_edges` | Workspace | Per workspace | `workspace_id` |
-| `morph_relation_config` | Workspace | Diwarisi | via field_binding |
+| `morph_relation_config` | Workspace | Diwarisi | via identitas Field kanonis (kandidat field_definition) |
 | `workspace_members` | Workspace | Per workspace | `workspace_id` |
 | `extension_instances` | Workspace | Per workspace | `workspace_id` |
 | `morph_modal_configs` | Workspace | Per workspace | `workspace_id` |
@@ -772,27 +733,29 @@ morph_records:
 
 - Relasi selalu menyimpan `record_id` (UUID immutabel), bukan `record_key`.
 - Jika `record_key` berubah (misal `HR-001` → `HR-002`), relasi tetap utuh.
-- Record dapat di-trash (`lifecycle = 'trash'`) atau dihapus permanen (`lifecycle = 'deleted'`).
-- Permanent delete memeriksa incoming/outgoing relation edges terlebih dahulu.
+- Target Record yang memiliki incoming Relation edge tidak dapat masuk Trash; link harus dilepas/diganti secara eksplisit terlebih dahulu.
+- Permanent delete ditolak selama Record masih memiliki incoming/outgoing edge. Tidak ada cascade implisit ke source Record maupun edge.
+- Kebijakan Trash untuk source Record dengan outgoing edge dan Trash seluruh Database yang memuat target Record masih perlu diputuskan.
 
 ---
 
 ## 8. Relation Edge & Cardinality Model
 
-Relasi mendukung (secara konseptual):
+Kontrak Relation V1 yang dipilih adalah `cardinality = 'single'`: paling banyak satu target untuk setiap `(source_data_source_id, source_record_id, field_definition_id)`. Beberapa source Record boleh menunjuk target yang sama; V1 tidak menyiratkan unique target atau one-to-one. Ini adalah batas logis yang perlu ditegakkan terhadap kumpulan edge per source Record/Field, bukan atribut yang diulang pada tiap edge. Bentuk constraint fisik, concurrency control, dan transaction boundary masih memerlukan review sebelum DDL.
 
-| Kardinalitas | Contoh | Implementasi |
+| Pola | Status V1 | Catatan |
 |---|---|---|
-| One-to-One | Satu karyawan memiliki satu profil | `cardinality = 'single'` |
-| Many-to-One | Banyak proyek memiliki satu PIC | `cardinality = 'single'` (banyak source → satu target) |
-| One-to-Many | Satu klien memiliki banyak proyek | `cardinality = 'multi'` (satu source → banyak target) |
-| Many-to-Many | Banyak karyawan terlibat dalam banyak proyek | `cardinality = 'multi'` (banyak source → banyak target) |
+| Many-to-One | Didukung secara semantik | Banyak source dapat menunjuk target sama; satu target maksimal per source Record/Field. |
+| One-to-One | Tidak dijamin | Memerlukan constraint unik tambahan pada target yang belum dipilih. |
+| One-to-Many | Masa depan | Memerlukan multi-target pada satu source Record/Field. |
+| Many-to-Many | Masa depan | Memerlukan multi-target per source dan aturan tambahan. |
 
 Integritas logical relation edge:
 1. Source record harus berasal dari source data source yang sesuai.
 2. Target record harus milik target data source.
 3. Kedua record harus dalam workspace yang sama.
-4. Penghapusan record harus memiliki kebijakan: restrict, cascade, atau soft delete.
+4. Edge baru atau yang diarahkan ulang tidak boleh memilih target Record yang sudah berada di Trash; ini menjaga invariant bahwa tidak ada incoming Relation edge menuju target yang berada di Trash.
+5. Untuk V1, target dengan incoming edge tidak boleh di-Trash. Permanent delete diblokir sampai seluruh incoming/outgoing edge diselesaikan eksplisit; tidak ada cascade implisit.
 
 ---
 
@@ -801,9 +764,13 @@ Integritas logical relation edge:
 | Komponen | Deskripsi |
 |---|---|
 | `morph_table_views` | Konfigurasi tampilan (label, urutan, config JSONB) |
-| `morph_field_bindings` | Field mana yang aktif di tampilan, posisi, label override |
-| `morph_relation_config.display_field_id` | Satu field yang ditampilkan untuk relation (radio) |
+| `morph_field_bindings` | Field Definition yang tersedia/aktif pada schema Data Source kanonis (`data_source_id`) |
+| `morph_table_views.config` | Preferensi per-view: visibilitas, urutan, label; tidak mengubah membership/value |
+| `morph_relation_config.display_field_id` | Satu Field target yang diproyeksikan untuk Relation (radio) |
+| Reverse Relation Field | Tidak ada pada V1; incoming edges tetap dipertahankan untuk integritas/lifecycle, tanpa backlink UI |
 | `morph_lookup_definitions` | Nilai derived dari record tujuan (read-only) |
+
+Field Binding mengaitkan Field Definition pada schema Data Source kanonis (`morph_data_sources.id`); Table View hanya mengatur visibilitas, urutan, dan label. Nilai scalar dan Relation edge memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation. Keputusan V1 adalah `field_definition_id`: penggunaan ulang Field Definition membawa semantik/config yang sama. Bila semantik/config berbeda per Data Source, diperlukan identitas/config eksplisit yang berbeda; jangan menyamarkan perbedaan itu melalui binding view. Bentuk fisik dan constraint tetap menunggu review skema.
 
 Contoh tampilan:
 - "PM - Project" → Data Source Proyek → kolom: Nama, PIC (relation ke Karyawan), Status

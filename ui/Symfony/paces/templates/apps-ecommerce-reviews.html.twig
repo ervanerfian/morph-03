@@ -1,0 +1,495 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Reviews' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+
+        {{ include('partials/topbar.html.twig', {"subtitle": "Ecommerce", "title": "Reviews"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Ecommerce", "title": "Reviews"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="5">
+<div class="border-default-300 border-b border-dashed">
+<div class="grid grid-cols-1 lg:grid-cols-2">
+<div class="border-default-300 grid grid-cols-12 border-e border-dashed">
+<div class="col-span-7">
+<div class="flex items-center gap-base p-7.5 md:gap-7.5">
+<img alt="Product" class="h-20" src="/images/ratings.svg"/>
+<div class="flex flex-col gap-y-2.5">
+<h3 class="flex items-center gap-2.5 text-xl font-bold">
+                                                    4.92
+                                                    <i class="iconify tabler--star-filled text-xl text-warning"></i>
+</h3>
+<p>Based on 245 verified reviews</p>
+<h6>
+<p class="text-default-400 text-xs font-medium">Feedback collected from real customers who purchased our templates</p>
+</h6>
+<div>
+<span class="badge badge-label bg-success/15 font-semibold text-success">+12 new this week</span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-5">
+<div class="space-y-2.5 mt-2 p-5">
+<!-- 5 Star -->
+<div class="flex items-center gap-2.5">
+<p class="text-sm text-nowrap min-w-12.5">5 Star</p>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-default-100 flex h-2 w-full overflow-hidden rounded-full" role="progressbar">
+<div class="bg-primary flex flex-col justify-center overflow-hidden rounded-s-full text-center text-xs whitespace-nowrap text-white transition duration-500" style="width: 85%"></div>
+</div>
+<div class="text-end">
+<span class="badge bg-light text-dark font-semibold">128</span>
+</div>
+</div>
+<!-- 4 Star -->
+<div class="flex items-center gap-2.5">
+<p class="text-sm text-nowrap min-w-12.5">4 Star</p>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-default-100 flex h-2 w-full overflow-hidden rounded-full" role="progressbar">
+<div class="bg-primary flex flex-col justify-center overflow-hidden rounded-s-full text-center text-xs whitespace-nowrap text-white transition duration-500" style="width: 10%"></div>
+</div>
+<div class="text-end">
+<span class="badge bg-light text-dark font-semibold">37</span>
+</div>
+</div>
+<!-- 3 Star -->
+<div class="flex items-center gap-2.5">
+<p class="text-sm text-nowrap min-w-12.5">3 Star</p>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-default-100 flex h-2 w-full overflow-hidden rounded-full" role="progressbar">
+<div class="bg-primary flex flex-col justify-center overflow-hidden rounded-s-full text-center text-xs whitespace-nowrap text-white transition duration-500" style="width: 3%"></div>
+</div>
+<div class="text-end">
+<span class="badge bg-light text-dark font-semibold">15</span>
+</div>
+</div>
+<!-- 2 Star -->
+<div class="flex items-center gap-2.5">
+<p class="text-sm text-nowrap min-w-12.5">2 Star</p>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-default-100 flex h-2 w-full overflow-hidden rounded-full" role="progressbar">
+<div class="bg-primary flex flex-col justify-center overflow-hidden rounded-s-full text-center text-xs whitespace-nowrap text-white transition duration-500" style="width: 1%"></div>
+</div>
+<div class="text-end">
+<span class="badge bg-light text-dark font-semibold">7</span>
+</div>
+</div>
+<!-- 1 Star -->
+<div class="flex items-center gap-2.5">
+<p class="text-sm text-nowrap min-w-12.5">1 Star</p>
+<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="bg-default-100 flex h-2 w-full overflow-hidden rounded-full" role="progressbar">
+<div class="bg-primary flex flex-col justify-center overflow-hidden rounded-s-full text-center text-xs whitespace-nowrap text-white transition duration-500" style="width: 1%"></div>
+</div>
+<div class="text-end">
+<span class="badge bg-light text-dark font-semibold">2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ps-1.5 pe-6">
+<div id="reviews-30days-chart"></div>
+</div>
+</div>
+</div>
+<div class="card-header">
+<div class="flex gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input w-full ps-10" data-table-search="" placeholder="Search reviews..." type="search"/>
+</div>
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="ms-auto">
+<div class="flex items-center gap-2.5">
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn border-default-300 text-default-800 hover:bg-default-100 border" type="button">
+<i class="iconify tabler--download text-sm"></i>
+                                                Export
+                                                <i class="iconify tabler--chevron-down text-sm"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="#">Export as PDF</a>
+<a class="dropdown-item" href="#">Export as CSV</a>
+<a class="dropdown-item" href="#">Export as Excel</a>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn border-default-300 text-default-800 hover:bg-default-100 border text-nowrap" type="button">
+                                                View All
+                                                <i class="iconify tabler--chevron-down text-sm"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="space-y-0.5">
+<a class="dropdown-item" href="#">All</a>
+<a class="dropdown-item" href="#">Pending</a>
+<a class="dropdown-item" href="#">Approved</a>
+<a class="dropdown-item" href="#">Disabled</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="border-default-300 bg-default-100/50 text-2xs text-default-700 border-b border-dashed font-medium uppercase">
+<tr>
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="select-all-products" type="checkbox" value="option"/>
+</th>
+<th data-table-sort="product">Product</th>
+<th data-table-sort="reviewer">Reviewer</th>
+<th>Review</th>
+<th data-table-sort="">Date</th>
+<th data-table-sort="">Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<img alt="Product" class="size-11 rounded" src="/images/products/2.png"/>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="/apps-ecommerce-product-details">Wireless Earbuds</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="size-8">
+<img alt="Sophia Lee" class="h-full w-full rounded-full object-cover" src="/images/users/user-8.jpg"/>
+</div>
+<div>
+<h5 class="text-sm leading-tight font-medium" data-sort="reviewer">Sophia Lee</h5>
+<p class="text-default-400 text-xs">sophia.lee@digitalshop.com</p>
+</div>
+</div>
+</td>
+<td>
+<div class="text-warning flex items-center gap-1 text-base">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+</div>
+<h5 class="text-default-800 mt-2.5 mb-2 text-sm font-medium">Great product, would buy again!</h5>
+<p class="text-default-400 w-xs text-sm italic">"These earbuds are amazing, the sound quality is top-notch. Totally worth the price!"</p>
+</td>
+<td>
+<span class="flex items-center gap-1">
+                                                22 Apr, 2025
+                                                <span class="text-default-400 block text-xs">04:10 PM</span>
+</span>
+</td>
+<td>
+<span class="badge text-2xs font-semibold bg-success/15 text-success">Published</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<img alt="Product" class="size-11 rounded" src="/images/products/3.png"/>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="/apps-ecommerce-product-details">Smart Watch</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="size-8">
+<img alt="David Smith" class="h-full w-full rounded-full object-cover" src="/images/users/user-6.jpg"/>
+</div>
+<div>
+<h5 class="text-sm leading-tight font-medium" data-sort="reviewer">David Smith</h5>
+<p class="text-default-400 text-xs">david.smith@healthstore.com</p>
+</div>
+</div>
+</td>
+<td>
+<div class="text-warning flex items-center gap-1 text-base">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+</div>
+<h5 class="text-default-800 mt-2.5 mb-2 text-sm font-medium">Decent, but overpriced</h5>
+<p class="text-default-400 w-xs text-sm italic">"It does the job, but I feel like it's a little expensive for what it offers."</p>
+</td>
+<td>
+<span class="flex items-center gap-1">
+                                                23 Apr, 2025
+                                                <span class="text-default-400 block text-xs">02:20 PM</span>
+</span>
+</td>
+<td>
+<span class="badge text-2xs font-semibold bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<img alt="4K Ultra HD TV" class="size-11 rounded" src="/images/products/4.png"/>
+<h5>
+<a class="hover:text-primary" href="/apps-ecommerce-product-details">4K Ultra HD TV</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="size-8">
+<img alt="Alice Johnson" class="h-full w-full rounded-full object-cover" src="/images/users/user-3.jpg"/>
+</div>
+<div>
+<h5 class="text-sm leading-tight font-medium" data-sort="reviewer">Alice Johnson</h5>
+<p class="text-default-400 text-xs">alice.johnson@homesupplies.com</p>
+</div>
+</div>
+</td>
+<td>
+<div class="text-warning flex items-center gap-1 text-base">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+</div>
+<h5 class="text-default-800 mt-2.5 mb-2 text-sm font-medium">Amazing quality!</h5>
+<p class="text-default-400 w-xs text-sm italic">"The TV has incredible picture quality. Totally worth the investment!"</p>
+</td>
+<td>
+<span class="flex items-center gap-1">
+                                                24 Apr, 2025
+                                                <span class="text-default-400 block text-xs">09:15 AM</span>
+</span>
+</td>
+<td>
+<span class="badge text-2xs font-semibold bg-success/15 text-success">Published</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<img alt="Product" class="size-11 rounded" src="/images/products/5.png"/>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="/apps-ecommerce-product-details">Smartphone X</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="size-8">
+<img alt="Michael Green" class="h-full w-full rounded-full object-cover" src="/images/users/user-2.jpg"/>
+</div>
+<div>
+<h5 class="text-sm leading-tight font-medium" data-sort="reviewer">Michael Green</h5>
+<p class="text-default-400 text-xs">michael.green@mobileshop.com</p>
+</div>
+</div>
+</td>
+<td>
+<div class="text-warning flex items-center gap-1 text-base">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+</div>
+<h5 class="text-default-800 mt-2.5 mb-2 text-sm font-medium">Perfect phone, highly recommended!</h5>
+<p class="text-default-400 w-xs text-sm italic">"The camera is amazing and the performance is smooth. Definitely the best smartphone I have used!"</p>
+</td>
+<td>
+<span class="flex items-center gap-1">
+                                                25 Apr, 2025
+                                                <span class="text-default-400 block text-xs">11:30 AM</span>
+</span>
+</td>
+<td>
+<span class="badge text-2xs font-semibold bg-success/15 text-success">Published</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<div class="flex items-center gap-base">
+<img alt="Product" class="size-11 rounded" src="/images/products/6.png"/>
+<h5>
+<a class="hover:text-primary" data-sort="product" href="/apps-ecommerce-product-details">Gaming Laptop</a>
+</h5>
+</div>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<div class="size-8">
+<img alt="Chris Evans" class="h-full w-full rounded-full object-cover" src="/images/users/user-4.jpg"/>
+</div>
+<div>
+<h5 class="text-sm leading-tight font-medium" data-sort="reviewer">Chris Evans</h5>
+<p class="text-default-400 text-xs">chris.evans@gamestore.com</p>
+</div>
+</div>
+</td>
+<td>
+<div class="text-warning flex items-center gap-1 text-base">
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star-filled text-warning"></i>
+<i class="iconify tabler--star text-warning"></i>
+</div>
+<h5 class="text-default-800 mt-2.5 mb-2 text-sm font-medium">Great for gaming but heavy</h5>
+<p class="text-default-400 w-xs text-sm italic">"The performance is amazing, but it's a bit too heavy to carry around all day."</p>
+</td>
+<td>
+<span class="flex items-center gap-1">
+                                                26 Apr, 2025
+                                                <span class="text-default-400 block text-xs">10:00 AM</span>
+</span>
+</td>
+<td>
+<span class="badge text-2xs font-semibold bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="reviews"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+</div>
+<!-- End Page content -->
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Apex Charts js -->
+
+<!-- Custom table -->
+
+<!-- Ecommerce Review Page Js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/apexcharts/apexcharts.min.js"></script>
+    <script src="/js/pages/custom-table.js"></script>
+    <script src="/js/pages/ecommerce-reviews.js"></script>
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Add Leave' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Add Leave"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Add Leave"}) }}
+
+                <div class="container">
+<div class="card">
+<div class="card-header justify-start">
+<i class="iconify lucide--calendar-plus"></i>
+<h4 class="card-title">Apply for Leave</h4>
+</div>
+<div class="card-body">
+<form id="applyLeaveForm">
+<div class="grid grid-cols-1 md:grid-cols-6 gap-x-base gap-y-5">
+<!-- Employee Info -->
+<div class="md:col-span-2">
+<label class="form-label" for="employeeId">
+                                            Employee ID
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="employeeId" placeholder="e.g., EMP-1035" required="" type="text"/>
+</div>
+<!-- Employee Name -->
+<div class="md:col-span-2">
+<label class="form-label" for="employeeName">
+                                            Full Name
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="employeeName" placeholder="Enter full name" required="" type="text"/>
+</div>
+<!-- Department -->
+<div class="md:col-span-2">
+<label class="form-label" for="department">
+                                            Department
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="department" required="">
+<option value="">Select Department</option>
+<option>HR</option>
+<option>Finance</option>
+<option>IT</option>
+<option>Design</option>
+<option>Marketing</option>
+<option>Operations</option>
+</select>
+</div>
+<!-- Leave Dates -->
+<div class="md:col-span-2">
+<label class="form-label" for="leaveFrom">
+                                            From Date
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input flatpickr-input" data-date-format="d F, Y" data-provider="flatpickr" id="leaveFrom" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Leave Dates -->
+<div class="md:col-span-2">
+<label class="form-label" for="leaveTo">
+                                            To Date
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input flatpickr-input" data-date-format="d F, Y" data-provider="flatpickr" id="leaveTo" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Leave Type -->
+<div class="md:col-span-2">
+<label class="form-label" for="leaveType">
+                                            Leave Type
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="leaveType" required="">
+<option value="">Select Leave Type</option>
+<option>Sick Leave</option>
+<option>Casual Leave</option>
+<option>Paid Leave</option>
+<option>Unpaid Leave</option>
+<option>Maternity Leave</option>
+<option>Half Day Leave</option>
+</select>
+</div>
+<!-- Reason -->
+<div class="md:col-span-6">
+<label class="form-label" for="reason">Reason<span class="text-danger">*</span></label>
+<textarea class="form-textarea" id="reason" placeholder="Explain your reason for leave" required="" rows="3"></textarea>
+</div>
+<!-- Contact Details During Leave -->
+<div class="md:col-span-3">
+<label class="form-label" for="contactNumber">Contact Number<span class="text-danger">*</span></label>
+<input class="form-input" id="contactNumber" placeholder="+1 234 567 890" required="" type="text"/>
+</div>
+<!-- Emergency Contact -->
+<div class="md:col-span-3">
+<label class="form-label" for="emergencyContact">Emergency Contact Person<span class="text-danger">*</span></label>
+<input class="form-input" id="emergencyContact" placeholder="Name of emergency contact" required="" type="text"/>
+</div>
+<!-- Supporting Document -->
+<div class="md:col-span-6">
+<label class="form-label" for="supportDoc">Supporting Document (optional)</label>
+<input class="form-input" id="supportDoc" name="file-input" type="file"/>
+<small class="text-default-400">Attach medical certificate or proof if required (PDF/JPG/PNG).</small>
+</div>
+<!-- Remarks -->
+<div class="md:col-span-6">
+<label class="form-label" for="remarks">Additional Remarks</label>
+<textarea class="form-textarea" id="remarks" placeholder="Optional comments..." rows="3"></textarea>
+</div>
+</div>
+</form>
+</div>
+<!-- end card-body-->
+<div class="card-footer flex justify-end gap-3">
+<button class="btn bg-light hover:text-primary" type="reset">
+<i class="iconify tabler--refresh"></i>
+                                Reset
+                            </button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" form="applyLeaveForm" type="submit">
+<i class="iconify tabler--send-2"></i>
+                                Submit Application
+                            </button>
+</div>
+<!-- end card-footer-->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

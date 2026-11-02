@@ -1,0 +1,195 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Salary Slip' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Salary Slip"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Salary Slip"}) }}
+
+                <div class="container">
+<div class="card">
+<div class="card-header">
+<div class="flex items-center gap-2">
+<i class="iconify tabler--file-text"></i>
+<h5 class="card-title">Create Salary Slip</h5>
+</div>
+<div>
+<button class="btn btn-sm bg-light hover:text-primary">
+<i class="iconify tabler--printer"></i>
+                                    Print Preview
+                                </button>
+</div>
+</div>
+<div class="card-body">
+<form id="salarySlipForm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-base gap-y-5">
+<!-- Employee Name -->
+<div>
+<label class="form-label" for="employeeName">
+                                            Employee Name
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="employeeName" required="">
+<option value="">Select Employee</option>
+<option>Samantha Green</option>
+<option>David Lee</option>
+<option>Maria Smith</option>
+<option>Olivia Brown</option>
+<option>James Walker</option>
+</select>
+</div>
+<!-- Employee ID -->
+<div>
+<label class="form-label" for="employeeId">
+                                            Employee ID
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="employeeId" placeholder="e.g., EMP-1015" required="" type="text"/>
+</div>
+<!-- Department -->
+<div>
+<label class="form-label" for="department">
+                                            Department
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="department" required="">
+<option value="">Select Department</option>
+<option>Human Resources</option>
+<option>Finance</option>
+<option>IT</option>
+<option>Marketing</option>
+<option>Operations</option>
+</select>
+</div>
+<!-- Designation -->
+<div>
+<label class="form-label" for="designation">
+                                            Designation
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="designation" placeholder="e.g., Senior Developer" required="" type="text"/>
+</div>
+<!-- Pay Period -->
+<div>
+<label class="form-label" for="payPeriod">
+                                            Pay Period
+                                            <span class="text-danger">*</span>
+</label>
+<select class="form-input" id="payPeriod" required="">
+<option value="">Select Month</option>
+<option>October 2025</option>
+<option>September 2025</option>
+<option>August 2025</option>
+<option>July 2025</option>
+</select>
+</div>
+<!-- Pay Date -->
+<div>
+<label class="form-label" for="payDate">
+                                            Pay Date
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="payDate" readonly="readonly" required="" type="text"/>
+</div>
+<!-- Salary Details Section -->
+<div class="md:col-span-2">
+<h5 class="text-default-400 font-semibold uppercase mb-2">Earnings</h5>
+</div>
+<!-- Basic Salary -->
+<div>
+<label class="form-label" for="basicSalary">
+                                            Basic Salary ($)
+                                            <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="basicSalary" min="0" placeholder="e.g., 5000" required="" type="number"/>
+</div>
+<!-- House Allowance -->
+<div>
+<label class="form-label" for="houseAllowance">House Allowance ($)</label>
+<input class="form-input" id="houseAllowance" min="0" placeholder="e.g., 800" type="number"/>
+</div>
+<!-- Medical Allowance -->
+<div>
+<label class="form-label" for="medicalAllowance">Medical Allowance ($)</label>
+<input class="form-input" id="medicalAllowance" min="0" placeholder="e.g., 400" type="number"/>
+</div>
+<!-- Transport Allowance -->
+<div>
+<label class="form-label" for="transportAllowance">Transport Allowance ($)</label>
+<input class="form-input" id="transportAllowance" min="0" placeholder="e.g., 300" type="number"/>
+</div>
+<!-- Salary Details Section -->
+<div class="md:col-span-2">
+<h5 class="text-default-400 font-semibold uppercase mb-2">Deductions</h5>
+</div>
+<!-- Tax -->
+<div>
+<label class="form-label" for="tax">Tax ($)</label>
+<input class="form-input" id="tax" min="0" placeholder="e.g., 200" type="number"/>
+</div>
+<!-- Provident Fund -->
+<div>
+<label class="form-label" for="providentFund">Provident Fund ($)</label>
+<input class="form-input" id="providentFund" min="0" placeholder="e.g., 150" type="number"/>
+</div>
+<!-- Loan Deduction -->
+<div>
+<label class="form-label" for="loanDeduction">Loan Deduction ($)</label>
+<input class="form-input" id="loanDeduction" min="0" placeholder="e.g., 100" type="number"/>
+</div>
+<hr class="border-light mt-4 md:col-span-2"/>
+<!-- Total Earnings & Net Pay -->
+<div>
+<label class="form-label" for="totalEarnings">Total Earnings ($)</label>
+<input class="form-input" id="totalEarnings" placeholder="Auto-calculated" readonly="" type="number"/>
+</div>
+<div>
+<label class="form-label" for="netPay">Net Pay ($)</label>
+<input class="form-input" id="netPay" placeholder="Auto-calculated" readonly="" type="number"/>
+</div>
+<!-- Remarks -->
+<div class="md:col-span-2">
+<label class="form-label" for="remarks">Remarks</label>
+<textarea class="form-textarea" id="remarks" placeholder="Optional notes or remarks" rows="2"></textarea>
+</div>
+</div>
+</form>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addPayrollModal" type="button">Reset</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Generate Slip
+                            </button>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,804 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Staffs' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "HRM", "title": "Staffs"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "HRM", "title": "Staffs"}) }}
+
+                <div class="container-fluid">
+<div class="card" data-table="" data-table-rows-per-page="10">
+<div class="card-header">
+<div class="flex flex-wrap gap-2.5">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search staff..." type="search"/>
+</div>
+<button class="btn bg-danger text-white hover:bg-danger-hover hidden" data-table-delete-selected="">Delete</button>
+<button aria-controls="addStaffModal" aria-expanded="false" aria-haspopup="dialog" class="btn bg-primary text-white hover:bg-primary-hover" data-hs-overlay="#addStaffModal" type="button">
+<i class="iconify tabler--plus"></i>
+                                    New Staff
+                                </button>
+</div>
+<div class="flex flex-wrap items-center gap-2.5 md:flex-nowrap">
+<span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+<!-- Department Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--layout input-icon"></i>
+<select class="form-select" data-table-filter="department">
+<option value="All">Department</option>
+<option value="Human Resources">Human Resources</option>
+<option value="IT Department">IT Department</option>
+<option value="Operations">Operations</option>
+<option value="Marketing">Marketing</option>
+<option value="Finance">Finance</option>
+<option value="Design">Design</option>
+<option value="Analytics">Analytics</option>
+<option value="Product">Product</option>
+<option value="Quality Assurance">Quality Assurance</option>
+</select>
+</div>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--arrows-shuffle input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Employment Status</option>
+<option value="Active">Active</option>
+<option value="On Leave">On Leave</option>
+<option value="Probation">Probation</option>
+<option value="Suspended">Suspended</option>
+<option value="Review Pending">Review Pending</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 text-2xs uppercase">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="">Staff ID</th>
+<th data-table-sort="">Staff Name</th>
+<th data-column="country" data-table-sort="">Phone</th>
+<th data-table-sort="">Country</th>
+<th data-table-sort="">Joined</th>
+<th data-table-sort="">Role</th>
+<th data-column="department" data-table-sort="">Department</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th class="text-center">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- STF-001 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-001</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Samantha Green" class="size-8 rounded-full" src="/images/users/user-3.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Samantha Green</a>
+</h5>
+<p class="text-default-400 text-xs">samantha.green@company.com</p>
+</div>
+</div>
+</td>
+<td>+1 202 555 0147</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/us.svg"/>
+                                                US
+                                            </div>
+</td>
+<td>Feb 10, 2024</td>
+<td>HR Manager</td>
+<td>Human Resources</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-002 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-002</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Liam Johnson" class="size-8 rounded-full" src="/images/users/user-5.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Liam Johnson</a>
+</h5>
+<p class="text-default-400 text-xs">liam.johnson@company.com</p>
+</div>
+</div>
+</td>
+<td>+44 7700 900123</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="UK" class="size-3.5 rounded-full" src="/images/flags/gb.svg"/>
+                                                UK
+                                            </div>
+</td>
+<td>Jan 25, 2024</td>
+<td>Software Engineer</td>
+<td>IT Department</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">On Leave</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-003 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-003</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Noah Martinez" class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Noah Martinez</a>
+</h5>
+<p class="text-default-400 text-xs">noah.martinez@company.com</p>
+</div>
+</div>
+</td>
+<td>+61 401 222 890</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="AU" class="size-3.5 rounded-full" src="/images/flags/au.svg"/>
+                                                AU
+                                            </div>
+</td>
+<td>Mar 05, 2024</td>
+<td>Project Coordinator</td>
+<td>Operations</td>
+<td>
+<span class="badge badge-label bg-danger/15 text-danger">Suspended</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-004 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-004</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Emily Davis" class="size-8 rounded-full" src="/images/users/user-8.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Emily Davis</a>
+</h5>
+<p class="text-default-400 text-xs">emily.davis@company.com</p>
+</div>
+</div>
+</td>
+<td>+1 303 555 0172</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="CA" class="size-3.5 rounded-full" src="/images/flags/ca.svg"/>
+                                                CA
+                                            </div>
+</td>
+<td>Apr 18, 2024</td>
+<td>Marketing Lead</td>
+<td>Marketing</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-005 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-005</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Lucas Brown" class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Lucas Brown</a>
+</h5>
+<p class="text-default-400 text-xs">lucas.brown@company.com</p>
+</div>
+</div>
+</td>
+<td>+49 1512 345678</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="GE" class="size-3.5 rounded-full" src="/images/flags/de.svg"/>
+                                                GE
+                                            </div>
+</td>
+<td>May 12, 2024</td>
+<td>Financial Analyst</td>
+<td>Finance</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-006 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-006</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-10.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Olivia Wilson</a>
+</h5>
+<p class="text-default-400 text-xs">olivia.wilson@company.com</p>
+</div>
+</div>
+</td>
+<td>+33 6 12 34 56 78</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/fr.svg"/>
+                                                FR
+                                            </div>
+</td>
+<td>Jun 02, 2024</td>
+<td>UX Designer</td>
+<td>Design</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Probation</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-007 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-007</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-1.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Isabella Moore</a>
+</h5>
+<p class="text-default-400 text-xs">isabella.moore@company.com</p>
+</div>
+</div>
+</td>
+<td>+34 612 345 678</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/es.svg"/>
+                                                SP
+                                            </div>
+</td>
+<td>Jul 21, 2024</td>
+<td>Data Analyst</td>
+<td>Analytics</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-008 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-008</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-2.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Ethan Clark</a>
+</h5>
+<p class="text-default-400 text-xs">ethan.clark@company.com</p>
+</div>
+</div>
+</td>
+<td>+39 347 123 4567</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/it.svg"/>
+                                                IT
+                                            </div>
+</td>
+<td>Aug 08, 2024</td>
+<td>QA Tester</td>
+<td>Quality Assurance</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Review Pending</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-009 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-009</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-4.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Charlotte Turner</a>
+</h5>
+<p class="text-default-400 text-xs">charlotte.turner@company.com</p>
+</div>
+</div>
+</td>
+<td>+41 79 123 4567</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/ch.svg"/>
+                                                SW
+                                            </div>
+</td>
+<td>Sep 15, 2024</td>
+<td>Legal Advisor</td>
+<td>Legal</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-010 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-010</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-9.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Amelia Walker</a>
+</h5>
+<p class="text-default-400 text-xs">amelia.walker@company.com</p>
+</div>
+</div>
+</td>
+<td>+65 8123 4567</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/sg.svg"/>
+                                                SI
+                                            </div>
+</td>
+<td>Oct 04, 2024</td>
+<td>Sales Executive</td>
+<td>Sales</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Probation</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-011 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-011</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" src="/images/users/user-7.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Benjamin Scott</a>
+</h5>
+<p class="text-default-400 text-xs">benjamin.scott@company.com</p>
+</div>
+</div>
+</td>
+<td>+31 6 12 34 56 78</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img class="size-3.5 rounded-full" src="/images/flags/nl.svg"/>
+                                                NE
+                                            </div>
+</td>
+<td>Nov 11, 2024</td>
+<td>Network Administrator</td>
+<td>IT Department</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-012 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-012</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Henry Lewis" class="size-8 rounded-full" src="/images/users/user-6.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Henry Lewis</a>
+</h5>
+<p class="text-default-400 text-xs">henry.lewis@company.com</p>
+</div>
+</div>
+</td>
+<td>+353 86 123 4567</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="IE" class="size-3.5 rounded-full" src="/images/flags/ie.svg"/>
+                                                IR
+                                            </div>
+</td>
+<td>Dec 02, 2024</td>
+<td>Content Strategist</td>
+<td>Marketing</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Review Pending</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- STF-013 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold" href="/apps-hrm-staff-profile">STF-013</a>
+</td>
+<td>
+<div class="flex items-center gap-3">
+<img alt="Grace Adams" class="size-8 rounded-full" src="/images/users/user-1.jpg"/>
+<div>
+<h5>
+<a class="hover:text-primary" href="/apps-hrm-staff-profile">Grace Adams</a>
+</h5>
+<p class="text-default-400 text-xs">grace.adams@company.com</p>
+</div>
+</div>
+</td>
+<td>+351 912 345 678</td>
+<td>
+<div class="bg-light inline-flex items-center gap-1.5 rounded px-1.5 py-1 font-bold">
+<img alt="PT" class="size-3.5 rounded-full" src="/images/flags/pt.svg"/>
+                                                PO
+                                            </div>
+</td>
+<td>Dec 18, 2024</td>
+<td>Product Manager</td>
+<td>Product</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Active</span>
+</td>
+<td>
+<div class="flex justify-center gap-1.25">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="card-footer">
+<div data-table-pagination-info="staffs"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addStaffModalLabel" class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addStaffModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] max-w-sm scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-2xl lg:max-w-3xl">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h5 class="flex font-semibold text-default-800 items-center gap-2 text-sm" id="addStaffModalLabel">
+<i class="iconify tabler--user-plus size-3.5"></i>
+                                Add New Staff
+                            </h5>
+<button aria-label="Close" data-hs-overlay="#addStaffModal" type="button">
+<i class="iconify tabler--x text-xl"></i>
+</button>
+</div>
+<div class="card-body overflow-y-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="form-label" for="staffName">Full Name</label>
+<input class="form-input" id="staffName" placeholder="Enter full name" type="text"/>
+</div>
+<div>
+<label class="form-label" for="staffEmail">Email</label>
+<input class="form-input" id="staffEmail" placeholder="name@example.com" type="email"/>
+</div>
+<div>
+<label class="form-label" for="staffPhone">Phone</label>
+<input class="form-input" id="staffPhone" placeholder="+1 202 555 0123" type="number"/>
+</div>
+<div>
+<label class="form-label" for="staffCountry">Country</label>
+<select class="form-input" id="staffCountry">
+<option value="">Select country</option>
+<option value="USA">United States</option>
+<option value="UK">United Kingdom</option>
+<option value="Canada">India</option>
+<option value="Germany">Canada</option>
+<option value="France">Germany</option>
+<option value="Australia">France</option>
+<option value="India">Japan</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="staffRole">Role</label>
+<input class="form-input" id="staffRole" placeholder="e.g. Software Engineer" type="text"/>
+</div>
+<div>
+<label class="form-label" for="staffDepartment">Department</label>
+<select class="form-input" id="staffDepartment">
+<option value="">Select department</option>
+<option value="Human Resources">Human Resources</option>
+<option value="IT Department">IT Department</option>
+<option value="Operations">Operations</option>
+<option value="Marketing">Marketing</option>
+<option value="Finance">Finance</option>
+<option value="Design">Design</option>
+<option value="Analytics">Analytics</option>
+<option value="Product">Product</option>
+<option value="Quality Assurance">Quality Assurance</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="staffStatus">Status</label>
+<select class="form-input" id="staffStatus">
+<option value="Active">Active</option>
+<option value="On Leave">On Leave</option>
+<option value="Probation">Probation</option>
+<option value="Suspended">Suspended</option>
+<option value="Review Pending">Review Pending</option>
+</select>
+</div>
+<div>
+<label class="form-label" for="staffJoinDate">Join Date</label>
+<input class="form-input flatpickr-input" data-date-format="d M, Y" data-provider="flatpickr" id="staffJoinDate" readonly="readonly" type="text"/>
+</div>
+</div>
+</div>
+<div class="border-default-300 flex items-center justify-end gap-x-2 border-t p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addStaffModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--check"></i>
+                                Save Staff
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

@@ -1,12 +1,7 @@
 # Rancangan: Template → Database → Table → Field → Record
 
-**Status: arah produk dan rancangan usulan, belum diimplementasikan.** Keputusan
-produk berasal dari diskusi 31 Oktober 2026. Contoh JSON adalah ilustrasi, bukan
-format input yang dapat dipakai pada API saat ini. Dokumen ini melengkapi, bukan
-menggantikan, [visi produk](../PRODUCT-VISION.md),
-[roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan
-[arah isolasi extension](EXTENSION-ACCESS-ISOLATION.md). Tidak mengubah DB,
-permissions, route atau perilaku runtime yang sudah berjalan.
+**Status: rancangan produk dan kontrak usulan; belum diimplementasikan dan bukan persetujuan DDL.**
+Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture valid. Dokumen ini melengkapi [architecture](ARCHITECTURE.md), [module boundaries](MODULE-BOUNDARIES.md), [roadmap tipe Field](FIELD-TYPE-ROADMAP.md), dan [desain Relation](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md). Tidak mengubah DB, permissions, route atau perilaku runtime yang sudah berjalan.
 
 ## 1. Istilah dan batas
 
@@ -14,12 +9,19 @@ permissions, route atau perilaku runtime yang sudah berjalan.
 | --- | --- | --- |
 | Database Template | Cetakan konfigurasi untuk membuat satu Database logis | Pilihan dan pratinjau template |
 | Database | Hasil penerapan template dalam Workspace; bukan database PostgreSQL fisik baru | Satu section vertikal yang dapat ditata pada Page |
-| Table | Model untuk sekumpulan Record; dapat disusun/dirujuk dalam Database | Tab dalam section Database |
-| Field | Definisi tipe dan pengaturan nilai; binding menempatkannya pada Table | Kolom dan kontrol input |
-| Record | Satu entri dengan nilai Field dalam satu Table | Baris tabel |
+| Table | Unit organisasi dalam satu Database logis; identity-nya hanya dimiliki satu Database dan merujuk pada sumber Record di graph canonical | Tab dalam section Database |
+| Data Source | Pemilik persisten Record dan schema-level Field Binding; beberapa Table/Database dapat merujuk ID yang sama secara eksplisit | Referensi berbagi Record/schema; akses dan revision policy tetap terpisah |
+| Table View | Presentation atas Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
+| Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
+| Record | Entri persisten milik Data Source; Table adalah referensi/presentasi, bukan pemilik Record | Baris tabel |
 
 Tampilan Table sebagai tab dan Field sebagai kolom adalah **presentasi**, bukan
-identitas data. **Workspace menampung koleksi Database**; alur yang disepakati
+identitas data. Keputusan pengguna: satu Table ID hanya boleh dimiliki satu
+Database. Database lain yang memerlukan Record/schema yang sama memakai Table ID
+berbeda yang secara eksplisit merujuk Data Source ID kanonis yang sama; dengan
+begitu Record/schema dibagi, bukan disalin. Dalam kontrak JSON, satu Table ID
+hanya boleh menjadi anggota satu Database melalui `tableRefs`. **Workspace
+menampung koleksi Database**; alur yang disepakati
 adalah user memilih Template untuk membuat Database dalam Workspace. Kemungkinan
 template kosong atau jalur pembuatan lain belum diputuskan.
 
@@ -47,15 +49,17 @@ tetapi kardinalitas extension ↔ Database serta aturan ownership bersama masih
 keputusan produk. Jangan menciptakan extension, page, relasi, permission atau
 record hanya karena sebuah Database Template diterapkan.
 
-Database mengatur komposisi/referensi Table; jangan menjadikan Field atau Table
-selalu milik eksklusif sebuah extension atau Database. Kebutuhan mengacu Table
-yang sama dari beberapa Database, cara izin dan dampak perubahan bersama perlu
-kontrak terpisah. Hingga selesai, jangan menawarkan sharing baru yang tidak aman;
-keanggotaan atau tampilan tidak boleh menjadi bukti hak akses.
+Database mengatur komposisi/referensi Table; identity Table hanya milik satu
+Database, sedangkan extension ownership tetap merupakan pertanyaan terpisah.
+Database berbeda dapat memakai Table ID berbeda yang merujuk Data Source ID sama
+secara eksplisit, sehingga berbagi Record/schema tanpa menduplikasi datanya.
+Field Definition boleh dipakai ulang hanya dengan semantik/config yang sama.
+Izin dan dampak perubahan pada Data Source/Field bersama memerlukan kontrak
+tersendiri; keanggotaan atau tampilan tidak menjadi bukti hak akses.
 
-## 2. Kondisi nyata saat ini dan pemetaan istilah
+## 2. Catatan legacy dan keadaan branch morph-03
 
-Kode yang ada adalah **sumber implementasi**, bukan model final yang sudah jadi:
+**Penting:** butir berikut merekam model/implementasi lama yang disebut dalam dokumen sebelumnya, bukan kode yang tersedia pada branch `morph-03`. Pada branch ini saat diperiksa 2026-11-01, aplikasi adalah foundation UI/PHP; Generic Data Engine, template compiler, record store, migrasi, dan Relation runtime belum ada. Jangan menyebut butir legacy sebagai fitur yang sedang aktif atau menganggapnya izin migrasi. Audit kode dan database aktual baru boleh dilakukan pada gate terpisah.
 
 - Katalog `data/templates/applications.json` berisi dua template; builder
   `ApplicationTemplateBuilder` membuat `modelGroups`, `databases`, shared field,
@@ -110,9 +114,11 @@ Targetnya satu sistem canonical, bukan engine CRUD baru:
    otoritas. Perubahan melalui draft → validasi → compatibility/migration →
    publish CAS; record mutation kembali mengecek membership/policy, scope,
    published revision dan validasi server dalam transaksi.
-5. Record tetap terpisah dari definisi, tersimpan di PostgreSQL dan mengacu Table,
-   ID binding serta revision yang membuat nilainya bisa didecode. JSONB saja
-   tidak membuktikan integritas relation, query bertipe, indexing atau permission.
+5. Record tetap terpisah dari definisi dan tersimpan di PostgreSQL. Nilai scalar
+   serta Relation edge mengacu pada identitas Field kanonis, bukan binding
+   placement Table View; revision diperlukan agar nilai lama dapat didecode.
+   JSONB saja tidak membuktikan integritas Relation, query bertipe, indexing atau
+   permission. Key fisik final masih terbuka, lihat §3.1.
 
 Belum ada keputusan untuk melakukan migrasi head workspace menjadi head Database
 atau DDL tertentu. Sebelum itu, boleh memproyeksikan satu Database dari graph
@@ -129,18 +135,34 @@ revision instance berbeda dan tidak boleh dipertukarkan.
   "database": {
     "id": "db_project_a",
     "label": "Project Management A",
-    "tableRefs": ["table_projects", "table_tasks"]
+    "tableRefs": ["table_projects", "table_tasks", "table_projects_report"]
   },
   "tables": [
+    {"id": "table_projects", "label": "Projects", "dataSourceId": "ds_projects"},
+    {"id": "table_tasks", "label": "Tasks", "dataSourceId": "ds_tasks"},
+    {"id": "table_projects_report", "label": "Project report", "dataSourceId": "ds_projects"}
+  ],
+  "dataSources": [
     {
-      "id": "table_projects",
+      "id": "ds_projects",
       "label": "Projects",
       "bindings": [
         {"id": "binding_name", "fieldId": "field_name"},
         {"id": "binding_notes", "fieldId": "field_notes"}
       ]
     },
-    {"id": "table_tasks", "label": "Tasks", "bindings": []}
+    {"id": "ds_tasks", "label": "Tasks", "bindings": []}
+  ],
+  "tableViews": [
+    {
+      "id": "view_projects_default",
+      "dataSourceId": "ds_projects",
+      "label": "Projects",
+      "columns": [
+        {"fieldId": "field_name", "visible": true, "position": 1},
+        {"fieldId": "field_notes", "visible": false, "position": 2}
+      ]
+    }
   ],
   "fields": [
     {"id": "field_name", "label": "Nama", "type": "text"},
@@ -151,8 +173,74 @@ revision instance berbeda dan tidak boleh dipertukarkan.
 
 Contoh sengaja menghilangkan config wajib, dependency pins dan metadata revision;
 ini bukan fixture valid compiler v1, bukan contoh payload API, dan tidak memutuskan
-apakah Table kosong diperbolehkan. ID contoh tidak boleh dipakai untuk instance
-nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
+apakah Table kosong diperbolehkan. `dataSources[].bindings` menunjukkan schema
+membership pada Data Source kanonis; `tables[].dataSourceId` dan
+`tableViews[].dataSourceId` menunjuk ke identity yang sama. Dua Table pada contoh
+secara eksplisit merujuk `ds_projects` yang sama, sehingga berbagi Record/schema,
+bukan menyalin nilai. Referensi dari Database lain juga dapat menggunakan ID itu;
+akses tidak diberikan otomatis, dan policy permission/revision tetap perlu kontrak.
+`tableViews[].columns` hanya menyimpan preferensi presentation dan boleh merujuk
+Field yang tersedia pada schema Data Source tersebut. Nama/key JSON masih
+ilustratif, bukan kontrak final. ID contoh tidak boleh dipakai untuk instance nyata.
+Kontrak final harus dirinci dan divalidasi sebelum implementasi.
+
+### 3.1 Kontrak Relation yang dikonfirmasi pengguna
+
+Untuk V1, target Relation dan nilai yang ditampilkan adalah dua hal berbeda:
+
+- Konfigurasi Field Relation menentukan target Data Source dan **tepat satu**
+  `displayFieldId` dari target. UI menggunakan radio untuk memilih Display
+  Field; radio ini bukan pilihan Record tujuan dan bukan pengaturan cardinality.
+- Nilai pada setiap Record sumber adalah Relation edge yang menyimpan immutable
+  `targetRecordId` (record identity/UUID), bukan label yang sedang ditampilkan
+  dan bukan `record_key` yang dapat berubah. Target Record dipilih per nilai
+  Record sumber; karena itu `targetRecordId` tidak berada di config Field.
+- Saat Display Field diganti, edge tetap menunjuk Record yang sama dan hanya
+  proyeksinya yang berubah. Saat nilai Field target diedit, pembacaan Relation
+  menampilkan nilai terbaru sesuai izin target; nama/label tidak disalin ke edge.
+- Field Binding mengaitkan Field Definition ke schema Data Source kanonis; setiap
+  Table View hanya mengatur visibilitas, urutan, dan label tampilannya. Ini tetap
+  terpisah dari radio Display Field. Multi-field Projection (misalnya Nama +
+  Departemen) adalah kemampuan berbeda di masa depan, bukan checkbox tambahan.
+- V1 tidak membuat reverse Relation Field atau backlink UI; incoming edge tetap
+  dihitung untuk integritas dan lifecycle.
+- Target Record yang masih memiliki incoming edge tidak dapat di-Trash. Permanent
+  delete ditolak selama masih ada incoming/outgoing edge; edge harus diselesaikan
+  secara eksplisit dan tidak ada cascade implisit. Source/Database Trash masih
+  memerlukan kebijakan tersendiri.
+- Relation V1 menggunakan `cardinality: "single"`: setiap source Record/Relation
+  Field memiliki nol atau satu target. Banyak source Records boleh menunjuk target
+  yang sama; tidak ada keunikan target global. Kardinalitas berlaku pada config
+  dan kumpulan edge, bukan disimpan berulang pada tiap edge. Multi-target adalah
+  kemampuan masa depan dan tidak diaktifkan oleh kontrak V1.
+
+Ilustrasi berikut **bukan format API/DDL**; ia hanya memisahkan schema config
+Relation dari nilai edge per Record:
+
+```json
+{
+  "relationFieldConfig": {
+    "targetDataSourceId": "employee_data_source",
+    "displayFieldId": "employee_name_field",
+    "cardinality": "single"
+  },
+  "relationEdge": {
+    "sourceRecordId": "project_record_uuid",
+    "sourceFieldId": "project_owner_field",
+    "targetDataSourceId": "employee_data_source",
+    "targetRecordId": "employee_record_uuid"
+  }
+}
+```
+
+`sourceFieldId` harus mengidentifikasi nilai Field kanonis, bukan binding
+presentation yang berbeda untuk setiap Table View. Keputusan V1 adalah memakai
+`field_definition_id` sebagai key nilai pada sebuah Record: Field Definition
+yang sama berarti semantik/config yang sama, tetapi Record berbeda tetap
+menyimpan nilai berbeda. Jika semantik harus berbeda per Data Source, diperlukan
+identitas/config Field eksplisit yang berbeda, bukan key view binding. Bentuk
+persistensi, constraint final, revision pin, dan capability pin tetap perlu
+review sebelum DDL.
 
 ## 4. Template composable dan pengalaman user
 
@@ -178,9 +266,11 @@ nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
   Provenance adalah metadata, bukan mekanisme live sync. Pembaruan template
   tidak otomatis menimpa definisi atau data user; update terkelola/diff/opt-in
   adalah kemampuan masa depan.
-- Default hasil template independen; penggunaan Field/Table bersama adalah
-  fitur eksplisit berbeda yang memerlukan kebijakan perubahan dan izin. Hindari
-  asumsi bahwa Field atau Table intrinsik hanya boleh berada di satu Database.
+- Hasil template independen secara default. Setiap Database memiliki Table ID
+  tersendiri; jika beberapa Database harus berbagi Record/schema, Table mereka
+  secara eksplisit merujuk Data Source ID yang sama. Field Definition dapat
+  digunakan ulang dengan semantik/config identik; policy perubahan dan izin atas
+  Data Source bersama tetap perlu ditetapkan.
 - Menyembunyikan kolom adalah perubahan view, bukan menghapus Field/nilai.
   Menghapus Field memerlukan desain dampak, arsip/pemulihan dan konfirmasi;
   fitur delete belum tersedia. Tidak pernah membuang nilai otomatis.
@@ -211,6 +301,25 @@ nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
   renderer menggunakan komponen terdaftar dan token tema, bukan HTML dari user.
   Fail closed pada schema rusak, capability tidak ada, izin gagal atau revision
   stale; tampilkan error yang menjaga draft jika memungkinkan.
+
+### Kontrak registry Field yang terbuka
+
+Daftar tipe pada `FIELD-TYPE-ROADMAP.md` adalah katalog kebutuhan saat ini,
+bukan enum tertutup. Setiap tipe memiliki stable type ID dan versi kontrak,
+config schema, validasi/normalisasi, codec baca/tulis, renderer, capability query
+/filter/sort/index, authorization/disclosure rules, dependency, dan aturan
+compatibility/migration. Modul tepercaya mendaftarkan tipe beserta kapabilitasnya;
+compiler dan UI menemukan tipe melalui registry, bukan mapping hardcoded per
+preset atau `switch` yang harus diubah pada setiap CRUD flow. Pengguna dapat
+mengkonfigurasi tipe yang terdaftar, tetapi JSON pengguna tetap data deklaratif,
+bukan kode executable atau plugin runtime.
+
+Tipe atau versi yang tidak dikenal harus fail closed untuk read/write yang tidak
+aman, dengan definisi/nilai asli tetap dipertahankan agar tidak hilang. Menambah
+kapabilitas baru boleh menambah modul handler tepercaya; tidak boleh memerlukan
+perombakan semua template/CRUD. Tidak ada tipe roadmap yang dianggap
+terimplementasi sampai registry handler, migrasi/compatibility, izin, dan tesnya
+benar-benar tersedia.
 
 ## 6. Transisi tanpa menghilangkan data
 
@@ -276,17 +385,31 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
 
 ## 8. Keputusan terbuka
 
-- Apakah Table yang sama dapat secara eksplisit dirujuk beberapa Database,
-  bagaimana perubahan dan permission lintas referensi bekerja?
+- Untuk Data Source ID yang secara eksplisit dirujuk oleh Table dari beberapa
+  Database, bagaimana ownership, permission, revision, dan perubahan lintas
+  referensi bekerja? Saat menyalin Database, apakah referensi dipertahankan sebagai
+  shared ID atau Data Source di-fork beserta Record?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
+- Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta
+  bagaimana binding schema milik Data Source dan preferensi per-Table-View
+  diserialisasi, direvisi, dan divalidasi. Owner Field Binding sudah dipilih sebagai
+  Data Source ID; bentuk JSON fisik, FK/constraint, dan versioning masih perlu
+  review. Binding tidak membuat salinan nilai. Jika semantik berbeda per Data
+  Source, Field Definition harus memiliki identitas/config eksplisit yang berbeda.
+- Kebijakan lifecycle source Record dan Database saat masuk Trash, retention,
+  restore permissions, serta UI untuk target yang tidak dapat diakses. Keputusan
+  V1 sudah memblokir Trash target Record yang masih punya incoming edge dan
+  permanent delete selama masih ada incoming/outgoing edge; tidak ada reverse
+  Relation Field atau cascade implisit.
 - Resolusi instance legacy yang overlapping/ambigu, termasuk urutan Page dan
   model standalone, setelah inventaris nyata; jangan mengasumsikan kepemilikan.
 - Scope dan hak untuk membuat/mengedit Database, Table, template dan view;
   bagaimana extension instance berhubungan dengan Database—tanpa mengubah
   keputusan Owner-only pembuatan/penonaktifan extension.
-- Aturan default visibilitas/urutan pada view versus schema Table, retensi,
-  restore, dan UX konflik/conversion; JSON Schema version/validator detail.
+- Default preferensi Table View saat schema binding/Field baru ditambahkan
+  (misalnya visible atau hidden dan posisi awal), retensi, restore, serta UX
+  konflik/conversion; JSON Schema version/validator detail.
 
 ## Rancangan lanjutan Relation dan storage
 

@@ -1,9 +1,9 @@
 # Rancangan penyimpanan Database dan Relation Morph
 
-**Status: rancangan untuk review, bukan DDL atau implementasi.** Tanggal:
-2026-10-31. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
-[arah import/export](DATABASE-SYNC-IMPORT-EXPORT-ROADMAP.md), dan
-[arah permission](MORPH-ROLE-AND-PERMISSION-DIRECTION.md).
+**Status: rancangan untuk review; bukan DDL, implementasi, atau persetujuan migrasi.**
+Diperbarui: 2026-11-02. Melengkapi [kontrak Template dan Database](DATABASE-TEMPLATE-JSON-CONTRACT.md),
+[desain Field Binding dan Relation Edge](DATABASE-FIELD-BINDING-AND-RELATION-EDGE-DESIGN.md),
+[arsitektur aplikasi](ARCHITECTURE.md), dan [skema target](TARGET-POSTGRESQL-SCHEMA.md).
 
 Pengguna menyatakan data yang ada masih development, bukan produksi, dan tidak
 keberatan jika **pembersihan data development diperlukan** agar target lebih
@@ -39,7 +39,9 @@ Itu tidak otomatis memberi hak melihat/mengomentari Record atau File: kebijakan
 creator dan scope resource tetap berlaku, termasuk tanpa bypass otomatis Owner.
 Cara Page/extension mengacu Database dan kombinasi policy masih perlu diputuskan.
 
-## 2. Kondisi aktual yang perlu dihormati
+## 2. Catatan legacy yang perlu diverifikasi
+
+**Penting:** butir di bawah mendeskripsikan graph/implementasi lama yang ada di catatan proyek sebelumnya, bukan runtime aktif branch `morph-03`. Pada branch ini per 2026-11-01, data engine dan record store belum tersedia. Jangan gunakan sebagai bukti kondisi database lokal atau sebagai instruksi migrasi; sebelum reuse, verifikasi source/schema secara read-only setelah scope dan target disetujui.
 
 - Graph canonical v1 punya `databases[]` yang secara produk merupakan **Table**;
   `modelGroups` adalah referensi presentasi, bukan bukti kepemilikan Database.
@@ -72,11 +74,11 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Workspace | Boundary tenant; identity dan membership dibuktikan server |
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
-| Table dan Field | Identitas stabil; binding menyatakan Field pada Table. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
-| Record | ID stabil, Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan dan divalidasi sesuai schema revision |
-| Relation definition | Field/binding bertipe relation dengan target Table dan aturan cardinality, disimpan di canonical revision |
-| Relation edge | Hubungan konkret source Record + source binding → target Record, beserta scope dan lifecycle yang terverifikasi |
-| Lookup definition | Field turunan dengan path Relation + target binding; capability, tipe hasil, dependency dan disclosure tervalidasi |
+| Table dan Field | Setiap Table ID dimiliki tepat satu logical Database; Database berbeda memakai Table ID berbeda untuk merujuk Data Source yang sama. Binding schema Field, Record, dan schema dimiliki Data Source kanonis; referensi eksplisit berbagi Record/schema, bukan akses. Ownership, permission, revision, dan perubahan lintas referensi tetap memerlukan policy tersendiri |
+| Record | ID stabil milik Data Source kanonis (bukan Table); creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision. Table berbeda yang merujuk Data Source yang sama melihat Record set yang sama |
+| Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1; tanpa reverse Field otomatis |
+| Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
+| Lookup definition | Field turunan dengan path Relation + identitas target Field kanonis; capability, tipe hasil, dependency dan disclosure tervalidasi |
 
 ### Bentuk fisik yang direkomendasikan untuk diteliti
 
@@ -89,28 +91,42 @@ perlu proof, bukan perubahan nama v1 secara langsung.
 
 1. **Registry instance**: `(workspace_id, logical_database_id)` dengan lifecycle,
    label, provenance dan head/version; Database ini bukan `database_id` v1.
-2. **Registry Table dan binding**: identity serta membership/reference dengan
-   workspace eksplisit. Tidak memaksakan Table hanya boleh berada dalam satu
-   Database; sharing aktif memerlukan kontrak policy tersendiri. Saat ini jangan
-   menganggap group lama sebagai ownership definitif.
+2. **Registry Table/Data Source dan binding**: setiap Table ID terikat pada tepat
+   satu logical Database; Database lain yang memakai sumber sama memiliki Table ID
+   tersendiri. Table berbeda boleh secara eksplisit resolve ke Data Source ID yang
+   sama dan berbagi Record/schema; schema membership Field tetap dimiliki Data
+   Source kanonis. Scope tetap per Workspace dan referensi tidak otomatis memberi
+   akses. Ownership, permission, revision, serta dampak perubahan pada shared Data
+   Source memerlukan policy tersendiri.
 3. **Published definitions**: immutable `(workspace, logical_database_id,
    revision)` + pin versi registry/dependensi, dan draft/head CAS. Alternatif
    workspace graph head dengan per-Database projections dapat dipakai sebagai
    transisi, tetapi hanya satu writer/sumber kebenaran yang sah pada setiap fase.
-4. **Records**: `(workspace, table_id, record_id)` dengan creator, revision yang
-   dapat didecode, token version dan values JSONB untuk scalar. FK/unique harus
-   membuktikan scope workspace dan Table; indeks mengikuti akses/pagination nyata.
-   Tidak membuat satu physical SQL table per Table pengguna secara otomatis.
-5. **Edges**: struktur typed/indexable dengan `(workspace_id, source_table_id,
-   source_record_id, source_binding_id, target_table_id, target_record_id)`;
-   urutan diperlukan jika multi-target didukung. Composite FK dan unique/index
-   yang sesuai memverifikasi kedua endpoint berada di workspace dan Table yang
-   benar; schema service juga memvalidasi binding source dan target yang sah
-   pada revision, cardinality dan lifecycle. Indeks arah keluar **dan masuk**
-   diperlukan untuk read dan pemeriksaan dampak delete. Hindari menaruh nilai
-   relation yang sama sebagai dua sumber writable dalam JSONB dan edge table:
-   untuk desain ini **edge menjadi sumber kebenaran Relation**, JSON response
-   adalah proyeksi. Audit, history dan versi pada edge perlu dirinci.
+4. **Records**: `(workspace, data_source_id, record_id)` dengan creator,
+   revision yang dapat didecode, token version dan values JSONB untuk scalar.
+   Nilai memakai identitas Field kanonis `field_definition_id`, bukan ID
+   binding presentation Table View. Reuse satu Field Definition berarti
+   semantik/config yang sama; perbedaan semantik per-Data-Source memerlukan
+   identitas/config eksplisit yang berbeda.
+   FK/unique membuktikan scope workspace dan
+   Data Source. Tidak membuat satu physical SQL table per Data Source pengguna.
+5. **Edges**: struktur typed/indexable dengan `(workspace_id,
+   source_data_source_id, source_record_id, source_field_id,
+   target_data_source_id, target_record_id)`; `source_field_id` adalah identitas
+   Field kanonis `field_definition_id`, bukan binding view-specific.
+   `target_record_id` hanya ada pada edge per Record. Config Relation terpisah
+   membatasi target Data Source, satu `display_field_id`, dan maksimal satu
+   target per `(workspace_id, source_data_source_id, source_record_id,
+   field_definition_id)` pada V1. Target yang sama boleh dirujuk banyak source
+   Record; keunikan target global tidak diasumsikan. V1 tidak memerlukan ordinal;
+   multi-target adalah ekstensi masa depan, bukan atribut edge yang sudah aktif.
+   Composite FK dan unique/index yang sesuai memverifikasi kedua endpoint berada
+   di workspace/Data Source yang benar; schema service juga memvalidasi Field
+   dan revision. Indeks arah keluar **dan masuk** diperlukan untuk read dan
+   pemeriksaan dampak delete. Jangan menyimpan nilai Relation yang sama sebagai
+   dua sumber writable di JSONB dan edge table: **edge menjadi sumber kebenaran**,
+   JSON response adalah proyeksi. Audit, history, dan versioning edge perlu
+   dirinci.
 
 Registry field-type perlu kontrak identitas/versi, config schema, default,
 normalize/validate, codec, renderer, query/index capability, compatibility,
@@ -143,17 +159,19 @@ didukung tidak boleh diam-diam diganti.
   bahwa Record sumber berubah; lakukan authorization sumber/Field, CAS Record dan
   audit yang sama dengan edit langsung. Mengganti pilihan Relation tidak mengedit
   Record tujuan.
-- Hapus Database masuk Trash terlebih dahulu: record, schema dan identity tetap;
-  semua Page tidak menampilkannya sebagai aktif. Restore harus memeriksa izin,
-  konflik, relasi dan identitas, serta tidak otomatis membuat izin baru.
-  **Kebijakan dampak relation ke target yang di-trash/permanent delete belum
-  diputuskan**: jangan cascade-delete source atau menebak detach/null. Preview
-  incoming/outgoing dependencies, blokir operasi bila tidak aman, dan rancang
-  resolusi eksplisit serta recovery sebelum implementasi.
-- Permanent delete memerlukan konfirmasi terpisah, pemeriksaan referensi shared,
-  pembatasan policy, konsistensi transaksi, retensi file dan backup. Hapus hanya
-  data yang memang aman dihapus; keberadaan dalam backup/sistem eksternal memiliki
-  retensi berbeda. Tidak ada default masa retensi yang telah disepakati.
+- **Target Record Trash (keputusan pengguna):** tolak perubahan ke Trash selama
+  masih ada incoming Relation edge. Pengguna harus melepas atau mengganti link
+  secara eksplisit terlebih dahulu; validasi dan lifecycle write harus atomik.
+  Relation baru juga tidak boleh memilih target yang sudah berada di Trash.
+- **Permanent delete Record (keputusan pengguna):** tolak selama masih ada
+  incoming atau outgoing edge. Semua edge harus diselesaikan eksplisit sebelum
+  delete; jangan cascade-delete edge maupun source Record secara implisit.
+- Source Record yang memiliki outgoing edge saat di-Trash masih belum diputuskan.
+  Trash Database yang memuat Record bertarget juga kebijakan terpisah; ia tidak
+  boleh melewati aturan target-Record tanpa pemeriksaan/penyelesaian dependensi.
+- Database instance Trash, restore, dan permanent delete tetap memerlukan
+  pemeriksaan izin, konflik, identitas dan dependensi; restore tidak otomatis
+  membuat izin baru. Retention Trash, backup, dan file eksternal belum ditetapkan.
 
 ## 5. Export / import dan identitas
 
@@ -165,8 +183,11 @@ valid. Tidak mengasumsikan semua user boleh export seluruh Database.
 
 - **Restore**: mempertahankan ID hanya jika provenance/target scope dan konflik
   diperiksa. Keputusan konflik harus jelas; tidak menimpa instance lain otomatis.
-- **Salinan**: menghasilkan ID baru untuk Database/Table/Field/binding/Record,
-  lalu remap semua relasi internal dan pilihan sesuai peta tervalidasi.
+- **Salinan**: menghasilkan ID baru untuk Database/Table/Field/binding dan remap
+  relasi sesuai peta tervalidasi. Untuk tiap Data Source, kontrak masih harus
+  menetapkan apakah ID dipertahankan sebagai shared reference eksplisit atau
+  di-fork bersama Record ke ID baru; jangan menebak, menyalin data, atau memberi
+  akses otomatis secara diam-diam.
 - **Relation ke Database eksternal paket**: tidak otomatis mengikat hanya karena
   label/ID tampak sama. Preview dan minta mapping dengan pemeriksaan scope dan
   izin; jika tidak cocok, fail closed atau selesaikan secara eksplisit, jangan
@@ -220,8 +241,11 @@ identitas target belum terbukti, berhenti.
   independen; rename/reorder tidak memutus Record/Relation. Validasi canonical,
   unknown capability dan duplicate keys fail closed.
 - Real PostgreSQL: cross-workspace dan wrong-table target ditolak, FK tidak
-  meninggalkan edge yatim, single/multiple cardinality sesuai pilihan, concurrent
-  create/relink/delete/schema/permission diuji, rollback tidak setengah jalan.
+  meninggalkan edge yatim; V1 single-target per source Record/Field ditegakkan
+  secara atomik dan satu target dapat direferensikan banyak source Records.
+  Target dengan incoming edge tidak dapat di-Trash; permanent delete ditolak
+  selama ada incoming/outgoing edge, tanpa cascade implisit. Uji concurrent
+  create/relink/lifecycle/schema/permission dan rollback.
 - Auth tests dengan principal dan membership nyata: tidak ada implicit Owner
   bypass atas creator View/Comment; test source/target/Field, hidden records,
   lookup, errors, sort/filter, autocomplete dan export; mock bukan bukti RLS.
@@ -234,11 +258,14 @@ identitas target belum terbukti, berhenti.
 
 ## 8. Pertanyaan produk tersisa
 
-- Default single atau multi-target untuk setiap Relation, bidirectional field
-  otomatis atau eksplisit, dan display untuk target yang tidak dapat diakses.
-- Aturan penanganan incoming edges saat target di-Trash dan permanent delete,
-  retention Trash, serta siapa boleh restore/delete permanen Database.
+- Kebijakan UI saat target Relation tidak dapat diakses; V1 tidak menyediakan
+  reverse Relation Field atau backlink UI.
+- Lifecycle source Record dengan outgoing edges saat di-Trash dan Trash Database
+  yang memuat target Record; retention Trash serta siapa yang boleh restore atau
+  menghapus permanen Record/Database. Target Trash dan permanent delete dengan
+  edge aktif sudah dibatasi sesuai keputusan V1.
 - Cara instance Database, extension dan page berelasi; bagaimana kombinasi akses
   per instance/Page dengan creator-configured View/Comment.
-- Penerapan shared Field/Table, izin edit bersama dan transaksi multi-Database;
-  desain index/codec, history Record/edge, dan export file eksternal.
+- Penerapan Data Source/Field schema bersama, izin edit lintas Database dan
+  transaksi multi-Database; desain index/codec, history Record/edge, dan export
+  file eksternal.

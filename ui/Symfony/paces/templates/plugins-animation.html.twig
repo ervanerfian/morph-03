@@ -1,0 +1,245 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Animation' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Plugins", "title": "Animation"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Plugins", "title": "Animation"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Animate.css</h4>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">A cross-browser library of CSS animations. Animate.css is a bunch of cool, fun, and cross-browser animations for you to use in your projects. Great for emphasis, home pages, sliders, and general just-add-water-awesomeness.</p>
+<div class="grid lg:grid-cols-3 grid-cols-1 gap-7.5">
+<div>
+<div class="card sticky top-20 overflow-hidden">
+<div class="card-body">
+<div class="animate__animated" id="animation_box">
+<img alt="user" class="img-fluid rounded" src="/images/blog/blog-1.jpg"/>
+</div>
+<p class="text-default-400 mt-5 text-center">Example box for animation effect.</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-2">
+<div class="bg-info/15 text-info mb-4 flex items-center rounded px-4 py-3">Click any of the buttons below to see the animation effect applied to the box on the left.</div>
+<div class="hs-accordion-group divide-default-300 border-default-300 divide-y rounded border" id="animationAccordion">
+<!-- Attention Seekers -->
+<div class="hs-accordion active">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseAttention" data-bs-toggle="collapse" type="button">
+                                                    Attention Seekers
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseAttention">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="bounce" href="#">bounce</a>
+<a class="btn bg-light animation_select" data-animation="flash" href="#">flash</a>
+<a class="btn bg-light animation_select" data-animation="pulse" href="#">pulse</a>
+<a class="btn bg-light animation_select" data-animation="rubberBand" href="#">rubberBand</a>
+<a class="btn bg-light animation_select" data-animation="shakeX" href="#">shakeX</a>
+<a class="btn bg-light animation_select" data-animation="shakeY" href="#">shakeY</a>
+<a class="btn bg-light animation_select" data-animation="headShake" href="#">headShake</a>
+<a class="btn bg-light animation_select" data-animation="swing" href="#">swing</a>
+<a class="btn bg-light animation_select" data-animation="tada" href="#">tada</a>
+<a class="btn bg-light animation_select" data-animation="wobble" href="#">wobble</a>
+<a class="btn bg-light animation_select" data-animation="jello" href="#">jello</a>
+<a class="btn bg-light animation_select" data-animation="heartBeat" href="#">heartBeat</a>
+</div>
+</div>
+</div>
+<!-- Bouncing Entrances -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseBounceIn" data-bs-toggle="collapse" type="button">
+                                                    Bouncing Entrances
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseBounceIn">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="bounceIn" href="#">bounceIn</a>
+<a class="btn bg-light animation_select" data-animation="bounceInDown" href="#">bounceInDown</a>
+<a class="btn bg-light animation_select" data-animation="bounceInLeft" href="#">bounceInLeft</a>
+<a class="btn bg-light animation_select" data-animation="bounceInRight" href="#">bounceInRight</a>
+<a class="btn bg-light animation_select" data-animation="bounceInUp" href="#">bounceInUp</a>
+</div>
+</div>
+</div>
+<!-- Fading Entrances -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseFadeIn" data-bs-toggle="collapse" type="button">
+                                                    Fading Entrances
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseFadeIn">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="fadeIn" href="#">fadeIn</a>
+<a class="btn bg-light animation_select" data-animation="fadeInDown" href="#">fadeInDown</a>
+<a class="btn bg-light animation_select" data-animation="fadeInLeft" href="#">fadeInLeft</a>
+<a class="btn bg-light animation_select" data-animation="fadeInRight" href="#">fadeInRight</a>
+<a class="btn bg-light animation_select" data-animation="fadeInUp" href="#">fadeInUp</a>
+</div>
+</div>
+</div>
+<!-- Fading Exits -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseFadeOut" data-bs-toggle="collapse" type="button">
+                                                    Fading Exits
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseFadeOut">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="fadeOut" href="#">fadeOut</a>
+<a class="btn bg-light animation_select" data-animation="fadeOutDown" href="#">fadeOutDown</a>
+<a class="btn bg-light animation_select" data-animation="fadeOutLeft" href="#">fadeOutLeft</a>
+<a class="btn bg-light animation_select" data-animation="fadeOutRight" href="#">fadeOutRight</a>
+<a class="btn bg-light animation_select" data-animation="fadeOutUp" href="#">fadeOutUp</a>
+</div>
+</div>
+</div>
+<!-- Flippers -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseFlip" data-bs-toggle="collapse" type="button">
+                                                    Flippers
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseFlip">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="flip" href="#">flip</a>
+<a class="btn bg-light animation_select" data-animation="flipInX" href="#">flipInX</a>
+<a class="btn bg-light animation_select" data-animation="flipInY" href="#">flipInY</a>
+<a class="btn bg-light animation_select" data-animation="flipOutX" href="#">flipOutX</a>
+<a class="btn bg-light animation_select" data-animation="flipOutY" href="#">flipOutY</a>
+</div>
+</div>
+</div>
+<!-- Light Speed -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseLightSpeed" data-bs-toggle="collapse" type="button">
+                                                    Light Speed
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseLightSpeed">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="lightSpeedInLeft" href="#">lightSpeedInLeft</a>
+<a class="btn bg-light animation_select" data-animation="lightSpeedInRight" href="#">lightSpeedInRight</a>
+<a class="btn bg-light animation_select" data-animation="lightSpeedOutLeft" href="#">lightSpeedOutLeft</a>
+<a class="btn bg-light animation_select" data-animation="lightSpeedOutRight" href="#">lightSpeedOutRight</a>
+</div>
+</div>
+</div>
+<!-- Rotate -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseRotate" data-bs-toggle="collapse" type="button">
+                                                    Rotate
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseRotate">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="rotateIn" href="#">rotateIn</a>
+<a class="btn bg-light animation_select" data-animation="rotateInDownLeft" href="#">rotateInDownLeft</a>
+<a class="btn bg-light animation_select" data-animation="rotateInDownRight" href="#">rotateInDownRight</a>
+<a class="btn bg-light animation_select" data-animation="rotateInUpLeft" href="#">rotateInUpLeft</a>
+<a class="btn bg-light animation_select" data-animation="rotateInUpRight" href="#">rotateInUpRight</a>
+</div>
+</div>
+</div>
+<!-- Zoom -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseZoom" data-bs-toggle="collapse" type="button">
+                                                    Zoom
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseZoom">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="zoomIn" href="#">zoomIn</a>
+<a class="btn bg-light animation_select" data-animation="zoomInDown" href="#">zoomInDown</a>
+<a class="btn bg-light animation_select" data-animation="zoomInLeft" href="#">zoomInLeft</a>
+<a class="btn bg-light animation_select" data-animation="zoomInRight" href="#">zoomInRight</a>
+<a class="btn bg-light animation_select" data-animation="zoomInUp" href="#">zoomInUp</a>
+<a class="btn bg-light animation_select" data-animation="zoomOut" href="#">zoomOut</a>
+<a class="btn bg-light animation_select" data-animation="zoomOutDown" href="#">zoomOutDown</a>
+<a class="btn bg-light animation_select" data-animation="zoomOutLeft" href="#">zoomOutLeft</a>
+<a class="btn bg-light animation_select" data-animation="zoomOutRight" href="#">zoomOutRight</a>
+<a class="btn bg-light animation_select" data-animation="zoomOutUp" href="#">zoomOutUp</a>
+</div>
+</div>
+</div>
+<!-- Sliding -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseSlide" data-bs-toggle="collapse" type="button">
+                                                    Sliding
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseSlide">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="slideInDown" href="#">slideInDown</a>
+<a class="btn bg-light animation_select" data-animation="slideInLeft" href="#">slideInLeft</a>
+<a class="btn bg-light animation_select" data-animation="slideInRight" href="#">slideInRight</a>
+<a class="btn bg-light animation_select" data-animation="slideInUp" href="#">slideInUp</a>
+<a class="btn bg-light animation_select" data-animation="slideOutDown" href="#">slideOutDown</a>
+<a class="btn bg-light animation_select" data-animation="slideOutLeft" href="#">slideOutLeft</a>
+<a class="btn bg-light animation_select" data-animation="slideOutRight" href="#">slideOutRight</a>
+<a class="btn bg-light animation_select" data-animation="slideOutUp" href="#">slideOutUp</a>
+</div>
+</div>
+</div>
+<!-- Special -->
+<div class="hs-accordion">
+<button class="hs-accordion-toggle hs-accordion-active:bg-default-100 font-secondary collapsed flex w-full items-center justify-between px-5 py-4 font-semibold transition" data-bs-target="#collapseSpecial" data-bs-toggle="collapse" type="button">
+                                                    Special
+                                                    <i class="iconify tabler--chevron-down hs-accordion-active:rotate-180 transition-transform text-base"></i>
+</button>
+<div class="hs-accordion-content border-default-300 hidden w-full overflow-hidden border-t transition-[height] duration-300" data-bs-parent="#animationAccordion" id="collapseSpecial">
+<div class="flex flex-wrap gap-2.5 px-5 py-4">
+<a class="btn bg-light animation_select" data-animation="hinge" href="#">hinge</a>
+<a class="btn bg-light animation_select" data-animation="jackInTheBox" href="#">jackInTheBox</a>
+<a class="btn bg-light animation_select" data-animation="rollIn" href="#">rollIn</a>
+<a class="btn bg-light animation_select" data-animation="rollOut" href="#">rollOut</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- end col-->
+</div>
+<!-- end grid-->
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Animation Plugin Js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/plugins-animation.js"></script>
+{% endblock %}

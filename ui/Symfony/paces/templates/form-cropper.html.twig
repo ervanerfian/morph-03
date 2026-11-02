@@ -1,0 +1,101 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Cropper' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+
+        {{ include('partials/topbar.html.twig', {"subtitle": "Forms", "title": "Cropper"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Forms", "title": "Cropper"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-header flex items-center justify-center">
+<h5>Upload &amp; Crop Image</h5>
+<span class="ms-auto text-2xs text-default-400">Default demo image is used until user uploads.</span>
+</div>
+<div class="card-body">
+<div class="grid xl:grid-cols-3 grid-cols-1 gap-5 items-end">
+<div class="xl:col-span-2">
+<label class="form-label" for="fileInput">Choose an image</label>
+<input class="block w-full border border-default-300 rounded disabled:opacity-50 disabled:pointer-events-none file:bg-default-100 file:border-0 file:me-4 file:py-2 file:px-3" id="fileInput" name="file-input" type="file"/>
+</div>
+<div class="flex flex-col gap-3">
+<button class="btn border-secondary border text-secondary" id="useDemoBtn">Use Demo Image</button>
+<button class="btn border-default-300 border text-default-800" id="clearInputBtn">Clear File Input</button>
+</div>
+</div>
+<div class="grid xl:grid-cols-3 grid-cols-1 gap-5 mt-7.5">
+<div class="xl:col-span-2">
+<div class="relative w-full bg-white border border-default-300 rounded">
+<!-- Default demo image -->
+<img alt="Upload to crop" id="image" src="/images/stock/small-1.jpg"/>
+</div>
+</div>
+<div>
+<div class="flex flex-wrap gap-3">
+<button class="btn border border-primary text-primary hover:text-white hover:bg-primary" id="zoomInBtn">Zoom In</button>
+<button class="btn border border-primary text-primary hover:text-white hover:bg-primary" id="zoomOutBtn">Zoom Out</button>
+<button class="btn border border-primary text-primary hover:text-white hover:bg-primary" id="rotateLeftBtn">Rotate -45°</button>
+<button class="btn border border-primary text-primary hover:text-white hover:bg-primary" id="rotateRightBtn">Rotate +45°</button>
+<button class="btn border-secondary border text-secondary hover:text-white hover:bg-secondary" id="resetBtn">Reset</button>
+<div class="ms-auto flex items-center gap-3">
+<label class="form-label" for="aspect">Aspect:</label>
+<select class="form-select" id="aspect" style="width: auto">
+<option selected="" value="NaN">Free</option>
+<option value="1">1:1</option>
+<option value="16/9">16:9</option>
+<option value="4/3">4:3</option>
+<option value="3/4">3:4</option>
+</select>
+</div>
+</div>
+<p class="font-semibold mb-4 mt-7.5">Live Preview</p>
+<div class="cropper-img-preview"></div>
+<div class="mt-7.5 hidden" id="croppedResult">
+<p class="font-semibold mb-3">Cropped Output</p>
+<img alt="Cropped result will appear here" class="img-thumbnail bg-default-100 inline-block p-1"/>
+</div>
+<div class="mt-4 grid grid-cols-1 gap-3">
+<button class="btn bg-primary text-white hover:bg-primary-hover" id="cropBtn">Crop &amp; Preview</button>
+<a class="btn border-secondary text-secondary disabled" download="cropped.png" id="downloadBtn">Download Cropped</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Image Cropper Plugin Js -->
+
+<!-- Color Picker Demo Js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/cropperjs/cropper.min.js"></script>
+    <script src="/js/pages/form-image-cropper.js"></script>
+{% endblock %}

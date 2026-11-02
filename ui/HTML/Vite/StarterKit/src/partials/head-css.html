@@ -1,0 +1,221 @@
+<script>
+    ;(function () {
+        const html = document.documentElement
+        const attrMap = {
+            "data-skin": "skin",
+            "data-theme": "theme",
+            "data-menu-color": "sidenavColor",
+            "data-sidenav-size": "sidenavSize",
+            "data-topbar-color": "topbarColor",
+            "data-layout-position": "position",
+            "data-layout-width": "width",
+            "dir": "dir",
+            "data-sidenav-user": "sidenavUser",
+        }
+
+        const htmlConfig = {}
+        Object.entries(attrMap).forEach(([attr, key]) => {
+            const val = html.getAttribute(attr)
+            if (val !== null) htmlConfig[key] = key === "sidenavUser" ? val === "true" : val
+        })
+
+        const config = Object.assign(
+            {
+                "dir": "ltr",
+                "skin": "default",
+                "theme": "light",
+                "width": "fluid",
+                "position": "fixed",
+                "orientation": "vertical",
+                "sidenavSize": "on-hover-active",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            htmlConfig,
+            JSON.parse(sessionStorage.getItem("__THEME_CONFIG__") || "{}"),
+            htmlConfig
+        )
+
+        const params = new URLSearchParams(window.location.search)
+        const set = (k, v) => v && (config[k] = k === "sidenavUser" ? v === "true" : v)
+        Object.values(attrMap).forEach((k) => set(k, params.get(k)))
+
+        window.skinPresets = {
+            "neo": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "gray",
+            },
+            "zen": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "gray",
+                "sidenavColor": "dark",
+            },
+            "flat": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "light",
+            },
+            "luxe": {
+                "theme": "light",
+                "sidenavUser": true,
+                "topbarColor": "dark",
+                "sidenavColor": "light",
+            },
+            "mono": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "dark",
+                "sidenavColor": "light",
+            },
+            "neon": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "light",
+            },
+            "nova": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "saas": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "soft": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "gradient",
+            },
+            "orbit": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "pixel": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "prism": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "light",
+            },
+            "retro": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "vivid": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "xenon": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "gradient",
+            },
+            "aurora": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "galaxy": {
+                "theme": "dark",
+            },
+            "matrix": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "modern": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "silver": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "dark",
+                "sidenavColor": "light",
+            },
+            "crystal": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "default": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "elegant": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "dark",
+            },
+            "minimal": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "gray",
+                "sidenavColor": "gray",
+            },
+            "material": {
+                "theme": "light",
+                "sidenavUser": false,
+                "topbarColor": "light",
+                "sidenavColor": "gray",
+            },
+        }
+
+        const preset = window.skinPresets[config.skin] || {}
+
+        Object.assign(config, preset, htmlConfig)
+        Object.values(attrMap).forEach((k) => set(k, params.get(k)))
+
+        window.defaultConfig = structuredClone(config)
+        window.config = config
+
+        const apply = (a, v) => v && html.setAttribute(a, v)
+        apply("data-skin", config.skin)
+        apply("data-theme", config.theme === "system" ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : config.theme)
+        apply("data-menu-color", config.sidenavColor)
+        apply("data-topbar-color", config.topbarColor)
+        apply("data-layout-width", config.width)
+        apply("data-layout-position", config.position)
+        apply("dir", config.dir)
+
+        let size = config.sidenavSize
+        if (window.innerWidth <= 767) size = "offcanvas"
+        else if (window.innerWidth <= 1140 && size !== "offcanvas") size = "condensed"
+        apply("data-sidenav-size", size)
+        config.sidenavUser ? html.setAttribute("data-sidenav-user", "true") : html.removeAttribute("data-sidenav-user")
+    })()
+</script>
+
+<script type="module" src="assets/js/vendor.js"></script>
+
+<script type="module" src="assets/js/app.js"></script>

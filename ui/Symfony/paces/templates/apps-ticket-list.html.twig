@@ -1,0 +1,741 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Tickets' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Support", "title": "Tickets"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Support", "title": "Tickets"}) }}
+
+                <div class="container-fluid">
+<div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-2.5 mb-2.5">
+<!-- Open Tickets -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-start gap-base">
+<div class="size-11 bg-primary/15 rounded-full flex justify-center items-center">
+<i class="iconify tabler--ticket text-xl text-primary"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex justify-between items-center">
+<h3 class="text-lg">148</h3>
+<div>
+                                                +3%
+                                                <i class="iconify tabler--arrow-up text-success"></i>
+</div>
+</div>
+<p class="text-default-400 text-sm"><span>Open Tickets</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Resolved Tickets -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-start gap-base">
+<div class="size-11 bg-primary/15 rounded-full flex justify-center items-center">
+<i class="iconify tabler--circle-check text-xl text-primary"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex justify-between items-center">
+<h3 class="text-lg">1,289</h3>
+<div>
+                                                +12%
+                                                <i class="iconify tabler--arrow-up text-success"></i>
+</div>
+</div>
+<p class="text-default-400 text-sm"><span>Resolved Tickets</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Pending Tickets -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-start gap-base">
+<div class="size-11 bg-primary/15 rounded-full flex justify-center items-center">
+<i class="iconify tabler--hourglass text-xl text-primary"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex justify-between items-center">
+<h3 class="text-lg">93</h3>
+<div>
+                                                -2.1%
+                                                <i class="iconify tabler--arrow-down text-danger"></i>
+</div>
+</div>
+<p class="text-default-400 text-sm"><span>Pending Tickets</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Escalated Tickets -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-start gap-base">
+<div class="size-11 bg-primary/15 rounded-full flex justify-center items-center">
+<i class="iconify tabler--alert-circle text-xl text-primary"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex justify-between items-center">
+<h3 class="text-lg">25</h3>
+<div>
+                                                +1.8%
+                                                <i class="iconify tabler--arrow-up text-warning"></i>
+</div>
+</div>
+<p class="text-default-400 text-sm"><span>Escalated Tickets</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Average Response Time -->
+<div class="card">
+<div class="card-body">
+<div class="flex items-start gap-base">
+<div class="size-11 bg-primary/15 rounded-full flex justify-center items-center">
+<i class="iconify tabler--clock text-xl text-primary"></i>
+</div>
+<div class="grow">
+<div class="mb-2.5 flex justify-between items-center">
+<h3 class="text-lg">
+                                                8.4
+                                                <small class="text-2xs">hrs</small>
+</h3>
+<div>+0.5%</div>
+</div>
+<p class="text-default-400 text-sm"><span>Average Response Time</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- table -->
+<div class="card" data-table="" data-table-rows-per-page="8">
+<!-- card-header -->
+<div class="card-header">
+<div class="flex gap-2.5 flex-wrap">
+<div class="input-icon-group">
+<i class="iconify tabler--search input-icon"></i>
+<input class="form-input" data-table-search="" placeholder="Search tickets..." type="search"/>
+</div>
+<div>
+<a class="btn bg-primary text-white" href="/apps-ticket-create"> <i class="iconify tabler--plus"></i> New Ticket </a>
+</div>
+<button class="btn bg-danger text-white hidden" data-table-delete-selected="">Delete</button>
+</div>
+<div class="flex gap-2.5 items-center flex-wrap md:flex-nowrap">
+<span class="me-2.5 font-semibold">Filter By:</span>
+<!-- Status Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--arrows-shuffle input-icon"></i>
+<select class="form-select" data-table-filter="status">
+<option value="">Status</option>
+<option value="Open">Open</option>
+<option value="Pending">Pending</option>
+<option value="Resolved">Resolved</option>
+<option value="Closed">Closed</option>
+<option value="Escalated">Escalated</option>
+</select>
+</div>
+<!-- Priority Filter -->
+<div class="input-icon-group">
+<i class="iconify tabler--alert-triangle input-icon"></i>
+<select class="form-select" data-table-range-filter="priority">
+<option value="">Priority</option>
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+<option value="Urgent">Urgent</option>
+</select>
+</div>
+<!-- Records Per Page -->
+<div>
+<select class="form-select" data-table-set-rows-per-page="">
+<option value="5">5</option>
+<option selected="" value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table class="table table-hover">
+<thead class="thead-sm">
+<tr class="bg-light/25 uppercase text-2xs">
+<th class="w-[1%]">
+<input class="form-checkbox form-checkbox-light size-4.5" data-table-select-all="" id="checkAll" type="checkbox"/>
+</th>
+<th data-table-sort="">ID</th>
+<th>Requested By</th>
+<th>Ticket Subject</th>
+<th>Assigned Agent</th>
+<th data-column="priority" data-table-sort="">Priority</th>
+<th data-column="status" data-table-sort="">Status</th>
+<th data-table-sort="">Date Created</th>
+<th data-table-sort="">Due Date</th>
+<th class="text-center w-[1%]">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox" value="option"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2451</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="Emily Clark" class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<span>Emily Clark</span>
+</div>
+</td>
+<td>Unable to login with 2FA</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img alt="Daniel Ray" class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<a class="hover:text-primary" href="#!">Daniel Ray</a>
+</div>
+</td>
+<td>
+<span class="badge bg-danger text-white">High</span>
+</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>
+                                            04 Aug, 2025
+                                            <small class="text-default-400 text-xs">11:30 AM</small>
+</td>
+<td>08 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2517</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-9.jpg"/>
+<span>Lucas Graham</span>
+</div>
+</td>
+<td>Cannot upload profile image</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<a class="hover:text-primary" href="#!">Sarah Lee</a>
+</div>
+</td>
+<td>
+<span class="badge bg-warning text-white">Medium</span>
+</td>
+<td>
+<span class="badge badge-label bg-info/15 text-info">In Progress</span>
+</td>
+<td>05 Aug, 2025 <small class="text-default-400 text-xs">2:05 PM</small></td>
+<td>10 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2518</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<span>Nina Patel</span>
+</div>
+</td>
+<td>Incorrect invoice total shown</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-8.jpg"/>
+<a class="hover:text-primary" href="#!">Alex Morgan</a>
+</div>
+</td>
+<td>
+<span class="badge bg-danger text-white">High</span>
+</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>05 Aug, 2025 <small class="text-default-400 text-xs">10:42 AM</small></td>
+<td>07 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2519</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-6.jpg"/>
+<span>Michael Foster</span>
+</div>
+</td>
+<td>Website not loading on Safari</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<a class="hover:text-primary" href="#!">Jessica Hughes</a>
+</div>
+</td>
+<td>
+<span class="badge bg-success text-white">Low</span>
+</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Resolved</span>
+</td>
+<td>04 Aug, 2025 <small class="text-default-400 text-xs">6:20 PM</small></td>
+<td>06 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2520</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<span>Isabella Reed</span>
+</div>
+</td>
+<td>Cannot change account email</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<a class="hover:text-primary" href="#!">Daniel Ray</a>
+</div>
+</td>
+<td>
+<span class="badge bg-warning text-white">Medium</span>
+</td>
+<td>
+<span class="badge badge-label bg-info/15 text-info">In Progress</span>
+</td>
+<td>03 Aug, 2025 <small class="text-default-400 text-xs">9:50 AM</small></td>
+<td>08 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2521</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<span>Olivia White</span>
+</div>
+</td>
+<td>Can't access dashboard after update</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-9.jpg"/>
+<a class="hover:text-primary" href="#!">James Carter</a>
+</div>
+</td>
+<td>
+<span class="badge bg-danger text-white">High</span>
+</td>
+<td>
+<span class="badge badge-label bg-danger/15 text-danger">Escalated</span>
+</td>
+<td>05 Aug, 2025 <small class="text-default-400 text-xs">7:45 AM</small></td>
+<td>06 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2522</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-10.jpg"/>
+<span>Emma King</span>
+</div>
+</td>
+<td>Feature request: export as PDF</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<a class="hover:text-primary" href="#!">Harper Wells</a>
+</div>
+</td>
+<td>
+<span class="badge bg-primary text-white">Low</span>
+</td>
+<td>
+<span class="badge badge-label bg-secondary/15 text-secondary">Closed</span>
+</td>
+<td>01 Aug, 2025 <small class="text-default-400 text-xs">4:10 PM</small></td>
+<td>05 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2523</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-1.jpg"/>
+<span>Ava Sullivan</span>
+</div>
+</td>
+<td>App freezes when uploading files</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<a class="hover:text-primary" href="#!">Liam Brooks</a>
+</div>
+</td>
+<td>
+<span class="badge bg-danger text-white">High</span>
+</td>
+<td>
+<span class="badge badge-label bg-warning/15 text-warning">Pending</span>
+</td>
+<td>05 Aug, 2025 <small class="text-default-400 text-xs">1:20 PM</small></td>
+<td>09 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 9 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2524</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-3.jpg"/>
+<span>Sophie Bennett</span>
+</div>
+</td>
+<td>Missing transaction history</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-6.jpg"/>
+<a class="hover:text-primary" href="#!">Lucas Shaw</a>
+</div>
+</td>
+<td>
+<span class="badge bg-warning text-white">Medium</span>
+</td>
+<td>
+<span class="badge badge-label bg-info/15 text-info">In Progress</span>
+</td>
+<td>04 Aug, 2025 <small class="text-default-400 text-xs">4:30 PM</small></td>
+<td>08 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 10 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2525</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-4.jpg"/>
+<span>Noah Allen</span>
+</div>
+</td>
+<td>Feedback form submission error</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<a class="hover:text-primary" href="#!">Sophia Reed</a>
+</div>
+</td>
+<td>
+<span class="badge bg-success text-white">Low</span>
+</td>
+<td>
+<span class="badge badge-label bg-success/15 text-success">Resolved</span>
+</td>
+<td>03 Aug, 2025 <small class="text-default-400 text-xs">12:00 PM</small></td>
+<td>06 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 11 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2526</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-5.jpg"/>
+<span>Ethan James</span>
+</div>
+</td>
+<td>Can't generate report summary</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-7.jpg"/>
+<a class="hover:text-primary" href="#!">Chloe Adams</a>
+</div>
+</td>
+<td>
+<span class="badge bg-danger text-white">High</span>
+</td>
+<td>
+<span class="badge badge-label bg-danger/15 text-danger">Escalated</span>
+</td>
+<td>05 Aug, 2025 <small class="text-default-400 text-xs">8:50 AM</small></td>
+<td>07 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 12 -->
+<tr>
+<td>
+<input class="form-checkbox form-checkbox-light size-4.5" type="checkbox"/>
+</td>
+<td>
+<a class="font-semibold hover:text-primary" href="/apps-ticket-details">#SUP-2527</a>
+</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-8.jpg"/>
+<span>Grace Carter</span>
+</div>
+</td>
+<td>Feature request: Dark mode toggle</td>
+<td>
+<div class="flex items-center gap-2.5">
+<img class="size-6 rounded-full" src="/images/users/user-2.jpg"/>
+<a class="hover:text-primary" href="#!">Daniel Ray</a>
+</div>
+</td>
+<td>
+<span class="badge bg-primary text-white">Low</span>
+</td>
+<td>
+<span class="badge badge-label bg-secondary/15 text-secondary">Closed</span>
+</td>
+<td>02 Aug, 2025 <small class="text-default-400 text-xs">5:25 PM</small></td>
+<td>06 Aug, 2025</td>
+<td>
+<div class="flex justify-center gap-1.5">
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--eye text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" href="#">
+<i class="iconify tabler--edit text-base"></i>
+</a>
+<a class="btn btn-icon btn-sm border border-default-300 hover:border-default-400" data-table-delete-row="" href="#">
+<i class="iconify tabler--trash text-base"></i>
+</a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- card-footer -->
+<div class="card-footer">
+<div data-table-pagination-info="Support Tickets"></div>
+<div data-table-pagination=""></div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

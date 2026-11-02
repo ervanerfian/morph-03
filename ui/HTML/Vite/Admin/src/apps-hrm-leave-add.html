@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="Add Leave" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="HRM" title="Add Leave" }} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="HRM" title="Add Leave" }}
+
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header justify-start">
+                                <i class="iconify lucide--calendar-plus"></i>
+                                <h4 class="card-title">Apply for Leave</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <form id="applyLeaveForm">
+                                    <div class="grid grid-cols-1 md:grid-cols-6 gap-x-base gap-y-5">
+                                        <!-- Employee Info -->
+                                        <div class="md:col-span-2">
+                                            <label for="employeeId" class="form-label">
+                                                Employee ID
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" id="employeeId" class="form-input" placeholder="e.g., EMP-1035" required="" />
+                                        </div>
+
+                                        <!-- Employee Name -->
+                                        <div class="md:col-span-2">
+                                            <label for="employeeName" class="form-label">
+                                                Full Name
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" id="employeeName" class="form-input" placeholder="Enter full name" required="" />
+                                        </div>
+
+                                        <!-- Department -->
+                                        <div class="md:col-span-2">
+                                            <label for="department" class="form-label">
+                                                Department
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select id="department" class="form-input" required="">
+                                                <option value="">Select Department</option>
+                                                <option>HR</option>
+                                                <option>Finance</option>
+                                                <option>IT</option>
+                                                <option>Design</option>
+                                                <option>Marketing</option>
+                                                <option>Operations</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Leave Dates -->
+                                        <div class="md:col-span-2">
+                                            <label for="leaveFrom" class="form-label">
+                                                From Date
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-input flatpickr-input" data-provider="flatpickr" data-date-format="d F, Y" id="leaveFrom" required="" readonly="readonly" />
+                                        </div>
+
+                                        <!-- Leave Dates -->
+                                        <div class="md:col-span-2">
+                                            <label for="leaveTo" class="form-label">
+                                                To Date
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" data-provider="flatpickr" data-date-format="d F, Y" id="leaveTo" class="form-input flatpickr-input" required="" readonly="readonly" />
+                                        </div>
+
+                                        <!-- Leave Type -->
+                                        <div class="md:col-span-2">
+                                            <label for="leaveType" class="form-label">
+                                                Leave Type
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <select id="leaveType" class="form-input" required="">
+                                                <option value="">Select Leave Type</option>
+                                                <option>Sick Leave</option>
+                                                <option>Casual Leave</option>
+                                                <option>Paid Leave</option>
+                                                <option>Unpaid Leave</option>
+                                                <option>Maternity Leave</option>
+                                                <option>Half Day Leave</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Reason -->
+                                        <div class="md:col-span-6">
+                                            <label for="reason" class="form-label">Reason<span class="text-danger">*</span></label>
+                                            <textarea id="reason" class="form-textarea" rows="3" placeholder="Explain your reason for leave" required=""></textarea>
+                                        </div>
+
+                                        <!-- Contact Details During Leave -->
+                                        <div class="md:col-span-3">
+                                            <label for="contactNumber" class="form-label">Contact Number<span class="text-danger">*</span></label>
+                                            <input type="text" id="contactNumber" class="form-input" placeholder="+1 234 567 890" required="" />
+                                        </div>
+
+                                        <!-- Emergency Contact -->
+                                        <div class="md:col-span-3">
+                                            <label for="emergencyContact" class="form-label">Emergency Contact Person<span class="text-danger">*</span></label>
+                                            <input type="text" id="emergencyContact" class="form-input" placeholder="Name of emergency contact" required="" />
+                                        </div>
+
+                                        <!-- Supporting Document -->
+                                        <div class="md:col-span-6">
+                                            <label for="supportDoc" class="form-label">Supporting Document (optional)</label>
+                                            <input type="file" name="file-input" id="supportDoc" class="form-input" />
+                                            <small class="text-default-400">Attach medical certificate or proof if required (PDF/JPG/PNG).</small>
+                                        </div>
+
+                                        <!-- Remarks -->
+                                        <div class="md:col-span-6">
+                                            <label for="remarks" class="form-label">Additional Remarks</label>
+                                            <textarea id="remarks" class="form-textarea" rows="3" placeholder="Optional comments..."></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end card-body-->
+
+                            <div class="card-footer flex justify-end gap-3">
+                                <button type="reset" class="btn bg-light hover:text-primary">
+                                    <i class="iconify tabler--refresh"></i>
+                                    Reset
+                                </button>
+
+                                <button type="submit" form="applyLeaveForm" class="btn bg-primary text-white hover:bg-primary-hover">
+                                    <i class="iconify tabler--send-2"></i>
+                                    Submit Application
+                                </button>
+                            </div>
+                            <!-- end card-footer-->
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+            </div>
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Custom table -->
+        <script type="module" src="assets/js/pages/custom-table.js"></script>
+    </body>
+</html>

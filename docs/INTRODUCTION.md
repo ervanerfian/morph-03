@@ -452,7 +452,7 @@ Berikut keputusan yang akan saya tetapkan sejak awal.
 | Browser language  | TypeScript                     |
 | Component model   | Native HTML + Web Components   |
 | Templates         | Twig                           |
-| Database          | PostgreSQL / SQLite            |
+| Database          | PostgreSQL 18 (Morph target)   |
 | Data access       | PDO, tanpa ORM                 |
 | Data format       | JSON / JSONB                   |
 | Communication     | HTTP + SSE                     |
@@ -988,7 +988,7 @@ Template Engine
 
 Server-side rendering dan reusable templates.
 
-PostgreSQL / SQLite
+PostgreSQL 18
 
 Data Persistence
 
@@ -1065,7 +1065,7 @@ Modern Native PHP · Datastar · Twig
 
 Persistence Platform
 
-PostgreSQL · SQLite · JSONB · PDO
+PostgreSQL 18 · JSONB · PDO
 
 ## Kesimpulan saya
 

@@ -1,0 +1,128 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Create Task' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Apps", "title": "Create Task"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Apps", "title": "Create Task"}) }}
+
+                <div class="container">
+<div class="card">
+<div class="card-body">
+<form>
+<!-- Task Title -->
+<div class="mb-5">
+<label class="form-label" for="taskTitle">
+                                        Task Title
+                                        <span class="text-danger">*</span>
+</label>
+<input class="form-input" id="taskTitle" placeholder="Enter task title" required="" type="text"/>
+</div>
+<!-- End Task Title -->
+<!-- Task Description -->
+<div class="mb-5">
+<label class="form-label" for="taskDescription">Description</label>
+<textarea class="form-textarea" id="taskDescription" placeholder="Write a short task description..." rows="4"></textarea>
+</div>
+<!-- End Task Description -->
+<!-- Dates -->
+<div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-base">
+<!-- Start Date -->
+<div>
+<label class="form-label" for="startDate">Start Date</label>
+<input class="form-input" data-date-format="d M, Y" data-provider="flatpickr" id="startDate" type="text"/>
+</div>
+<!-- End Start Date -->
+<!-- Due Date -->
+<div>
+<label class="form-label" for="dueDate">Due Date</label>
+<input class="form-input" data-date-format="d M, Y" data-provider="flatpickr" id="dueDate" type="text"/>
+</div>
+<!-- End Due Date -->
+</div>
+<!-- End Dates -->
+<!-- Assigned To -->
+<div class="mb-5">
+<label class="form-label" for="assignedTo">Assigned To</label>
+<select class="form-input" id="assignedTo">
+<option disabled="" selected="">Choose member</option>
+<option value="1">Cruise</option>
+<option value="2">Maria</option>
+<option value="3">Chris</option>
+<option value="4">Alex</option>
+</select>
+</div>
+<!-- End Assigned To -->
+<!-- Priority and Status -->
+<div class="mb-5 grid grid-cols-1 md:grid-cols-2 gap-base">
+<!-- Priority -->
+<div>
+<label class="form-label" for="priority">Priority</label>
+<select class="form-input" id="priority">
+<option disabled="" selected="">Select priority</option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+</select>
+</div>
+<!-- End Priority -->
+<!-- Status -->
+<div>
+<label class="form-label" for="task-status">Status</label>
+<select class="form-input" id="task-status">
+<option selected="" value="New">New</option>
+<option value="In Progress">In Progress</option>
+<option value="On Hold">On Hold</option>
+<option value="Completed">Completed</option>
+</select>
+</div>
+<!-- End Status -->
+</div>
+<!-- End Priority and Status -->
+<!-- Attachment -->
+<div class="mb-5">
+<label class="form-label" for="fileUpload">Attachment</label>
+<input class="form-input" id="fileUpload" name="file-input" type="file"/>
+</div>
+<!-- End Attachment -->
+<!-- Buttons -->
+<div class="mt-7.5 flex justify-end">
+<button class="btn bg-light me-2.5 hover:text-primary" type="reset">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="submit">
+<i class="iconify tabler--plus me-1"></i>
+                                        Create Task
+                                    </button>
+</div>
+<!-- End Buttons -->
+</form>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

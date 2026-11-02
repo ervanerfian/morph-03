@@ -1,0 +1,68 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Candlestick Echart' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Charts", "title": "Candlestick Echart"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Charts", "title": "Candlestick Echart"}) }}
+
+                <div class="container-fluid">
+<div class="space-y-5">
+<div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Basic Candlestick Chart</h4>
+</div>
+<div class="card-body">
+<div id="chart-basic-candlestick" style="min-height: 400px"></div>
+</div>
+</div>
+</div>
+<!-- end col -->
+<div>
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Mixed Candlestick Chart</h4>
+</div>
+<div class="card-body">
+<div id="chart-mixed-candlestick" style="min-height: 400px"></div>
+</div>
+</div>
+</div>
+<!-- end col -->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- E Charts js -->
+
+<!-- E Charts Demo js -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugins/echarts/echarts.min.js"></script>
+    <script src="/js/pages/chart-echart-candlestick.js"></script>
+{% endblock %}

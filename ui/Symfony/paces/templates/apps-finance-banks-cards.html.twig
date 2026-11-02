@@ -1,0 +1,439 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Banks & cards' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Finance", "title": "Banks & cards"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Finance", "title": "Banks & cards"}) }}
+
+                <div class="container-fluid">
+<div class="card">
+<div class="card-body">
+<!-- Bank Accounts Section -->
+<div class="mb-7.5">
+<!-- Section Header -->
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-default-400 font-semibold uppercase">Bank Accounts</h5>
+<a aria-controls="addBankModal" aria-expanded="false" aria-haspopup="dialog" class="btn btn-sm bg-primary ms-1 text-white" data-hs-overlay="#addBankModal" href="#addBankModal">
+<i class="iconify tabler--plus"></i>
+                                        Add Bank
+                                    </a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-base lg:grid-cols-3">
+<!-- Bank Account 1 -->
+<div class="col-span-1">
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body flex justify-between">
+<div class="flex gap-base">
+<div>
+<div class="bg-primary/15 text-primary flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--building-bank text-2xl"></i>
+</div>
+</div>
+<div>
+<h5 class="mb-1.25 font-semibold">Chase Bank</h5>
+<p class="text-default-400 mb-5">Balance: $12,875.61 USD</p>
+<ul>
+<li>
+<strong class="text-default-400">Account Holder:</strong>
+                                                                John Doe
+                                                            </li>
+<li>
+<strong class="text-default-400">Account No:</strong>
+                                                                1234 5678 2045
+                                                            </li>
+<li>
+<strong class="text-default-400">Account Type:</strong>
+                                                                Checking
+                                                            </li>
+<li>
+<strong class="text-default-400">Branch:</strong>
+                                                                New York Downtown
+                                                            </li>
+</ul>
+<div class="mt-5">
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Edit</button>
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Delete</button>
+</div>
+</div>
+</div>
+<div class="text-end">
+<span class="badge bg-success/15 text-success mb-3">Active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bank Account 2 -->
+<div class="col-span-1">
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body flex justify-between">
+<div class="flex gap-base">
+<div>
+<div class="bg-info/15 text-info flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--building-bank text-2xl"></i>
+</div>
+</div>
+<div>
+<h5 class="mb-1.25 font-semibold">Bank of America</h5>
+<p class="text-default-400 mb-5">Balance: $9,432.18 USD</p>
+<ul>
+<li>
+<strong class="text-default-400">Account Holder:</strong>
+                                                                Emily Smith
+                                                            </li>
+<li>
+<strong class="text-default-400">Account No:</strong>
+                                                                9876 5432 1089
+                                                            </li>
+<li>
+<strong class="text-default-400">Account Type:</strong>
+                                                                Savings
+                                                            </li>
+<li>
+<strong class="text-default-400">Branch:</strong>
+                                                                Los Angeles Central
+                                                            </li>
+</ul>
+<div class="mt-5">
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Edit</button>
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Delete</button>
+</div>
+</div>
+</div>
+<div class="text-end">
+<span class="badge bg-warning/15 text-warning mb-3">Inactive</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bank Account 3 -->
+<div class="col-span-1">
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body flex justify-between">
+<div class="flex gap-base">
+<div>
+<div class="bg-danger/15 text-danger flex size-11 items-center justify-center rounded-full">
+<i class="iconify tabler--building-bank text-2xl"></i>
+</div>
+</div>
+<div>
+<h5 class="mb-1.25 font-semibold">Wells Fargo</h5>
+<p class="text-default-400 mb-5">Balance: $18,210.42 USD</p>
+<ul>
+<li>
+<strong class="text-default-400">Account Holder:</strong>
+                                                                Michael Johnson
+                                                            </li>
+<li>
+<strong class="text-default-400">Account No:</strong>
+                                                                4455 2299 6574
+                                                            </li>
+<li>
+<strong class="text-default-400">Account Type:</strong>
+                                                                Business
+                                                            </li>
+<li>
+<strong class="text-default-400">Branch:</strong>
+                                                                Chicago West Loop
+                                                            </li>
+</ul>
+<div class="mt-5">
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Edit</button>
+<button class="btn btn-sm border-default-300 hover:border-default-400 hover:bg-default-50 border">Delete</button>
+</div>
+</div>
+</div>
+<div class="text-end">
+<span class="badge bg-success/15 text-success mb-3">Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Cards Section -->
+<div>
+<!-- Section Header -->
+<div class="mb-5 flex items-center justify-between">
+<h5 class="text-default-400 font-semibold uppercase">Cards</h5>
+<a aria-controls="addCardModal" aria-expanded="false" aria-haspopup="dialog" class="btn btn-sm bg-primary ms-1 text-white" data-hs-overlay="#addCardModal" href="#addCardModal">
+<i class="iconify tabler--plus"></i>
+                                        Add card
+                                    </a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-base lg:grid-cols-4">
+<!-- Visa Card -->
+<div>
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body">
+<div class="mb-2.5 flex items-center justify-between">
+<img alt="Visa" class="h-9" src="/images/cards/visa.svg"/>
+<span class="badge bg-success/15 text-success">Active</span>
+</div>
+<h4 class="mt-5 text-lg font-semibold mb-2">**** **** **** 3294</h4>
+<p class="text-default-400">Exp: 08/28</p>
+<div class="mt-5 flex items-center justify-between">
+<span class="text-dark font-medium">John Miller</span>
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn btn-icon bg-default-100 size-7.5 rounded-full" type="button">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="block space-y-0.5">
+<a class="dropdown-item" href="#">Set as default</a>
+<a class="dropdown-item" href="#">Edit</a>
+<a class="dropdown-item text-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MasterCard -->
+<div>
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body">
+<div class="mb-2.5 flex items-center justify-between">
+<img alt="MasterCard" class="h-9" src="/images/cards/mastercard.svg"/>
+<span class="badge bg-success/15 text-success">Active</span>
+</div>
+<h4 class="mt-5 text-lg font-semibold mb-2">**** **** **** 7841</h4>
+<p class="text-default-400">Exp: 12/26</p>
+<div class="mt-5 flex items-center justify-between">
+<span class="text-dark font-medium">Emma Thompson</span>
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn btn-icon bg-default-100 size-7.5 rounded-full" type="button">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="block space-y-0.5">
+<a class="dropdown-item" href="#">Set as default</a>
+<a class="dropdown-item" href="#">Edit</a>
+<a class="dropdown-item text-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- American Express -->
+<div>
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body">
+<div class="mb-2.5 flex items-center justify-between">
+<img alt="American Express" class="h-9" src="/images/cards/american-express.svg"/>
+<span class="badge bg-warning/15 text-warning">Inactive</span>
+</div>
+<h4 class="mt-5 text-lg font-semibold mb-2">**** **** **** 4428</h4>
+<p class="text-default-400">Exp: 03/27</p>
+<div class="mt-5 flex items-center justify-between">
+<span class="text-dark font-medium">Liam Carter</span>
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn btn-icon bg-default-100 size-7.5 rounded-full" type="button">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="block space-y-0.5">
+<a class="dropdown-item" href="#">Set as default</a>
+<a class="dropdown-item" href="#">Edit</a>
+<a class="dropdown-item text-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Discover Card -->
+<div>
+<div class="card border-default-300 border border-dashed shadow-none">
+<div class="card-body">
+<div class="mb-2.5 flex items-center justify-between">
+<img alt="Discover" class="h-9" src="/images/cards/discover-card.svg"/>
+<span class="badge bg-danger/15 text-danger">Expired</span>
+</div>
+<h4 class="mt-5 text-lg font-semibold mb-2">**** **** **** 9812</h4>
+<p class="text-default-400">Exp: 11/24</p>
+<div class="mt-5 flex items-center justify-between">
+<span class="text-dark font-medium">Sophia Lewis</span>
+<div class="relative ms-auto">
+<div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+<button aria-expanded="false" aria-haspopup="menu" aria-label="Dropdown" class="hs-dropdown-toggle btn btn-icon bg-default-100 size-7.5 rounded-full" type="button">
+<i class="iconify tabler--dots-vertical text-base"></i>
+</button>
+<div aria-orientation="vertical" class="hs-dropdown-menu" role="menu">
+<div class="block space-y-0.5">
+<a class="dropdown-item" href="#">Set as default</a>
+<a class="dropdown-item" href="#">Edit</a>
+<a class="dropdown-item text-danger" href="#">Delete</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+
+            <div aria-labelledby="addBankModalLabel" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addBankModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-lg">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="font-semibold" id="addBankModalLabel">Add New Bank Account</h3>
+<button aria-label="Close" data-hs-overlay="#addBankModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<form id="bankForm">
+<div class="mb-5">
+<label class="form-label">Bank Name</label>
+<input class="form-input" placeholder="Enter bank name" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Account Holder</label>
+<input class="form-input" placeholder="Enter account holder name" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Account Number</label>
+<input class="form-input" placeholder="Enter account number" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Account Type</label>
+<select class="form-input" required="">
+<option value="">Select type</option>
+<option>Checking</option>
+<option>Savings</option>
+<option>Business</option>
+</select>
+</div>
+<div class="mb-5">
+<label class="form-label">Branch</label>
+<input class="form-input" placeholder="Enter branch name" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Balance</label>
+<input class="form-input" placeholder="Enter balance amount" required="" type="number"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Status</label>
+<select class="form-select">
+<option>Active</option>
+<option>Inactive</option>
+</select>
+</div>
+</form>
+</div>
+<div class="flex items-center justify-end gap-2 p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addBankModal" type="button">
+<i class="iconify tabler--x"></i>
+                                Cancel
+                            </button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">
+<i class="iconify tabler--device-floppy"></i>
+                                Save Bank
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<div aria-labelledby="addCardModalLabel" class="hs-overlay pointer-events-none fixed start-0 top-0 z-80 hidden size-full overflow-x-hidden overflow-y-auto" id="addCardModal" role="dialog" tabindex="-1">
+<div class="hs-overlay-animation-target hs-overlay-open:scale-100 hs-overlay-open:opacity-100 m-3 flex min-h-[calc(100%-56px)] scale-95 items-center opacity-0 transition-all duration-200 ease-in-out md:mx-auto md:w-full md:max-w-lg">
+<div class="card pointer-events-auto flex w-full flex-col">
+<div class="card-header p-5">
+<h3 class="font-bold" id="addCardModalLabel">Add New Card</h3>
+<button aria-label="Close" data-hs-overlay="#addCardModal" type="button">
+<i class="iconify tabler--x text-2xl align-middle text-default-600"></i>
+</button>
+</div>
+<div class="card-body">
+<form id="cardForm">
+<div class="mb-5">
+<label class="form-label">Card Holder Name</label>
+<input class="form-input" placeholder="Enter card holder name" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Card Number</label>
+<input class="form-input" placeholder="XXXX XXXX XXXX XXXX" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Card Type</label>
+<select class="form-input" required="">
+<option value="">Select type</option>
+<option>Credit Card</option>
+<option>Debit Card</option>
+<option>Prepaid Card</option>
+</select>
+</div>
+<div class="mb-5">
+<label class="form-label">Expiry Date</label>
+<input class="form-input" data-date-format="M, Y" data-provider="flatpickr" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">CVV</label>
+<input class="form-input" maxlength="3" placeholder="***" required="" type="password"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Bank Name</label>
+<input class="form-input" placeholder="Enter bank name" required="" type="text"/>
+</div>
+<div class="mb-5">
+<label class="form-label">Status</label>
+<select class="form-select">
+<option>Active</option>
+<option>Inactive</option>
+</select>
+</div>
+</form>
+</div>
+<div class="flex items-center justify-end gap-2 p-5">
+<button class="btn bg-light hover:text-primary" data-hs-overlay="#addCardModal" type="button">Cancel</button>
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="button">Save Card</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+
+    <!-- Custom table -->
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/pages/custom-table.js"></script>
+{% endblock %}

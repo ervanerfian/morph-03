@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Weather"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Widgets"; $title = "Weather"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Widgets"; $title = "Weather"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid xl:grid-cols-5 md:grid-cols-2 grid-cols-1 gap-2.5 mb-base">
+                        <!-- Today -->
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="text-default-400 uppercase">Today</h5>
+                                <div class="flex items-center justify-center gap-2.5 my-5">
+                                    <div>
+                                        <span class="size-9 flex justify-center items-center bg-primary/10 text-primary rounded-full">
+                                            <i class="iconify tabler--cloud-rain size-5.5"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold">32°</h3>
+                                </div>
+                                <p class="mb-1.25 text-default-400">Partly Cloudy</p>
+                                <p class="text-default-400 gap-base flex justify-center">
+                                    <span><i class="iconify tabler--wind"></i> 15km/h</span>
+                                    <span><i class="iconify tabler--droplet"></i> 37%</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Saturday -->
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="text-default-400 uppercase">Saturday</h5>
+                                <div class="flex items-center justify-center gap-2.5 my-5">
+                                    <div>
+                                        <span class="size-9 flex justify-center items-center bg-warning/10 text-warning rounded-full">
+                                            <i class="iconify tabler--cloud size-5.5"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold">30°</h3>
+                                </div>
+                                <p class="mb-1.25 text-default-400">Cloudy</p>
+                                <p class="text-default-400 gap-base flex justify-center">
+                                    <span><i class="iconify tabler--wind"></i> 10km/h</span>
+                                    <span><i class="iconify tabler--droplet"></i> 40%</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Sunday -->
+                        <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-7.jpg')]">
+                            <div class="card-body rounded-md bg-secondary/90 bg-linear-to-b from-white/30 to-white/0">
+                                <h5 class="text-white/75 uppercase text-center">Sunday</h5>
+                                <div class="flex items-center justify-center gap-2.5 my-5">
+                                    <div>
+                                        <span class="size-9 flex justify-center items-center bg-danger/10 text-danger rounded-full">
+                                            <i class="iconify tabler--cloud-storm size-5.5"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold">28°</h3>
+                                </div>
+                                <p class="mb-1.25 text-white text-center">Stormy</p>
+                                <p class="text-white/75 gap-base flex justify-center">
+                                    <span><i class="iconify tabler--wind"></i> 22km/h</span>
+                                    <span><i class="iconify tabler--droplet"></i> 60%</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Monday -->
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="text-default-400 uppercase">Monday</h5>
+                                <div class="flex items-center justify-center gap-2.5 my-5">
+                                    <div>
+                                        <span class="size-9 flex justify-center items-center bg-info/10 text-info rounded-full">
+                                            <i class="iconify tabler--sun size-5.5"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold">33°</h3>
+                                </div>
+                                <p class="mb-1.25 text-default-400">Sunny</p>
+                                <p class="text-default-400 gap-base flex justify-center">
+                                    <span><i class="iconify tabler--wind"></i> 8km/h</span>
+                                    <span><i class="iconify tabler--droplet"></i> 25%</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tuesday -->
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="text-default-400 uppercase">Tuesday</h5>
+                                <div class="flex items-center justify-center gap-2.5 my-5">
+                                    <div>
+                                        <span class="size-9 flex justify-center items-center bg-success/10 text-success rounded-full">
+                                            <i class="iconify tabler--snowflake size-5.5"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold">23°</h3>
+                                </div>
+                                <p class="mb-1.25 text-default-400">Wind & Chill</p>
+                                <p class="text-default-400 gap-base flex justify-center">
+                                    <span><i class="iconify tabler--wind"></i> 20km/h</span>
+                                    <span><i class="iconify tabler--droplet"></i> 45%</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-2 grid-cols-1 gap-base mb-base">
+                        <div class="card rounded-md bg-primary/90! bg-linear-to-b from-white/30 to-white/0">
+                            <div class="card-body">
+                                <div class="grid md:grid-cols-3 grid-cols-1 gap-base items-center text-white">
+                                    <!-- Main Weather -->
+                                    <div class="flex justify-center items-center gap-base">
+                                        <div>
+                                            <i class="iconify lucide--cloud-rain text-5xl"></i>
+                                            <h2 class="mt-1.25 text-2xl">32°</h2>
+                                        </div>
+                                        <div>
+                                            <p>Partly cloudy</p>
+                                            <small>15km/h - 37%</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Forecast -->
+                                    <div class="md:col-span-2 text-center">
+                                        <div class="grid grid-cols-4 gap-base">
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">SAT</h6>
+                                                <i class="iconify tabler--cloud size-8"></i>
+                                                <p class="mt-1.25">30°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">SUN</h6>
+                                                <i class="iconify tabler--cloud-storm size-8"></i>
+                                                <p class="mt-1.25">28°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">MON</h6>
+                                                <i class="iconify tabler--sun-high size-8"></i>
+                                                <p class="mt-1.25">33°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">TUE</h6>
+                                                <i class="iconify tabler--sun-high size-8"></i>
+                                                <p class="mt-1.25">33°</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card rounded-md bg-info/90! bg-linear-to-b from-white/30 to-white/0">
+                            <div class="card-body">
+                                <div class="grid md:grid-cols-3 grid-cols-1 gap-base items-center text-white">
+                                    <!-- Main Weather -->
+                                    <div class="flex justify-center items-center gap-base">
+                                        <div>
+                                            <i class="iconify lucide--sun text-5xl"></i>
+                                            <h2 class="mt-1.25 text-2xl">27°</h2>
+                                        </div>
+                                        <div>
+                                            <p>Sunny</p>
+                                            <small>12km/h - 42%</small>
+                                        </div>
+                                    </div>
+
+                                    <!-- Forecast -->
+                                    <div class="md:col-span-2 text-center">
+                                        <div class="grid grid-cols-4 gap-base">
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">SAT</h6>
+                                                <i class="iconify tabler--cloud size-8"></i>
+                                                <p class="mt-1.25">29°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">SUN</h6>
+                                                <i class="iconify tabler--rainbow size-8"></i>
+                                                <p class="mt-1.25">26°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">MON</h6>
+                                                <i class="iconify tabler--cloud-fog size-8"></i>
+                                                <p class="mt-1.25">24°</p>
+                                            </div>
+
+                                            <div>
+                                                <h6 class="text-white/50 mb-1.25 text-2xs">TUE</h6>
+                                                <i class="iconify tabler--sun size-8"></i>
+                                                <p class="mt-1.25">35°</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid xl:grid-cols-3 grid-cols-1 gap-base">
+                        <div data-table data-table-rows-per-page="5" class="card">
+                            <div class="card-header border-light justify-content-between">
+                                <h4 class="card-title">Top Cities Weather</h4>
+
+                                <div class="flex items-center gap-2.5">
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon text-default-400"></i>
+                                        <input data-table-search type="search" class="form-input" placeholder="Search..." />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto whitespace-nowrap">
+                                <table class="table table-custom table-nowrap table-centered table-select table-hover">
+                                    <thead class="bg-light/25 align-middle thead-sm">
+                                        <tr class="uppercase text-2xs">
+                                            <th data-table-sort>City</th>
+                                            <th data-table-sort>Temp</th>
+                                            <th data-table-sort>Humidity</th>
+                                            <th data-table-sort>Wind</th>
+                                            <th>•••</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">New York</h5>
+                                                <span class="text-xs text-default-400">Partly Cloudy</span>
+                                            </td>
+                                            <td>28°C</td>
+                                            <td>45%</td>
+                                            <td>12 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">London</h5>
+                                                <span class="text-xs text-default-400">Rainy</span>
+                                            </td>
+                                            <td>19°C</td>
+                                            <td>68%</td>
+                                            <td>20 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Dubai</h5>
+                                                <span class="text-xs text-default-400">Sunny</span>
+                                            </td>
+                                            <td>38°C</td>
+                                            <td>20%</td>
+                                            <td>10 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Tokyo</h5>
+                                                <span class="text-xs text-default-400">Thunderstorm</span>
+                                            </td>
+                                            <td>25°C</td>
+                                            <td>70%</td>
+                                            <td>18 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Sydney</h5>
+                                                <span class="text-xs text-default-400">Windy</span>
+                                            </td>
+                                            <td>22°C</td>
+                                            <td>55%</td>
+                                            <td>30 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Paris</h5>
+                                                <span class="text-xs text-default-400">Cloudy</span>
+                                            </td>
+                                            <td>21°C</td>
+                                            <td>50%</td>
+                                            <td>14 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Toronto</h5>
+                                                <span class="text-xs text-default-400">Snowy</span>
+                                            </td>
+                                            <td>-3°C</td>
+                                            <td>72%</td>
+                                            <td>25 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Singapore</h5>
+                                                <span class="text-xs text-default-400">Humid</span>
+                                            </td>
+                                            <td>30°C</td>
+                                            <td>80%</td>
+                                            <td>10 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Berlin</h5>
+                                                <span class="text-xs text-default-400">Foggy</span>
+                                            </td>
+                                            <td>16°C</td>
+                                            <td>65%</td>
+                                            <td>8 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400 text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <h5 class="font-normal">Cape Town</h5>
+                                                <span class="text-xs text-default-400">Clear Sky</span>
+                                            </td>
+                                            <td>26°C</td>
+                                            <td>40%</td>
+                                            <td>12 km/h</td>
+                                            <td>
+                                                <a href="#" class="text-default-400s text-xl">
+                                                    <i class="iconify tabler--eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-footer">
+                                <div data-table-pagination-info="cities"></div>
+                                <div data-table-pagination></div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header justify-between">
+                                <h4 class="card-title">Weather by Country</h4>
+                                <div class="ms-auto">
+                                    <div class="hs-dropdown inline-flex [--placement:bottom-right]">
+                                        <button type="button" class="hs-dropdown-toggle btn btn-icon size-8 border-default-300 hover:border-default-400/75" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+                                            <i class="iconify tabler--dots-vertical text-sm"></i>
+                                        </button>
+
+                                        <div class="hs-dropdown-menu" role="menu" aria-orientation="vertical">
+                                            <div class="space-y-0.5">
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--report"></i>
+                                                    View Full Weather Report
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--download"></i>
+                                                    Export Data
+                                                </a>
+
+                                                <a href="#" class="dropdown-item">
+                                                    <i class="iconify tabler--filter"></i>
+                                                    Filter Countries
+                                                </a>
+
+                                                <div class="border-default-300 my-2.5 border-t"></div>
+
+                                                <a href="#" class="dropdown-item text-danger!" href="#">
+                                                    <span data-icon="trash"></span>
+                                                    Remove Widget
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body p-2.5">
+                                <div class="px-3 h-106" data-simplebar>
+                                    <!-- USA -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/us.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">USA</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">28°C <span class="text-xs">(Feels 30°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 45% | <i class="iconify tabler--wind"></i> 12 km/h</div>
+                                        </div>
+                                        <div class="text-success font-semibold text-end flex items-center justify-end gap-0.5"><i class="iconify tabler--sun"></i>Clear Sky</div>
+                                    </div>
+
+                                    <!-- UK -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/gb.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">UK</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">19°C <span class="text-xs">(Feels 17°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 68% | <i class="iconify tabler--wind"></i> 20 km/h</div>
+                                        </div>
+                                        <div class="text-info font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--cloud-rain"></i> Rainy</div>
+                                    </div>
+
+                                    <!-- UAE -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/ae.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">UAE</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">38°C <span class="text-xs">(Feels 41°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 20% | <i class="iconify tabler--wind"></i> 10 km/h</div>
+                                        </div>
+                                        <div class="text-warning font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--sun-high"></i> Sunny</div>
+                                    </div>
+
+                                    <!-- Japan -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/jp.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Japan</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">25°C <span class="text-xs">(Feels 26°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 70% | <i class="iconify tabler--wind"></i> 18 km/h</div>
+                                        </div>
+                                        <div class="text-danger font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--cloud-storm"></i> Stormy</div>
+                                    </div>
+
+                                    <!-- Australia -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/au.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Australia</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">22°C <span class="text-xs">(Feels 21°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 55% | <i class="iconify tabler--wind"></i> 30 km/h</div>
+                                        </div>
+                                        <div class="text-primary font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--wind"></i> Windy</div>
+                                    </div>
+
+                                    <!-- Canada -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/ca.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Canada</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">14°C <span class="text-xs">(Feels 12°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 52% | <i class="iconify tabler--wind"></i> 15 km/h</div>
+                                        </div>
+
+                                        <div class="text-primary font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--cloud"></i> Cloudy</div>
+                                    </div>
+
+                                    <!-- Germany -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/de.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Germany</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">17°C <span class="text-xs">(Feels 16°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 60% | <i class="iconify tabler--wind"></i> 9 km/h</div>
+                                        </div>
+                                        <div class="text-info font-semibold flex items-center justify-end gap-0.75">Drizzle</div>
+                                    </div>
+
+                                    <!-- France -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/fr.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">France</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">21°C <span class="text-xs">(Feels 20°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 48% | <i class="iconify tabler--wind"></i> 14 km/h</div>
+                                        </div>
+                                        <div class="text-warning font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--sun-wind"></i> Partly Sunny</div>
+                                    </div>
+
+                                    <!-- Brazil -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/br.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Brazil</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">30°C <span class="text-xs">(Feels 35°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 75% | <i class="iconify tabler--wind"></i> 22 km/h</div>
+                                        </div>
+                                        <div class="text-danger font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--cloud-storm"></i> Thunderstorm</div>
+                                    </div>
+
+                                    <!-- Singapore -->
+                                    <div class="grid grid-cols-3 items-center py-2.5">
+                                        <div class="flex items-center">
+                                            <img src="assets/images/flags/sg.svg" class="me-2.5 rounded-full size-6.5" />
+                                            <span class="font-semibold text-base">Singapore</span>
+                                        </div>
+
+                                        <div class="text-end text-default-400">
+                                            <div class="font-semibold">32°C <span class="text-xs">(Feels 39°)</span></div>
+                                            <div class="font-semibold text-xs"><i class="iconify tabler--droplet"></i> 83% | <i class="iconify tabler--wind"></i> 11 km/h</div>
+                                        </div>
+                                        <div class="text-success font-semibold flex items-center justify-end gap-0.75"><i class="iconify tabler--cloud-rain"></i> Light Rain</div>
+                                    </div>
+                                </div>
+                                <!-- end data-simplebar -->
+                            </div>
+                            <!-- end card-body -->
+                        </div>
+
+                        <div class="flex flex-col gap-base">
+                            <div class="card overflow-hidden">
+                                <div class="relative h-50 bg-[url('../images/stock/small-6.jpg')] bg-center bg-cover">
+                                    <div class="absolute top-0 start-0 bg-dark text-white text-center px-5 py-2.5 rounded-e-lg mt-5">
+                                        <div class="font-bold">OCT</div>
+                                        <div class="font-bold">21</div>
+                                    </div>
+
+                                    <div class="absolute bottom-0 start-0 text-white p-5">
+                                        <div class="text-sm">Cloudy</div>
+                                        <h2 class="text-2xl font-bold">69°</h2>
+                                    </div>
+
+                                    <div class="absolute bottom-0 end-0 p-2.5 flex">
+                                        <div class="border-b border-white">
+                                            <button class="btn text-white">Today</button>
+                                        </div>
+
+                                        <div>
+                                            <button class="btn text-white">Week</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="grid grid-cols-5 gap-base text-center">
+                                        <div>
+                                            <div class="font-semibold text-default-400">Now</div>
+                                            <i class="iconify tabler--cloud mx-auto my-1.25 block text-2xl"></i>
+                                            <div class="font-semibold">72°</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="font-semibold text-default-400">2pm</div>
+                                            <i class="iconify tabler--cloud-bolt mx-auto my-1.25 block text-2xl"></i>
+                                            <div class="font-semibold">74°</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="font-semibold text-default-400">3pm</div>
+                                            <i class="iconify tabler--sun-high mx-auto my-1.25 block text-2xl"></i>
+                                            <div class="font-semibold">76°</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="font-semibold text-default-400">4pm</div>
+                                            <i class="iconify tabler--sun mx-auto my-1.25 block text-2xl"></i>
+                                            <div class="font-semibold">75°</div>
+                                        </div>
+
+                                        <div>
+                                            <div class="font-semibold text-default-400">5pm</div>
+                                            <i class="iconify tabler--cloud-rain mx-auto my-1.25 block text-2xl"></i>
+                                            <div class="font-semibold">71°</div>
+                                        </div>
+                                    </div>
+                                    <!-- end row-->
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 grid-cols-1 gap-base">
+                                <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-4.jpg')]">
+                                    <div class="card-body rounded-md rounded-b-none bg-dark/75 bg-linear-to-b from-white/30 to-white/0">
+                                        <div class="size-full flex flex-col justify-end">
+                                            <div class="font-bold text-2xl">78°</div>
+                                            <div class="font-semibold">Berlin</div>
+                                            <div class="text-white/50">Cloudy</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center rounded-md rounded-t-none px-5 py-2.5 bg-dark text-white/75">
+                                        <div class="flex items-center gap-1.25"><i class="iconify lucide--wind"></i> <span>12m/s</span></div>
+                                        <div class="flex items-center gap-1.25"><i class="iconify lucide--compass"></i> <span>NE</span></div>
+                                    </div>
+                                </div>
+
+                                <div class="card text-white bg-cover bg-center bg-[url('../images/stock/small-5.jpg')]">
+                                    <div class="card-body rounded-md rounded-b-none bg-dark/75 bg-linear-to-b from-white/30 to-white/0">
+                                        <div class="size-full flex flex-col justify-end">
+                                            <div class="font-bold text-2xl">64°</div>
+                                            <div class="font-semibold">Paris</div>
+                                            <div class="text-white/50">Light Rain</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center rounded-md rounded-t-none px-5 py-2.5 bg-dark text-white/75">
+                                        <div class="flex items-center gap-1.25"><i class="iconify lucide--wind"></i> <span>8m/s</span></div>
+                                        <div class="flex items-center gap-1.25"><i class="iconify lucide--compass"></i> <span>SW</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Custom table -->
+    <script src="assets/js/pages/custom-table.js"></script>
+</body>
+
+</html>

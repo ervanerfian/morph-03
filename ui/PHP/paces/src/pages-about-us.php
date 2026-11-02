@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "About Us"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <?php $subtitle = "Pages"; $title = "About Us"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Pages"; $title = "About Us"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="bg-light/50 rounded px-4 md:px-4 lg:px-0 relative">
+                                <div class="mx-auto lg:w-2/3 py-8 text-center md:py-18">
+                                    <span class="text-default-400 font-semibold italic">Trusted by 1M+ AI innovators worldwide</span>
+
+                                    <!-- Avatar Group -->
+                                    <div class="mt-5 flex justify-center -space-x-2">
+                                        <img src="assets/images/users/user-7.jpg" alt="Ava Lee" class="object-cover size-8 rounded-full transition-all hover:-translate-y-1" />
+                                        <img src="assets/images/users/user-8.jpg" alt="Ethan King" class="object-cover size-8 rounded-full transition-all hover:-translate-y-1" />
+                                        <img src="assets/images/users/user-9.jpg" alt="Lucas White" class="object-cover size-8 rounded-full transition-all hover:-translate-y-1" />
+                                        <img src="assets/images/users/user-1.jpg" alt="Lucas White" class="object-cover size-8 rounded-full transition-all hover:-translate-y-1" />
+                                        <img src="assets/images/users/user-2.jpg" alt="Lucas White" class="object-cover size-8 rounded-full transition-all hover:-translate-y-1" />
+                                    </div>
+
+                                    <!-- Hero Title -->
+                                    <h1 class="my-7.5 text-3xl font-bold md:text-4xl md:leading-snug">
+                                        Accelerate Innovation with the
+                                        <span class="text-primary">AI Control Panel</span>
+                                        –
+                                        <span class="text-default-400 italic">Smart.Scalable. Built for the Future.</span>
+                                    </h1>
+
+                                    <p class="text-default-400 mx-auto mb-7.5 leading-relaxed lg:max-w-4xl">Design, deploy, and manage machine learning models faster than ever. Our AI Control Panel empowers teams to collaborate, monitor, and scale securely with intuitive dashboards and cutting-edge analytics.</p>
+
+                                    <div class="flex flex-wrap justify-center gap-2">
+                                        <a href="#!" target="_blank" class="btn py-3 font-semibold bg-light text-dark hover:text-primary">
+                                            <i class="iconify tabler--phone-ringing text-lg"></i>
+                                            Get a Demo
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <img src="assets/images/auth-card-bg.svg" class="max-h-87.5 absolute top-0 end-0" alt="auth-card-bg" />
+                            </div>
+
+                            <section class="border-default-300 border-b border-dashed py-8 md:py-15">
+                                <div class="container">
+                                    <div class="mb-8 text-center md:mb-10 lg:mb-15">
+                                        <span class="text-default-400 inline-block rounded-md">💼 Tailored Solutions for Every Need</span>
+                                        <h3 class="text-default-900 mt-5 text-2xl font-bold">
+                                            Explore Our Professional
+                                            <span class="text-primary">Services</span>
+                                            and Expertise
+                                        </h3>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-base md:gap-x-15 md:gap-y-4 lg:grid-cols-3">
+                                        <!-- Multiple Frameworks -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--device-desktop size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">Strategic Consulting</h4>
+                                                <p class="text-default-400 mb-5">We help businesses define clear digital goals and create custom strategies that align with long-term success. From planning to execution.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Multiple Demos -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--layout size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">SEO & Traffic Growth</h4>
+                                                <p class="text-default-400 mb-5">Boost your search visibility and drive organic traffic with our comprehensive SEO services — including keyword strategy, technical audits, etc.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Customizable UI -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--brush size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">Social Media Management</h4>
+                                                <p class="text-default-400 mb-5">Elevate your brand's presence with targeted content, community engagement, and performance analytics across platforms like Instagram, Facebook, etc.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Web Development -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--code size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">Custom Web Development</h4>
+                                                <p class="text-default-400 mb-5">We build modern, scalable websites and applications tailored to your business needs — optimized for speed, mobile responsiveness.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Mobile Apps -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--rocket size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">Brand Identity & Design</h4>
+                                                <p class="text-default-400 mb-5">From logos to full brand systems, we create memorable visual identities that express your values and connect with your target audience.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- UI/UX Design -->
+                                        <div class="border-0 p-4 text-center md:p-6">
+                                            <div>
+                                                <div class="bg-secondary/15 text-secondary mx-auto mb-5 flex size-12 items-center justify-center rounded-full">
+                                                    <i class="iconify tabler--palette size-5.5"></i>
+                                                </div>
+                                                <h4 class="mb-2.5 text-lg">Analytics & Insights</h4>
+                                                <p class="text-default-400 mb-5">Turn data into decisions with real-time dashboards, performance reports, and analytics solutions that help you measure success.</p>
+                                                <a href="#" class="text-primary flex items-center justify-center gap-1 text-sm">
+                                                    Know more
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="py-8 md:py-15">
+                                <div class="container">
+                                    <div class="mb-8 text-center md:mb-10 lg:mb-15">
+                                        <h3 class="text-default-900 text-xl font-bold">
+                                            Meet Our
+                                            <span class="bg-warning/15 text-warning rounded px-1.5 py-1">Dedicated</span>
+                                            Team
+                                        </h3>
+                                    </div>
+
+                                    <div class="mb-5 flex flex-wrap justify-center *:2xl:w-1/5 *:md:w-1/3 w-full -mx-3 *:mb-base">
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-1.jpg" alt="Emily Carter" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">David Dev</h4>
+                                                    <p class="text-default-400 italic">Chief Executive Officer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-2.jpg" alt="Michael Lee" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Michael Lee</h4>
+                                                    <p class="text-default-400 italic">Head of Development</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-3.jpg" alt="Sophia Gomez" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Sophia Gomez</h4>
+                                                    <p class="text-default-400 italic">Marketing Director</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-4.jpg" alt="Daniel Kim" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Daniel Kim</h4>
+                                                    <p class="text-default-400 italic">UI/UX Lead</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-8.jpg" alt="Hannah White" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Hannah White</h4>
+                                                    <p class="text-default-400 italic">Product Manager</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-5.jpg" alt="Liam Smith" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Liam Smith</h4>
+                                                    <p class="text-default-400 italic">Frontend Developer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-6.jpg" alt="Chloe Brown" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Chloe Brown</h4>
+                                                    <p class="text-default-400 italic">Data Analyst</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-7.jpg" alt="Ethan Ross" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Ethan Ross</h4>
+                                                    <p class="text-default-400 italic">QA Specialist</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2.5">
+                                            <div class="card border-light">
+                                                <div class="card-body text-center">
+                                                    <div class="mx-auto mb-5 size-37.5">
+                                                        <img src="assets/images/users/user-9.jpg" alt="Lena Marshall" class="rounded" />
+                                                    </div>
+                                                    <h4 class="text-default-700 mb-1.25 text-base">Lena Marshall</h4>
+                                                    <p class="text-default-400 italic">UI/UX Designer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="bg-light/25 rounded border border-dashed border-default-300 px-6 py-8 md:px-15 md:py-15">
+                                <div class="container">
+                                    <div class="mb-8 text-center md:mb-10 lg:mb-15">
+                                        <h3 class="text-default-900 text-xl font-bold">
+                                            Expanding Horizons.
+                                            <span class="text-primary">Empowering</span>
+                                            Futures
+                                        </h3>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-base lg:grid-cols-3">
+                                        <div class="card border-light p-2.5">
+                                            <div class="card-body">
+                                                <img src="assets/images/flags/us.svg" class="mb-5 size-12 rounded-full" />
+                                                <h4 class="mb-2.5 text-lg">United States</h4>
+                                                <p class="text-default-400 mb-5">
+                                                    501 Elm Street, Suite 500
+                                                    <br />
+                                                    New York, NY 10001
+                                                    <br />
+                                                    USA
+                                                </p>
+                                                <a href="#" class="text-primary flex items-center justify-start gap-1 text-sm">
+                                                    Contact Us
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="card border-light p-2.5">
+                                            <div class="card-body">
+                                                <img src="assets/images/flags/gb.svg" class="mb-5 size-12 rounded-full" />
+                                                <h4 class="mb-2.5 text-lg">United Kingdom</h4>
+                                                <p class="text-default-400 mb-5">
+                                                    221B Baker Street
+                                                    <br />
+                                                    London, NW1 6XE
+                                                    <br />
+                                                    United Kingdom
+                                                </p>
+                                                <a href="#" class="text-primary flex items-center justify-start gap-1 text-sm"> Contact Us <i class="iconify tabler--arrow-right"></i> </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="card border-light p-2.5">
+                                            <div class="card-body">
+                                                <img src="assets/images/flags/in.svg" class="mb-5 size-12 rounded-full" />
+                                                <h4 class="mb-2.5 text-lg">India</h4>
+                                                <p class="text-default-400 mb-5">
+                                                    15 MG Road, 2nd Floor
+                                                    <br />
+                                                    Bengaluru, Karnataka 560001
+                                                    <br />
+                                                    India
+                                                </p>
+                                                <a href="#" class="text-primary flex items-center justify-start gap-1 text-sm">
+                                                    Contact Us
+                                                    <i class="iconify tabler--arrow-right"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+</body>
+
+</html>

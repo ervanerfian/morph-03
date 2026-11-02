@@ -1,0 +1,487 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Tabs' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Base UI", "title": "Tabs"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Base UI", "title": "Tabs"}) }}
+
+                <div class="container-fluid">
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-base">
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Default Tabs</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">Simple widget of tabbable panes of local content.</p>
+<div>
+<nav aria-label="Tabs" class="flex flex-wrap" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="default-overview" aria-selected="true" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex items-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#default-overview" id="overview" role="tab" type="button">
+                                            Overview
+                                        </button>
+<button aria-controls="default-activity" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary active inline-flex items-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#default-activity" id="activity" role="tab" type="button">
+                                            Activity
+                                        </button>
+<button aria-controls="default-settings" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex items-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#default-settings" id="settings" role="tab" type="button">
+                                            Settings
+                                        </button>
+<button aria-controls="default-Disabled" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex items-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#default-Disabled" disabled="" id="disabled" role="tab" type="button">
+                                            Disabled
+                                        </button>
+</nav>
+</div>
+<div class="mt-5">
+<div aria-labelledby="overview" class="hidden" id="default-overview" role="tabpanel">
+<p>This dashboard provides a quick overview of your recent activity, performance metrics, and system status. You can easily monitor key indicators, recent logins, pending tasks, and overall user engagement.</p>
+</div>
+<div aria-labelledby="activity" id="default-activity" role="tabpanel">
+<p>View your latest interactions and actions taken across the platform. This includes recent file uploads, comments, status updates, and notification history to keep you up to date with ongoing changes.</p>
+</div>
+<div aria-labelledby="settings" class="hidden" id="default-settings" role="tabpanel">
+<p>Customize your account preferences including theme options, notification settings, and privacy controls. Adjust layout configurations to suit your workflow and manage integration with third-party services.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Tabs Justified</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Justified navigation items stretch to fill the full available width, ensuring all tabs
+                                    are evenly spaced across the container.
+                                </p>
+<div>
+<nav aria-label="Tabs" class="flex flex-wrap md:flex-nowrap" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="overview1" aria-selected="true" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex w-auto items-center justify-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#overview1" id="overview-1" role="tab" type="button">
+                                            Overview
+                                        </button>
+<button aria-controls="profile1" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary active inline-flex w-auto items-center justify-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#profile1" id="profile-1" role="tab" type="button">
+                                            Profile
+                                        </button>
+<button aria-controls="settings1" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex w-auto items-center justify-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#settings1" id="settings-1" role="tab" type="button">
+                                            Settings
+                                        </button>
+<button aria-controls="projects1" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex w-auto items-center justify-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#projects1" id="projects-1" role="tab" type="button">
+                                            Projects
+                                        </button>
+<button aria-controls="Support1" aria-selected="false" class="hs-tab-active:border-b-transparent hs-tab-active:bg-card border-default-300 hs-tab-active:border hs-tab-active:text-primary hover:text-primary inline-flex w-auto items-center justify-center rounded-t border-b px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#Support1" id="Support-1" role="tab" type="button">
+                                            Support
+                                        </button>
+</nav>
+</div>
+<div class="mt-5">
+<div aria-labelledby="overview-1" class="hidden" id="overview1" role="tabpanel">
+<p>Get a high-level summary of recent activity, key performance indicators, and important announcements. Stay informed and make quick decisions based on real-time insights.</p>
+</div>
+<div aria-labelledby="profile-1" id="profile1" role="tabpanel">
+<p>Customize your profile, update personal information, and manage security settings like passwords and 2FA. Keep your account secure and up to date with your latest details.</p>
+</div>
+<div aria-labelledby="settings-1" class="hidden" id="settings1" role="tabpanel">
+<p>Configure system preferences, theme options, and notification settings. Easily adapt the platform to fit your workflow and preferences.</p>
+</div>
+<div aria-labelledby="projects-1" class="hidden" id="projects1" role="tabpanel">
+<p>View and manage all ongoing projects, tasks, and milestones. Collaborate with your team and track progress in real-time.</p>
+</div>
+<div aria-labelledby="Support-1" class="hidden" id="Support1" role="tabpanel">
+<p>Need help? Reach out to our support team or browse the help center for common questions, guides, and documentation.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Tabs Vertical Left</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Navigation items can be stacked vertically by changing the flex direction to column,
+                                    making them display one below another.
+                                </p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base">
+<nav aria-label="Tabs" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="v-pills-home-tab" aria-selected="true" class="hs-tab-active:bg-primary hs-tab-active:text-white hover:text-primary active inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-home-tab" id="vertical-overview" role="tab" type="button">
+                                            Overview
+                                        </button>
+<button aria-controls="v-pills-profile-tab" aria-selected="false" class="hs-tab-active:bg-primary hs-tab-active:text-white hover:text-primary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-profile-tab" id="vertical-activity" role="tab" type="button">
+                                            Activity
+                                        </button>
+<button aria-controls="v-pills-settings-tab" aria-selected="false" class="hs-tab-active:bg-primary hs-tab-active:text-white hover:text-primary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-settings-tab" id="vertical-settings" role="tab" type="button">
+                                            Settings
+                                        </button>
+<button aria-controls="v-pills-projects-tab" aria-selected="false" class="hs-tab-active:bg-primary hs-tab-active:text-white hover:text-primary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-projects-tab" id="vertical-disabled" role="tab" type="button">
+                                            Projects
+                                        </button>
+<button aria-controls="v-pills-support-tab" aria-selected="false" class="hs-tab-active:bg-primary hs-tab-active:text-white hover:text-primary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-support-tab" id="vertical-support" role="tab" type="button">
+                                            Support
+                                        </button>
+</nav>
+<div class="md:col-span-3">
+<div aria-labelledby="vertical-overview" id="v-pills-home-tab" role="tabpanel">
+<p class="mb-2">Welcome to your dashboard. Get an at-a-glance view of your recent activity, top stats, and personalized suggestions to enhance productivity and stay on track.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>View total project status</li>
+<li>Quick links to recent files</li>
+<li>Weekly performance charts</li>
+</ul>
+<p>Your dashboard is tailored to your activity and roles. Stay informed and always one step ahead.</p>
+</div>
+<div aria-labelledby="vertical-activity" class="hidden" id="v-pills-profile-tab" role="tabpanel">
+<p class="mb-2">Manage your personal details, change your profile photo, and update your contact information.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Name, Email, Phone</li>
+<li>Change Password</li>
+<li>Activity logs and preferences</li>
+</ul>
+<p>Keeping your profile up to date ensures a better and more secure experience.</p>
+</div>
+<div aria-labelledby="vertical-settings" class="hidden" id="v-pills-settings-tab" role="tabpanel">
+<p class="mb-2">Customize your preferences, notification options, and privacy settings.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Theme selection: Light / Dark mode</li>
+<li>Email &amp; push notification toggles</li>
+<li>Linked accounts and integrations</li>
+</ul>
+<p>Settings help personalize your interface and improve your workflow efficiency.</p>
+</div>
+<div aria-labelledby="vertical-projects" class="hidden" id="v-pills-projects-tab" role="tabpanel">
+<p class="mb-2">Track all your active, completed, and upcoming projects in one place.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Kanban board and Gantt charts</li>
+<li>Task assignments and deadlines</li>
+<li>Progress indicators and timelines</li>
+</ul>
+<p>Use collaboration tools, upload documents, and manage deliverables directly from here.</p>
+</div>
+<div aria-labelledby="vertical-support" class="hidden" id="v-pills-support-tab" role="tabpanel">
+<p class="mb-2">Need assistance? Access our help center or contact our support team directly.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Browse FAQs and tutorials</li>
+<li>Submit a support ticket</li>
+<li>Live chat with support agents</li>
+</ul>
+<p>We’re here 24/7 to assist you with anything you need—technical or account-related.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Tabs with Colored Navs</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Pill-style navigation applies rounded, color-based styles to navigation items,
+                                    making the active state more visually distinct.
+                                </p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-base">
+<div class="md:col-span-3">
+<div aria-labelledby="right-overview" id="v-pills-home-right" role="tabpanel">
+<p class="mb-2">Welcome to your dashboard. Get an at-a-glance view of your recent activity, top stats, and personalized suggestions to enhance productivity and stay on track.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>View total project status</li>
+<li>Quick links to recent files</li>
+<li>Weekly performance charts</li>
+</ul>
+<p>Your dashboard is tailored to your activity and roles. Stay informed and always one step ahead.</p>
+</div>
+<div aria-labelledby="right-activity" class="hidden" id="v-pills-profile-right" role="tabpanel">
+<p class="mb-2">Manage your personal details, change your profile photo, and update your contact information.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Name, Email, Phone</li>
+<li>Change Password</li>
+<li>Activity logs and preferences</li>
+</ul>
+<p>Keeping your profile up to date ensures a better and more secure experience.</p>
+</div>
+<div aria-labelledby="right-settings" class="hidden" id="v-pills-settings-right" role="tabpanel">
+<p class="mb-2">Customize your preferences, notification options, and privacy settings.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Theme selection: Light / Dark mode</li>
+<li>Email &amp; push notification toggles</li>
+<li>Linked accounts and integrations</li>
+</ul>
+<p>Settings help personalize your interface and improve your workflow efficiency.</p>
+</div>
+<div aria-labelledby="right-projects" class="hidden" id="v-pills-projects-right" role="tabpanel">
+<p class="mb-2">Track all your active, completed, and upcoming projects in one place.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Kanban board and Gantt charts</li>
+<li>Task assignments and deadlines</li>
+<li>Progress indicators and timelines</li>
+</ul>
+<p>Use collaboration tools, upload documents, and manage deliverables directly from here.</p>
+</div>
+<div aria-labelledby="right-support" class="hidden" id="v-pills-support-right" role="tabpanel">
+<p class="mb-2">Need assistance? Access our help center or contact our support team directly.</p>
+<ul class="mb-4 list-disc space-y-1 ps-8">
+<li>Browse FAQs and tutorials</li>
+<li>Submit a support ticket</li>
+<li>Live chat with support agents</li>
+</ul>
+<p>We’re here 24/7 to assist you with anything you need—technical or account-related.</p>
+</div>
+</div>
+<nav aria-label="Tabs" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="v-pills-home-right" aria-selected="true" class="hs-tab-active:bg-secondary hs-tab-active:text-white hover:text-secondary active inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-home-right" id="right-overview" role="tab" type="button">
+                                            Overview
+                                        </button>
+<button aria-controls="v-pills-profile-right" aria-selected="false" class="hs-tab-active:bg-secondary hs-tab-active:text-white hover:text-secondary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-profile-right" id="right-activity" role="tab" type="button">
+                                            Activity
+                                        </button>
+<button aria-controls="v-pills-settings-right" aria-selected="false" class="hs-tab-active:bg-secondary hs-tab-active:text-white hover:text-secondary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-settings-right" id="right-settings" role="tab" type="button">
+                                            Settings
+                                        </button>
+<button aria-controls="v-pills-projects-right" aria-selected="false" class="hs-tab-active:bg-secondary hs-tab-active:text-white hover:text-secondary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-projects-right" id="right-disabled" role="tab" type="button">
+                                            Projects
+                                        </button>
+<button aria-controls="v-pills-support-right" aria-selected="false" class="hs-tab-active:bg-secondary hs-tab-active:text-white hover:text-secondary inline-flex w-full items-center rounded px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#v-pills-support-right" id="right-support" role="tab" type="button">
+                                            Support
+                                        </button>
+</nav>
+</div>
+<!-- end card-body-->
+</div>
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Tabs Bordered</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Navigation items can also use a simple bottom border style to highlight the active
+                                    state while keeping the design minimal.
+                                </p>
+<div>
+<nav aria-label="Tabs" class="border-default-300 flex flex-wrap border-b" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="home-b1" aria-selected="true" class="hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#home-b1" id="home-border" role="tab" type="button">
+                                            Home
+                                        </button>
+<button aria-controls="profile-b1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary active inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#profile-b1" id="profile-border" role="tab" type="button">
+                                            Profile
+                                        </button>
+<button aria-controls="settings-b1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#settings-b1" id="settings-border" role="tab" type="button">
+                                            Settings
+                                        </button>
+<button aria-controls="about-b1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#about-b1" id="about-border" role="tab" type="button">
+                                            About
+                                        </button>
+</nav>
+</div>
+<div class="mt-5">
+<div aria-labelledby="home-border" class="hidden" id="home-b1" role="tabpanel">
+<p>Welcome to our online platform! Here, we strive to offer the best products and services tailored to your lifestyle. Whether you're redecorating your home or looking for expert advice on the latest trends, we've got you covered.</p>
+</div>
+<div aria-labelledby="profile-border" id="profile-b1" role="tabpanel">
+<p>Hi! I am an avid explorer, constantly seeking new adventures and insights. My passions include technology, literature, travel, fitness, and self-development. I enjoy learning new skills and sharing knowledge with others to foster personal growth.</p>
+</div>
+<div aria-labelledby="settings-border" class="hidden" id="settings-b1" role="tabpanel">
+<p>Nestled in the heart of the city, a charming cafe offers a peaceful retreat from the urban hustle. Its inviting ambiance, with its cozy decor and warm lighting, provides the perfect setting for relaxation or a productive meeting.</p>
+</div>
+<div aria-labelledby="about-border" class="hidden" id="about-b1" role="tabpanel">
+<p>Our company is dedicated to offering high-quality services and products designed to enrich your life. With a focus on sustainability and innovation, we aim to create lasting value for our customers. Join us on our journey to make everyday living better!</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Bordered Tabs with Colored Border</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Navigation bars can use colored border styles to visually highlight active or selected
+                                    items while maintaining a minimal layout.
+                                </p>
+<div>
+<nav aria-label="Tabs" class="border-default-300 flex border-b" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="home-ib1" aria-selected="true" class="hs-tab-active:border-b hs-tab-active:border-danger hs-tab-active:text-danger hover:text-danger inline-flex w-auto items-center justify-center gap-1 px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#home-ib1" id="home-icon" role="tab" type="button">
+<i class="iconify tabler--smart-home text-base"></i>
+<div class="hidden md:block">
+                                                Home
+                                            </div>
+</button>
+<button aria-controls="profile-ib1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-danger hs-tab-active:text-danger hover:text-danger active inline-flex w-auto items-center justify-center gap-1 px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#profile-ib1" id="profile-icon" role="tab" type="button">
+<i class="iconify tabler--user-circle text-base"></i>
+<div class="hidden md:block">
+                                                Profile
+                                            </div>
+</button>
+<button aria-controls="settings-ib1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-danger hs-tab-active:text-danger hover:text-danger inline-flex w-auto items-center justify-center gap-1 px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#settings-ib1" id="settings-icon" role="tab" type="button">
+<i class="iconify tabler--settings text-base"></i>
+<div class="hidden md:block">
+                                                Settings
+                                            </div>
+</button>
+<button aria-controls="about-ib1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-danger hs-tab-active:text-danger hover:text-danger inline-flex w-auto items-center justify-center gap-1 px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 md:w-full" data-hs-tab="#about-ib1" id="about-icon" role="tab" type="button">
+<i class="iconify tabler--alert-octagon text-base"></i>
+<div class="hidden md:block">
+                                                About
+                                            </div>
+</button>
+</nav>
+</div>
+<div class="mt-5">
+<div aria-labelledby="home-icon" class="hidden" id="home-ib1" role="tabpanel">
+<p>Welcome to our online platform! Our goal is to offer a wide variety of products and services that meet the needs of modern living. From cutting-edge technology to home decor solutions, we ensure that every product enhances your lifestyle and makes your life easier.</p>
+</div>
+<div aria-labelledby="profile-icon" id="profile-ib1" role="tabpanel">
+<p>Hi there! I'm an avid explorer with a passion for technology, fitness, and continuous learning. I enjoy meeting like-minded individuals and believe in expanding my knowledge on diverse subjects, from the latest gadgets to personal development.</p>
+</div>
+<div aria-labelledby="settings-icon" class="hidden" id="settings-ib1" role="tabpanel">
+<p>In the center of the city stands a quiet, charming bookstore that offers a peaceful retreat. Surrounded by vibrant streets, it provides a calm, inviting atmosphere for readers to lose themselves in books while enjoying a cup of coffee in the cozy corner.</p>
+</div>
+<div aria-labelledby="about-icon" class="hidden" id="about-ib1" role="tabpanel">
+<p>We are a forward-thinking company focused on creating innovative solutions that empower our customers. Our team is driven by creativity and a passion for delivering exceptional experiences through high-quality products and services that cater to a variety of needs.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header">
+<h4 class="card-title">Icons Tabs</h4>
+<button class="btn size-6 rounded-full bg-light text-dark hover:text-primary" data-action="card-toggle">
+<i class="iconify tabler--chevron-up text-base"></i>
+</button>
+</div>
+<div class="card-body">
+<p class="text-default-400 mb-4">
+                                    Navigation items can also use a simple bottom border style to indicate the active
+                                    state while keeping the layout clean and minimal.
+                                </p>
+<div>
+<nav aria-label="Tabs" class="border-default-300 flex flex-wrap border-b" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="home-i1" aria-selected="true" class="hs-tab-active:border-b hs-tab-active:border-success hs-tab-active:text-success hover:text-success inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#home-i1" id="home-icon" role="tab" type="button">
+<i class="iconify tabler--smart-home size-5.5"></i>
+</button>
+<button aria-controls="profile-i1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-success hs-tab-active:text-success hover:text-success active inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#profile-i1" id="profile-icon" role="tab" type="button">
+<i class="iconify tabler--user-circle size-5.5"></i>
+</button>
+<button aria-controls="settings-i1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-success hs-tab-active:text-success hover:text-success inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#settings-i1" id="settings-icon" role="tab" type="button">
+<i class="iconify tabler--settings size-5.5"></i>
+</button>
+<button aria-controls="about-i1" aria-selected="false" class="hs-tab-active:border-b hs-tab-active:border-success hs-tab-active:text-success hover:text-success inline-flex items-center px-4 py-2 text-center font-medium focus:outline-hidden disabled:pointer-events-none disabled:opacity-50" data-hs-tab="#about-i1" id="about-icon" role="tab" type="button">
+<i class="iconify tabler--alert-octagon size-5.5"></i>
+</button>
+</nav>
+</div>
+<div class="mt-5">
+<div aria-labelledby="home-border" class="hidden" id="home-i1" role="tabpanel">
+<p>Discover our platform designed to make your daily life easier. From modern interiors to smart home gadgets, our curated selection is tailored for comfort, functionality, and style.</p>
+</div>
+<div aria-labelledby="profile-border" id="profile-i1" role="tabpanel">
+<p>Hello! I’m a creative thinker who thrives on innovation and meaningful connections. I enjoy exploring tech trends, reading insightful books, and traveling to experience new cultures and cuisines.</p>
+</div>
+<div aria-labelledby="settings-border" class="hidden" id="settings-i1" role="tabpanel">
+<p>A peaceful workspace can make all the difference. That’s why we offer customizable setups, soundproofing tips, and productivity tools to help you stay focused and inspired every day.</p>
+</div>
+<div aria-labelledby="about-border" class="hidden" id="about-i1" role="tabpanel">
+<p>We’re a team of innovators passionate about creating seamless experiences. Our mission is to deliver solutions that merge design, functionality, and purpose in every project we undertake.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+<div class="card">
+<div class="card-header border-dashed">
+<h4 class="card-title">Card with Tabs</h4>
+<nav aria-label="Tabs" class="nav-tabs" data-hs-tab-select="#tab-select" role="tablist">
+<button aria-controls="home-ct" aria-selected="true" class="nav-link hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary" data-hs-tab="#home-ct" id="summary" role="tab" type="button">
+<i class="iconify tabler--smart-home block md:hidden"></i>
+<div class="hidden md:block">
+                                            Summary
+                                        </div>
+</button>
+<button aria-controls="profile-ct" aria-selected="false" class="nav-link hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary active" data-hs-tab="#profile-ct" id="accounts" role="tab" type="button">
+<i class="iconify tabler--user-circle block md:hidden"></i>
+<div class="hidden md:block">
+                                            Accounts
+                                        </div>
+</button>
+<button aria-controls="settings-ct" aria-selected="false" class="nav-link hs-tab-active:border-b hs-tab-active:border-primary hs-tab-active:text-primary hover:text-primary" data-hs-tab="#settings-ct" id="setting" role="tab" type="button">
+<i class="iconify tabler--settings block md:hidden"></i>
+<div class="hidden md:block">
+                                            Settings
+                                        </div>
+</button>
+</nav>
+</div>
+<div class="card-body">
+<div>
+<div aria-labelledby="summary" class="hidden" id="home-ct" role="tabpanel">
+<p>Welcome to your financial dashboard. Here, you can monitor real-time updates on your income, expenses, savings, and investments. Our tools are designed to help you make informed decisions and achieve your financial goals faster.</p>
+</div>
+<div aria-labelledby="accounts" id="profile-ct" role="tabpanel">
+<p>View and manage all your bank accounts, credit cards, and loan details in one place. Link your financial institutions securely and keep track of balances, transactions, and payment schedules with ease.</p>
+</div>
+<div aria-labelledby="setting" class="hidden" id="settings-ct" role="tabpanel">
+<p>Customize your preferences including budgeting alerts, currency format, report frequency, and security settings. Enable multi-factor authentication and choose how you'd like to receive account activity notifications.</p>
+</div>
+</div>
+</div>
+<!-- end card-body-->
+</div>
+<!-- end card-->
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

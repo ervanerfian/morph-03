@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <?php $title = "Clipboard"; include('partials/title-meta.php'); ?>
+
+    <?php include('./partials/head-css.php'); ?>
+</head>
+
+<body>
+    <div class="wrapper">
+        <?php $subtitle = "Plugins"; $title = "Clipboard"; include('./partials/topbar.php'); ?>
+
+        <?php include('./partials/sidenav.php'); ?>
+
+        <!-- Start Page Content here -->
+        <div class="page-content">
+            <main>
+
+                <?php $subtitle = "Plugins"; $title = "Clipboard"; include('./partials/page-title.php'); ?>
+
+                <div class="container-fluid">
+                    <div class="grid xl:grid-cols-1 gap-base">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Examples</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="grid xl:grid-cols-2 gap-base">
+                                    <!-- Copy from Element -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy from Element</h5>
+                                        <p class="text-default-400 mb-2.5">
+                                            Use
+                                            <code>data-clipboard-target</code>
+                                            to copy text from a specific element.
+                                        </p>
+                                        <p class="text-primary mb-4 font-bold" id="copytext">Click the button to copy this promotional text.</p>
+                                        <button class="btn btn-sm bg-primary hover:bg-primary-hover text-white" data-clipboard-target="#copytext">
+                                            <i class="iconify tabler--copy me-1"></i>
+                                            Copy Text
+                                        </button>
+                                    </div>
+
+                                    <!-- Cut from Textarea -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Cut from Textarea</h5>
+                                        <p class="text-default-400 mb-2.5">
+                                            Use
+                                            <code>data-clipboard-action</code>
+                                            with
+                                            <code>cut</code>
+                                            to remove and copy content.
+                                        </p>
+                                        <textarea class="form-textarea" id="cuttext">This content will be cut and removed from this textarea.</textarea>
+                                        <button class="btn btn-sm bg-primary hover:bg-primary-hover mt-3 text-white" data-clipboard-action="cut" data-clipboard-target="#cuttext">
+                                            <i class="iconify tabler--cut me-1"></i>
+                                            Cut Content
+                                        </button>
+                                    </div>
+
+                                    <!-- Copy Email Address -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy Email Address</h5>
+                                        <p class="text-default-400 mb-2.5">Click the button to copy this contact email:</p>
+                                        <span id="emailToCopy" class="text-primary block font-bold">support&#64;example.com</span>
+                                        <button class="btn btn-sm bg-primary hover:bg-primary-hover mt-2 text-white" data-clipboard-target="#emailToCopy">
+                                            <i class="iconify tabler--copy me-1"></i>
+                                            Copy Email
+                                        </button>
+                                    </div>
+
+                                    <!-- Cut Input Value -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Cut Input Value</h5>
+                                        <p class="text-default-400 mb-2.5">This cuts the value from a single-line input field.</p>
+                                        <input type="text" id="cutInput" class="form-input" value="Temporary token: 8GDF-393K-L99Z" />
+                                        <button class="btn btn-sm bg-danger hover:bg-danger-hover mt-2 text-white" data-clipboard-action="cut" data-clipboard-target="#cutInput">
+                                            <i class="iconify tabler--cut me-1"></i>
+                                            Cut Token
+                                        </button>
+                                    </div>
+
+                                    <!-- Copy Code Snippet -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy Code Snippet</h5>
+                                        <p class="text-default-400 mb-2.5">Copy this snippet by clicking the button:</p>
+                                        <pre><code id="codeSnippet">npm install clipboard --save</code></pre>
+                                        <button class="btn btn-sm bg-success hover:bg-success-hover mt-2 text-white" data-clipboard-target="#codeSnippet">
+                                            <i class="iconify tabler--copy me-1"></i>
+                                            Copy Command
+                                        </button>
+                                    </div>
+
+                                    <!-- Copy from Input Group -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy from Input Group</h5>
+                                        <p class="text-default-400 mb-2.5">Click the copy icon to copy the link here:</p>
+                                        <div class="input-group flex">
+                                            <input type="text" class="form-input" id="copyLink" value="https://example.com/invite?ref=12345" readonly />
+                                            <button class="btn btn-icon bg-secondary text-white hover:bg-secondary-hover" type="button" data-clipboard-target="#copyLink">
+                                                <i class="iconify tabler--copy text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Copy Username -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy Username</h5>
+                                        <p class="text-default-400 mb-2.5">Copy a predefined username from a span element.</p>
+                                        <span id="copyUsername" class="text-primary block font-bold">john_doe_92</span>
+                                        <button class="btn btn-sm bg-primary hover:bg-primary-hover mt-2 text-white" data-clipboard-target="#copyUsername">
+                                            <i class="iconify tabler--copy me-1"></i>
+                                            Copy Username
+                                        </button>
+                                    </div>
+
+                                    <!-- Copy Discount Code -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy Discount Code</h5>
+                                        <p class="text-default-400 mb-2.5">Copy a promotional discount code for checkout.</p>
+                                        <div class="input-group flex">
+                                            <input type="text" id="discountCode" class="form-input" value="SAVE20NOW" readonly />
+                                            <button class="btn btn-icon bg-warning text-white" type="button" data-clipboard-target="#discountCode">
+                                                <i class="iconify tabler--copy text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Copy HTML Template -->
+                                    <div class="border-light h-full rounded border p-5">
+                                        <h5 class="mb-1.25">Copy HTML Template</h5>
+                                        <p class="text-default-400 mb-2.5">Copy a block of HTML code from a &lt;pre&gt; tag.</p>
+                                        <code id="htmlTemplate">&lt;button class="btn bg-primary text-white hover:bg-primary-hover"&gt;Click Me&lt;/button&gt;</code>
+                                        <br />
+                                        <button class="btn btn-sm bg-info hover:bg-info-hover mt-2 text-white" data-clipboard-target="#htmlTemplate">
+                                            <i class="iconify tabler--copy me-1"></i>
+                                            Copy HTML
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card-body-->
+                        </div>
+                        <!-- end card-->
+                    </div>
+                </div>
+            </main>
+
+            <?php include('./partials/footer.php'); ?>
+        </div>
+        <!-- End Page content -->
+    </div>
+
+    <?php include('./partials/customizer.php'); ?>
+
+    <?php include('./partials/footer-scripts.php'); ?>
+
+    <!-- Clipboard js -->
+    <script src="assets/plugins/clipboard/clipboard.min.js"></script>
+
+    <!-- Clipboard Plugin Js -->
+    <script src="assets/js/pages/plugins-clipboard.js"></script>
+
+</body>
+
+</html>

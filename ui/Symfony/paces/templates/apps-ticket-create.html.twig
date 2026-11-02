@@ -1,0 +1,108 @@
+{% extends 'layouts/base.html.twig' %}
+
+
+
+{% set title = 'Create New Ticket' %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+        {{ include('partials/topbar.html.twig', {"subtitle": "Support", "title": "Create New Ticket"}) }}
+
+        {{ include('partials/sidenav.html.twig') }}
+
+        <!-- Start Page Content here -->
+<div class="page-content">
+<main>
+
+                {{ include('partials/page-title.html.twig', {"subtitle": "Support", "title": "Create New Ticket"}) }}
+
+                <div class="container-fluid">
+<div class="2xl:w-10/12 w-full mx-auto">
+<div class="card">
+<div class="card-body">
+<!-- form -->
+<form action="#" method="post">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-base gap-y-5">
+<!-- Requester Name -->
+<div class="md:col-span-2">
+<label class="form-label" for="requester">Requester Name</label>
+<input class="form-input" id="requester" placeholder="Enter your full name" type="text"/>
+</div>
+<!-- Email -->
+<div class="md:col-span-2">
+<label class="form-label" for="email">Email Address</label>
+<input class="form-input" id="email" placeholder="you@example.com" type="email"/>
+</div>
+<!-- Subject -->
+<div class="md:col-span-2">
+<label class="form-label" for="subject">Ticket Subject</label>
+<input class="form-input" id="subject" placeholder="Brief summary of the issue" type="text"/>
+</div>
+<!-- Priority -->
+<div>
+<label class="form-label" for="priority">Priority</label>
+<select class="form-select" id="priority">
+<option disabled="" selected="">Choose...</option>
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+<option value="Urgent">Urgent</option>
+</select>
+</div>
+<!-- Status -->
+<div>
+<label class="form-label" for="tickstatus">Status</label>
+<select class="form-select" id="tickstatus">
+<option disabled="" selected="">Choose...</option>
+<option value="Pending">Pending</option>
+<option value="In Progress">In Progress</option>
+<option value="Resolved">Resolved</option>
+<option value="Closed">Closed</option>
+</select>
+</div>
+<!-- Tags -->
+<div class="md:col-span-2">
+<label class="form-label" for="tags">Tags (comma-separated)</label>
+<input class="form-input" id="tags" placeholder="e.g. login, error, payment" type="text"/>
+</div>
+<!-- Description -->
+<div class="mb-7.5 md:col-span-2">
+<label class="form-label" for="description">Description</label>
+<textarea class="form-textarea" id="description" placeholder="Describe the issue in detail..." rows="5"></textarea>
+</div>
+</div>
+<!-- Buttons -->
+<div class="flex justify-center gap-3">
+<button class="btn bg-primary text-white hover:bg-primary-hover" type="submit">
+<i class="iconify tabler--plus"></i>
+                                            Submit Ticket
+                                        </button>
+<button class="btn border-secondary hover:bg-secondary text-secondary hover:text-white" type="reset">
+<i class="iconify tabler--refresh"></i>
+                                            Reset
+                                        </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+<!-- End Page content -->
+</div>
+
+    {{ include('partials/customizer.html.twig') }}
+
+    {{ include('partials/footer-scripts.html.twig') }}
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

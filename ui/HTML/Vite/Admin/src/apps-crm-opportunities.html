@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {{> title-meta title="Opportunities" }} {{> head-css}}
+    </head>
+
+    <body>
+        <div class="wrapper">
+            {{> topbar subtitle="CRM" title="Opportunities"}} {{> sidenav }}
+
+            <!-- Start Page Content here -->
+            <div class="page-content">
+                <main>
+                    {{> page-title subtitle="CRM" title="Opportunities" }}
+
+                    <div class="container-fluid">
+                        <div class="card" data-table data-table-rows-per-page="8">
+                            <div class="card-header gap-2.5">
+                                <div class="flex gap-2.5">
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--search input-icon"></i>
+                                        <input data-table-search type="search" type="search" placeholder="Search opportunity..." class="form-input" />
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2.5">
+                                    <span class="me-2.5 font-semibold text-nowrap">Filter By:</span>
+
+                                    <!-- Stage Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--arrows-shuffle input-icon"></i>
+                                        <select data-table-filter="stage" class="form-select">
+                                            <option value="">Stage</option>
+                                            <option value="Qualification">Qualification</option>
+                                            <option value="Proposal Sent">Proposal Sent</option>
+                                            <option value="Negotiation">Negotiation</option>
+                                            <option value="Won">Won</option>
+                                            <option value="Lost">Lost</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Status Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--circle-check input-icon"></i>
+                                        <select data-table-filter="status" class="form-select">
+                                            <option value="">Status</option>
+                                            <option value="Open">Open</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Closed">Closed</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Priority Filter -->
+                                    <div class="input-icon-group">
+                                        <i class="iconify tabler--alert-circle input-icon"></i>
+                                        <select data-table-filter="priority" data-table-filter="status" class="form-select">
+                                            <option value="">Priority</option>
+                                            <option value="High">High</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Low">Low</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Records Per Page -->
+                                    <div>
+                                        <select data-table-set-rows-per-page class="form-select">
+                                            <option value="5">5</option>
+                                            <option value="8">8</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table class="table table-hover">
+                                    <thead class="bg-light/25 thead-sm font-semibold">
+                                        <tr class="text-2xs uppercase">
+                                            <th data-table-sort>ID</th>
+                                            <th>Opportunity</th>
+                                            <th>Contact Person</th>
+                                            <th data-table-sort data-column="stage">Stage</th>
+                                            <th data-table-sort>Value (USD)</th>
+                                            <th data-table-sort>Close Date</th>
+                                            <th data-table-sort>Lead Source</th>
+                                            <th>Owner</th>
+                                            <th data-table-sort data-column="status">Status</th>
+                                            <th data-table-sort data-column="priority">Priority</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>#OP007501</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/google.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Website Redesign Deal</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Google Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-1.jpg" alt="avatar-1" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">John Carter</a>
+                                                        </p>
+                                                        <small class="text-default-400">john&#64;acme.com</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Proposal Sent</td>
+                                            <td>$12,500</td>
+                                            <td>15 Aug, 2025</td>
+                                            <td>Referral</td>
+                                            <td>Sarah Johnson</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-success/15 text-success">Open</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-danger text-white hover:bg-danger-hover">High</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP007502</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/microsoft.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Enterprise SaaS Suite</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Microsoft Corp.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-2.jpg" alt="avatar-2" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Priya Mehta</a>
+                                                        </p>
+                                                        <small class="text-default-400">priya&#64;globex.com</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Qualification</td>
+                                            <td>$50,000</td>
+                                            <td>10 Sep, 2025</td>
+                                            <td>LinkedIn</td>
+                                            <td>Michael Chen</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-warning/15 text-warning">In Progress</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-warning text-white">Medium</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009123</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/google.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Cloud Analytics Pro</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Google LLC</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-5.jpg" alt="avatar-5" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Aarav Patel</a>
+                                                        </p>
+                                                        <small class="text-default-400">aarav&#64;nextgen.io</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Negotiation</td>
+                                            <td>$75,000</td>
+                                            <td>18 Oct, 2025</td>
+                                            <td>Website</td>
+                                            <td>Sophia Lee</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-danger/15 text-danger">Closed</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-success text-white">Low</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009201</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/amazon.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Retail Insights Pro</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Amazon Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-3.jpg" alt="avatar-3" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Meena Roy</a>
+                                                        </p>
+                                                        <small class="text-default-400">meena&#64;retailhub.io</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Won</td>
+                                            <td>$92,000</td>
+                                            <td>02 Nov, 2025</td>
+                                            <td>Email</td>
+                                            <td>Daniel Kim</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-danger/15 text-danger">Closed</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-danger text-white hover:bg-danger-hover">High</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009202</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/apple.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">AI Compute Suite</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Apple Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-7.jpg" alt="avatar-7" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Kabir Shah</a>
+                                                        </p>
+                                                        <small class="text-default-400">kabir&#64;aicore.ai</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Qualification</td>
+                                            <td>$64,500</td>
+                                            <td>15 Oct, 2025</td>
+                                            <td>Referral</td>
+                                            <td>Emily Davis</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-success/15 text-success">Open</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-danger text-white hover:bg-danger-hover">High</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009203</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/dropbox.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Ad Manager Pro</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Dropbox</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-4.jpg" alt="avatar-4" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Sana Iqbal</a>
+                                                        </p>
+                                                        <small class="text-default-400">sana&#64;adstack.com</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Won</td>
+                                            <td>$120,000</td>
+                                            <td>09 Dec, 2025</td>
+                                            <td>LinkedIn</td>
+                                            <td>John Carter</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-danger/15 text-danger">Closed</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-success text-white">Low</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009204</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/slack.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">TeamCollab Enterprise</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Slack Technologies</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-6.jpg" alt="avatar-6" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Jatin Desai</a>
+                                                        </p>
+                                                        <small class="text-default-400">jatin&#64;collabzone.net</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Proposal Sent</td>
+                                            <td>$48,000</td>
+                                            <td>30 Sep, 2025</td>
+                                            <td>Webinar</td>
+                                            <td>Ashley Moore</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-warning/15 text-warning">In Progress</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-success text-white">Low</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009205</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/spotify.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Virtual Events Suite</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Spotify Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-8.jpg" alt="avatar-8" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Lina George</a>
+                                                        </p>
+                                                        <small class="text-default-400">lina&#64;meetpro.io</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Lost</td>
+                                            <td>$33,000</td>
+                                            <td>22 Oct, 2025</td>
+                                            <td>Cold Call</td>
+                                            <td>Mark Evans</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-danger/15 text-danger">Closed</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-warning text-white">Medium</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009312</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/starbucks.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Streamlytics Dashboard</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Starbucks Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-10.jpg" alt="avatar-10" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Ravi Khanna</a>
+                                                        </p>
+                                                        <small class="text-default-400">ravi&#64;streamlytics.co</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Qualification</td>
+                                            <td>$58,900</td>
+                                            <td>05 Nov, 2025</td>
+                                            <td>Trade Show</td>
+                                            <td>Jessica Moore</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-warning/15 text-warning">In Progress</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-danger text-white hover:bg-danger-hover">High</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>#OP009313</td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <div>
+                                                        <div class="btn btn-icon border-default-300 size-8 border border-dashed">
+                                                            <img src="/images/logos/airbnb.svg" alt="Product" class="size-5" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Hospitality CRM Suite</a>
+                                                        </p>
+                                                        <small class="text-default-400">By: Airbnb Inc.</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="flex items-center gap-2.5">
+                                                    <img src="/images/users/user-9.jpg" alt="avatar-9" class="size-8 rounded-full" />
+
+                                                    <div class="flex flex-col">
+                                                        <p class="font-medium">
+                                                            <a data-sort="product" href="#!" class="hover:text-primary">Isabella Wang</a>
+                                                        </p>
+                                                        <small class="text-default-400">isabella&#64;aircrm.com</small>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>Proposal Sent</td>
+                                            <td>$41,200</td>
+                                            <td>12 Nov, 2025</td>
+                                            <td>Inbound</td>
+                                            <td>Thomas Blake</td>
+                                            <td>
+                                                <span class="badge badge-label text-2xs bg-success/15 text-success">Open</span>
+                                            </td>
+                                            <td>
+                                                <span class="badge text-2xs bg-warning text-white">Medium</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="card-footer">
+                                <div data-table-pagination-info="Opportunities"></div>
+                                <div data-table-pagination></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                {{> footer }}
+            </div>
+            <!-- End Page content -->
+        </div>
+
+        {{> customizer }}
+
+        <!-- Custom table -->
+        <script type="module" src="assets/js/pages/custom-table.js"></script>
+    </body>
+</html>
