@@ -188,10 +188,13 @@ valid. Tidak mengasumsikan semua user boleh export seluruh Database.
   kali ke Data Source ID baru, salin schema dan Record dengan Record ID baru, lalu
   arahkan semua Table baru yang semula merujuk sumber yang sama ke fork yang sama.
   Database/sumber asli dan referensi lain tetap tidak berubah. Fork tidak memberi
-  akses atau memindahkan permission secara otomatis. Pemetaan identity Field
-  Definition/binding, revision pin, cakupan Record (misalnya Trash/filtered), dan
-  remap Relation edge internal/eksternal masih perlu kontrak; jangan menebak,
-  menghilangkan atau mengubah edge secara diam-diam.
+  akses atau memindahkan permission secara otomatis. Keputusan Relation edge:
+  jika source dan target Record sama-sama disalin, remap edge ke target Record
+  hasil fork. Target yang tidak ikut disalin/berada di luar cakupan fork harus
+  ditampilkan dan memerlukan mapping atau keputusan eksplisit; jangan drop,
+  pertahankan, atau retarget edge secara diam-diam. Pemetaan identity Field
+  Definition/binding, revision pin, cakupan Record (misalnya Trash/filtered),
+  otorisasi copy, dan izin untuk target eksternal tetap memerlukan kontrak.
 - **Relation ke Database eksternal paket**: tidak otomatis mengikat hanya karena
   label/ID tampak sama. Preview dan minta mapping dengan pemeriksaan scope dan
   izin; jika tidak cocok, fail closed atau selesaikan secara eksplisit, jangan

@@ -580,11 +580,13 @@ Katalog tabel ini adalah daftar kemampuan target yang sudah disebutkan, bukan en
 | **Salin Database logis (keputusan pengguna)** | Buat Database dan Table ID baru. Fork setiap Data Source ID unik yang dirujuk Database sumber tepat satu kali; salin schema dan Record ke Data Source/Record ID baru. Jika beberapa Table pada sumber memakai Data Source sama, Table baru tetap menunjuk satu fork yang sama. Database/sumber asli dan referensi lain tidak berubah. |
 
 Fork Data Source tidak otomatis memberi akses atau memindahkan permission.
-Sebelum implementasi, kontrak masih harus menetapkan pemetaan ID Field Definition
-serta binding/revision, cakupan Record yang ikut (termasuk Trash atau filter),
-dan perlakuan Relation edge internal maupun eksternal. Jangan remap, drop, atau
-mempertahankan edge lintas Data Source secara diam-diam. Kebijakan otorisasi copy
-dan apakah permission dapat disalin secara eksplisit tetap perlu review.
+Keputusan pengguna untuk Relation edge: jika source dan target Record sama-sama
+ikut disalin, remap edge ke target Record hasil fork. Target yang tidak ikut
+salin/berada di luar cakupan fork perlu preview dan mapping atau keputusan
+eksplisit; jangan drop, mempertahankan, atau retarget edge secara diam-diam.
+Sebelum implementasi, pemetaan ID Field Definition serta binding/revision,
+cakupan Record yang ikut (termasuk Trash atau filter), otorisasi copy, dan izin
+untuk Relation eksternal masih perlu review.
 
 #### 3.11.4 Engine Generate UI dari JSON Schema
 

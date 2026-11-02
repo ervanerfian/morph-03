@@ -30,9 +30,12 @@ adalah fork setiap Data Source ID unik yang dipakai Database sumber satu kali ke
 ID baru, serta menyalin schema dan Record dengan ID baru. Semua Table baru yang
 sebelumnya merujuk Data Source sama akan merujuk fork yang sama; Database/sumber
 asli dan referensi lainnya tidak berubah. Fork tidak memberi akses atau
-memindahkan permission secara otomatis. Pemetaan Field Definition/binding,
-revision pin, cakupan Record, otorisasi copy, dan remap Relation edge internal
-atau eksternal masih perlu kontrak; tidak ada perubahan edge diam-diam.
+memindahkan permission secara otomatis. Keputusan pengguna: jika source dan target
+Record sama-sama disalin, Relation edge internal di-remap ke target hasil fork.
+Target yang tidak ikut disalin atau berada di luar cakupan fork harus ditampilkan
+untuk mapping/keputusan eksplisit; jangan drop, pertahankan, atau retarget secara
+diam-diam. Pemetaan Field Definition/binding, revision pin, cakupan Record,
+otorisasi copy, dan izin untuk Relation eksternal masih perlu kontrak.
 
 Pada setiap Page, Owner menentukan Database apa yang ditampilkan: satu Database
 atau beberapa section Database yang tersusun vertikal. Database yang sama dapat
@@ -402,8 +405,10 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   referensi bekerja?
 - Untuk copy Database yang mem-fork setiap Data Source unik beserta schema dan
   Record, bagaimana Field Definition/binding dan revision dipetakan, Record mana
-  yang termasuk, bagaimana Relation edge internal/eksternal diselesaikan, serta
-  izin apa yang diperlukan? Fork tidak otomatis menyalin atau memberi permission.
+  yang termasuk, dan izin apa yang diperlukan? Edge internal sudah dipilih untuk
+  di-remap bila kedua endpoint disalin; target eksternal/tidak ikut salin harus
+  melalui preview dan mapping/keputusan eksplisit. Fork tidak otomatis menyalin
+  atau memberi permission.
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
 - Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta
