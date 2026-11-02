@@ -34,8 +34,12 @@ memindahkan permission secara otomatis. Keputusan pengguna: jika source dan targ
 Record sama-sama disalin, Relation edge internal di-remap ke target hasil fork.
 Target yang tidak ikut disalin atau berada di luar cakupan fork harus ditampilkan
 untuk mapping/keputusan eksplisit; jangan drop, pertahankan, atau retarget secara
-diam-diam. Pemetaan Field Definition/binding, revision pin, cakupan Record,
-otorisasi copy, dan izin untuk Relation eksternal masih perlu kontrak.
+diam-diam. Keputusan pengguna: reuse `field_definition_id` jika Field Definition
+memiliki semantik/config identik; key nilai Record hasil fork tetap memakai ID
+kanonis itu. Jika semantik/config berbeda, diperlukan Field Definition ID/config
+berbeda yang eksplisit. Membership binding dibuat pada Data Source fork; identitas
+row binding/revision pin, cakupan Record, otorisasi copy, dan izin untuk Relation
+eksternal masih perlu kontrak.
 
 Pada setiap Page, Owner menentukan Database apa yang ditampilkan: satu Database
 atau beberapa section Database yang tersusun vertikal. Database yang sama dapat
@@ -404,11 +408,12 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   Database, bagaimana ownership, permission, revision, dan perubahan lintas
   referensi bekerja?
 - Untuk copy Database yang mem-fork setiap Data Source unik beserta schema dan
-  Record, bagaimana Field Definition/binding dan revision dipetakan, Record mana
-  yang termasuk, dan izin apa yang diperlukan? Edge internal sudah dipilih untuk
-  di-remap bila kedua endpoint disalin; target eksternal/tidak ikut salin harus
-  melalui preview dan mapping/keputusan eksplisit. Fork tidak otomatis menyalin
-  atau memberi permission.
+  Record, bagaimana identity row binding dan revision schema dipetakan, Record
+  mana yang termasuk, serta izin apa yang diperlukan? Field Definition ID dipakai
+  ulang bila semantik/config identik; perbedaan semantik memerlukan ID/config
+  berbeda. Edge internal di-remap bila kedua endpoint disalin; target eksternal/
+  tidak ikut salin harus melalui preview dan mapping/keputusan eksplisit. Fork
+  tidak otomatis menyalin atau memberi permission.
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
 - Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta

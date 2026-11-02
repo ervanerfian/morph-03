@@ -73,7 +73,7 @@ morph_table_views
 - created_by, created_at, updated_at
 ```
 
-Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Menyalin Table View/preset presentasi membuat variasi cara melihat dan mengelola Record yang sama tanpa menggandakan data. Ini berbeda dari menyalin Database logis: keputusan pengguna untuk copy Database adalah mem-fork setiap Data Source unik beserta schema dan Record. Jika source dan target Record ikut disalin, Relation edge internal di-remap ke target fork; target eksternal/tidak ikut salin memerlukan preview dan mapping/keputusan eksplisit. Pemetaan Field Definition/binding tetap perlu kontrak.
+Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Menyalin Table View/preset presentasi membuat variasi cara melihat dan mengelola Record yang sama tanpa menggandakan data. Ini berbeda dari menyalin Database logis: keputusan pengguna untuk copy Database adalah mem-fork setiap Data Source unik beserta schema dan Record. Jika source dan target Record ikut disalin, Relation edge internal di-remap ke target fork; target eksternal/tidak ikut salin memerlukan preview dan mapping/keputusan eksplisit. Saat semantik/config sama, copy memakai ulang `field_definition_id`; jika berbeda, gunakan ID/config berbeda. Identity row binding dan revision pin tetap perlu kontrak.
 
 ### 3.3 Database instance
 

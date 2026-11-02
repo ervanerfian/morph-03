@@ -584,9 +584,12 @@ Keputusan pengguna untuk Relation edge: jika source dan target Record sama-sama
 ikut disalin, remap edge ke target Record hasil fork. Target yang tidak ikut
 salin/berada di luar cakupan fork perlu preview dan mapping atau keputusan
 eksplisit; jangan drop, mempertahankan, atau retarget edge secara diam-diam.
-Sebelum implementasi, pemetaan ID Field Definition serta binding/revision,
-cakupan Record yang ikut (termasuk Trash atau filter), otorisasi copy, dan izin
-untuk Relation eksternal masih perlu review.
+Keputusan pengguna: reuse `field_definition_id` saat semantik/config Field
+identik, sehingga key nilai Record hasil fork tetap sama; semantik/config berbeda
+memerlukan ID/config Field berbeda. Membership binding dibuat pada Data Source
+fork. Sebelum implementasi, identitas row binding/revision pin, cakupan Record
+yang ikut (termasuk Trash atau filter), otorisasi copy, dan izin untuk Relation
+eksternal masih perlu review.
 
 #### 3.11.4 Engine Generate UI dari JSON Schema
 
