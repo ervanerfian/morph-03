@@ -25,6 +25,15 @@ menampung koleksi Database**; alur yang disepakati
 adalah user memilih Template untuk membuat Database dalam Workspace. Kemungkinan
 template kosong atau jalur pembuatan lain belum diputuskan.
 
+Menyalin Database logis berbeda dari menyalin Table View: keputusan pengguna
+adalah fork setiap Data Source ID unik yang dipakai Database sumber satu kali ke
+ID baru, serta menyalin schema dan Record dengan ID baru. Semua Table baru yang
+sebelumnya merujuk Data Source sama akan merujuk fork yang sama; Database/sumber
+asli dan referensi lainnya tidak berubah. Fork tidak memberi akses atau
+memindahkan permission secara otomatis. Pemetaan Field Definition/binding,
+revision pin, cakupan Record, otorisasi copy, dan remap Relation edge internal
+atau eksternal masih perlu kontrak; tidak ada perubahan edge diam-diam.
+
 Pada setiap Page, Owner menentukan Database apa yang ditampilkan: satu Database
 atau beberapa section Database yang tersusun vertikal. Database yang sama dapat
 ditampilkan di beberapa Page sebagai instance yang sama, bukan salinan definisi
@@ -177,8 +186,11 @@ apakah Table kosong diperbolehkan. `dataSources[].bindings` menunjukkan schema
 membership pada Data Source kanonis; `tables[].dataSourceId` dan
 `tableViews[].dataSourceId` menunjuk ke identity yang sama. Dua Table pada contoh
 secara eksplisit merujuk `ds_projects` yang sama, sehingga berbagi Record/schema,
-bukan menyalin nilai. Referensi dari Database lain juga dapat menggunakan ID itu;
-akses tidak diberikan otomatis, dan policy permission/revision tetap perlu kontrak.
+bukan menyalin nilai. Ini contoh shared reference, bukan salinan Database.
+Referensi dari Database lain juga dapat menggunakan ID itu; akses tidak diberikan
+otomatis, dan policy permission/revision tetap perlu kontrak. Menyalin Database
+mengikuti kebijakan fork pada §1: setiap Data Source ID unik difork sekali beserta
+schema dan Record ke ID baru.
 `tableViews[].columns` hanya menyimpan preferensi presentation dan boleh merujuk
 Field yang tersedia pada schema Data Source tersebut. Nama/key JSON masih
 ilustratif, bukan kontrak final. ID contoh tidak boleh dipakai untuk instance nyata.
@@ -387,8 +399,11 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
 
 - Untuk Data Source ID yang secara eksplisit dirujuk oleh Table dari beberapa
   Database, bagaimana ownership, permission, revision, dan perubahan lintas
-  referensi bekerja? Saat menyalin Database, apakah referensi dipertahankan sebagai
-  shared ID atau Data Source di-fork beserta Record?
+  referensi bekerja?
+- Untuk copy Database yang mem-fork setiap Data Source unik beserta schema dan
+  Record, bagaimana Field Definition/binding dan revision dipetakan, Record mana
+  yang termasuk, bagaimana Relation edge internal/eksternal diselesaikan, serta
+  izin apa yang diperlukan? Fork tidak otomatis menyalin atau memberi permission.
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
 - Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta

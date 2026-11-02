@@ -73,7 +73,7 @@ morph_table_views
 - created_by, created_at, updated_at
 ```
 
-Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Membuat salinan PM tidak otomatis menggandakan data Project; user hanya membuat variasi cara melihat dan mengelola data yang sama.
+Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Menyalin Table View/preset presentasi membuat variasi cara melihat dan mengelola Record yang sama tanpa menggandakan data. Ini berbeda dari menyalin Database logis: keputusan pengguna untuk copy Database adalah mem-fork setiap Data Source unik beserta schema dan Record; detail pemetaan Field/Relation tetap perlu kontrak.
 
 ### 3.3 Database instance
 

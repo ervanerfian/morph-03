@@ -17,7 +17,7 @@ Oleh karena itu:
 
 - **Tidak ada satu tabel PostgreSQL fisik per preset/user.** Tidak boleh terjadi situasi di mana setiap kali user membuat preset PM baru, developer harus membuat tabel PostgreSQL baru.
 - **Data Source** adalah sumber data permanen yang terpisah dari **Table View** (preset dan konfigurasi tampilan).
-- Satu Data Source dapat memiliki banyak Table View. Membuat salinan PM tidak menggandakan data; hanya membuat variasi cara melihat data yang sama.
+- Satu Data Source dapat memiliki banyak Table View. Menyalin Table View/preset presentasi hanya membuat variasi tampilan atas Record yang sama; menyalin Database logis adalah operasi berbeda yang mem-fork Data Source dan Record sesuai §3.11.3.
 - **Record Identity** menggunakan `record_id` immutabel, terpisah dari `record_key` (business identifier yang boleh berubah).
 - **Relation Edge** adalah logical edge, bukan foreign key PostgreSQL konvensional ke tabel fisik yang berbeda-beda.
 - **Display Field** dipilih melalui radio button (satu field) dan tidak mengubah identitas relasi.
@@ -572,22 +572,19 @@ Katalog tabel ini adalah daftar kemampuan target yang sudah disebutkan, bukan en
 - `target_record_id` (UUID immutabel) adalah identitas tujuan pada Relation edge per Record, bukan config tipe; jangan memakai `record_key` yang boleh berubah.
 - `Formula` dan `Rollup` adalah read-only, nilai dihitung engine saat baca.
 
-#### 3.11.3 Replikasi Tabel (Database / Table View)
+#### 3.11.3 Menyalin Table View vs menyalin Database logis
 
-User dapat mereplikasi tabel yang pernah dibuat menjadi tabel baru, baik:
+| Operasi | Perilaku desain |
+|---|---|
+| **Salin Table View/preset presentasi** | Buat konfigurasi view baru yang tetap menunjuk Data Source dan Record set yang sama; tidak menyalin Record. |
+| **Salin Database logis (keputusan pengguna)** | Buat Database dan Table ID baru. Fork setiap Data Source ID unik yang dirujuk Database sumber tepat satu kali; salin schema dan Record ke Data Source/Record ID baru. Jika beberapa Table pada sumber memakai Data Source sama, Table baru tetap menunjuk satu fork yang sama. Database/sumber asli dan referensi lain tidak berubah. |
 
-| Jenis Replikasi | Isi yang Diikutsertakan | Use Case |
-|---|---|---|
-| **Struktur saja (fresh)** | Data Source + Table View + Field Definition + Field Binding (tanpa record) | Template baru, coba varian konfigurasi |
-| **Struktur + data** | Semua di atas + `morph_records` + `morph_relation_edges` | Duplikasi database dengan isi data |
-| **Struktur + sebagian data** | Struktur + record yang difilter (misal status aktif) | Migrasi selektif |
-
-**Aturan replikasi:**
-
-- Record ID baru dihasilkan (UUID baru), record_key dapat disesuaikan.
-- Relation edge diremap ke record ID baru.
-- Display field configuration dipertahankan.
-- Izin dan permission dapat di-copy atau di-reset sesuai kebutuhan.
+Fork Data Source tidak otomatis memberi akses atau memindahkan permission.
+Sebelum implementasi, kontrak masih harus menetapkan pemetaan ID Field Definition
+serta binding/revision, cakupan Record yang ikut (termasuk Trash atau filter),
+dan perlakuan Relation edge internal maupun eksternal. Jangan remap, drop, atau
+mempertahankan edge lintas Data Source secara diam-diam. Kebijakan otorisasi copy
+dan apakah permission dapat disalin secara eksplisit tetap perlu review.
 
 #### 3.11.4 Engine Generate UI dari JSON Schema
 
@@ -776,7 +773,7 @@ Contoh tampilan:
 - "PM - Project" → Data Source Proyek → kolom: Nama, PIC (relation ke Karyawan), Status
 - "PM - Project (Copy)" → Data Source Proyek yang sama → kolom: Nama, Budget (tidak ada PIC)
 
-Membuat salinan preset tidak menggandakan record; hanya membuat Table View baru dengan konfigurasi kolom yang berbeda.
+Menyalin preset/Table View presentasi tidak menggandakan Record; hanya membuat Table View baru dengan konfigurasi kolom berbeda. Ini bukan salinan Database logis, yang mengikuti kebijakan fork Data Source dan Record di §3.11.3.
 
 ---
 

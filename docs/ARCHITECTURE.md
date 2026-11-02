@@ -12,7 +12,8 @@ The data model distinguishes:
 - **Database instance** — a workspace-owned composition/provenance unit created from a versioned template or a custom definition.
 - **Table** — an organizational identity scoped to exactly one logical Database; a different Table ID may point to the same Data Source as a Table in another Database.
 - **Data Source** — the persistent identity and home of records/schema; distinct Tables, including Tables in different logical Databases, may explicitly reference the same ID and share records/schema, but reference does not grant access and sharing policy remains separate.
-- **Table View** — a presentation over a Data Source. Multiple views may show the same record set without copying records.
+- **Database duplication** — creates new Database/Table IDs and forks each unique referenced Data Source once, copying its schema and Records under new IDs; originals and other references remain unchanged. Field/Relation identity mapping and permission transfer remain separate open contracts.
+- **Table View** — a presentation over a Data Source. Multiple views may show the same record set without copying records; copying a Table View is not the same as duplicating a Database.
 - **Field definition / schema binding** — reusable field semantics and membership in the canonical Data Source schema (`data_source_id`); each Table View controls visibility, order and label separately.
 - **Record** — stable UUID identity plus a separately mutable business key and schema/version context.
 - **Relation edge** — the canonical writable link from a source record and its canonical Relation Field (`field_definition_id`) to a target record. Linked display values are projections of the authorized target record; they are not duplicated writable values. V1 has no reverse Relation Field/backlink UI, though incoming edges remain relevant to lifecycle checks.

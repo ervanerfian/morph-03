@@ -183,11 +183,15 @@ valid. Tidak mengasumsikan semua user boleh export seluruh Database.
 
 - **Restore**: mempertahankan ID hanya jika provenance/target scope dan konflik
   diperiksa. Keputusan konflik harus jelas; tidak menimpa instance lain otomatis.
-- **Salinan**: menghasilkan ID baru untuk Database/Table/Field/binding dan remap
-  relasi sesuai peta tervalidasi. Untuk tiap Data Source, kontrak masih harus
-  menetapkan apakah ID dipertahankan sebagai shared reference eksplisit atau
-  di-fork bersama Record ke ID baru; jangan menebak, menyalin data, atau memberi
-  akses otomatis secara diam-diam.
+- **Salinan Database (keputusan pengguna)**: menghasilkan Database dan Table ID
+  baru. Fork setiap Data Source ID unik yang dirujuk Database sumber tepat satu
+  kali ke Data Source ID baru, salin schema dan Record dengan Record ID baru, lalu
+  arahkan semua Table baru yang semula merujuk sumber yang sama ke fork yang sama.
+  Database/sumber asli dan referensi lain tetap tidak berubah. Fork tidak memberi
+  akses atau memindahkan permission secara otomatis. Pemetaan identity Field
+  Definition/binding, revision pin, cakupan Record (misalnya Trash/filtered), dan
+  remap Relation edge internal/eksternal masih perlu kontrak; jangan menebak,
+  menghilangkan atau mengubah edge secara diam-diam.
 - **Relation ke Database eksternal paket**: tidak otomatis mengikat hanya karena
   label/ID tampak sama. Preview dan minta mapping dengan pemeriksaan scope dan
   izin; jika tidak cocok, fail closed atau selesaikan secara eksplisit, jangan
