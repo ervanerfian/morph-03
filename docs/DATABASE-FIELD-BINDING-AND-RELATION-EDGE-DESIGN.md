@@ -73,7 +73,7 @@ morph_table_views
 - created_by, created_at, updated_at
 ```
 
-Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Menyalin Table View/preset presentasi membuat variasi cara melihat dan mengelola Record yang sama tanpa menggandakan data. Ini berbeda dari menyalin Database logis: keputusan pengguna untuk copy Database adalah mem-fork setiap Data Source unik beserta schema dan Record. Jika source dan target Record ikut disalin, Relation edge internal di-remap ke target fork; target eksternal/tidak ikut salin memerlukan preview dan mapping/keputusan eksplisit. Saat semantik/config sama, copy memakai ulang `field_definition_id`; jika berbeda, gunakan ID/config berbeda. Identity row binding dan revision pin tetap perlu kontrak.
+Table View bukan tabel fisik mandiri. Ia adalah konfigurasi tampilan atas Data Source. Menyalin Table View/preset presentasi membuat variasi cara melihat dan mengelola Record yang sama tanpa menggandakan data. Ini berbeda dari menyalin Database logis: keputusan pengguna untuk copy Database adalah mem-fork setiap Data Source unik beserta schema dan Record. Jika source dan target Record ikut disalin, Relation edge internal di-remap ke target fork; target eksternal/tidak ikut salin memerlukan preview dan mapping/keputusan eksplisit. Saat semantik/config sama, copy memakai ulang `field_definition_id`; jika berbeda, gunakan ID/config berbeda. Membership schema pada Data Source fork mendapat UUID binding baru; ID binding asli tidak digunakan ulang. Cara revision schema mem-pin identity binding ini tetap perlu kontrak.
 
 ### 3.3 Database instance
 
@@ -134,7 +134,7 @@ Keputusan pengguna: schema-level Field Binding dimiliki oleh Data Source kanonis
 
 ```text
 morph_field_bindings (logical schema membership; not final DDL)
-- id: UUID / stabil
+- id: UUID / stabil dalam membership schema Data Source; fork Database membuat ID binding baru
 - workspace_id: text
 - data_source_id: FK → morph_data_sources.id (owner schema; bukan Table View)
 - field_definition_id: FK → morph_field_definitions.id

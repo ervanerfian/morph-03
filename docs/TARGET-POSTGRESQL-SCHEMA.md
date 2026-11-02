@@ -587,9 +587,10 @@ eksplisit; jangan drop, mempertahankan, atau retarget edge secara diam-diam.
 Keputusan pengguna: reuse `field_definition_id` saat semantik/config Field
 identik, sehingga key nilai Record hasil fork tetap sama; semantik/config berbeda
 memerlukan ID/config Field berbeda. Membership binding dibuat pada Data Source
-fork. Sebelum implementasi, identitas row binding/revision pin, cakupan Record
-yang ikut (termasuk Trash atau filter), otorisasi copy, dan izin untuk Relation
-eksternal masih perlu review.
+fork mendapat UUID binding baru; ID binding sumber tidak digunakan ulang. Sebelum
+implementasi, cara revision schema mem-pin binding, cakupan Record yang ikut
+(termasuk Trash atau filter), otorisasi copy, dan izin untuk Relation eksternal
+masih perlu review.
 
 #### 3.11.4 Engine Generate UI dari JSON Schema
 

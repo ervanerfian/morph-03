@@ -37,8 +37,9 @@ untuk mapping/keputusan eksplisit; jangan drop, pertahankan, atau retarget secar
 diam-diam. Keputusan pengguna: reuse `field_definition_id` jika Field Definition
 memiliki semantik/config identik; key nilai Record hasil fork tetap memakai ID
 kanonis itu. Jika semantik/config berbeda, diperlukan Field Definition ID/config
-berbeda yang eksplisit. Membership binding dibuat pada Data Source fork; identitas
-row binding/revision pin, cakupan Record, otorisasi copy, dan izin untuk Relation
+berbeda yang eksplisit. Membership binding pada Data Source fork mendapat UUID
+binding baru; ID binding dari sumber asli tidak digunakan ulang. Cara revision
+schema mem-pin binding, cakupan Record, otorisasi copy, dan izin untuk Relation
 eksternal masih perlu kontrak.
 
 Pada setiap Page, Owner menentukan Database apa yang ditampilkan: satu Database
@@ -408,8 +409,8 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   Database, bagaimana ownership, permission, revision, dan perubahan lintas
   referensi bekerja?
 - Untuk copy Database yang mem-fork setiap Data Source unik beserta schema dan
-  Record, bagaimana identity row binding dan revision schema dipetakan, Record
-  mana yang termasuk, serta izin apa yang diperlukan? Field Definition ID dipakai
+  Record, bagaimana UUID binding baru dipin oleh revision schema, Record mana
+  yang termasuk, serta izin apa yang diperlukan? Field Definition ID dipakai
   ulang bila semantik/config identik; perbedaan semantik memerlukan ID/config
   berbeda. Edge internal di-remap bila kedua endpoint disalin; target eksternal/
   tidak ikut salin harus melalui preview dan mapping/keputusan eksplisit. Fork

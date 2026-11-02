@@ -195,9 +195,10 @@ valid. Tidak mengasumsikan semua user boleh export seluruh Database.
   pertahankan, atau retarget edge secara diam-diam. Keputusan pengguna: reuse
   `field_definition_id` saat semantik/config Field identik, sehingga key nilai pada
   Record hasil fork tetap sama; perubahan semantik/config memerlukan ID/config
-  Field berbeda. Membership binding dibuat pada Data Source fork; identity row
-  binding/revision pin, cakupan Record (misalnya Trash/filtered), otorisasi copy,
-  dan izin untuk target eksternal tetap memerlukan kontrak.
+  Field berbeda. Membership binding pada Data Source fork mendapat UUID binding
+  baru; ID binding asli tidak digunakan ulang. Cara revision schema mem-pin binding,
+  cakupan Record (misalnya Trash/filtered), otorisasi copy, dan izin untuk target
+  eksternal tetap memerlukan kontrak.
 - **Relation ke Database eksternal paket**: tidak otomatis mengikat hanya karena
   label/ID tampak sama. Preview dan minta mapping dengan pemeriksaan scope dan
   izin; jika tidak cocok, fail closed atau selesaikan secara eksplisit, jangan
