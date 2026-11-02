@@ -12,7 +12,7 @@ The data model distinguishes:
 - **Database instance** — a workspace-owned composition/provenance unit created from a versioned template or a custom definition.
 - **Data Source** — the persistent identity and home of records.
 - **Table View** — a presentation over a Data Source. Multiple views may show the same record set without copying records.
-- **Field definition / schema binding** — reusable field semantics and membership in a Table/Data Source schema; each Table View controls visibility, order and label separately.
+- **Field definition / schema binding** — reusable field semantics and membership in the canonical Data Source schema (`data_source_id`); each Table View controls visibility, order and label separately.
 - **Record** — stable UUID identity plus a separately mutable business key and schema/version context.
 - **Relation edge** — the canonical writable link from a source record and its canonical Relation Field (`field_definition_id`) to a target record. Linked display values are projections of the authorized target record; they are not duplicated writable values. V1 has no reverse Relation Field/backlink UI, though incoming edges remain relevant to lifecycle checks.
 

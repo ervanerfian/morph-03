@@ -33,7 +33,7 @@ Semua aspek visual dan perilaku Morph dihasilkan secara dinamis dari konfigurasi
 | Aspek | Sumber | Eksekusi |
 |---|---|---|
 | Tampilan halaman | `morph_pages.config`, `morph_page_sections.config` | Code reads config → render UI on the fly |
-| Keanggotaan Field di Table | `morph_field_bindings.is_active` pada Data Source/schema | View config mengatur visibilitas, urutan, dan label tanpa mengubah schema/value |
+| Keanggotaan Field di Data Source | `morph_field_bindings.is_active` dengan owner `morph_data_sources.id` | View config mengatur visibilitas, urutan, dan label tanpa mengubah schema/value |
 | Tipe field | `morph_field_definitions.type`, `config_json` | Code reads type → pilih renderer/input yang sesuai |
 | Relasi | `morph_relation_edges`, `morph_relation_config.display_field_id` | Code baca edge → tampilkan nilai dari record tujuan |
 | Modal | `morph_modal_configs.config` | Code baca config → tampilkan close control, shared token, geometry |
@@ -135,7 +135,7 @@ Tidak ada elemen visual yang terikat pada nama preset, tabel fisik, atau kode de
                      │             │                      │
                      ▼             ▼                      ▼
               morph_table_views  morph_records      morph_field_bindings ◄── morph_field_definitions
-              (presentation:     │                  (schema membership;
+              (presentation:     │                  (data_source_id schema membership;
                visibility/order/ │                   is_active/is_required)
                label only)       ▼
                           morph_relation_edges
@@ -147,7 +147,7 @@ Tidak ada elemen visual yang terikat pada nama preset, tabel fisik, atau kode de
                 one display_field_id, cardinality = single V1
 ```
 
-`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis V1: `field_definition_id`, bukan ID `morph_field_bindings`. Sesuai keputusan pengguna, `morph_field_bindings` adalah keanggotaan schema pada Data Source/Table (relasi konseptual ke `morph_data_sources.id`), bukan Table View; `morph_table_views.config` menyimpan preferensi visibilitas/urutan/label. Key/constraint PostgreSQL final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config menentukan target Data Source, satu `display_field_id`, dan `single` target per source Record/Field. Source Record lain boleh menunjuk target yang sama; tidak ada keunikan target global.
+`field_definition_id*` dan `source_field_id*` menandai identitas Field kanonis V1: `field_definition_id`, bukan ID `morph_field_bindings`. Sesuai keputusan pengguna, schema membership pada `morph_field_bindings` dimiliki oleh Data Source kanonis melalui `data_source_id → morph_data_sources.id`, bukan Table View; `morph_table_views.config` hanya menyimpan preferensi visibilitas/urutan/label. Key/constraint PostgreSQL final masih perlu review. Identitas target Record (`target_record_id`) hanya ada pada edge per Record; config menentukan target Data Source, satu `display_field_id`, dan `single` target per source Record/Field. Source Record lain boleh menunjuk target yang sama; tidak ada keunikan target global.
 
 ---
 
@@ -340,7 +340,7 @@ Tabel-tabel ini sudah dirinci di bagian 3.2 Metadata Layer dan 3.3 Data Layer da
 | `morph_data_sources` | Sumber data permanen |
 | `morph_table_views` | Representasi tampilan/preset |
 | `morph_field_definitions` | Definisi Field dan semantik tipe yang reusable |
-| `morph_field_bindings` | Keanggotaan schema Field pada Data Source/Table; bukan per Table View |
+| `morph_field_bindings` | Keanggotaan Field pada schema Data Source kanonis; bukan per Table View |
 | `morph_records` | Record dengan record_id immutabel + record_key |
 | `morph_relation_edges` | Nilai Relation per source Record ke target Record immutable |
 | `morph_relation_config` | Target Data Source + satu Display Field (radio); tanpa target Record |
@@ -764,13 +764,13 @@ Integritas logical relation edge:
 | Komponen | Deskripsi |
 |---|---|
 | `morph_table_views` | Konfigurasi tampilan (label, urutan, config JSONB) |
-| `morph_field_bindings` | Field Definition yang tersedia/aktif pada schema Data Source/Table |
+| `morph_field_bindings` | Field Definition yang tersedia/aktif pada schema Data Source kanonis (`data_source_id`) |
 | `morph_table_views.config` | Preferensi per-view: visibilitas, urutan, label; tidak mengubah membership/value |
 | `morph_relation_config.display_field_id` | Satu Field target yang diproyeksikan untuk Relation (radio) |
 | Reverse Relation Field | Tidak ada pada V1; incoming edges tetap dipertahankan untuk integritas/lifecycle, tanpa backlink UI |
 | `morph_lookup_definitions` | Nilai derived dari record tujuan (read-only) |
 
-Field Binding mengaitkan Field Definition pada schema Data Source/Table; Table View hanya mengatur visibilitas, urutan, dan label. Nilai scalar dan Relation edge memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation. Keputusan V1 adalah `field_definition_id`: penggunaan ulang Field Definition membawa semantik/config yang sama. Bila semantik/config berbeda per Data Source, diperlukan identitas/config eksplisit yang berbeda; jangan menyamarkan perbedaan itu melalui binding view. Bentuk fisik dan constraint tetap menunggu review skema.
+Field Binding mengaitkan Field Definition pada schema Data Source kanonis (`morph_data_sources.id`); Table View hanya mengatur visibilitas, urutan, dan label. Nilai scalar dan Relation edge memakai identitas Field kanonis yang sama lintas Table View; jangan mengikat nilai ke binding presentation. Keputusan V1 adalah `field_definition_id`: penggunaan ulang Field Definition membawa semantik/config yang sama. Bila semantik/config berbeda per Data Source, diperlukan identitas/config eksplisit yang berbeda; jangan menyamarkan perbedaan itu melalui binding view. Bentuk fisik dan constraint tetap menunggu review skema.
 
 Contoh tampilan:
 - "PM - Project" → Data Source Proyek → kolom: Nama, PIC (relation ke Karyawan), Status

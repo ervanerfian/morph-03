@@ -27,7 +27,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 | Table View | Representasi presentasi data: konfigurasi kolom, urutan, visibilitas, filter, pengaturan tampilan. Bukan tabel fisik mandiri. |
 | Data Source | Sumber data permanen (Employee, Project, Client, dst.). Satu Data Source dapat memiliki banyak Table View. |
 | Field definition | Definisi kolom yang bisa digunakan ulang (nama, tipe, konfigurasi, pilihan). |
-| Field binding | Mengaitkan Field Definition ke schema Table/Data Source; visibilitas, urutan, dan label tiap Table View diatur terpisah. |
+| Field binding | Mengaitkan Field Definition ke schema Data Source kanonis; visibilitas, urutan, dan label tiap Table View diatur terpisah. |
 | Record | Baris data milik Data Source. Memiliki `record_id` immutabel dan `record_key` (bisnis identifier yang boleh berubah). |
 | Relation edge | Link konkret per source Record dan identitas Field Relation kanonis ke target Record immutable; tidak terikat ke binding presentation Table View. Logical edge, bukan FK fisik tabel terpisah. |
 | Lookup derivation | Membaca field pada Record tujuan melalui relation edge; read-only pada awalnya. |
@@ -38,7 +38,7 @@ Semua fitur Morph (Roles, Permissions, Pages, Workspace, View, IDs, Modal Mechan
 
 2. **Gunakan immutable Record ID.** Linked Record harus menyimpan identitas permanen record tujuan (internal `record_id`), bukan hanya nilai teks atau business identifier seperti `HR-001`. Business identifier boleh berubah tanpa memutus relasi.
 
-3. **Pisahkan schema binding, Table View presentation, Relation edge, dan Display Field.** Schema binding menyatakan Field Definition tersedia pada Table/Data Source; Table View secara terpisah menentukan visibilitas, urutan, dan label. Relation config menentukan target Data Source serta tepat satu Display Field tujuan; setiap edge per Record menyimpan target Record yang sebenarnya. Tidak satu pun binding/presentation menjadi identitas nilai. Radio memilih Display Field, bukan Record tujuan maupun kardinalitas. Multi-field Projection dapat dikembangkan sebagai fitur terpisah.
+3. **Pisahkan schema binding, Table View presentation, Relation edge, dan Display Field.** Schema binding menyatakan Field Definition tersedia pada Data Source kanonis; Table View secara terpisah menentukan visibilitas, urutan, dan label. Relation config menentukan target Data Source serta tepat satu Display Field tujuan; setiap edge per Record menyimpan target Record yang sebenarnya. Tidak satu pun binding/presentation menjadi identitas nilai. Radio memilih Display Field, bukan Record tujuan maupun kardinalitas. Multi-field Projection dapat dikembangkan sebagai fitur terpisah.
 
 4. **Jangan mengikat relasi pada nama atau instance Table View.** Relasi harus mengarah pada identitas Data Source dan Record. Dengan demikian, perubahan nama preset atau pembuatan duplikasi view tidak memutus relasi.
 
@@ -122,30 +122,30 @@ Definisi ini **tidak menyimpan nilai Record**. Ini menyimpan semantik dan konfig
 
 ### 3.6 Field binding — inti dari "Pengaturan Kolom"
 
-Ini adalah fitur "magic" yang Anda sebut. Keputusan pengguna: schema binding memasang Field Definition pada scope Table/Data Source, bukan pada setiap Table View. Binding schema menyatakan Field tersedia/aktif pada struktur data; Table View secara terpisah mengatur visibilitas, urutan, dan label. Mengganti/menambah view atau mengubah presentasinya tidak mengubah schema binding maupun membuat salinan nilai Record.
+Keputusan pengguna: schema-level Field Binding dimiliki oleh Data Source kanonis (`morph_data_sources.id`), bukan Table View. Semua Table View yang membaca Data Source yang sama berbagi keanggotaan Field schema; tiap Table View secara terpisah mengatur visibilitas, urutan, dan label. Mengganti atau menambah view tidak mengubah schema membership maupun membuat salinan nilai Record.
 
 ```text
 morph_field_bindings (logical schema membership; not final DDL)
 - id: UUID / stabil
 - workspace_id: text
-- table_id: FK → identitas Table/schema (bukan Table View)
+- data_source_id: FK → morph_data_sources.id (owner schema; bukan Table View)
 - field_definition_id: FK → morph_field_definitions.id
-- is_active: boolean (Field tersedia/aktif pada schema Table)
+- is_active: boolean (Field tersedia/aktif pada schema Data Source)
 - is_required: boolean (validasi schema; scope final tetap direview)
 - created_by, created_at, updated_at
-unique (workspace_id, table_id, field_definition_id)
+unique (workspace_id, data_source_id, field_definition_id)
 ```
 
 ```text
 Table View presentation config (logical; JSONB vs. table storage belum dipilih)
 - table_view_id: FK → morph_table_views.id
-- field_definition_id: Field yang sudah tersedia pada schema Table
+- field_definition_id: Field yang sudah tersedia pada Data Source terkait
 - is_visible: boolean
 - position: int (urutan di view ini)
 - label_override: text (label khusus view)
 ```
 
-**Keputusan pengguna:** binding adalah keanggotaan schema pada Table/Data Source, bukan Table View. Karena model fisik `morph_tables` versus `morph_data_sources` masih dikonsolidasikan dalam dokumen target, nama kolom FK final belum dipilih; namun FK schema binding tidak boleh mengarah ke `morph_table_views`. Preferensi tampilan per view (visibilitas, posisi, label) disimpan terpisah dan tidak mengubah nilai Field.
+**Keputusan pengguna:** Field Binding adalah keanggotaan schema pada Data Source kanonis (`morph_data_sources.id`), bukan Table View. Jika entitas produk Table terpisah dari Data Source, referensi Table harus resolve ke `data_source_id` sebelum membaca membership/nilai. Bentuk penyimpanan, nama FK/constraint final, dan seluruh DDL tetap perlu review; preferensi tampilan per view disimpan terpisah dan tidak mengubah schema/value.
 
 `is_required` adalah validasi schema, bukan sekadar kontrol tampilan. Jika nantinya ada flag UI read-only per view, flag itu tidak pernah menggantikan authorization server-side.
 
@@ -153,10 +153,10 @@ Contoh:
 
 ```text
 Field definition: Nama (type=text)
-Schema binding: Proyek, is_active=true
+Schema binding: Data Source Proyek, is_active=true
 Table View PM RT/RW (Proyek): Nama visible, position=1
 Table View PM Sosmed (Proyek): Nama visible, position=1
-Table View HR (Karyawan): Nama is unavailable until schema-bound to Karyawan
+Table View HR (Karyawan): Nama unavailable karena belum terikat pada schema Data Source Karyawan
 ```
 
 ### 3.7 Record (baris data) — Data Identity terpisah dari business identifier
@@ -184,15 +184,15 @@ Nilai relation **tidak** disimpan dalam `values_json` sebagai dua sumber kebenar
 
 **Keputusan identitas nilai kanonis V1 (bukan persetujuan DDL):** gunakan `field_definition_id` sebagai identitas properti kanonis. Nilai Record dikunci secara konseptual oleh `(record_id, field_definition_id)`, sehingga dua Table View untuk Record yang sama membaca nilai yang sama, sementara Record berbeda tetap memiliki nilai masing-masing. Relation edge memakai identitas sumber yang sama ditambah immutable `target_record_id`; binding Table View tidak menjadi key nilai. Field Definition yang dipakai ulang membawa semantik/config yang sama; perbedaan semantik per Data Source memerlukan identitas/config eksplisit yang berbeda.
 
-Keputusan ini mengasumsikan satu Field Definition membawa semantik/config yang sama di semua tempat ia dipasang. Jika satu Data Source perlu konfigurasi semantik berbeda, buat identitas/config Field yang eksplisit dan berbeda—jangan menjadikannya nilai berbeda hanya karena Table View binding berbeda. Scope produk Field Binding sudah dipilih schema-level pada Table/Data Source, bukan Table View; pemetaan identitas fisik Table versus Data Source dan seluruh key/constraint tetap perlu review sebelum DDL.
+Keputusan ini mengasumsikan satu Field Definition membawa semantik/config yang sama di semua tempat ia dipasang. Jika satu Data Source perlu konfigurasi semantik berbeda, buat identitas/config Field yang eksplisit dan berbeda—jangan menjadikannya nilai berbeda hanya karena Table View binding berbeda. Owner schema binding sudah dipilih sebagai Data Source kanonis (`morph_data_sources.id`); pemetaan Table produk ke ID Data Source, key/constraint, dan storage final tetap perlu review sebelum DDL.
 
 ### 3.8 Checklist vs Radio — perbedaan penting dalam UI "Pengaturan Kolom"
 
 Dalam halaman pengaturan kolom, ada **dua jenis kontrol** yang tidak boleh dicampur:
 
-**A. Checklist — di schema Table/Data Source mana Field tersedia (bisa banyak)**
+**A. Checklist — di Data Source mana Field tersedia pada schema (bisa banyak)**
 
-Checklist ini menetapkan keanggotaan schema, bukan visibilitas kolom per Table View. Satu Field Definition boleh terikat pada beberapa Data Source/Table hanya jika semantik/config-nya sama; perbedaan semantik memerlukan identitas/config eksplisit yang berbeda. Table View yang membaca Data Source tersebut mengatur visibilitas, urutan, dan label secara terpisah.
+Checklist ini menetapkan keanggotaan schema per Data Source, bukan visibilitas kolom per Table View. Satu Field Definition boleh terikat pada beberapa Data Source hanya jika semantik/config-nya sama; perbedaan semantik memerlukan identitas/config eksplisit yang berbeda. Table View yang membaca Data Source tersebut mengatur visibilitas, urutan, dan label secara terpisah.
 
 ```text
 Field: Nama
@@ -280,7 +280,7 @@ morph_relation_config (model konseptual; bentuk penyimpanan belum dipilih)
 
 `target_record_id` **tidak boleh berada di config Relation**: target Record berbeda untuk setiap nilai Record sumber dan hanya disimpan dalam Relation edge. Mengubah `display_field_id` hanya mengganti proyeksi; mengedit nilai target memperbarui tampilan proyeksi saat dibaca.
 
-**Catatan:** Jika nantinya dibutuhkan beberapa nilai sekaligus (misal Nama dan Departemen), itu sebaiknya menjadi fitur terpisah bernama *Multi-field Projection*, bukan mengubah radio button menjadi checkbox secara diam-diam. Checklist schema binding menentukan di Data Source/Table mana Field tersedia; visibilitas, urutan, dan label di tiap Table View adalah preferensi presentation terpisah.
+**Catatan:** Jika nantinya dibutuhkan beberapa nilai sekaligus (misal Nama dan Departemen), itu sebaiknya menjadi fitur terpisah bernama *Multi-field Projection*, bukan mengubah radio button menjadi checkbox secara diam-diam. Checklist schema binding menentukan Data Source tempat Field tersedia; visibilitas, urutan, dan label di tiap Table View adalah preferensi presentation terpisah.
 
 ### 3.10 Relation edge — nilai link per Record (logical edge, bukan FK fisik)
 
@@ -483,12 +483,12 @@ Perubahan nama/pengaturan field definition harus dilakukan hati-hati jika bindin
 4. Siapa yang boleh restore atau menghapus permanen Record/Database?
 5. Bagaimana UI menampilkan target yang tidak dapat diakses tanpa membocorkan keberadaan atau nilainya?
 
-Keputusan binding adalah schema-level pada Table/Data Source; Table View hanya mengatur visibilitas, urutan, dan label. Field Definition yang dipakai ulang memiliki semantik/config yang sama dan nilai V1 dikunci oleh `field_definition_id`. Jika semantik/config berbeda per Data Source, gunakan identitas/config eksplisit yang berbeda; jangan mengubah arti sebuah Field hanya melalui Table View.
+Keputusan binding adalah schema-level pada Data Source kanonis (`morph_data_sources.id`); Table View hanya mengatur visibilitas, urutan, dan label. Field Definition yang dipakai ulang memiliki semantik/config yang sama dan nilai V1 dikunci oleh `field_definition_id`. Jika semantik/config berbeda per Data Source, gunakan identitas/config eksplisit yang berbeda; jangan mengubah arti sebuah Field hanya melalui Table View.
 
 ## 11. Acceptance gates (belum diimplementasi)
 
-- Field Definition dapat di-bind pada schema Table/Data Source; perubahan visibilitas, urutan, atau label per Table View tidak mengubah schema binding maupun nilai Record. Melepas binding schema yang masih memiliki nilai memerlukan kebijakan eksplisit, bukan penghapusan diam-diam.
-- Relation edge mencegah target yang tidak ada, salah Workspace, atau salah Table.
+- Field Definition dapat di-bind pada schema Data Source kanonis; perubahan visibilitas, urutan, atau label per Table View tidak mengubah schema binding maupun nilai Record. Melepas binding schema yang masih memiliki nilai memerlukan kebijakan eksplisit, bukan penghapusan diam-diam.
+- Relation edge mencegah target yang tidak ada, salah Workspace, atau bukan anggota target Data Source yang dikonfigurasi.
 - Edit Record sumber terlihat di semua tempat yang menampilkannya melalui field yang aktif.
 - Kolom biasa tidak sinkron antar Record meski nama kolom sama.
 - record_key dapat berubah tanpa memutus relasi (relasi pakai record_id immutabel).
@@ -497,7 +497,7 @@ Keputusan binding adalah schema-level pada Table/Data Source; Table View hanya m
 
 ## 12. Langkah berikutnya yang disarankan
 
-1. Konsolidasikan identitas Field/Record, nilai Field (`field_definition_id`), schema binding Table/Data Source, Table View presentation, Relation config (`single`), edge, serta lifecycle yang masih terbuka; selesaikan pertanyaan tersisa §10 sebelum merancang DDL.
+1. Konsolidasikan identitas Field/Record, nilai Field (`field_definition_id`), binding schema milik Data Source, Table View presentation, Relation config (`single`), edge, serta lifecycle dan revision behavior yang masih terbuka; selesaikan pertanyaan tersisa §10 sebelum merancang DDL.
 2. **Audit database hanya setelah identitas target dan cakupan read-only disetujui.** Konfigurasi Windows yang tercatat di `LOCAL-DEVELOPMENT.md` adalah PostgreSQL 18 pada `127.0.0.1:5433`, database `morph_03`; jangan menebak database/port, jangan menyentuh `morph-01`, dan jangan menjalankan audit/DDL dari sandbox ini terhadap database lokal developer.
 3. Setelah ada persetujuan audit, inventarisasikan tabel, kolom, index, constraint, dan data; petakan ke model Data Source, Table View, Record, Field, dan Relation Edge tanpa DROP/TRUNCATE/reset.
 4. Dokumentasikan impact, strategi kompatibilitas, recovery, dan rollback; rehearse pada database/fixture terisolasi.

@@ -9,9 +9,10 @@ Diperbarui 2026-11-02. Contoh JSON adalah ilustrasi, bukan API atau fixture vali
 | --- | --- | --- |
 | Database Template | Cetakan konfigurasi untuk membuat satu Database logis | Pilihan dan pratinjau template |
 | Database | Hasil penerapan template dalam Workspace; bukan database PostgreSQL fisik baru | Satu section vertikal yang dapat ditata pada Page |
-| Table | Model untuk sekumpulan Record; dapat disusun/dirujuk dalam Database | Tab dalam section Database |
-| Table View | Presentation atas Table/Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
-| Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Table/Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
+| Table | Unit organisasi dalam Database logis yang merujuk pada sumber Record di graph canonical | Tab dalam section Database |
+| Data Source | Pemilik persisten Record dan schema-level Field Binding | Dapat dibaca melalui satu atau beberapa Table View |
+| Table View | Presentation atas Data Source; tidak menentukan schema membership atau identitas nilai | Visibilitas, urutan, dan label per view |
+| Field | Definisi tipe dan pengaturan nilai; schema binding menyatakan Data Source tempat Field tersedia | Kolom dan kontrol input sesuai preferensi Table View |
 | Record | Satu entri dengan nilai Field dalam satu Table | Baris tabel |
 
 Tampilan Table sebagai tab dan Field sebagai kolom adalah **presentasi**, bukan
@@ -130,20 +131,24 @@ revision instance berbeda dan tidak boleh dipertukarkan.
     "tableRefs": ["table_projects", "table_tasks"]
   },
   "tables": [
+    {"id": "table_projects", "label": "Projects", "dataSourceId": "ds_projects"},
+    {"id": "table_tasks", "label": "Tasks", "dataSourceId": "ds_tasks"}
+  ],
+  "dataSources": [
     {
-      "id": "table_projects",
+      "id": "ds_projects",
       "label": "Projects",
       "bindings": [
         {"id": "binding_name", "fieldId": "field_name"},
         {"id": "binding_notes", "fieldId": "field_notes"}
       ]
     },
-    {"id": "table_tasks", "label": "Tasks", "bindings": []}
+    {"id": "ds_tasks", "label": "Tasks", "bindings": []}
   ],
   "tableViews": [
     {
       "id": "view_projects_default",
-      "tableId": "table_projects",
+      "dataSourceId": "ds_projects",
       "label": "Projects",
       "columns": [
         {"fieldId": "field_name", "visible": true, "position": 1},
@@ -160,11 +165,13 @@ revision instance berbeda dan tidak boleh dipertukarkan.
 
 Contoh sengaja menghilangkan config wajib, dependency pins dan metadata revision;
 ini bukan fixture valid compiler v1, bukan contoh payload API, dan tidak memutuskan
-apakah Table kosong diperbolehkan. `tables[].bindings` menunjukkan schema membership,
-sedangkan `tableViews[].columns` menunjukkan preferensi presentation terpisah;
-kolom view hanya boleh merujuk Field yang tersedia pada schema Table. Nama/key JSON
-masih ilustratif, bukan kontrak final. ID contoh tidak boleh dipakai untuk instance
-nyata. Kontrak final harus dirinci dan divalidasi sebelum implementasi.
+apakah Table kosong diperbolehkan. `dataSources[].bindings` menunjukkan schema
+membership pada Data Source kanonis; `tables[].dataSourceId` dan
+`tableViews[].dataSourceId` menunjuk ke identity yang sama. `tableViews[].columns`
+hanya menyimpan preferensi presentation dan boleh merujuk Field yang tersedia pada
+schema Data Source tersebut. Nama/key JSON masih ilustratif, bukan kontrak final. ID
+contoh tidak boleh dipakai untuk instance nyata. Kontrak final harus dirinci dan
+divalidasi sebelum implementasi.
 
 ### 3.1 Kontrak Relation yang dikonfirmasi pengguna
 
@@ -180,7 +187,7 @@ Untuk V1, target Relation dan nilai yang ditampilkan adalah dua hal berbeda:
 - Saat Display Field diganti, edge tetap menunjuk Record yang sama dan hanya
   proyeksinya yang berubah. Saat nilai Field target diedit, pembacaan Relation
   menampilkan nilai terbaru sesuai izin target; nama/label tidak disalin ke edge.
-- Field Binding mengaitkan Field Definition ke schema Table/Data Source; setiap
+- Field Binding mengaitkan Field Definition ke schema Data Source kanonis; setiap
   Table View hanya mengatur visibilitas, urutan, dan label tampilannya. Ini tetap
   terpisah dari radio Display Field. Multi-field Projection (misalnya Nama +
   Departemen) adalah kemampuan berbeda di masa depan, bukan checkbox tambahan.
@@ -369,11 +376,12 @@ menjadi slices lebih kecil tanpa mengaktifkan capability yang belum terbukti.
   bagaimana perubahan dan permission lintas referensi bekerja?
 - Bentuk penyimpanan snapshot/dependency pin dan boundary transaksi lintas
   Database/shared Field; apakah dan kapan head per Database mengganti workspace?
-- Konsolidasi fisik identity Table/Data Source dengan schema-level Field Binding
-  dan penyimpanan preferensi Table View (visibilitas/urutan/label). Keputusan
-  produk sudah memisahkan binding schema dari presentation view; binding tidak
-  membuat salinan nilai. Jika semantik berbeda per Data Source, Field Definition
-  harus memiliki identitas/config eksplisit yang berbeda.
+- Kontrak bagaimana referensi Table resolve ke canonical Data Source ID serta
+  bagaimana binding schema milik Data Source dan preferensi per-Table-View
+  diserialisasi, direvisi, dan divalidasi. Owner Field Binding sudah dipilih sebagai
+  Data Source ID; bentuk JSON fisik, FK/constraint, dan versioning masih perlu
+  review. Binding tidak membuat salinan nilai. Jika semantik berbeda per Data
+  Source, Field Definition harus memiliki identitas/config eksplisit yang berbeda.
 - Kebijakan lifecycle source Record dan Database saat masuk Trash, retention,
   restore permissions, serta UI untuk target yang tidak dapat diakses. Keputusan
   V1 sudah memblokir Trash target Record yang masih punya incoming edge dan

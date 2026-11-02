@@ -74,7 +74,7 @@ Record tidak disimpan sebagai satu file JSON raksasa.
 | Workspace | Boundary tenant; identity dan membership dibuktikan server |
 | Database instance | ID stabil, workspace, lifecycle, setting visibility dan provenance template |
 | Definition revision | Snapshot immutable berversi: konfigurasi Database, Table, Field, binding dan dependensi graph yang dibutuhkan untuk membaca revision |
-| Table dan Field | Identitas stabil; schema binding menyatakan Field tersedia pada Table/Data Source; Table View hanya presentation. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
+| Table dan Field | Identitas stabil; schema binding Field dimiliki Data Source kanonis; Table View hanya presentation. Berbagi harus eksplisit, tidak diasumsikan eksklusif pada extension/Database |
 | Record | ID stabil, Data Source/Table, creator, revision penulis, lifecycle, version token; nilai scalar dikodekan menurut identitas Field kanonis dan schema revision |
 | Relation definition | Konfigurasi Field Relation: target Data Source, satu Display Field, dan `single` target per source Record/Field pada V1; tanpa reverse Field otomatis |
 | Relation edge | Hubungan konkret source Record + identitas Field kanonis → target Record immutable; bukan binding placement Table View |
@@ -91,10 +91,12 @@ perlu proof, bukan perubahan nama v1 secara langsung.
 
 1. **Registry instance**: `(workspace_id, logical_database_id)` dengan lifecycle,
    label, provenance dan head/version; Database ini bukan `database_id` v1.
-2. **Registry Table dan binding**: identity serta membership/reference dengan
-   workspace eksplisit. Tidak memaksakan Table hanya boleh berada dalam satu
-   Database; sharing aktif memerlukan kontrak policy tersendiri. Saat ini jangan
-   menganggap group lama sebagai ownership definitif.
+2. **Registry Table/Data Source dan binding**: schema membership Field dimiliki
+   Data Source kanonis; referensi Table harus resolve ke ID Data Source itu saat
+   membaca binding. Identitas dan referensi tetap berscope workspace. Tidak
+   memaksakan Table hanya boleh berada dalam satu Database; sharing aktif
+   memerlukan kontrak policy tersendiri. Jangan menganggap group lama sebagai
+   ownership definitif.
 3. **Published definitions**: immutable `(workspace, logical_database_id,
    revision)` + pin versi registry/dependensi, dan draft/head CAS. Alternatif
    workspace graph head dengan per-Database projections dapat dipakai sebagai
