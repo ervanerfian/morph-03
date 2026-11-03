@@ -6,9 +6,11 @@ namespace MorphSpace\Core\Http;
 
 final class Request
 {
+    /** @param array<string, mixed> $query */
     public function __construct(
         private readonly string $method,
         private readonly string $path,
+        private readonly array $query = [],
     ) {
     }
 
@@ -30,7 +32,9 @@ final class Request
             $path = rtrim($path, '/');
         }
 
-        return new self($method, $path);
+        $query = $_GET ?? [];
+
+        return new self($method, $path, is_array($query) ? $query : []);
     }
 
     public function method(): string
@@ -41,5 +45,11 @@ final class Request
     public function path(): string
     {
         return $this->path;
+    }
+
+    /** @return array<string, mixed> Untrusted query values from the incoming request. */
+    public function query(): array
+    {
+        return $this->query;
     }
 }

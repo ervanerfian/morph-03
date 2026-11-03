@@ -1,0 +1,41 @@
+<details class="block-picker">
+    <summary class="ui-button ui-button-primary">
+        <span class="button-plus" aria-hidden="true">+</span>
+        <span>Add block</span>
+    </summary>
+    <div class="block-picker-panel">
+        <div class="popover-heading">
+            <div>
+                <h3>Choose a block</h3>
+                <p>Start with a view, then configure its authorized Data Source and Fields.</p>
+            </div>
+            <span class="popover-count">{{ blockCatalog|length }} available</span>
+        </div>
+
+        {% if blockLimitReached %}
+            <p class="inline-notice">This preview is limited to {{ previewBlockLimit }} blocks to keep URL-based preview state bounded. It is a preview safety guard, not a Morph product limit.</p>
+        {% else %}
+            <div class="block-choice-list">
+                {% for definition in blockCatalog %}
+                    <form method="get" action="/dashboards/preview" class="block-choice-form">
+                        <input type="hidden" name="period" value="{{ period }}">
+                        <input type="hidden" name="density" value="{{ density }}">
+                        {% for value in blockValues %}
+                            <input type="hidden" name="blocks[]" value="{{ value }}">
+                        {% endfor %}
+                        <input type="hidden" name="blocks[]" value="{{ definition.id }}:{{ definition.defaultPresentation }}">
+                        <button class="block-choice" type="submit">
+                            <span class="block-choice-mark" aria-hidden="true">{{ definition.category|slice(0, 1) }}</span>
+                            <span class="block-choice-copy">
+                                <strong>{{ definition.label }}</strong>
+                                <span>{{ definition.description }}</span>
+                            </span>
+                            <span class="block-choice-arrow" aria-hidden="true">&rarr;</span>
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <p class="popover-footnote">Only registered Morph block capabilities are offered. No query or data is run by this preview.</p>
+    </div>
+</details>

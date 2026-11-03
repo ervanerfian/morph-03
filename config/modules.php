@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use MorphSpace\Modules\Dashboard\DashboardModule;
 use MorphSpace\Modules\System\SystemModule;
 
 /*
@@ -10,4 +11,5 @@ use MorphSpace\Modules\System\SystemModule;
  */
 return [
     SystemModule::class,
+    DashboardModule::class,
 ];

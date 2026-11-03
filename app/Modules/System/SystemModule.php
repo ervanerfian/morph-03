@@ -22,6 +22,7 @@ final class SystemModule implements ModuleProvider
 
             return Response::html($views->render('system/home.twig', [
                 'appName' => 'Morph Space',
+                'activeNav' => 'overview',
             ]));
         });
 
