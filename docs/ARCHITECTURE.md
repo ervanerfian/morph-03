@@ -58,6 +58,10 @@ For browser interaction policy, use [DATASTAR-NATIVE-WEB-GUIDANCE.md](DATASTAR-N
 
 Do not add SPA frameworks, a parallel client-side data authority, a second reactive engine, an ORM, a per-template CRUD implementation, or a physical PostgreSQL database per logical Database without a reviewed architectural change.
 
+## UI/UX design source
+
+OpenPanel is the user's canonical reference for **full-surface UI/UX adaptation** across Morph's UI, blocks, elements, and interactions. The reviewed snapshot is [`0d9a8970cd2f14e59337efb0da127e823fa5cc25`](https://github.com/Openpanel-dev/openpanel/tree/0d9a8970cd2f14e59337efb0da127e823fa5cc25); implementation status and the license/provenance gate are tracked in [UI-IMPLEMENTATION.md](UI-IMPLEMENTATION.md). This is a design-reference decision only: the application remains Morph-owned PHP/Twig/Datastar/native-browser code, and the retained `ui/HTML`, `ui/PHP`, and `ui/Symfony` materials remain secondary references. It does not authorize copying OpenPanel code or assets or adding its runtime; any such reuse requires a separate license and provenance review. The UI adaptation itself has not yet been implemented.
+
 ## Persistence and tenancy invariants
 
 1. A request's effective user and workspace context comes from verified server-side authentication and membership. A client-supplied `workspace_id` is not authority.

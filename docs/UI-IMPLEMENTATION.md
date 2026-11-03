@@ -1,14 +1,17 @@
 # Morph Space UI Implementation
 
-**Status:** first server-rendered application-shell preview implemented; authentication, workspace data, and product pages are not yet implemented.
+**Status:** server-rendered application-shell preview implemented; OpenPanel selected for full UI/UX adaptation, which is **not yet implemented**. Authentication, workspace data, and product pages are also not yet implemented.
 
-## Reference material
+## Canonical UI/UX reference and adaptation mandate
 
-The developer is retaining the supplied `ui/HTML`, `ui/PHP`, and `ui/Symfony` variants as potential sources of ideas and examples. They remain reference material, not application runtime or a package dependency. For Twig layout patterns, `ui/Symfony/paces` is the closest example; the HTML and PHP versions may still be consulted where they offer a useful comparison.
+**User decision (2026-11-03):** OpenPanel is the canonical, end-to-end UI/UX reference for Morph. The adaptation target covers **all** product UI, blocks, elements, and interactions—not inspiration alone and not a mix of unrelated design systems.
 
-Morph UI is authored in the application stack under `templates/`, `public/assets/css/`, and `assets/ts/`. Do not copy a complete reference project into the application, run its Symfony or Gulp project as Morph, or add its large vendor/plugin set without a separately reviewed need. Symfony-specific Twig helpers, routes, assets, and extensions must be replaced with Morph-owned equivalents. Keep reference assets and code out of public runtime paths.
-
-Use only visual patterns and implementation material covered by the developer's license. Do not redistribute or deploy reference images, fonts, compiled bundles, or other proprietary assets without confirming their license terms.
+- **Upstream:** [OpenPanel](https://github.com/Openpanel-dev/openpanel), pinned reference snapshot [`0d9a8970cd2f14e59337efb0da127e823fa5cc25`](https://github.com/Openpanel-dev/openpanel/tree/0d9a8970cd2f14e59337efb0da127e823fa5cc25), checked 2026-11-03. Review upstream changes deliberately rather than silently following mutable `main`.
+- **Coverage:** map and adapt page layouts, navigation, design tokens, typography, color, spacing, surfaces, blocks/components/elements, controls, interaction patterns and states (including focus, loading, empty, error, and disabled), responsive behavior, motion, and accessibility.
+- **Product boundary:** Morph keeps its own name, business concepts, data, workflows, server authorization, and disclosure rules. Where a Morph-specific flow has no direct OpenPanel analogue, compose it from the closest OpenPanel patterns and record the mapping; do not invent a competing visual language by default.
+- **Implementation boundary:** translate the reference into Morph-owned Twig, CSS, Datastar, and native-browser/TypeScript ESM code. This design decision does not add OpenPanel's application runtime, SPA framework, bundler, or dependencies, and does not override the existing PHP/PostgreSQL/Datastar architecture.
+- **Retained references:** supplied `ui/HTML`, `ui/PHP`, and `ui/Symfony` variants remain untouched and available as secondary reference material; they are no longer the primary UI/UX authority.
+- **License/provenance gate:** GitHub repository metadata and its `LICENSE.md` report AGPL-3.0 ([license](https://github.com/Openpanel-dev/openpanel/blob/0d9a8970cd2f14e59337efb0da127e823fa5cc25/LICENSE.md), checked 2026-11-03). This mandate is for full UI/UX adaptation, not blanket authorization to copy upstream source, branding, fonts, icons, screenshots, or other assets. Before reusing code/assets, review license compatibility and file-level asset terms, retain required notices, and document provenance. If reuse is not cleared, implement the adapted experience with Morph-owned code/assets. No OpenPanel code or assets were copied by this documentation change.
 
 ## Current UI slice
 
@@ -18,7 +21,7 @@ Use only visual patterns and implementation material covered by the developer's 
 - `assets/ts/app.ts` provides the local mobile-navigation behavior. TypeScript compiles to an ES module in ignored `public/assets/build/`.
 - Navigation items for modules not implemented yet are intentionally non-links.
 
-The shell draws on common dashboard conventions (topbar, contextual sidebar, page heading, cards, and status chips) while using Morph-specific content and styles. It does not copy the Paces logo or wire its JavaScript, CSS, or plugins into the app.
+This foundation shell predates the OpenPanel decision. It is a Morph-authored preview, not yet a 100%-adapted product UI; this documentation update adds no OpenPanel code or assets. Do not treat its existing layout/styles as the target system. The next UI work must map and adapt the pinned OpenPanel reference while keeping Morph-owned implementation, content, and authorization.
 
 ## Asset workflow
 
@@ -36,10 +39,11 @@ No Datastar bundle or Datastar Rocket bundle is loaded by this preview. Follow [
 
 ## Product and security progression
 
-1. Complete Identity and Workspace contracts and verify the Laragon web-SAPI before presenting an authenticated workspace context.
-2. Add workspace-scoped navigation and overview only when those values come from trusted server-side services.
-3. Build the Database Builder views incrementally: logical Database catalog, table/view navigation, then data grid and record details. A logical Database is not a physical PostgreSQL database.
-4. Use Twig for server-rendered HTML; Datastar for server-driven state and HTML/SSE updates; TypeScript/Rocket only for browser behavior that benefits from a reusable client component.
+1. Inventory the pinned OpenPanel reference and create a UI mapping that covers all Morph layouts, blocks, elements, and interaction states. Review and record source/asset license terms before reusing any upstream code or assets; this design decision does not authorize copying.
+2. Complete Identity and Workspace contracts and verify the Laragon web-SAPI before presenting an authenticated workspace context.
+3. Add workspace-scoped navigation and overview only when those values come from trusted server-side services, adapting them to the OpenPanel reference.
+4. Build the Database Builder views incrementally: logical Database catalog, table/view navigation, then data grid and record details. A logical Database is not a physical PostgreSQL database; use OpenPanel patterns for each view and interaction.
+5. Use Twig for server-rendered HTML; Datastar for server-driven state and HTML/SSE updates; TypeScript/Rocket only for browser behavior that benefits from a reusable client component.
 
 The UI never grants access. Authentication, workspace membership, resource policy, validation, and persistence remain server-side. Client signals, route IDs, and DOM state are not authorization.
 
